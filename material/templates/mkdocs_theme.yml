@@ -43,7 +43,7 @@ font:
 icon:
 
 # Favicon to be rendered
-favicon: assets/images/favicon.png
+favicon: assets/images/favicon.ico
 
 # Static pages to build
 static_templates:

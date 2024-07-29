@@ -1,17 +1,17 @@
 
 # Project information
-site_name: S7-1200_PLC_EASY_PLUS Git版
+site_name: S7-1200PLC技术手册 - EasyPlus 版
 site_url: 
 site_author: Frank Lin
-site_description: >-
+site_description: >- 
   西门子 S7-1200 PLC 技术参考,Version 4.3
 
 # Repository
-repo_name: squidfunk/mkdocs-material
-repo_url: https://github.com/squidfunk/mkdocs-material
+repo_name: lybhb8/Simens-S7-1200-EasyPlus
+repo_url: https://github.com/lybhb8/Simens-S7-1200-EasyPlus/tree/main
 
 # Copyright
-copyright: Copyright &copy; 2016 - 2024 Frank Lin
+copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme:
@@ -30,7 +30,7 @@ theme:
     # - header.autohide
     # - navigation.expand
     - navigation.footer
-    - navigation.indexes
+    # - navigation.indexes
     # - navigation.instant
     # - navigation.instant.prefetch
     # - navigation.instant.progress

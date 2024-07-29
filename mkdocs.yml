@@ -18,32 +18,33 @@ theme:
   name: material
   custom_dir: material/overrides
   features:
+    #- tabs: true # 显示顶部导航栏
     - announce.dismiss
     - content.action.edit
     - content.action.view
     - content.code.annotate
     - content.code.copy
     # - content.code.select
-    # - content.footnote.tooltips
-    # - content.tabs.link
+    - content.footnote.tooltips
+    - content.tabs.link
     - content.tooltips
     # - header.autohide
-    # - navigation.expand
+    - navigation.expand
     - navigation.footer
     # - navigation.indexes
-    # - navigation.instant
+    - navigation.instant
     # - navigation.instant.prefetch
     # - navigation.instant.progress
     # - navigation.prune
-    - navigation.sections
+    # - navigation.sections
     - navigation.tabs
-    # - navigation.tabs.sticky
+    - navigation.tabs.sticky
     - navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
-    - toc.follow
+    # - toc.follow
     # - toc.integrate
   palette:
     - media: "(prefers-color-scheme)"
@@ -160,8 +161,13 @@ not_in_nav: |
 # Page tree
 nav:
   - 首页: index.md
-  - 网络资源: source.md
-  - S7-1200简介: introduction.md
-  - S7-1200硬件: hardware.md
- 
+  - 简介: introduction\index.md
+  - 网络资源: source\index.md
+  - 硬件: hardware\index.md
+  - 技术规格: 
+    - 参数总汇: specifications\parameters.md
+    - 性能参数V4.0: specifications\feature.md
+  - 版本:
+    - CPU 固件常见问题: version\question.md
+    - PLC V4.6 简介: version\v46.md
  

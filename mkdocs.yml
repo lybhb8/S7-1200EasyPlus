@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme: 
-  name: readthedocs # material
+  name: material
   custom_dir: material/overrides
   features:
     #- tabs: true # 显示顶部导航栏
@@ -74,7 +74,7 @@ theme:
 
 # Plugins
 plugins:
-  # - blog
+  - blog
   - search:
       separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
@@ -95,7 +95,7 @@ extra:
     property: !ENV GOOGLE_ANALYTICS_KEY
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/squidfunk
+      link: https://github.com/lybhb8
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/r/squidfunk/mkdocs-material/
     - icon: fontawesome/brands/python
@@ -179,6 +179,9 @@ nav:
     - program\index.md
     - STEP7 V18 安装条件: program\install.md
     - TIA Portal编程软件操作: 
-      - program\operation.md
+      - 编程操作: program\operation.md
       - 新建项目: program\operation\project.md
       - CPU参数配置: program\operation\CPU_parameter.md
+      - 常见问题FAQ: program\operation\FAQ.md
+      - 项目下载: program\operation\download.md
+      

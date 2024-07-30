@@ -167,7 +167,15 @@ nav:
   - 技术规格: 
     - 参数总汇: specifications\parameters.md
     - 性能参数V4.0: specifications\feature.md
-  - 版本:
+  - PLC版本: 
+    - version\version.md
     - CPU 固件常见问题: version\question.md
     - PLC V4.6 简介: version\v46.md
- 
+    - 固件升级: 
+      - 升级: version\upgrade.md
+      - CPU固件: version\firmware.md
+      - 模块固件: version\firmware1.md
+  - 编程:
+    - program\index.md
+    - STEP7 V18 安装条件: program\install.md
+

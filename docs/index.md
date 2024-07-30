@@ -18,7 +18,7 @@
 - [网络资源]
 - [技术规格]
 - [版本]
- 
+- [编程]
 
 </div>
 
@@ -26,4 +26,6 @@
 [S7-1200 硬件]: hardware/index.md
 [网络资源]: source/index.md
 [技术规格]: specifications/parameters.md
-[版本]: version/question.md
+[版本]: version/version.md
+[编程]: program/index.md
+

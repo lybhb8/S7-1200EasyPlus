@@ -42,7 +42,8 @@ STEP 7 Professional / Basic V18 可以安装于以下操作系统
 - Windows Server 2022 Standard 
 - Windows Server 2019 Standard 
 - Windows Server 2016 Standard 
-* 仅适用于基本版 
+
+ *仅适用于基本版 
  
 ### 3 管理员权限
 

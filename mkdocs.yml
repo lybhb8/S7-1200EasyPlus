@@ -4,11 +4,11 @@ site_name: S7-1200PLC技术手册 - EasyPlus
 site_url: 
 site_author: Frank Lin
 site_description: >- 
-  西门子 S7-1200 PLC 技术参考,Version 4.3
+  西门子 S7-1200 PLC 技术参考,Ver4.3
 
 # Repository
-repo_name: lybhb8/Simens-S7-1200-EasyPlus
-repo_url: https://github.com/lybhb8/Simens-S7-1200-EasyPlus/tree/main
+repo_name: lybhb8/S7-1200-EasyPlus
+repo_url: https://github.com/lybhb8/S7-1200-EasyPlus/tree/main
 
 # Copyright
 copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8

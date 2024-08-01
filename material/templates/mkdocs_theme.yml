@@ -19,7 +19,7 @@
 # IN THE SOFTWARE.
 
 # Language for theme localization
-language: en
+language: zh
 
 # Text direction (can be ltr or rtl), default: ltr
 direction:

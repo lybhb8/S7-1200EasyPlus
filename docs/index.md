@@ -30,5 +30,5 @@
 [网络资源]: source/index.md
 [技术规格]: specifications/parameters.md
 [版本]: version/version.md
-[编程]: program/index.md
+[编程]: 07-Program/index.md
 

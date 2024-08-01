@@ -31,20 +31,20 @@ theme:
     # - header.autohide
     - navigation.expand
     - navigation.footer
-    # - navigation.indexes
+    - navigation.indexes
     - navigation.instant
-    # - navigation.instant.prefetch
-    # - navigation.instant.progress
+    - navigation.instant.prefetch
+    - navigation.instant.progress
     # - navigation.prune
     # - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
-    #- navigation.top
+    - navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
     - search.suggest
-    # - toc.follow
+    - toc.follow
     # - toc.integrate
   palette:
     - media: "(prefers-color-scheme)"
@@ -53,8 +53,8 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo
-      accent: indigo
+      primary: indigo # blue grey
+      accent: blue grey # indigo
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
@@ -96,14 +96,15 @@ extra:
   social:
     - icon: fontawesome/brands/github
       link: https://github.com/lybhb8
+    - icon: fontawesome/brands/blogger
+      link: https://blowmoldingshare.cn/      
     - icon: fontawesome/brands/docker
       link: https://hub.docker.com/r/squidfunk/mkdocs-material/
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/mkdocs-material/
-    - icon: fontawesome/brands/mastodon
-      link: https://fosstodon.org/@squidfunk
-    - icon: fontawesome/brands/x-twitter
-      link: https://x.com/squidfunk
+
+    # - icon: fontawesome/brands/x-twitter
+    # link: https://x.com/squidfunk
 
 # Extensions
 markdown_extensions:
@@ -176,12 +177,18 @@ nav:
       - CPU固件: version\firmware.md
       - 模块固件: version\firmware1.md
   - 编程:
-    - program\index.md
-    - STEP7 V18 安装条件: program\install.md
+    - 07-Program\index.md
+    - STEP7 V18 安装条件: 07-Program\install.md
     - TIA Portal编程软件操作: 
-      - 编程操作: program\operation.md
-      - 新建项目: program\operation\project.md
-      - CPU参数配置: program\operation\CPU_parameter.md
-      - 常见问题FAQ: program\operation\FAQ.md
-      - 项目下载: program\operation\download.md
-      
+      - 编程操作: 07-Program\operation.md
+      - 新建项目: 07-Program\01-operation\01-New_Project.md
+      - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
+      - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
+      - 项目下载: 07-Program\01-operation\04-Download.md
+      - 下载非初始化: 07-Program\01-operation\05-download_run.md
+      - 硬件检测: 07-Program\01-operation\06-detect_hardware.md
+      - 上载程序: 07-Program\01-operation\07-upload_program.md
+      - 上载站点: 07-Program\01-operation\08-upload_station.md
+      - 上传时版本的兼容性: 07-Program\01-operation\09-upload_compatibility.md
+      - 项目升级: 07-Program\01-operation\10-update.md
+      - 程序升级: 07-Program\01-operation\11-Program_Update.md

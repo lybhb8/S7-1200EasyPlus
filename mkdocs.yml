@@ -53,8 +53,8 @@ theme:
         name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
       scheme: default
-      primary: indigo # blue grey
-      accent: blue grey # indigo
+      primary: indigo # deep purple
+      accent:  indigo # deep purple
       toggle:
         icon: material/toggle-switch
         name: Switch to dark mode
@@ -114,6 +114,8 @@ markdown_extensions:
   - def_list
   - footnotes
   - md_in_html
+  - pymdownx.superfences
+
   - toc:
       permalink: true
   - pymdownx.arithmatex:
@@ -185,7 +187,7 @@ nav:
       - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
       - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
       - 项目下载: 07-Program\01-operation\04-Download.md
-      - 下载非初始化: 07-Program\01-operation\05-download_run.md
+      - 运行下载: 07-Program\01-operation\05-download_run.md
       - 硬件检测: 07-Program\01-operation\06-detect_hardware.md
       - 上载程序: 07-Program\01-operation\07-upload_program.md
       - 上载站点: 07-Program\01-operation\08-upload_station.md

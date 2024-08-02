@@ -6,9 +6,9 @@
 答：S7-1200 只可作为NTP的client(客户)端进行时钟同步,如要实现SNTP
 sever(服务器)端功能，可以通过下面的链接下载相应的库。
 
-![](images/3.gif) [**https://support.industry.siemens.com/cs/cn/zh/view/82203451**](https://support.industry.siemens.com/cs/cn/zh/view/82203451)
+![](images/3.gif) **<https://support.industry.siemens.com/cs/cn/zh/view/82203451>**
 
-## 为什么在组态了系统存储器后， **常 1** 信号在程序中却不生效？
+## 为什么在组态了系统存储器后， **常1** 信号在程序中却不生效？
 
 答：组态或修改了系统存储器后，要确保将配置重新下载到CPU，否则组态不生效。
 

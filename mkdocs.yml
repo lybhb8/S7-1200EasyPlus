@@ -194,3 +194,22 @@ nav:
       - 上传时版本的兼容性: 07-Program\01-operation\09-upload_compatibility.md
       - 项目升级: 07-Program\01-operation\10-update.md
       - 程序升级: 07-Program\01-operation\11-Program_Update.md
+
+    - 编程基础:
+      - 07-Program\basic.md
+      - 数据类型: 
+        - 07-Program\02-basic\data_type.md
+        - 基本数据: 07-Program\02-basic\01-Data_Type\01-basic.md
+        - 结构数据Struct: 07-Program\02-basic\01-Data_Type\02-Struct.md
+        - UDT: 07-Program\02-basic\01-Data_Type\03-UDT.md
+        - 数组: 07-Program\02-basic\01-Data_Type\04-Array.md
+        - 系统数据SDT: 07-Program\02-basic\01-Data_Type\05-SDT.md
+        - 硬件数据: 07-Program\02-basic\01-Data_Type\06-hardware.md
+        - Variant: 07-Program\02-basic\01-Data_Type\07-Variant.md
+        - DB_ANY: 07-Program\02-basic\01-Data_Type\08-DB_ANY.md
+        - 字符String: 07-Program\02-basic\01-Data_Type\09-String.md
+        - 宽字符WString: 07-Program\02-basic\01-Data_Type\10-WString.md
+        - 时间数据DTL: 07-Program\02-basic\01-Data_Type\11-DTL.md
+
+      - 组织块OB: 07-Program\02-basic\ob.md
+      - FC,FB功能块: 07-Program\02-basic\block.md

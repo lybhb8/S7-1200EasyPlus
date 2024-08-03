@@ -1,4 +1,4 @@
-### 比较操作 - 变量 指令说明
+# 比较操作 - 变量 指令说明
 
 从TIA V13SP1 开始，S7-1200
 V4.0开始，支持以下处理Variant类型的变量的指令，如图1-2所示。
@@ -15,7 +15,7 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1-2所示
 
 []{#Type}
 
-#### EQ_Type、NE_Type、TypeOf
+## EQ_Type、NE_Type、TypeOf
 
 表1 LAD指令详情
 
@@ -106,7 +106,7 @@ OB1多次调用该FC6，可以看到结果，\"DB16\".Static_1是Byte类型，\"
 
 []{#ElemType}
 
-#### EQ_ElemType、NE_ElemType、TypeOfElements
+## EQ_ElemType、NE_ElemType、TypeOfElements
 
 表2 LAD指令说明
 
@@ -243,7 +243,7 @@ OB1多次调用该FC7，可以看到结果，\"DB17\".Static_1是Byte数组，\"
 
 图10 OB1多次调用FC7
 
-#### []{#Null}IS_NULL、NOT_NULL
+## []{#Null}IS_NULL、NOT_NULL
 
 表3 LAD指令说明
 
@@ -304,7 +304,7 @@ OB1调用FC9
 
 从图13中可知，不满足DB_ANY_TO_VARIANT条件的DB1初始化的Temp_2相当于NULL，其余两个都可以视作有明确指向。
 
-#### []{#Array}IS_ARRAY
+## []{#Array}IS_ARRAY
 
 表4 LAD指令说明
 

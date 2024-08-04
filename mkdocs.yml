@@ -76,7 +76,7 @@ theme:
 plugins:
   - blog
   - search:
-      separator: '[\s\u200b\-_,:!=\[\]()"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
+      separator: '[\s\u200b\-_,:!=\[\: )"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:
       minify_html: true
 
@@ -211,5 +211,19 @@ nav:
         - 宽字符WString: 07-Program\02-basic\01-Data_Type\10-WString.md
         - 时间数据DTL: 07-Program\02-basic\01-Data_Type\11-DTL.md
 
-      - 组织块OB: 07-Program\02-basic\ob.md
+      - 组织块 OB: 
+        - 组织块 OB简介: 07-Program\02-basic\02-OB\01-intro.md
+        - 程序循环 OB1: 07-Program\02-basic\02-OB\02-OB1.md
+        - 延时中断 OB20: 07-Program\02-basic\02-OB\03-OB20.md
+        - 循环中断 OB30: 07-Program\02-basic\02-OB\04-OB30.md
+        - 硬件中断 OB40: 07-Program\02-basic\02-OB\05-OB40.md
+        - 时间错误 OB80: 07-Program\02-basic\02-OB\06-OB80.md
+        - 诊断错误 OB82: 07-Program\02-basic\02-OB\07-OB82.md
+        - 启动 OB100: 07-Program\02-basic\02-OB\08-OB100.md
+        - 时间中断 OB10: 07-Program\02-basic\02-OB\09-OB10.md
+        - 插拔中断 OB83: 07-Program\02-basic\02-OB\10-OB83.md
+        - 机架或站故障 OB86: 07-Program\02-basic\02-OB\11-OB86.md
+
+
+
       - FC,FB功能块: 07-Program\02-basic\block.md

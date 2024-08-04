@@ -26,3 +26,7 @@
     - [机架或站故障 OB86](./02-basic/02-OB/11-OB86.md)
 
 * [FC,FB功能块](./02-basic/block.md)
+    - [FC功能](./02-basic/03-Block/01-FC.md)
+    - [DB数据块](./02-basic/03-Block/02-DB.md)
+    - [DB快照功能](./02-basic/03-Block/03-DB_Snapshots.md)
+    - [FB功能块](./02-basic/03-Block/04-FB.md)

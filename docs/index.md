@@ -14,21 +14,18 @@
 
 ## 目录
 
-<div class="mdx-columns" markdown>
-
-- [S7-1200 简介][S7-1200 简介]
-- [S7-1200 硬件][S7-1200 硬件]
-- [网络资源][网络资源]
-- [技术规格][技术规格]
-- [版本][版本]
-- [编程][编程]
-
-</div>
-
-[S7-1200 简介]: introduction/index.md
-[S7-1200 硬件]: hardware/index.md
-[网络资源]: source/index.md
-[技术规格]: specifications/parameters.md
-[版本]: version/version.md
-[编程]: 07-Program/index.md
-
+- [S7-1200 简介](introduction/index.md)
+- [S7-1200 硬件预览](hardware/index.md)
+- [网络资源](source/index.md)
+- [技术规格](specifications/parameters.md)
+- [版本](version/version.md)
+    - [CPU 固件常见问题](./version/question.md)
+    - [PLC V4.6 简介](./version/v46.md)
+    - [固件升级](./version/upgrade.md)
+- [编程](07-Program/index.md)
+    - [TIA Portal STEP 7 V18 安装](./07-Program/install.md)
+    - [TIA Portal编程软件操作](./07-Program/operation.md)
+    - [编程基础](./07-Program/basic.md)
+- [编程指令](./07-Program/instruction.md)
+    - [基本指令](./07-Program/03-instruction/basic.md)
+  

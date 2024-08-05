@@ -230,3 +230,12 @@ nav:
         - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
         - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
         - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
+    - 编程指令:
+      - 07-Program\instruction.md
+      - 基础指令: 
+        - 07-Program\03-instruction\basic.md 
+        - 位逻辑指令: 07-Program\03-instruction\01-Basic\08-bit.md
+        - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
+        - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md
+        - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
+

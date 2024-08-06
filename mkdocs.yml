@@ -18,13 +18,13 @@ theme:
   name: material
   custom_dir: material/overrides
   features:
-    #- tabs: true # 显示顶部导航栏
+    - tabs
     - announce.dismiss
     - content.action.edit
     - content.action.view
     - content.code.annotate
     - content.code.copy
-    # - content.code.select
+    - content.code.select
     - content.footnote.tooltips
     - content.tabs.link
     - content.tooltips
@@ -162,6 +162,9 @@ not_in_nav: |
   /tutorials/**/*.md
 
 # Page tree
+page:
+- 首页: index.md
+
 nav:
   - 首页: index.md
   - 简介: introduction\index.md
@@ -238,4 +241,5 @@ nav:
         - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
         - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md
         - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
-
+        - 计数器: 07-Program\03-instruction\01-Basic\02-COUNTER.md
+        - 比较指令: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md

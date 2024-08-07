@@ -40,7 +40,7 @@ font:
 
 # From Material 5.x on, icons are inlined into the HTML and CSS as SVGs.
 # Icons that are part of the HTML can be configured and replaced
-icon:
+icon: assets/images/siemens-ar21.svg
 
 # Favicon to be rendered
 favicon: assets/images/favicon.ico

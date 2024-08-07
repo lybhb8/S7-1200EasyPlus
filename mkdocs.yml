@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme: 
-  name: readthedocs #material
+  name: material # readthedocs
   custom_dir: material/overrides
   features:
 
@@ -40,7 +40,7 @@ theme:
     - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
-    - navigation.top
+    # - navigation.top
     - navigation.tracking
     - search.highlight
     - search.share
@@ -69,7 +69,7 @@ theme:
   font:
     text: Roboto
     code: Roboto Mono
-  favicon: assets/favicon.png
+  favicon: assets/images/favicon.ico
   icon:
     logo: logo
 
@@ -99,8 +99,8 @@ extra:
       link: https://github.com/lybhb8
     - icon: fontawesome/brands/blogger
       link: https://blowmoldingshare.cn/      
-    - icon: fontawesome/brands/docker
-      link: https://hub.docker.com/r/squidfunk/mkdocs-material/
+    - icon: fontawesome/solid/s
+      link: https://www.ad.siemens.com.cn/download/filter?listType=false&productTypeId=1224&applicationScenarioId=&docTypeId=&orderNumber=&publishStartDate=&publishEndDate=
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/mkdocs-material/
 

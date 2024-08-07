@@ -30,12 +30,12 @@ CPU ，如果用于执行上传操作的软件是 TIA Portal V14 SP1版本但创
 
 图 2 TIA Portal V14 无法上传 TIA Portal V14 SP1 项目
 
-## 2. 在 TIA Portal V14 软件中，上传 TIA Portal V14 SP1 的项目
+## 2. 在 TIA Portal V14 软件中，上传 TIA Portal V14 SP1的项目
 
 和 1 的问题原因是一样的，当使用 TIA Portal V14 SP1 软件下载 TIA Portal
 V14 项目到 S7-1200 CPU ，如果用于执行上传操作的软件是 TIA Portal V14，则可以上传。否则无法上传。
 
-## 3. 在 TIA Portal V13 SP1 / SP2 软件中，上传 TIA Portal V13 的项目
+## 3. 在 TIA Portal V13 SP1 / SP2 软件中,上传TIA Portal V13 的项目
 
 可以从[这里](File/82169157_compatibility_mode_v13_v13sp1.zip)下载一个
 TIA Portal V13 的空项目，然后使用 TIA Portal V13 SP1/SP2
@@ -46,8 +46,7 @@ TIA Portal V13 的空项目，然后使用 TIA Portal V13 SP1/SP2
 
 图 3 TIA Portal V13SP1/SP2 打开 V13 项目
 
-## 4. 在 TIA Portal V13 / V13 SP1/ V13 SP2 软件中，上传 TIA Portal V12/
-V12 SP1 的项目
+## 4. 在 TIA Portal V13 / V13 SP1/ V13 SP2 软件中，上传 TIA Portal V12/V12SP1 的项目
 
 可以从[这里](File/82169157_compatibility_mode_v12_v13.zip)下载一个 TIA
 Portal V12 SP1 的空项目，然后使用 TIA Portal V13 / V13 SP1 / V13 SP2

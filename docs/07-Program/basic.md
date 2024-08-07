@@ -1,4 +1,4 @@
-# 编程基础
+# 编程基础目录
 
 * [数据类型](./02-basic/data_type.md)
     - [基本数据](./02-basic/01-Data_Type/01-basic.md)

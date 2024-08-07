@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Firmware_Update_SM</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">通过TIA 软件或 Web 方式更新扩展模块固件</h3>
+<p>伴随着TIA 软件V13 版本以及S7-1200 CPU V4.0 固件版本的发布，S7-1200 PLC 扩展模块的固件已经可以通过如下几种方式进行升级：</p>
+<ul>
+  <LI>使用存储卡更新CPU固件，具体步骤请参考 <a href="../../08-Function/10-Memory_Card.html">存储卡的使用</a> 章节。
+  <LI>使用TIA 软件更新CPU固件。<br>
+  <LI>通过Web访问方式更新CPU固件。   
+</ul>
+<p>本文以CM 1241 RS422/485模块(订货号：6ES7241-1CH32-0XB0)为例介绍如何通过TIA软件和Web方式升级扩展模块固件。<br>
+注意：<br>
+并不是所有S7-1200 PLC的扩展模块都支持TIA 软件、Web方式更新模块固件。<br>
+固件下载链接参见：<a href="../../01-resource/08-online_download.htm#firm">链接</a>。</p>
+<h4>使用TIA 软件更新扩展模块固件</h4>
+<p>1. 打开所连接 CPU 的设备视图，并切换到&ldquo;在线&rdquo;模式，如图1所示。<br>
+  <br>
+  <img src="images/2-01.png" width="1001" height="575"><br>
+图1. 打开&ldquo;在线和诊断&rdquo;视图</p>
+<p>2. 在线&quot;设备视图&quot;中，鼠标右键需要固件升级的扩展模块，在弹出的菜单栏中选择&quot;在线和诊断&quot;。如图2所示。</p>
+<p><img src="images/2-02.png" width="716" height="683"><br>
+图2. 扩展模块的在线与诊断</p>
+<p>3.在扩展模块的在线和诊断页面中，点击&quot;固件更新&quot;并浏览到新版本固件后，点击&ldquo;运行更新&rdquo;按钮，即可执行扩展模块的固件更新操作。如图3所示。<br>
+<img src="images/2-03.png" width="698" height="568"><br>
+图3. 运行更新固件</p>
+<p>在加载固件更新时会显示进程对话框。<br>
+</p>
+<h4>通过Web访问方式更新CPU固件</h4>
+<p>1.启动CPU的Web服务器功能<br>
+  <br>
+  如果需要通过Web方式更新CPU固件，首先需要在设备组态视图中选择CPU，在CPU属性中使能&ldquo;启动模块上的Web服务器&rdquo;。<br>
+  并出于安全考虑，对Web服务器进行安全访问时，需要选择&quot;仅允许使用 HTTPS
+  访问&quot;。相关设置如图4所示。</p>
+<p><img src="images/2-04.png" width="761" height="676"><br>
+图4.启用Web服务器</p>
+<p>2.组态Web服务器用户权限。<br>
+  <br>
+为了使能Web服务器升级固件功能，需要组态Web服务器访问CPU的权限，需要在Web服务器属性的&ldquo;用户管理&rdquo;中添加授权的用户名、访问权限和密码。<br>
+本例需要开放&ldquo;执行固件更新&rdquo;权限，如图5所示。</p>
+<p><img src="images/2-05.png" width="682" height="542"><br>
+图5.添加用户并开放固件更新权限</p>
+<p>将上述的Web服务器组态下载到CPU后，授权用户就可以通过Web服务器访问CPU。</p>
+<p>3.通过PC 访问Web页面</p>
+<p>首先需要确保PC机与S7-1200 CPU位于同一个以太网络中，然后打开 Web 浏览器，输入 URL &quot;https://ww.xx.yy.zz&quot;，其中&quot;ww.xx.yy.zz&quot;为 S7-1200
+  CPU 的 IP 地址。<br>
+  并在Web服务器上登录授权用户，如图6所示。<br>
+  <img src="images/2-06.png" width="749" height="554">  <br>
+图6.登录Web服务器</p>
+<p>4.登录授权用户后，点击&ldquo;模块信息&rdquo;，然后点击相应PLC站点名称，即可查看PLC 站点信息，如图7所示。</p>
+<p><img src="images/2-07.png" width="713" height="518"><br>
+图7.查看模块信息</p>
+<p>3.在PLC站点信息显示页面，选择需要升级固件的扩展模块，然后点击&ldquo;固件&rdquo;按钮，并&quot;浏览&quot;至固件更新包，点击&ldquo;运行更新&rdquo;按钮，即可执行CPU固件更新操作。如图8所示。</p>
+<p><img src="images/2-08.png" width="794" height="712"><br>
+  图8.浏览固件并更新
+</p>
+</body>
+</html>

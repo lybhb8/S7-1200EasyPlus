@@ -100,7 +100,7 @@ extra:
     - icon: fontawesome/brands/blogger
       link: https://blowmoldingshare.cn/      
     - icon: fontawesome/solid/s
-      link: https://www.ad.siemens.com.cn/download/filter?listType=false&productTypeId=1224&applicationScenarioId=&docTypeId=&orderNumber=&publishStartDate=&publishEndDate=
+      link: https://www.ad.siemens.com.cn/download/filter?productTypeId=1224
     - icon: fontawesome/brands/python
       link: https://pypi.org/project/mkdocs-material/
 
@@ -184,8 +184,9 @@ nav:
   - 编程:
     - 07-Program\index.md
     - STEP7 V18 安装条件: 07-Program\install.md
+
     - TIA Portal编程软件操作: 
-      - 编程操作: 07-Program\operation.md
+      - 07-Program\operation.md
       - 新建项目: 07-Program\01-operation\01-New_Project.md
       - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
       - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
@@ -233,6 +234,7 @@ nav:
         - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
         - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
         - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
+
     - 编程指令:
       - 07-Program\instruction.md
       - 基础指令: 

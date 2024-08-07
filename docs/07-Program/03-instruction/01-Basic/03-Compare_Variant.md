@@ -24,38 +24,44 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1-2所示
 
 SCL指令：TypeOf（操作数），操作数是FC/FB的Input/Output/InOut/Temp中定义为Variant类型的参数，该语句输出是数据类型，在程序中只能用在IF与CASE进行比较。
 
-用法1：IF指令，操作数对应的实参的类型与一个变量类型的比较，例如：
+=== "用法1"
 
-```c
+    IF指令，操作数对应的实参的类型与一个变量类型的比较，例如：
 
-IF (TypeOf(操作数1) = 变量类型（例如Byte）)
-...
-END_IF;
+    ```c
 
-```
+    IF (TypeOf(操作数1) = 变量类型（例如Byte）)
+    ...
+    END_IF;
 
-用法2：IF指令，两个操作数对应的实参的类型比较，例如：
+    ```
 
-```c
-IF (TypeOf(操作数1) = TypeOf(操作数2))
-...
-END_IF;
+=== "用法2"
 
-```
+    IF指令，两个操作数对应的实参的类型比较，例如：
 
-用法3：CASE OF指令，操作数对应的实参的类型与多个变量类型的比较，例如：
+    ```c
+    IF (TypeOf(操作数1) = TypeOf(操作数2))
+    ...
+    END_IF;
 
-```c
-CASE (TypeOf(操作数)) OF
-Byte:
-...
-Int:
-...
-ELSE
-...
-END_CASE;
+    ```
 
-```
+=== "用法3"
+
+    CASE OF指令，操作数对应的实参的类型与多个变量类型的比较，例如：
+
+    ```c
+    CASE (TypeOf(操作数)) OF
+    Byte:
+    ...
+    Int:
+    ...
+    ELSE
+    ...
+    END_CASE;
+
+    ```
 
 !!! info "使用举例"
 
@@ -100,40 +106,46 @@ SCL指令：TypeOfElements（操作数），操作数是FC/FB的Input/Output/InO
 
 比较之前，通常先使用IS_ARRAY检查操作数对应的实参是否是数组类型。
 
-用法1：IF指令，操作数对应的实参为数组类型，对该数组元素的类型与一个变量类型的比较，例如：
+=== "用法1"
 
-```c
-IF (TypeOfElements(操作数1) = 变量类型（例如Byte）)
+    IF指令，操作数对应的实参为数组类型，对该数组元素的类型与一个变量类型的比较，例如：
 
-...
+    ```c
+    IF (TypeOfElements(操作数1) = 变量类型（例如Byte）)
 
-END_IF;
+    ...
 
-```
+    END_IF;
 
-用法2：IF指令，两个操作数对应的实参均为数组类型的类型，比较它们数组元素的类型，例如：
+    ```
 
-```c
+=== "用法2"
 
-IF (TypeOfElements(操作数1) = TypeOfElements(操作数2))
-...
-END_IF;
+    IF指令，两个操作数对应的实参均为数组类型的类型，比较它们数组元素的类型，例如：
 
-```
+    ```c
 
-用法3：CASE OF指令，操作数对应的实参为数组类型，对该数组元素的类型与多个变量类型的比较，例如：
+    IF (TypeOfElements(操作数1) = TypeOfElements(操作数2))
+    ...
+    END_IF;
 
-```c
-CASE (TypeOfElements(操作数)) OF
-Byte:
-...
-Int:
-...
-ELSE
-...
-END_CASE;
+    ```
 
-```
+=== "用法3"
+
+    CASE OF指令，操作数对应的实参为数组类型，对该数组元素的类型与多个变量类型的比较，例如：
+
+    ```c
+    CASE (TypeOfElements(操作数)) OF
+    Byte:
+    ...
+    Int:
+    ...
+    ELSE
+    ...
+    END_CASE;
+
+    ```
 
 !!! note "注意"
 

@@ -18,7 +18,7 @@ theme:
   name: material
   custom_dir: material/overrides
   features:
-    - tabs
+
     - announce.dismiss
     - content.action.edit
     - content.action.view
@@ -34,9 +34,10 @@ theme:
     - navigation.indexes
     - navigation.instant
     - navigation.instant.prefetch
-    - navigation.instant.progress
+    # - navigation.instant.progress
     # - navigation.prune
-    # - navigation.sections
+    - navigation.path
+    - navigation.sections
     - navigation.tabs
     - navigation.tabs.sticky
     - navigation.top
@@ -162,8 +163,7 @@ not_in_nav: |
   /tutorials/**/*.md
 
 # Page tree
-page:
-- 首页: index.md
+
 
 nav:
   - 首页: index.md

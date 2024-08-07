@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme: 
-  name: material
+  name: readthedocs #material
   custom_dir: material/overrides
   features:
 
@@ -75,7 +75,7 @@ theme:
 
 # Plugins
 plugins:
-  - blog
+  #- blog
   - search:
       separator: '[\s\u200b\-_,:!=\[\: )"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
   - minify:

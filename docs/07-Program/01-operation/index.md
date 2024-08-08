@@ -22,13 +22,35 @@ STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 W
 ② STEP 7 Professional 用于组态 S7-1200、S7-1500、S7-300/400 和 WinAC，且也自带
 WinCC Basic，用于 Basic 面板的组态。
 
+## 新建项目
 
-- [新建项目](./01-New_Project.md)
-- [CPU参数](./02-CPU_Properties.md)
-- [常见问题FAQ](./03-ConfigFAQ.md)
-- [项目下载](./04-Download.md)
-- [运行时下载](./05-download_run.md)
-- [硬件检测](./06-detect_hardware.md)
+<div class="grid cards" markdown>
+
+- ![](../../source/Blue%20grey/26x22/New.png) __[新建]__ <br> TIA Portal STEP7软件向用户提供了非常简便、灵活的项目创建、编辑和下载方式。
+- ![](../../source/Blue%20grey/26x22/PLC_code.png)__[CPU参数]__ <br> 通过参数分配可以设置所有组件的属性，这些参数将装载到 CPU 中，并在 CPU 启动时传送给相应的模块。
+- ![alt text](反馈faqs.png){width="25"  height="20"} __[常见问题FAQ]__  <br>   回答基本组态常见问题。
+- 
+</div>
+
+
+## 项目下载
+
+<div class="grid cards" markdown>
+
+ - ![alt text](download.png){width="25"  height="20"} __[下载]__ <br> STEP 7 TIA Portal 软件向用户提供了简便、灵活的下载方式。
+ - ![alt text](download-button.png){width="20" height="15"}  __[运行时下载]__ <br> S7-1200 下载但不重新初始化，这一加载过程不会对所控制的过程造成负面影响。
+ - ![](../../source/Blue%20grey/26x22/Diagnose_buffer.png)__[硬件检测]__   <br> S7-1200CPU，且CPU的扩展模板都已经被插接完毕，可以使用自动检测这种更为简便的方式完成设备的硬件配置。
+
+</div>
+
+ [新建]: ./01-New_Project.md
+ [CPU参数]: ./02-CPU_Properties.md
+ [常见问题FAQ]: ./03-ConfigFAQ.md
+ [下载]: ./04-Download.md
+ [运行时下载]: ./05-download_run.md
+ [硬件检测]: ./06-detect_hardware.md
+
+
 - [上载程序](./07-upload_program.md)
 - [上载站点](./08-upload_station.md)
 - [上传时版本的兼容性](./09-upload_compatibility.md)

@@ -182,8 +182,9 @@ nav:
         - 04-version\03-firmware_update\index.md
         - CPU固件: 04-version\03-firmware_update\firmware.md
         - 模块固件: 04-version\03-firmware_update\firmware1.md
+  
   - 组态编程:
-    - 07-Program\index.md
+  
     - STEP7 V18 安装: 07-Program\install.md
     - TIA Portal组态软件操作: 
       - 07-Program\01-operation\index.md
@@ -230,7 +231,7 @@ nav:
 
       - FC功能、FB功能块: 
         - 07-Program\02-basic\03-Block\index.md
-        - FC功能: 07-Program\02-basic\\01-FC.md
+        - FC功能: 07-Program\02-basic\03-Block\01-FC.md
         - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
         - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
         - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
@@ -245,3 +246,14 @@ nav:
         - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
         - 计数器: 07-Program\03-instruction\01-Basic\02-COUNTER.md
         - 比较指令: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
+        - 移动操作: 
+          - 07-Program\03-instruction\01-Basic\04-Move\index.md
+          - MOVE系列: 07-Program\03-instruction\01-Basic\04-Move\01-MOVE.md
+          - 序列化: 07-Program\03-instruction\01-Basic\04-Move\02-DeserializeSerialize.md
+          - FILL_BLK: 07-Program\03-instruction\01-Basic\04-Move\03-FILL_BLK.md
+          - 位序列的组合与分解: 07-Program\03-instruction\01-Basic\04-Move\04-SCATTERGATHER.md
+          - 移动操作-Variant: 07-Program\03-instruction\01-Basic\04-Move\05-MOVE_Variant.md
+        - 程序控制:
+          - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
+          - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
+    

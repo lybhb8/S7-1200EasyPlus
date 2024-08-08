@@ -1,5 +1,7 @@
 # TIA Portal STEP 7 V18 安装
 
+![alt text](image-3.png)
+
 ## 安装条件
 
 最新版本的 STEP 7 (TIA Portal) V18 已经可以从产品代理商处订购。安装 STEP 7 (TIA

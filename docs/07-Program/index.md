@@ -18,9 +18,9 @@
     - [程序升级](./01-operation/11-Program_Update.md)
 
 - [编程基础](./02-basic/index.md)
-    - [数据类型](./02-basic/data_type.md)
+    - [数据类型](./02-basic/01-Data_Type/index.md)
     - [组织块OB](./02-basic/02-OB/01-intro.md)
-    - [FC,FB功能块](./02-basic/block.md)
+    - [FC,FB功能块](./02-basic/03-Block/index.md)
 
 - [编程指令](./03-instruction//index.md)
     - [基本指令](./03-instruction/01-Basic/index.md)

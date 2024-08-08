@@ -166,27 +166,27 @@ not_in_nav: |
 
 
 nav:
-  - 首页: index.md
-  - 简介: introduction\index.md
-  - 网络资源: source\index.md
-  - 硬件: hardware\index.md
-  - 技术规格: 
-    - 参数总汇: specifications\parameters.md
-    - 性能参数V4.0: specifications\feature.md
-  - PLC版本: 
-    - version\version.md
-    - CPU 固件常见问题: version\question.md
-    - PLC V4.6 简介: version\v46.md
-    - 固件升级: 
-      - 升级: version\upgrade.md
-      - CPU固件: version\firmware.md
-      - 模块固件: version\firmware1.md
-  - 编程:
+  - 基础综述: 
+    - index.md
+    - S7-1200简介: introduction\index.md
+    - 网络资源: source\index.md
+    - S7-1200硬件: 
+      - hardware\index.md
+      - 参数总汇: specifications\parameters.md
+      - 性能参数V4.0: specifications\feature.md
+    - S7-1200版本: 
+      - 04-version\index.md
+      - CPU 固件常见问题: 04-version\02-Version\question.md
+      - PLC V4.6 简介: 04-version\02-Version\S7-1200_V4.6.md
+      - 固件升级: 
+        - 04-version\03-firmware_update\index.md
+        - CPU固件: 04-version\03-firmware_update\firmware.md
+        - 模块固件: 04-version\03-firmware_update\firmware1.md
+  - 组态编程:
     - 07-Program\index.md
-    - STEP7 V18 安装条件: 07-Program\install.md
-
-    - TIA Portal编程软件操作: 
-      - 07-Program\operation.md
+    - STEP7 V18 安装: 07-Program\install.md
+    - TIA Portal组态软件操作: 
+      - 07-Program\01-operation\index.md
       - 新建项目: 07-Program\01-operation\01-New_Project.md
       - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
       - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
@@ -200,9 +200,9 @@ nav:
       - 程序升级: 07-Program\01-operation\11-Program_Update.md
 
     - 编程基础:
-      - 07-Program\basic.md
+      - 07-Program\\02-basic\index.md
       - 数据类型: 
-        - 07-Program\02-basic\data_type.md
+        - 07-Program\02-basic\01-Data_Type\index.md
         - 基本数据: 07-Program\02-basic\01-Data_Type\01-basic.md
         - 结构数据Struct: 07-Program\02-basic\01-Data_Type\02-Struct.md
         - UDT: 07-Program\02-basic\01-Data_Type\03-UDT.md
@@ -229,16 +229,16 @@ nav:
         - 机架或站故障 OB86: 07-Program\02-basic\02-OB\11-OB86.md
 
       - FC功能、FB功能块: 
-        - 07-Program\02-basic\block.md
-        - FC功能: 07-Program\02-basic\03-Block\01-FC.md
+        - 07-Program\02-basic\03-Block\index.md
+        - FC功能: 07-Program\02-basic\\01-FC.md
         - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
         - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
         - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
 
     - 编程指令:
-      - 07-Program\instruction.md
+      - 07-Program\03-instruction\index.md
       - 基础指令: 
-        - 07-Program\03-instruction\basic.md 
+        - 07-Program\03-instruction\\01-Basic\index.md 
         - 位逻辑指令: 07-Program\03-instruction\01-Basic\08-bit.md
         - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
         - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md

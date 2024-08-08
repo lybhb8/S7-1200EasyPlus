@@ -1,7 +1,10 @@
-# PLC 编程
+# S7-1200 编程组态
+
+![alt text](image-2.png)
+
 
 - [TIA Portal STEP 7 V18 安装](./install.md)
-- [TIA Portal编程软件操作](./operation.md)
+- [TIA Portal组态软件操作](./01-operation/index.md)
     - [新建项目](./01-operation/01-New_Project.md)
     - [CPU参数](./01-operation/02-CPU_Properties.md)
     - [常见问题FAQ](./01-operation/03-ConfigFAQ.md)
@@ -14,13 +17,13 @@
     - [项目升级](./01-operation/10-update.md)
     - [程序升级](./01-operation/11-Program_Update.md)
 
-- [编程基础](./basic.md)
+- [编程基础](./02-basic/index.md)
     - [数据类型](./02-basic/data_type.md)
     - [组织块OB](./02-basic/02-OB/01-intro.md)
     - [FC,FB功能块](./02-basic/block.md)
 
-- [编程指令](./instruction.md)
-    - [基本指令](./03-instruction/basic.md)
+- [编程指令](./03-instruction//index.md)
+    - [基本指令](./03-instruction/01-Basic/index.md)
         - [位逻辑](./03-instruction/01-Basic/08-bit.md)
         - [置位和复位](./03-instruction/01-Basic/09-set.md)
         - [上升沿和下降沿](./03-instruction/01-Basic/07-Edge.md)

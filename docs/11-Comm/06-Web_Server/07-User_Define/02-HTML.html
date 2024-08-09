@@ -1,0 +1,33 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>创建 HTML 页面</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>用户定义的 Web 页面 - 创建 HTML 页面</h3>
+<p>可以根据需要使用软件包来创建用于 Web 服务器的 HTML 页面。请确保 HTML 代码符合 W3C（万维网联盟）的 HTML 标准。TIA Portal 不会对 HTML 语法进行任何验证。 </p>
+<p>可使用能够以所见即所得或设计版式模式进行设计的软件包，但是必须能够在纯 HTML 表单中编辑 HTML 代码。大部分 Web 编写工具可以提供这种类型的编辑；否则，可以使用简单文本编辑器来编辑 HTML 代码。</p>
+<p>将以下代码行包含在 HTML 页面中，以将页面的字符集设置为 UTF-8：</p>
+<ul>
+  <li>&lt;meta http-equiv=&quot;content-type&quot; content=&quot;text/html; charset=utf-8&quot;&gt; 。</li>
+</ul>
+<p>还要确保以 UTF-8 字符编码的格式保存编辑器中的文件。</p>
+<p>使用 TIA Portal 将 HTML 页面中的所有内容编译到数据块中。这些数据块由一个管理 Web 页面显示的控制数据块、一个或多个包含已编译 Web 页面的片段数据块组成。请注意，如果有大量的 HTML 网页，尤其是那些具有很多图像的页面，它们的片段 DB 需要非常大的装载存储器空间。如果 CPU 的内部装载存储器不足以容纳用户定义的 Web 页面，需要使用存储卡提供外部装载存储器。</p>
+<p>要编写 HTML 代码程序以使用 S7-1200 中的数据，应将 AWP 命令以 HTML 注释的形式包含在代码中。完成之后，将 HTML 页面保存到 PC，并记下保存这些页面的文件夹路径。</p>
+<p>说明</p>
+<ul>
+  <li>对于包含 AWP 命令的 HTML 文件，其文件大小限制为 64 KB。</li>
+  <li>建议创建所有 Web 资源文件（.ccc 文件、图片文件、JavaScript 文件和 html 文件）的大小不超过 512 KB。</li>
+</ul>
+<h4>刷新用户定义的 Web 页面</h4>
+<p>用户定义的 Web 页面不会自动刷新。 可以根据需要选择是否编写用来刷新页面的 HTML 程序。 对于显示 PLC 数据的页面，定期刷新可使数据保持最新。</p>
+<p>对于用作数据输入格式的 HTML 页面，刷新可能会干扰用户输入数据。如果希望整个页面自动进行刷新，可将以下命令行添加到 HTML 头文件，其中，&quot;10&quot;表示两次刷新间隔的时间（以秒为单位）：</p>
+<ul>
+  <li>&lt;meta http-equiv=&quot;Refresh&quot; content=&quot;10&quot;&gt;</li>
+</ul>
+<p>还可以使用 JavaScript 或其它 HTML 方法来控制页面或数据的刷新。 相关信息，请参考 HTML 和 JavaScript 文档。</p>
+</body>
+</html>

@@ -2,7 +2,7 @@
 
 ## 一、上载程序块\--STEP7 V12 及其以上版本软件
 
-1、根据CPU型号添加硬件，或者[自动获取PLC硬件信息](06-detect_hardware.html)后，将CPU转至在线
+1、根据CPU型号添加硬件，或者[自动获取PLC硬件信息](06-detect_hardware.md)后，将CPU转至在线
 
 ![](images/7-1.png){width="1127" height="758"}
 

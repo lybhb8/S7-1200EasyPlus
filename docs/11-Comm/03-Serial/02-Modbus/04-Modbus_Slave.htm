@@ -1,0 +1,446 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Modbus_Slave</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3><strong><span class="STYLE1">Modbus RTU V1 - V2 版本指令介绍</span>（S7-1200 </strong><strong>作为Modbus RTU  从站</strong>）</h3>
+<p>S7-1200 支持Modbus RTU通信模式的模块可作为Modbus RTU从站。以下以 CPU1215C DC/DC/DC和CM1241 RS485为例,介绍S7-1200 Modbus RTU 从站通信组态及编程步骤。 </p>
+<p>硬件和软件需求及所完成的通信任务：</p>
+<p><strong>硬件：</strong><br />
+  ① CPU1215C DC/DC/DC (订货号： 6ES7 215-1AG31-0XB0)<br />
+② CM1241 RS485 (订货号：6ES7 241-1CH30-0XB0)<br />
+③ PS 307电源（订货号：6ES7307-1KA02-0AA0） <br />
+④ PC(带以太网卡） <br />
+⑤ TP以太网电缆<br />
+  <br />
+  <strong>软件：</strong><br />
+  ① STEP 7  V11 Professional SP2 UPD4 +HSP<br />
+  ② ModScan(该软件是第三方软件，可以从 Internet 网络下载)<br />
+  <br />
+  <strong>所完成的通信任务：</strong><br />
+  将Modbus RTU从站CPU1215C中地址从DB1.DBW0开始的5 个字中的数据，分别读取到Modbus RTU主站ModScan中Modbus地址从40001开始的5个字中。 </p>
+<p><strong>1.组态Modbus RTU 通信模块 </strong></p>
+<p>在硬件目录里找到“通信模块”→“点到点”<strong>→</strong>“CM1241(RS485)”，双击或拖拽此模块至CPU左侧即可，如下图1所示：</p>
+<p><img src="images/3-01.jpg" width="959" height="500" /></p>
+<p>图1 组态通信模块</p>
+<p>接下来，在“设备视图”中用鼠标选中CM1241(RS485)模块，在“属性”→“端口组态”中配置此模块硬件接口参数。如下图2所示：</p>
+<p>以下以传输率=9.6Kbps，奇偶校验=无奇偶校验，数据位=8位字符，停止位=1，其它保持默认设置为例。</p>
+<p><img src="images/3-02.JPG" width="696" height="371" /></p>
+<p>图2 RS485  端口设置</p>
+<p>最后在“硬件标识符”里确认一下硬件标识符为271，如下图3所示：</p>
+<p><img src="images/3-03.jpg" width="696" height="204" /></p>
+<p>图3 硬件标识符</p>
+<p><strong>2.添加启动OB</strong></p>
+<p>在项目树下选择“CPU1215C DC/DC/DC”→“程序块”→“添加新块”，在弹出的窗口中选择“OB 组织块”→ “Startup”，添加启动OB 100,如下图4所示： </p>
+<p><img src="images/3-04.jpg" width="614" height="568" /></p>
+<p>图4 添加启动OB</p>
+<p><strong>3.调用MB_COMM_LOAD指令 </strong></p>
+<p>为使端口一启动就被设置为Modbus RTU通信模式，可在OB 100中调用“MB_COMM_LOAD”指令。调用“MB_COMM_LOAD”指令时会自动弹出创建相应背景数据块的界面，如下图5所示：</p>
+<p><img src="images/3-05.jpg" width="927" height="683" /></p>
+<p>图5 调用MB_COMM_LOAD指令</p>
+<p>点击“确认”为该指令创建背景数据块后，为各输入/输出引脚分配地址。尤其需注意MB_DB输入引脚需指向“MB_SLAVE”指令的背景数据块，如下图6所示：</p>
+<p><strong><img src="images/4.gif" />注意：</strong>“MB_COMM_LOAD”指令输入位“REQ”需使用上升沿触发。由于OB 100只在S7-1200启动时执行一次，因此，此例中将“REQ”设为“TRUE”。</p>
+<p><img src="images/4-01.jpg" width="641" height="396" /></p>
+<p>图6 MB_COMM_LOAD指令</p>
+<p>MB_COMM_LOAD指令参数意义如下表1所示：</p>
+<table width="744" border="1">
+  <tr>
+    <th width="126" scope="row"><p><strong>引脚</strong></p></th>
+    <td width="602"><div align="left"><strong>说明</strong></div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">EN</p></td>
+    <td><div align="left">使能端</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">REQ</p></td>
+    <td><div align="left">在上升沿执行该指令</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">PORT</p></td>
+    <td><div align="left">通信端口的硬件标识符</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">BAUD</p></td>
+    <td><div align="left">波特率选择：3600，6000，12000，2400，4800，9600，19200，38400，57600，76800，115200 （注意：所有其它值均无效）</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">PARITY</p></td>
+    <td><div align="left">奇偶检验选择：0-无；1-奇校验；2-偶校验</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">FLOW_CTRL</p></td>
+    <td><div align="left">流控制选择：0-（默认值）无流控制</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RTS_ON_DLY</p></td>
+    <td><div align="left">RTS延时选择：0-（默认值）</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RTS_OFF_DLY</p></td>
+    <td><div align="left">RTS关断延时选择：0-（默认值）</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RESP_TO</p></td>
+    <td><p align="left">响应超时： 默认值  = 1000 ms。MB_MASTER 允许用于从站响应的时间（以毫秒为单位）。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MB_DB</p></td>
+    <td><p align="left">对 MB_MASTER  或 MB_SLAVE  指令所使用的背景数据块。 </p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DONE</p></td>
+    <td><p align="left">完成位：指令执行完成且未出错置1</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">ERROR</p></td>
+    <td><p align="left">错误位：0-未检测到错误；1-检测到错误。在参数STATUS中输出错误代码。 </p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">STATUS</p></td>
+    <td><div align="left"><a href="#status">端口组态错误代码</a></div></td>
+  </tr>
+</table>
+<p>表1 MB_COMM_LOAD指令参数意义</p>
+<p><strong>4.创建MB_HOLD_REG数据块 </strong></p>
+<p>通过“程序块”→ “添加新块”，选择“数据块（DB）”创建 DB 块，选择“标准与S7- 300/400兼容” ，点击“确认”键，定义数据区为5个字的数组，如下图7所示：</p>
+<p>注意：MB_HOLD_REG使用的DB访问类型必须是标准与S7- 300/400兼容。</p>
+<p><img src="images/4-02.jpg" width="567" height="699" /></p>
+<p>图7 创建MB_HOLD_REG数据块</p>
+<p><strong>5.调用MB_SLAVE指令</strong></p>
+<p>在OB1中调用MB_SLAVE指令，  调用该指令时会自动弹出创建相应背景数据块的界面，如下图8所示：</p>
+<p><img src="images/4-03.jpg" width="899" height="692" /></p>
+<p>图8 调用MB_SLAVE指令</p>
+<p>点击“确认”为该指令创建背景数据块后，并为各输入/输出引脚分配地址，如下图9所示：</p>
+<p>S7-1200作为Modbus RTU从站，MB_HOLD_REG指向Modbus保持寄存器数据块的指针。设置如下所示：MB_HOLD_REG=P#DB3.DBX0.0 WORD 5。</p>
+<p>对应关系如下表2所示：</p>
+<table width="795" border="1">
+  <tr>
+    <td width="348">Modbus RTU主站Modbus地址</td>
+    <td width="431">Modbus RTU从站CPU1215C 数据缓冲区地址 </td>
+  </tr>
+  <tr>
+    <td>40001</td>
+    <td>DB3.DBW0</td>
+  </tr>
+  <tr>
+    <td>40002</td>
+    <td>DB3.DBW2</td>
+  </tr>
+  <tr>
+    <td>40003</td>
+    <td>DB3.DBW4</td>
+  </tr>
+  <tr>
+    <td>40004</td>
+    <td>DB3.DBW6</td>
+  </tr>
+  <tr>
+    <td>40005</td>
+    <td>DB3.DBW8</td>
+  </tr>
+</table>
+<p>表2 Modbus地址对应关系</p>
+<p><img src="images/4-04.jpg" width="561" height="226" /></p>
+<p>图9 MB_SLAVE指令</p>
+<table width="788" border="1">
+  <tr>
+    <td width="147"><strong>引脚</strong></td>
+    <td width="625"><strong>说明</strong></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">EN</p></td>
+    <td valign="top"><p align="left">使能端 </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">MB_ADDR</p></td>
+    <td valign="top"><p align="left">Modbus 从站的站地址 。默认地址范围： 0 至 247；扩展地址范围： 0 至 65535</p>    </td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">MB_HOLD_REG</p></td>
+    <td valign="top"><p align="left">指向 Modbus 保持寄存器数据块的指针。 必须使用“标准 - 与   S7-300/400 兼容”访问类型创建该数据块。</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">NDR</p></td>
+    <td valign="top"><p align="left">新数据就绪：0-无新数据；1-表示Modbus主站已写入新的数据</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">DR</p></td>
+    <td valign="top"><p align="left">数据读取：0-无数据读取；1-表示Modbus主站已读取新的数据</p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">ERROR</p></td>
+    <td valign="top"><p align="left">错误位 </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><p align="left">STATUS</p></td>
+    <td valign="top"><p align="left"><a href="#status">错误代码</a></p></td>
+  </tr>
+</table>
+<p>表3 MB_SLAVE指令参数意义</p>
+<table width="813" border="1">
+  <tr>
+    <td colspan="4">MB_SLAVE Modbus功能 </td>
+    <td colspan="2">S7-1200</td>
+  </tr>
+  <tr>
+    <td width="117">代码</td>
+    <td width="117">功能</td>
+    <td width="123">数据区</td>
+    <td width="131">地址范围</td>
+    <td width="148">数据区</td>
+    <td width="137">CPU地址</td>
+  </tr>
+  <tr>
+    <td>01</td>
+    <td>读位</td>
+    <td>输出</td>
+    <td>1到8192</td>
+    <td>输出过程映像区</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+  <tr>
+    <td>02</td>
+    <td>读位</td>
+    <td>输入</td>
+    <td>10001到18192</td>
+    <td>输入映像区</td>
+    <td>I0.0到I1023.7</td>
+  </tr>
+  <tr>
+    <td>04</td>
+    <td>读字</td>
+    <td>输入</td>
+    <td>30001到30512</td>
+    <td>输入映像区</td>
+    <td>IW0到IW1022</td>
+  </tr>
+  <tr>
+    <td>05</td>
+    <td>写位</td>
+    <td>输出</td>
+    <td>1到8192</td>
+    <td>输出过程映像区</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>写位</td>
+    <td>输出</td>
+    <td>1到8192</td>
+    <td>输出过程映像区</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+</table>
+<p>表4 Modbus地址到过程映象区的映射</p>
+<table width="795" border="1">
+  <tr>
+    <td colspan="4">MB_SLAVE Modbus功能</td>
+    <td colspan="2">S7-1200</td>
+  </tr>
+  <tr>
+    <td width="115">代码</td>
+    <td width="119">功能</td>
+    <td width="119">数据区</td>
+    <td width="130">地址范围</td>
+    <td width="141">CPU DB数据区</td>
+    <td width="131">CPU地址</td>
+  </tr>
+  <tr>
+    <td rowspan="2">03</td>
+    <td rowspan="2">读字</td>
+    <td rowspan="2">保持寄存器</td>
+    <td>40001到49999</td>
+    <td rowspan="2">MB_HOLD_REG</td>
+    <td>字1到字9999</td>
+  </tr>
+  <tr>
+    <td>400001到465535</td>
+    <td>字1到字65535</td>
+  </tr>
+  <tr>
+    <td rowspan="2">06</td>
+    <td rowspan="2">写字</td>
+    <td rowspan="2">保持寄存器</td>
+    <td>40001到49999</td>
+    <td rowspan="2">MB_HOLD_REG</td>
+    <td>字1到字9999</td>
+  </tr>
+  <tr>
+    <td>400001到465535</td>
+    <td>字1到字65535</td>
+  </tr>
+  <tr>
+    <td rowspan="2">16</td>
+    <td rowspan="2">写字</td>
+    <td rowspan="2">保持寄存器</td>
+    <td>40001到49999</td>
+    <td rowspan="2">MB_HOLD_REG</td>
+    <td>字1到字9999</td>
+  </tr>
+  <tr>
+    <td>400001到465535</td>
+    <td>字1到字65535</td>
+  </tr>
+</table>
+<p>表5 Modbus地址到CPU存储区的映射</p>
+<p><strong>6. Modbus 主站软件设置 </strong></p>
+<p><img src="images/4.gif" width="15" height="15" /><strong>注意：</strong>客户机采用ModScan软件测试，该软件是第三方软件，可以从 Internet 网络上下载。</p>
+<p>首先在打开的ModScan软件中建立连接，并设置RTU模式的参数：波特率Baud=9600，数据位Data=8，停止位Stop=1，校验Parity=NONE，如下图10所示： </p>
+<p><img src="images/4-05.jpg" width="535" height="370" /></p>
+<p>图10 建立ModScan连接 </p>
+<p>选择“File”<strong>→</strong>“New” 打开ModScan通信界面，设置Modbus RTU从站的地址Device Id=1，数据开始地址Address=0001，数据长度Length=5，Modbus数据类型功能码03，如下图11所示：</p>
+<p><strong><img src="images/4.gif" width="15" height="15" />注意：</strong>Device Id设置必须与“MB_SLAVE”指令中输入引脚“MB_ADDR”设置的地址一致。</p>
+<p><img src="images/4-06.jpg" width="598" height="346" /></p>
+<p>图11 设置ModScan</p>
+<p><strong>7.Modbus RTU测试结果 </strong></p>
+<p>在STEP 7  V11 Professional SP2 UPD4软件中打开该项目CPU1215 DC/DC/DC的“监控表”，对DB3.DBW0写入数值21，DB3.DBW2写入数值22，DB3.DBW4写入数值23，DB3.DBW6写入数值24，DB3.DBW8写入数值25。ModScan主站将S7-1200 Modbus RTU从站地址DB3.DBW0的数值21，DB3.DBW2的数值22，DB3.DBW4的数值23，DB3.DBW6的数值24，DB3.DBW8的数值25，分别读取到了地址40001，40002，40003，40004，40005中。如下图12所示：</p>
+<p><img src="images/4-07.jpg" width="602" height="588" /></p>
+<p>图12 Modbus RTU测试结果</p>
+<h3><a name="status" id="status"></a>MB_COMM_LOAD和MB_SLAVE指令STATUS错误代码</h3>
+<table width="745" border="1">
+  <tr>
+    <td width="109">STATUS(W#16#)</td>
+    <td width="620">说明</td>
+  </tr>
+  <tr>
+    <td>0000</td>
+    <td>端口无错误</td>
+  </tr>
+  <tr>
+    <td>8180</td>
+    <td>端口ID值无效</td>
+  </tr>
+  <tr>
+    <td>8181</td>
+    <td>波特率值无效</td>
+  </tr>
+  <tr>
+    <td>8182</td>
+    <td>奇偶校验值无效</td>
+  </tr>
+  <tr>
+    <td>8183</td>
+    <td>流控制值无效</td>
+  </tr>
+  <tr>
+    <td>8184</td>
+    <td>响应超时值无效</td>
+  </tr>
+  <tr>
+    <td>8185</td>
+    <td>MB_DB参数不是MB_MASTER或MB_SLAVE的背景数据块</td>
+  </tr>
+</table>
+<p>表6 MB_COMM_LOAD指令STATUS错误代码</p>
+<table width="745" border="1">
+  <tr>
+    <td width="109">STATUS(W#16#)</td>
+    <td width="620">说明</td>
+  </tr>
+  <tr>
+    <td>0000</td>
+    <td>无错误</td>
+  </tr>
+  <tr>
+    <td>80D1</td>
+    <td>接收方发出了暂停主动传输的流控制请求并且在指定的等待时间内未重新激活该传输</td>
+  </tr>
+  <tr>
+    <td>80D2</td>
+    <td>传送请求终止</td>
+  </tr>
+  <tr>
+    <td>80E0</td>
+    <td>因接收缓冲区满，消息被终止</td>
+  </tr>
+  <tr>
+    <td>80E1</td>
+    <td>因出现奇偶校验错误，消息被终止</td>
+  </tr>
+  <tr>
+    <td>80E2</td>
+    <td>因组帧错误，消息被终止</td>
+  </tr>
+  <tr>
+    <td>80E3</td>
+    <td>因出现超限错误，消息被终止</td>
+  </tr>
+  <tr>
+    <td>80E4</td>
+    <td>因指定长度超出总缓冲区大小，消息被终止</td>
+  </tr>
+  <tr>
+    <td>8180</td>
+    <td>无效端口ID值或MB_COMM_LOAD指令出错</td>
+  </tr>
+  <tr>
+    <td>8186</td>
+    <td>Modbus站地址无效</td>
+  </tr>
+  <tr>
+    <td>8187</td>
+    <td>指向MB_HOLD_REG指针无效</td>
+  </tr>
+  <tr>
+    <td>818C</td>
+    <td>指向M存储器或DB（DB区域允许符号地址和直接地址）的MB_HOLD_REG指针无效</td>
+  </tr>
+</table>
+<p>表7  MB_SLAVE指令STATUS参数意义（通信和组态错误）</p>
+<table width="748" border="1">
+  <tr>
+    <td>STATUS(W#16#)</td>
+    <td><p>从站的响应代码</p></td>
+    <td><p>说明</p></td>
+  </tr>
+  <tr>
+    <td width="128">8380</td>
+    <td width="177">无响应</td>
+    <td width="421">CRC错误</td>
+  </tr>
+  <tr>
+    <td>8381</td>
+    <td>01</td>
+    <td><p>不支持功能代码或者在广播中不支持功能代码</p></td>
+  </tr>
+  <tr>
+    <td>8382</td>
+    <td>03</td>
+    <td>数据长度错误</td>
+  </tr>
+  <tr>
+    <td>8383</td>
+    <td>02</td>
+    <td>数据地址错误或地址超出DATA_PTR取的有效范围</td>
+  </tr>
+  <tr>
+    <td>8384</td>
+    <td>03</td>
+    <td>数据值错误</td>
+  </tr>
+  <tr>
+    <td>8385</td>
+    <td>03</td>
+    <td>不支持此数据诊断代码值</td>
+  </tr>
+</table>
+<p>表8  MB_SLAVE指令STATUS参数意义（Modbus协议错误）</p>
+<h3>常问问题：</h3>
+<p><img src="images/5.gif" width="15" height="15" /><strong>为什么触发“MB_SLAVE”指令出错，输出位“ERROR”=1,输出状态字“STATUS”=16#8187？</strong></p>
+<p>输出状态字”STATUS“=16#8187表示指向MB_HOLD_REG指针无效。以下两种情况会造成如上错误：</p>
+<ul>
+  <li>程序中不存在“MB_SLAVE”指令的输入引脚“MB_HOLD_REG”对应的DB块。</li>
+  <li>在创建“MB_SLAVE”指令的输入引脚“MB_HOLD_REG”对应的DB块时选择了“仅符号寻址”。</li>
+</ul>
+<p>解决方法分别如下：</p>
+<ul>
+  <li>新建“MB_SLAVE”指令的输入引脚“MB_HOLD_REG”对应的DB块。</li>
+  <li>创建“MB_SLAVE”指令的输入引脚“MB_HOLD_REG”对应的DB块时只能选择了“标准与S7-300/400兼容”。　　　　　　</li>
+</ul>
+</body>
+</html>

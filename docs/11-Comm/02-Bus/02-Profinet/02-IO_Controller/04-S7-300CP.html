@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>300CP I_Device</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">S7-1200 和 CP343-1 的 Profinet 通信（S7-1200 做控制器）</h3>
+<p>CP343-1(6GK7343-1EX30-0XE0) 或 CP343-1 Advanced(6GK7343-1GX30/1GX31-0XE0) 或 CP343-1 Lean(6GK7343-1CX10-0XE0) 支持 I Device 模式，故可使用 CP343-1 作为智能 IO 设备和 S7-1200 做 Profinet 通信。本例中将 S7-1200 做为控制器，连接作为智能 IO 设备的 CP343-1  实现 Profinet 通信；下面详细介绍使用方法。</p>
+<p><span class="STYLE3">硬件：</span></p>
+<ol>
+  <li>CPU 1217C  DC/DC/DC，V4.4</li>
+  <li>CPU 314C-2 PN/DP，V3.3 + CP343-1 Standard(6GK7343-1EX30-0XE0) ，V3.0 </li>
+</ol>
+<p class="STYLE3">软件： </p>
+<ol>
+  <li>TIA Step7 V17 </li>
+  <li>Step7 V5.6 SP2</li>
+</ol>
+<p>CP343-1 的 PN 接口连接 S7-1200 的 PN 接口，这种方式可以分 3 种情况来操作，具体如下：</p>
+<ol>
+  <li><a href="04-S7-300CP I_Device.html#a">第一种情况：S7-1200 与 CP343-1 在一个项目中操作(TIA STEP7 V17)</a></li>
+  <li><a href="04-S7-300CP I_Device.html#b">第二种情况：S7-1200 与 CP343-1 不在一个项目中的操作(两个 TIA STEP7 V17 项目)</a></li>
+  <li><a href="04-S7-300CP I_Device.html#c">第三种情况：S7-1200 与 CP343-1 不在一个项目中的操作( S7-1200 在TIA STEP7 V17 项目中，CP343-1 在 STEP7 V5.6 项目中)</a></li>
+</ol>
+<h3 class="STYLE4"><a name="a" id="a"></a>1. 第一种情况（S7-1200 与 CP343-1 在同一 TIA 项目中）</h3>
+<p>CPU1217C 作为 IO 控制器，CP343-1 作为 IO 设备，使用 TIA Step7 V17 在一个项目中操作，详细步骤如下。</p>
+<h4 class="STYLE3">1-1 使用 Step7 V17 创建 S7-1200 站 </h4>
+<p>使用 STEP7 V17 创建一个新项目，并通过“添加新设备”组态 S7-1200 站 PLC_1，选择 CPU 1217C，添加子网并设置 IP 地址，确认设备名称，本示例中 S7-1200 设备名称是 plc_1。如图 1 所示。</p>
+<p><img src="images/4-01.jpg" width="1168" height="946" /></p>
+<p>图 1 在新项目中插入 S7-1200 站</p>
+<p>组态 S7-1200PLC 后，默认为 IO 控制器模式，无需设置。 如图 2 所示。</p>
+<p><img src="images/4-02.jpg" width="1163" height="740" /></p>
+<p>图 2 S7-1200的操作模式</p>
+<h4 class="STYLE3">1-2 使用 Step7 V17 创建 S7-300 站 </h4>
+<p>使用 STEP7 V17 创建一个新项目，并通过“添加新设备”组态 S7-300 站 PLC_2，选择 CPU314C-2 PN/DP V3.3 和 CP343-1 V3.0；对 CP343-1 分配子网并设置 IP 地址，并确认设备名称，本示例中 CP343-1 设备名称是 plc_2.cp343-1_1 。如图 3 所示。</p>
+<p><img src="images/4-03.jpg" width="1164" height="1058" /></p>
+<p>图 3 在新项目中插入 S7-300 和 CP343-1</p>
+<p>CP343-1 作为 IO 设备，需要将其操作模式设置为 IO 设备，将 IO 设备分配给控制器 PLC_1。</p>
+<p>在&ldquo;智能设备通信&rdquo;的&ldquo;传输区&rdquo;创建 IO 通信区，控制器的 QB2~7 共计 6 个字节传送到 IO 设备的接收块中偏移量数据 0~5 ；控制器的 IB2~7 共计 6 个字节读取 IO 设备的发送块中偏移量数据 0~5 ，如图 4 所示。</p>
+<p><img src="images/4-04.jpg" width="1169" height="923" /></p>
+<p>图 4   设置 CP343-1 为 IO 设备和智能设备通信传输区域</p>
+<p>之后分别将 PLC_1 站和 PLC_2 站硬件组态编译下载到各自的 PLC 中。 </p>
+<h4><span class="STYLE3">1-3 S7-300 编程</span></h4>
+<p>本例中，CP343-1 作为 智能 IO 设备，要在 OB1 中编程调用 PNIO_SEND 和 PNIO_RECV 进行数据读写。如图 5 所示。</p>
+<p><img src="images/4-05.jpg" width="1127" height="882" /></p>
+<p>图 5 CPU314C-2 PN/DP 中编程 </p>
+<p><strong>指令管脚参数说明：</strong></p>
+<table width="730" border="0">
+  <tbody>
+    <tr>
+      <td colspan="2"><div align="left">CALL “PNIO_SEND”</div></td>
+      <td width="404">//调用 PNIO_SEND</td>
+    </tr>
+    <tr>
+      <td width="129">CPLADDR</td>
+      <td width="183">：=W#16#100</td>
+      <td>// CP 模板 IO起始地址</td>
+    </tr>
+    <tr>
+      <td>MODE</td>
+      <td>：=B#16#0</td>
+      <td>// 工作模式：当 CP343-1 仅作为 IO 控制器或 IO 设备时，设为 0；当 CP343-1 同时作为 IO 控制器和 IO 设备时，设为 1</td>
+    </tr>
+    <tr>
+      <td>LEN</td>
+      <td>：=6</td>
+      <td>// 要发送的数据区长度；该长度始终是从数据区地址0开始计算</td>
+    </tr>
+    <tr>
+      <td>SEND</td>
+      <td>：=P#M100.0 BYTE 6</td>
+      <td>// 发送数据区</td>
+    </tr>
+    <tr>
+      <td>IOCS</td>
+      <td>：=P#M120.0 BYTE 1</td>
+      <td><p>// 每一用户数据字节传送一个状态位。长度信息取决于 LEN 参数中的长度。</p>
+        <p>以程序段 1 为例，共发送 6 个字节，每个字节需要 1 个位，所以共需要 6 位，即至少需要 1 字节。<br />      
+        </p></td>
+    </tr>
+    <tr>
+      <td>DONE </td>
+      <td>：=%M130.0 </td>
+      <td>// 为 1 时，无错误完成该作业</td>
+    </tr>
+    <tr>
+      <td>ERROR</td>
+      <td>：=%M130.1 </td>
+      <td>// 为 1 时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS</td>
+      <td>：=%MW132</td>
+      <td>// 状态代码</td>
+    </tr>
+    <tr>
+      <td>CHECK_IOCS</td>
+      <td>：=%M130.2</td>
+      <td><p>// 0: 所有 IOCS 均设置为 GOOD <br />
+        // 1: 至少一个 IOCS 设置为 BAD</p>
+      </td>
+    </tr>
+  </tbody>
+</table>
+</br>
+<table width="732" border="0">
+  <tbody>
+    <tr>
+      <td colspan="2"><div align="left">CALL “PNIO_RECV”</div></td>
+      <td width="376">//调用 PNIO_RECV</td>
+    </tr>
+    <tr>
+      <td width="129">CPLADDR</td>
+      <td width="213">：=W#16#100</td>
+      <td>// CP 模板 IO起始地址</td>
+    </tr>
+    <tr>
+      <td>MODE</td>
+      <td>：=B#16#0</td>
+      <td>// 工作模式：当 CP343-1 仅作为 IO 控制器或 IO 设备时，设为 0；当 CP343-1 同时作为 IO 控制器和 IO 设备时，设为 1</td>
+    </tr>
+    <tr>
+      <td>LEN</td>
+      <td>：=6</td>
+      <td>// 要接收的数据区长度；该长度始终是从数据区地址 0 开始计算</td>
+    </tr>
+    <tr>
+      <td>RECV</td>
+      <td>：=P#M200.0 BYTE 6</td>
+      <td>// 发送数据区</td>
+    </tr>
+    <tr>
+      <td>IOPS</td>
+      <td>：=P#M220.0 BYTE 1</td>
+      <td><p>// 每一用户数据字节传送一个状态位。长度信息取决于 LEN 参数中的长度。</p>
+      <p>以程序段 2 为例，共接收 6 个字节，每个字节需要 1 个位，所以共需要 6 位，即至少需要 1 字节。</p></td>
+    </tr>
+    <tr>
+      <td>NDR</td>
+      <td>：=%M230.0 </td>
+      <td>// 为 1 时，无错误完成该作业</td>
+    </tr>
+    <tr>
+      <td>ERROR</td>
+      <td>：=%M230.1 </td>
+      <td>// 为 1 时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS</td>
+      <td>：=%MW232</td>
+      <td>// 状态代码</td>
+    </tr>
+    <tr>
+      <td>CHECK_IOPS</td>
+      <td>：=%M230.2</td>
+      <td><p>// 0: 所有 IOPS 均设置为 GOOD<br />
+        // 1: 至少一个 IOPS 设置为 BAD</p></td>
+    </tr>
+    <tr>
+      <td>ADD_INFO</td>
+      <td>：=%MW234</td>
+      <td>// 附加诊断信息；具体请查看指令帮助信息</td>
+    </tr>
+  </tbody>
+</table>
+<p>注意：CPLADDR 是 CP343-1 的 IO 地址的起始地址，如图 6 所示。指令中使用 W#16#100，即 256。 </p>
+<p><img src="images/4-06.jpg" width="830" height="679" /></p>
+<p>图 6 CP343-1 地址</p>
+<h4><span class="STYLE3">1-4 通讯测试</span></h4>
+<p>检查无错误后，下载 S7-300 的程序，分别给两个站点新建监控表，添加通信数据区，监控。如图 9 所示。</p>
+<p><img src="images/4-07.jpg" width="1158" height="384" /></p>
+<p>图 7 通信测试</p>
+<h4><span class="STYLE3">1-6 地址对应关系的说明</span></h4>
+<p><img src="images/4-08.jpg" width="1169" height="547" /></p>
+<p>图 8 地址对应关系</p>
+<p>从图中可以看到，当 CP343-1 作智能 IO 设备时，传输区块中的偏移量默认从 0 开始，无法修改。地址对应排列关系以逻辑地址大小为序。</p>
+<h3><span class="STYLE4"><a name="b" id="b"></a>2. 第二种情况</span><span class="STYLE4">（ S7-1200 与 CP343-1 在不同TIA项目中）</span></h3>
+<p>在不同项目中的操作，即：1217C 作为 IO 控制器，CP343-1 作为 IO 设备在两个 TIA 项目操作，详细步骤如下。</p>
+<h4 class="STYLE3">2-1  使用 Step7 V17 创建 S7-300 站 </h4>
+<p>S7-300 站点创建和第一种情况--&gt;<span class="STYLE3">1-2 使用 Step7 V17 创建 S7-300 站</span>章节内容相同，不再赘述。</p>
+<h4 class="STYLE3">2-2 配置智能设备通信传输区并导出GSD 文件</h4>
+<p>CP343-1 作为 IO 设备，需要将其操作模式设置为 IO 设备，将 IO 设备分配选择未分配。在&ldquo;智能设备通信&rdquo;的&ldquo;传输区&rdquo;创建 IO 通信区，IO 数据长度分别为6个字节，如图 9 所示。</p>
+<p><img src="images/4-09.jpg" width="1156" height="866" /></p>
+<p>图 9   设置 CP343-1为 IO 设备和智能设备通信传输区域</p>
+<p>编译该项目，在&ldquo;智能设备通信&rdquo;属性的下方，找到并点击&ldquo;导出&rdquo;按钮，根据提示将 GSD 文件自由选择路径导出（<span class="STYLE9">注意不要修改设备名称</span>）。如图 10、11 所示。</p>
+<p><img src="images/4-10.jpg" width="1147" height="756" /></p>
+<p>图 10 导出 CP343-1的 GSD 文件</p>
+<p><img src="images/4-11.jpg" width="647" height="245" /></p>
+<p>图 11 导出 CP343-1 的 GSD 文件</p>
+<h4 class="STYLE3">2-3 使用 Step7 V17 创建 S7-1200 站</h4>
+<p>S7-1200 站点创建和第一种情况--&gt;<span class="STYLE3">1-1 使用 Step7 V17 创建 S7-1200 站</span>章节内容相同，不再赘述。</p>
+<p>在 TIA 内导入 CP343-1 的 GSD 文件，路径为&ldquo;选项&rdquo;--&gt;&ldquo;管理通用站描述文件（GSD）&rdquo;。 在源路径选择 IO-device 的 GSD 文件存放路径，选择并安装 GSD 文件。如图 12、13 所示。</p>
+<p><img src="images/4-12.jpg" width="553" height="210" /></p>
+<p>图 12 TIA 内安装 GSD 文件</p>
+<p><img src="images/4-13.jpg" width="642" height="403" /></p>
+<p>图 13 选择并安装 GSD 文件</p>
+<h4 class="STYLE3">2-4  在S7-1200 中组态 IO-device </h4>
+<p>在网络视图内，硬件目录中找到导入的 CP343-1 ，然后拖拽到网络视图内。点击 CP343-1 网口拖拽到 CPU 1217C 网口上，将 CP343-1 分配给IO 控制器 CPU 1217C 。如图 14 所示。 </p>
+<p><img src="images/4-14.jpg" width="913" height="702" /></p>
+<p>图 14 IO 控制器项目内组态 IO 设备</p>
+<p>在网络视图内，双击 CP343-1 查看 IO 地址分配情况。如图 15 所示。</p>
+<p><img src="images/4-15.jpg" width="1186" height="577" /></p>
+<p>图 15 IO 设备的 IO 地址分配情况</p>
+<h4><span class="STYLE3">2-5 硬件组态下载，检查设备名称和 IP 地址是否正确</span></h4>
+<p>分别将 S7-300 站和 S7-1200 站下载到各自的 PLC 中。</p>
+<p>将 TIA 软件转至在线状态，在网络视图查看站点通信状况。若在线站点显示<img src="images/4.gif" width="16" height="15" />，则表示通信正常。如图 16 所示。</p>
+<p><img src="images/4-16.jpg" width="827" height="335" /></p>
+<p>图 16 TIA 在线查看网络状态</p>
+<h4><span class="STYLE3">2-6 S7-300 编程</span></h4>
+<p><span class="STYLE3">S7-300 编程 和第一种情况--&gt;1-3 S7-300 编程 章节内容相同，不再赘述。</span></p>
+<h4><span class="STYLE3">2-7 通讯测试</span></h4>
+<p>检查无错误后，分别给两个站点新建监控表，添加通信数据区，监控。如图 17 所示。</p>
+<p><img src="images/4-17.jpg" width="1187" height="603" /></p>
+<p>图 17 通信测试</p>
+<h4><span class="STYLE3">2-8 地址对应关系的说明</span></h4>
+<p>当 CP343-1 作智能 IO 设备时，传输区块中的偏移量默认从 0 开始，无法修改。在 IO 控制器 S7-1200 PLC 侧导入 GSD 文件后， IO 设备对应主站的 IO 地址可在网络视图内双击 IO 设备查看。如图 15 所示。</p>
+<p>本例中，IO 设备传输区对应 IO 控制器 IB68~IB73 和 QB68~QB73。对应关系为：</p>
+<p>S7-1200 PLC 的 IB68~IB73 &lt;---&gt; S7-300 PLC 的 MB100~MB105；</p>
+<p>S7-1200 PLC 的 QB68~QB73 &lt;---&gt;S7-300 PLC的 MB200~MB205。</p>
+<h3><span class="STYLE4"><a name="c" id="c"></a>3. 第三种情况（S7-1200 在 TIA 项目中，CP343-1 在 Step7 项目）</span></h3>
+<p>1217C 作为 IO 控制器，使用 Step7 V17 编程；CP343-1 作为 IO 设备 使用 Step7 V5.6 编程，详细步骤如下。</p>
+<h4 class="STYLE3">3-1  使用 Step7 V5.6 创建 S7-300 站</h4>
+<p>使用 STEP7 V5.6 创建一个新项目，并组态 CPU 314C-2 PN/DP, 添加 CP343-1 ，设置 IP 地址并添加子网，并确认设备名称，本示例中设备名称是 PN-IO 。如图 18 所示。</p>
+<p><img src="images/4-18.jpg" width="1538" height="659" /></p>
+<p>图 18 在新项目中插入 S7-300 站</p>
+<h4 class="STYLE3">3-2 配置智能设备通信传输区并导出 GSD 文件</h4>
+<p>CP343-1 作为 IO 设备需设置 IO 设备模式。在 PN-IO 中，选择 I-Device 页，勾选 I-device mode，并在&ldquo;智能设备通信&rdquo;的&ldquo;传输区&rdquo;创建 IO 通信区，IO 数据长度分别为 6 个字节，如图 19、20、21 所示。</p>
+<p><img src="images/4-19.jpg" width="1434" height="659" /></p>
+<p>图 19   设置 CP343-1 为 IO 设备和智能设备通信传输输出区域</p>
+<p><img src="images/4-20.jpg" width="1436" height="667" /></p>
+<p>图 20   设置 CP343-1 为 IO 设备和智能设备通信传输输入区域</p>
+<p><img src="images/4-21.jpg" width="607" height="649" /></p>
+<p>图 21   智能设备通信传输区域配置完成</p>
+<p>CP343-1 智能设备传输区域配置完毕后，生成并导出 GSD 文件。如图 22 所示。</p>
+<p><img src="images/4-22.jpg" width="1422" height="746" /></p>
+<p>图 22 生成 CP343-1 的 GSD 文件</p>
+<p>生成 GSD 文件后，点击导出并选择目标路径，如图 23 所示。</p>
+<p><img src="images/4-23.jpg" width="541" height="259" /></p>
+<p>图 23 导出 CP343-1 的 GSD 文件</p>
+<h4 class="STYLE3">3-3 使用 Step7 V17 创建 S7-1200 站</h4>
+<p><span class="STYLE3">S7-1200 站点创建及 GSD 导入方法和第二种情况--&gt;2-3 使用 Step7 V17 创建 S7-1200 站 章节内容相同，不再赘述。</span></p>
+<h4 class="STYLE3">3-4 在S7-1200 中组态 IO-device</h4>
+<p>在网络视图内，硬件目录中找到导入的 CP343-1，然后拖拽到网络视图内。点击 CP343-1 网口拖拽到 CPU 1217C 网口上，将 CP343-1 分配给 IO 控制器 CPU 1217C。如图 24 所示。 </p>
+<p><img src="images/4-24.jpg" width="883" height="659" /></p>
+<p>图 24 IO 控制器项目内组态 IO 设备</p>
+<p>在网络视图内，双击 CP343-1 查看 IO 地址分配情况。如图 25 所示。</p>
+<p><img src="images/4-25.jpg" width="1085" height="442" /></p>
+<p>图 25 IO 设备的IO地址分配情况</p>
+<h4><span class="STYLE3">3-5 硬件组态下载，检查设备名称和 IP 地址是否正确</span></h4>
+<p>分别将 S7-300 站和 S7-1200 站下载到各自的 PLC 中。</p>
+<p>将 TIA 软件转至在线状态，在网络视图查看站点通信状况。若在线站点显示<img src="images/4.gif" alt="" width="16" height="15" />，则表示通信正常。如图 26 所示。</p>
+<p><img src="images/4-26.jpg" width="827" height="335" /></p>
+<p>图 26 TIA 在线查看网络状态</p>
+<h4><span class="STYLE3">3-6 S7-300 编程</span></h4>
+<p>本例中，CP343-1 作为 智能 IO 设备，要在 OB1 中编程调用 PNIO_SEND 和 PNIO_RECV 进行数据读写。如图 27 所示。</p>
+<p><img src="images/4-27.jpg" width="818" height="974" /></p>
+<p>图 27 CPU314C-2 PN/DP 中编程</p>
+<p><strong>指令管脚参数说明：</strong></p>
+<table width="730" border="0">
+  <tbody>
+    <tr>
+      <td colspan="2"><div align="left">CALL &ldquo;PNIO_SEND&rdquo;</div></td>
+      <td width="342">//调用 PNIO_SEND</td>
+    </tr>
+    <tr>
+      <td width="129">CPLADDR</td>
+      <td width="245">：=W#16#100</td>
+      <td>// CP 模板 IO起始地址</td>
+    </tr>
+    <tr>
+      <td>MODE</td>
+      <td>：=B#16#0</td>
+      <td>// 工作模式：当 CP343-1 仅作为 IO 控制器或 IO 设备时，设为0；当 CP343-1 同时作为 IO 控制器和 IO 设备时，设为 1</td>
+    </tr>
+    <tr>
+      <td>LEN</td>
+      <td>：=6</td>
+      <td>// 要发送的数据区长度；该长度始终是从数据区地址0开始计算</td>
+    </tr>
+    <tr>
+      <td>SEND</td>
+      <td>：=P#M100.0 BYTE 6</td>
+      <td>// 发送数据区</td>
+    </tr>
+    <tr>
+      <td>IOCS</td>
+      <td>：=P#M120.0 BYTE 1</td>
+      <td><p>// 每一用户数据字节传送一个状态位。长度信息取决于LEN 参数中的长度。</p>
+        <p>以程序段 1 为例，共发送 6 个字节，每个字节需要 1 个位，所以共需要 6 位，即至少需要 1 字节。<br />
+        </p></td>
+    </tr>
+    <tr>
+      <td>DONE </td>
+      <td>：=%M130.0 </td>
+      <td>// 为 1 时，无错误完成该作业</td>
+    </tr>
+    <tr>
+      <td>ERROR</td>
+      <td>：=%M130.1 </td>
+      <td>// 为 1 时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS</td>
+      <td>：=%MW132</td>
+      <td>// 状态代码</td>
+    </tr>
+    <tr>
+      <td>CHECK_IOCS</td>
+      <td>：=%M130.2</td>
+      <td><p>// 0: 所有 IOCS 均设置为 GOOD <br />
+        // 1: 至少一个 IOCS 设置为 BAD</p></td>
+    </tr>
+  </tbody>
+</table>
+</br>
+<table width="732" border="0">
+  <tbody>
+    <tr>
+      <td colspan="2"><div align="left">CALL &ldquo;PNIO_RECV&rdquo;</div></td>
+      <td width="344">//调用 PNIO_RECV</td>
+    </tr>
+    <tr>
+      <td width="129">CPLADDR</td>
+      <td width="245">：=W#16#100</td>
+      <td>// CP 模板 IO起始地址</td>
+    </tr>
+    <tr>
+      <td>MODE</td>
+      <td>：=B#16#0</td>
+      <td>// 工作模式：当 CP343-1 仅作为 IO 控制器或 IO 设备时，设为0；当 CP343-1 同时作为 IO 控制器和 IO 设备时，设为 1</td>
+    </tr>
+    <tr>
+      <td>LEN</td>
+      <td>：=6</td>
+      <td>// 要接收的数据区长度；该长度始终是从数据区地址 0 开始计算</td>
+    </tr>
+    <tr>
+      <td>RECV</td>
+      <td>：=P#M200.0 BYTE 6</td>
+      <td>// 发送数据区</td>
+    </tr>
+    <tr>
+      <td>IOPS</td>
+      <td>：=P#M220.0 BYTE 1</td>
+      <td><p>// 每一用户数据字节传送一个状态位。长度信息取决于LEN 参数中的长度。</p>
+        <p>以程序段2为例，共接收 6 个字节，每个字节需要 1 个位，所以共需要 6 位，即至少需要 1 字节。</p></td>
+    </tr>
+    <tr>
+      <td>NDR</td>
+      <td>：=%M230.0 </td>
+      <td>// 为 1 时，无错误完成该作业</td>
+    </tr>
+    <tr>
+      <td>ERROR</td>
+      <td>：=%M230.1 </td>
+      <td>// 为 1 时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS</td>
+      <td>：=%MW232</td>
+      <td>// 状态代码</td>
+    </tr>
+    <tr>
+      <td>CHECK_IOPS</td>
+      <td>：=%M230.2</td>
+      <td><p>// 0: 所有 IOPS 均设置为 GOOD<br />
+        // 1: 至少一个 IOPS 设置为 BAD</p></td>
+    </tr>
+    <tr>
+      <td>ADD_INFO</td>
+      <td>：=%MW234</td>
+      <td>// 附加诊断信息；具体请查看指令帮助信息</td>
+    </tr>
+  </tbody>
+</table>
+<p>注意：CPLADDR是 CP343-1 的 IO 地址的起始地址，如图 28 所示。指令中使用 W#16#100，即256。 </p>
+<p><img src="images/4-28.jpg" width="660" height="708" /></p>
+<p>图 28 CP343-1 起始地址</p>
+<h4><span class="STYLE3">3-7 通讯测试</span></h4>
+<p>检查无错误后，分别给两个站点新建监控表，添加通信数据区，监控。如图 28 所示。</p>
+<p><img src="images/4-29.jpg" width="1340" height="530" /></p>
+<p>图 29 通信测试</p>
+<h4><span class="STYLE3">3-8 地址对应关系的说明</span></h4>
+<p>当 CP343-1 作智能 IO 设备时，传输区块中的偏移量默认从 0 开始，无法修改。在 IO 控制器 S7-1200 PLC 侧导入 GSD 文件后， IO 设备对应主站的 IO 地址可在网络视图内双击 IO 设备查看。如图25 所示。</p>
+<p>本例中， IO 设备传输区对应 IO 控制器 IB68~IB73 和 QB68~QB73 。对应关系为：</p>
+<p>S7-1200 PLC 的 IB68~IB73 &lt;---&gt;S7-300 PLC 的 MB100~MB105；</p>
+<p>S7-1200 PLC 的 QB68~QB73 &lt;---&gt; S7-300 PLC 的 MB200~MB205。</p>
+</body>
+</html>

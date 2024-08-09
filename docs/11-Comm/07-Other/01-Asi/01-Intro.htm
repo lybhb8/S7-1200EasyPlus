@@ -1,0 +1,56 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Intro</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>AS-i 通信协议简介</h3>
+<p>S7-1200 通过 CM1243-2 支持 AS-i 通信协议，其主站协议版本为V3.0，即可配置31个标准开关量/模拟量从站或62个A/B类开关量/模拟量从站。如图1所示：</p>
+<p><img src="images/1-01.jpg" width="811" height="654"></p>
+<p>图1. 协议版本</p>
+<p>AS-i 通信特点：</p>
+<p>1. 通过总线直接与现场传感器/执行器进行连接二进制执行器和传感器；也可以接模拟量信号，占用多个传输周期；</p>
+<p>2. 串行的现场总线；优势：减少电缆与而布线成本，费用降低；</p>
+<p>3. 一个 AS-i 总线上只能有一个主站； </p>
+<p>4. &#13;通过ASI网络( 2芯) 实现主站与最多62个从站进行数据通讯；</p>
+<p>5. 数据结构：4bit输入/4bit输出；</p>
+<p>6. ASI传输速率 167 kbit/s ，即每传输1bit需要 6us 时间；</p>
+<p>7. ASI周期：31个站周期：5ms，62个站周期：10ms；</p>
+<p> 8. 扩展ASI距离：标准从站100m，使用中继器可扩展100m，扩展插件达到200m；&#13;使用2个中继器和3个扩展插件最多扩展600m；</p>
+<p>9. 需要使用 30V 解耦电源；</p>
+<p>10. 电缆：非屏蔽两线电缆，同时供电与传送数据。 </p>
+<h3>网络结构</h3>
+<p>一个完整的 AS-i 网络由 AS-i 电源，AS-i 主站和 AS-i 从站组成，如图2所示：</p>
+<p><img src="images/1-02.jpg" width="599" height="479"></p>
+<p>图2. 基本网络结构</p>
+<p>可能的网络结构有总线形、星形和树形，如图3、图4、图5所示：</p>
+<p><img src="images/1-03.jpg" width="338" height="225"></p>
+<p>图3. 总线形结构</p>
+<p><img src="images/1-04.jpg" width="339" height="226"></p>
+<p>图4. 星形结构</p>
+<p><img src="images/1-05.jpg" width="338" height="225"></p>
+<p>图5. 树形结构</p>
+<h3>扩展距离</h3>
+<p>ASI网络扩展设备：</p>
+<p>&#13;&#13;1. ASI repeater 功能：再生信号+提供电流，可以扩展100m；因ASI网络循环时间要求：5ms/10ms ，一个串行网络最多仅有 2个 repeater，扩展到300M；</p>
+<p>2. 扩展插件：扩展 200m 检测ASI网络电压，无源器件，即终端电阻功能。</p>
+<p>3. 使用 2 个 Repeater，3个 扩展插件时，网络最长距离 600m。</p>
+<p>可能的扩展长度如图6、图7、图8、图9所示：</p>
+<p><img src="images/1-06.jpg" width="572" height="229"></p>
+<p>图6. 无任何扩展设备</p>
+<p><img src="images/1-07.jpg" width="570" height="273"></p>
+<p>图7. 配置两个中继器</p>
+<p><img src="images/1-08.jpg" width="568" height="229"></p>
+<p>图8. 配置一个扩展插件</p>
+<p><img src="images/1-09.jpg" width="567" height="268"></p>
+<p>图9. 配置两个中继器和三个扩展插件</p>
+<h3>参考资料</h3><p><img src="images/3.gif" alt="" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。</p>
+<p>西门子 AS-i 通信系统手册：</p>
+<p><a href="http://support.industry.siemens.com/cs/ww/en/view/26250840"><strong>http://support.industry.siemens.com/cs/ww/en/view/26250840</strong></a></p>
+<p>详细的 AS-i 协议和规范，请查看如下网址：</p>
+<p><strong><a href="www.doc88.com/p-863110118858.html">http://www.doc88.com/p-863110118858.html</a></strong></p>
+</body>
+</html>

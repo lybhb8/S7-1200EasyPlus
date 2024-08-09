@@ -1,0 +1,696 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Modbus RTU V3 及以上版本指令集介绍</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">Modbus RTU V3 及以上版本指令集基本功能介绍</h3>
+<p>TIA Portal V13 SP1 版本开始软件中提供了两个版本的 Modbus RTU 指令集，如图 1 所示。</p>
+<p><img src="images/2-01.png" width="303" height="293"></p>
+<p>图 1. 两个版本 Modbus RTU 指令集</p>
+<p>早期版本的 Modbus RTU 指令集（图 1 中 MODBUS （V2.2））仅可通过主机架 CM1241 通信模块或 CB1241 通信板进行 Modbus RTU 通信。 具体使用请参见文档 ：<a href="03-Modbus_Master.htm">主站</a>、<a href="04-Modbus_Slave.htm">从站</a>。主要用于早期项目和 V4.0 之前版本的 CPU。</p>
+<p>新版本的 Modbus RTU 指令集（图 1 中红框指令集）扩展了 Modbus RTU 的功能，该指令集除了支持主机架 CM1241 通信模块、CB1241 通信板，还支持
+PROFINET 或 PROFIBUS 分布式 I/O 机架上的点对点通信模块实现 Modbus RTU 通信。从这个版本开始 S7-1200 与 S7-1500 在 Modbus RTU 指令集开始一致，并且之后版本更新也是基于该版本，建议 V4.0 以后的 CPU 和串口模块使用该版本指令集。</p>
+<p>该指令集后续版本功能介绍参见<a href="07-Modbus_RTU_V4.htm">链接</a>。</p>
+<p>硬件要求：</p>
+<ul>
+  <li> S7-1200 CPU 的固件版本不能低于 V4.1</li>
+  <li>CM1241 通信模块不能低于 V2.1</li>
+  <li>CB1241 没有要求</li>
+  <li>分布式上的串口模块包括：
+    <ul>
+      <li>ET200SP 的 CM PtP</li>
+      <li>ET200MP 的 CM PtP RS232 HF</li>
+      <li>ET200MP 的 CM PtP RS422/485 HF</li>
+    </ul>
+  </li>
+</ul>
+<p>新版本 Modbus RTU 指令集所支持的点对点模块如图 2 所示。</p>
+<p><img src="images/2-02.png" width="813" height="825">
+</p>
+<p>图 2. 新版本 Modbus RTU 指令集所支持的点对点模块 </p>
+<h3>Modbus RTU 指令的使用</h3>
+<p>新版本 Modbus RTU 指令集中包含 Modbus RTU 主站指令和从站指令。</p>
+<p>本文以 CPU1217C + CM1241 RS422/485 + ET200SP CM PtP   模块为例，介绍新版本 Modbus RTU 指令主从通信的编程步骤。 
+其中 CPU 机架 CM1241 RS422/485 作为 Modbus RTU 从站，分布式机架 ET200SP 中 CM PtP   模块作为 Modbus RTU 主站。网络结构图如图 3 所示。</p>
+<p><img src="images/2-03.png" width="513" height="255"></p>
+<p>图 3. Modubs RTU 网络通信结构图</p>
+<p>本项目中使用到的硬件和软件如下：</p>
+<p><STRONG>主要硬件：</STRONG></p>
+<ul>
+  <li>
+CPU1217C  （订货号： 6ES7217-1AG40-0XB0），固件版本 V4.1.3</li>
+  <li>CM1241 RS422/485模块 （订货号：6ES7241-1CH32-0XB0），固件版本 V2.1  </li>
+  <li>ET200SP IM155-6PN HF（订货号：6ES7155-6AU00-0CN0）  </li>
+  <li>CM PtP模块（订货号：6ES7137-6AA00-0BA0）</li>
+</ul>
+<p><STRONG>软件：</STRONG></p>
+<ul>
+  <li>
+TIA Portal V13 SP1 Upd 9</li>
+</ul>
+<p>文档链接：</p>
+<ul>
+  <li> CB/CM 组态，<a href="02-Modbus_RTU.htm#a">链接</a></li>
+  <li>ET200 CM PtP组态，<a href="02-Modbus_RTU.htm#b">链接</a></li>
+  <li>主站程序，<a href="02-Modbus_RTU.htm#c">链接</a></li>
+  <li>从站程序，<a href="02-Modbus_RTU.htm#d">链接</a></li>
+  <li>接线方式，<a href="02-Modbus_RTU.htm#f">链接</a>。</li>
+</ul>
+<h3>1. 设备组态</h3>
+<h4><a name="a" id="a"></a>a. 组态 CM1241 RS422/485 模块</h4>
+<p>打开设备视图，添加 S7-1200CPU，并在硬件目录里找到&ldquo;通信模块&rdquo;&rarr;&ldquo;点到点&rdquo;&rarr;&ldquo;CM1241（RS422/485）&rdquo;，拖拽此模块至 CPU 左侧即可，如图 4 所示：</p>
+<p><img src="images/2-04.png" width="628" height="646"></p>
+<p>图 4. 添加 CM 1241 RS422/485 模块</p>
+<p> <strong><img src="images/4.gif" alt="" width="15" height="15">注意：</strong></p>
+<p>
+  <strong>固件版本&gt;=V2.1 </strong>的 CM 1241 RS422/485 模块，才支持新版本 Modbus RTU 指令集。</p>
+<p>在&ldquo;设备视图&rdquo;中用鼠标选中 CM1241（RS422/485） 模块，在&ldquo;属性&rdquo;&rarr;&ldquo;端口组态&rdquo;中配置此模块硬件接口参数，
+本例以传输率 = 9.6 kbps，奇偶校验 = 无，数据位 = 8 位字符，停止位 = 1 为例。</p>
+<p>CM 1241 端口组态设置如图 5 所示。</p>
+<p><img src="images/2-05.png" width="877" height="613"></p>
+<p>图 5. CM1241 RS422/485 模块端口组态</p>
+<p>在&ldquo;硬件标识符&rdquo;里确认一下硬件标识符为 269（该参数在程序编程中会被使用），如图 6 所示。</p>
+<p><IMG src="images/2-06.png" width="622" height="248"></p>
+<p>图 6. 硬件标识符</p>
+<p>另外，S7-1200 还提供了系统和时钟存储器功能，为了便于后续指令方便使用，建议使能该功能。在 CPU &ldquo;属性&rdquo;&rarr;&ldquo;常规&rdquo;&rarr;&ldquo;系统和时钟存储器&rdquo;使能系统和时钟存储器功能，如图 7 所示。</p>
+<p><img src="images/2-07.png" width="841" height="680"></p>
+<p>图 7. 系统和时钟存储器功能</p>
+<h4><a name="b" id="b"></a>b. 组态 ET200 SP CM PtP 模块</h4>
+（1） 插入一个 ET200SP 分布式站点。
+<p>打开网络视图并拖入一个 ET200SP 站点，并将其分配给相应的 IO 控制器（本例 CPU1217C 为 IO 控制器），如图 8 所示。</p>
+<p><img src="images/2-08.png" width="874" height="443"></p>
+<p>图 8. 插入 ET200SP 站点</p>
+ （2） 组态 ET200SP 站点。
+ <p>在 ET200SP 的&quot;设备视图&quot;环境下，为 ET200SP 站点添加信号、通信模块和服务模块，在本例中只添加了 CM PtP 模块和服务模块。</p>
+<p> <strong><img src="images/4.gif" alt="" width="15" height="15">注意：</strong></p>
+<p><strong> ET200SP 站点中，服务模块是必须组态的。服务模块随接口模块一起采购，无需单独购买。</strong></p>
+<p>  ET200SP 接口模块需要为其分配 IP 地址和设备名称，有关 ET200SP 分布式 IO 组态详细步骤，请参考<a href="../../02-Bus/02-Profinet/02-IO_Controller/01-IO_device.html">文档</a>。</p>
+<p>在 ET200SP &quot;设备视图&quot;中用鼠标选中 CM PtP，在&ldquo;属性&rdquo;&rarr;&ldquo;常规&rdquo;&rarr;&ldquo;接口&rdquo;&rarr;&ldquo;操作模式&rdquo;中配置此模块硬件接口参数，
+本例设定&ldquo;指定工作模式&quot;：&quot;半双工（RS485）2 线制操作&quot;；&quot;接收线路的初始状态&quot;：&quot;无&quot;。如图 9 所示。</p>
+<p><img src="images/2-09.png" width="674" height="841"></p>
+<p>图 9. CM PtP 操作模式</p>
+<p>接下来，在&ldquo;属性&rdquo;&rarr;&ldquo;常规&rdquo;&rarr;&ldquo;接口&rdquo;&rarr;&ldquo;端口组态&rdquo;中配置此模块端口组态参数，
+本例设定&quot;协议&quot;：&quot;Freeport/Modbus&quot;；&quot;端口参数&quot;设置：传输率 = 9600 bps，奇偶校验 = 无，数据位 = 8 位字符，停止位 = 1 为例。端口组态设置如图 10 所示。</p>
+<p><img src="images/2-10.png" width="686" height="498"></p>
+<p>图 10. CM PtP 端口组态</p>
+<p>最后需要在&ldquo;硬件标识符&rdquo;里确认一下 CM PtP 模块硬件标识符，该参数在程序编程中会被使用。如图 11 所示。</p>
+<p><img src="images/2-11.png" alt="" width="629" height="441" /></p>
+<p>图 11. 系统常量</p>
+<h3>2. 软件编程</h3>
+<h4><a name="c" id="c"></a>a. Modbus RTU 主站编程</h4>
+<p> Modbus RTU 主站编程需要调用 Modbus_Comm_Load 指令和 Modbus_Master 指令，其中 Modbus_Comm_Load 指令通过 Modbus RTU 协议对通信模块进行组态，Modbus_Master 指令可通过由 Modbus_Comm_Load 指令组态的端口作为 Modbus 主站进行通信， Modbus_Comm_Load 指令的 MB_DB 参数必须连接到 Modbus_Master   指令的（静态）MB_DB 参数。</p>
+<p>本例中分布式机架 ET200SP 中 CM PtP   模块作为 Modbus RTU 主站，其相关编程步骤如下：</p>
+（1） OB1 中插入一个 FC，并在 FC 中拖入 Modbus_Comm_Load 指令和 Modbus_Master 指令。如图 12 所示。
+<p><img src="images/2-12.png" width="893" height="694"></p>
+<p>图 12. Modbus RTU 主站指令 </p>
+<p>Modbus_Comm_Load 指令各参数意义如表 1 所示：</p>
+<table width="744" border="1">
+  <tr>
+    <th width="126" scope="row"><p><strong>引脚</strong></p></th>
+    <td width="602"><div align="left"><strong>说明</strong></div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">REQ</p></td>
+    <td><div align="left">上升沿触发</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">PORT</p></td>
+    <td><div align="left">通信端口的硬件标识符</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">BAUD</p></td>
+    <td><div align="left">波特率选择：3600，6000，12000，2400，4800，9600，19200，38400，57600，76800，115200</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">PARITY</p></td>
+    <td><div align="left">奇偶检验选择：0-无；1-奇校验；2-偶校验</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">FLOW_CTRL</p></td>
+    <td><div align="left">流控制选择：0-（默认值）无流控制</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RTS_ON_DLY</p></td>
+    <td><div align="left">RTS 延时选择：0-（默认值）</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RTS_OFF_DLY</p></td>
+    <td><div align="left">RTS 关断延时选择：0-（默认值）</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">RESP_TO</p></td>
+    <td><p align="left">响应超时： 默认值  = 1000 ms。Modbus_Master 允许用于从站响应的时间（以毫秒为单位）。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MB_DB</p></td>
+    <td><p align="left">对 Modbus_Master 或 Modbus_Slave   指令的背景数据块的引用。
+    MB_DB 参数必须与 Modbus_Master 或   Modbus_Slave 指令中的静态变量 MB_DB 参数相连。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DONE</p></td>
+    <td><p align="left">如果上一个请求完成并且没有错误，DONE 位将变为 TRUE 并保持一个周期。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">ERROR</p></td>
+    <td><p align="left">如果上一个请求完成出错，则 ERROR 位将变为 TRUE 并保持一个周期。 STATUS 参数中的错误代码仅在 ERROR = TRUE 的周期内有效。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">STATUS</p></td>
+    <td><div align="left">端口组态错误代码，请参考 TIA Portal 软件在线帮助或 S7-1200 系统手册。</div></td>
+  </tr>
+</table>
+<p>表 1. Modbus_Comm_Load 指令参数意义</p>
+
+<p>Modbus_Master 指令各参数意义如表 2 所示。</p>
+<table width="744" border="1">
+  <tr>
+    <th width="126" scope="row"><p><strong>引脚</strong></p></th>
+    <td width="602"><div align="left"><strong>说明</strong></div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">EN</p></td>
+    <td><div align="left">使能端</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">REQ</p></td>
+    <td><div align="left">TRUE = 请求向 Modbus 从站发送数据 ，建议采用上升沿触发</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MB_ADDR</p></td>
+    <td><div align="left">
+      <p align="left">Modbus   RTU 从站地址。默认地址范围：0 至 247；扩展地址范围：0 至 65535。值 0 被保留用于将消息广播到所有 Modbus 从站。</p>
+    </div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MODE</p></td>
+    <td><div align="left">模式选择： 指定请求类型（读取或写入）。 </div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DATA_ADDR</p></td>
+    <td><div align="left">从站中的起始地址：指定 Modbus 从站中将供访问的数据的起始地址。</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DATA_LEN</p></td>
+    <td><div align="left">数据长度：指定要在该请求中访问的位数或字数。</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DATA_PTR</p></td>
+    <td><div align="left">数据指针： 指向要进行数据写入或数据读取的 M 区或数据块地址。</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">DONE</p></td>
+    <td><div align="left">完成位：上一请求已完成且没有出错后，DONE 位将保持为 TRUE 一个扫描周期时间。</div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">BUSY</p></td>
+    <td><p align="left">FALSE &ndash; Modbus_Master 无激活命令；TRUE &ndash; Modbus_Master 命令执行中</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">ERROR</p></td>
+    <td><p align="left">如果上一个请求完成出错，则 ERROR 位将变为 TRUE   并保持一个周期。 STATUS 参数中的错误代码仅在 ERROR = TRUE 的周期内有效。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">STATUS</p></td>
+    <td><div align="left">端口组态错误代码，请参考 TIA Portal 软件在线帮助或 S7-1200 系统手册。</div></td>
+  </tr>
+</table>
+<p>表 2. Modbus_Master 指令参数意义</p>
+<p><strong><img src="images/4.gif" alt="" width="15" height="15">注意： 
+</strong></p>
+<p>① Modbus_Comm_Load 指令不建议在启动组织块 OB100 中调用，建议在 OB1 中调用。</p>
+<p>Modbus_Comm_Load 指令在 OB1 中调用时，其输入位&ldquo;REQ&rdquo;需使用上升沿触发，本例中该输入位采用 &ldquo;FirstScan&rdquo; 系统存储器位。</p>
+<p> ② Modbus_Comm_Load 指令背景数据块中的静态变量 &ldquo;MODE&rdquo; 用于描述点对点模块的工作模式，有效的工作模式包括：</p>
+<UL>
+  <LI>
+    0 = 全双工 （RS232）
+  <LI>
+    1 = 全双工 （RS422） 四线制模式（点对点）
+  <LI>    2 = 全双工 （RS422） 四线制模式（多点主站）
+  <LI>    3 = 全双工 （RS422） 四线制模式（多点从站）
+  <LI>4 = 半双工 （RS485） 二线制模式
+</UL>
+<p>该静态变量 &ldquo;MODE&rdquo; 默认数据为 0（RS232 全双工模式），需要根据点对点模块实际组态修改该数值，本例中 CM PtP 模块工作在 RS485 半双工模式需要将该数值修改为 4，如图 13 所示。</p>
+<p><img src="images/2-13.png" width="677" height="479"></p>
+<p>图 13. Modbus_Comm_Load 背景数据块静态变量 &ldquo;MODE&rdquo; 修改为 4  </p>
+<p>③ Modbus_Master 指令的 &ldquo;DATA_PTR&rdquo; 参数用于指向要进行数据写入或数据读取的数据区域地址，该数据区域在 V3.0 支持非优化（标准的）数据块。一般建议使用指针方式填写，例如程序中的 P#DB3.DBX0.0 WORD 5，此外也可以使用基本数据类型数组方式填写。指针的含义参见<a href="../../../07-Program/02-basic/01-Data_Type/07-Variant.html#P">链接</a>。</p>
+<p>从 V4.0 版本开始支持优化 DB 块，具体参见<a href="07-Modbus_RTU_V4.htm">链接</a>。</p>
+<p> 在数据块的属性中取消&ldquo;优化的块访问&rdquo;即可将数据块修改为非优化访问的数据块（鼠标右键数据块，选择&ldquo;属性&rdquo;，取消&ldquo;优化的块访问&rdquo;），如图 14 所示。</p>
+<p><img src="images/2-14.png" width="689" height="606"></p>
+<p>图 14. 设置数据块为非优化访问</p>
+<p>④ 当 Modbus RTU 网络中存在多个 modbus RTU 从站或一个 modbus RTU 从站同时需要多个作业，例如需要读和写或者读多个区域等，则需要调用多个 Modbus_Master 指令，Modbus_Master 指令之间需要采用轮询方式调用，并且使用相同背景数据块。  </p>
+<p>如图 15 所示，用于描述两个 Modbus_Master 指令轮询调用的方式。 </p>
+<p><img src="images/2-15.png" width="1089" height="431">  </p>
+<p>图 15. Modbus_Master 轮询调用方式</p>
+<p>⑤ MB_MODE、MB_DATA_ADDR、MB_DATA_LEN、 Modbus RTU 功能码等之间的关系，如表 3 所示。</p>
+<table width="900" border="1">
+  <tr>
+    <th scope="col">MB_MODE</th>
+    <th scope="col">MB_DATA_ADDR</th>
+    <th scope="col">MB_DATA_LEN</th>
+    <th scope="col">Modbus RTU 功能码</th>
+    <th scope="col">操作和数据</th>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>1 - 9999</td>
+    <td>1 - 2000</td>
+    <td>01</td>
+    <td><ul>
+      <li>
+        <div align="left">读取输出位
+          <ul>
+            <li>每个请求 1 - 2000 个位 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>10001 - 19999</td>
+    <td>1 - 2000</td>
+    <td>02</td>
+    <td><ul>
+      <li>
+        <div align="left">读取输入位
+          <ul>
+            <li>每个请求 1 - 2000 个位 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td><ul>
+      <li>
+        <div align="left">40001 - 49999（等同于 400001 - 409999）</div>
+      </li>
+      <li>
+        <div align="left">400001 - 465535</div>
+      </li>
+    </ul></td>
+    <td>1 - 125</td>
+    <td>03</td>
+    <td><ul>
+      <li>
+        <div align="left">读取保持寄存器
+          <ul>
+            <li>每个请求 1 - 125 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>0</td>
+    <td>30001 - 39999</td>
+    <td>1 - 125</td>
+    <td>04</td>
+    <td><ul>
+      <li>
+        <div align="left">读取输入字
+          <ul>
+            <li>每个请求 1 - 125 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>10001 - 19999</td>
+    <td>1</td>
+    <td>05</td>
+    <td><ul>
+      <li>
+        <div align="left">写入输出位
+          <ul>
+            <li>每个请求 1 个位 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><ul>
+      <li>
+        <div align="left">40001 - 49999（等同于 400001 - 409999）</div>
+      </li>
+      <li>
+        <div align="left">400001 - 465535</div>
+      </li>
+    </ul></td>
+    <td>1</td>
+    <td>06</td>
+    <td><ul>
+      <li>
+        <div align="left">写入保持寄存器
+          <ul>
+            <li>每个请求 1 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>10001 - 19999</td>
+    <td>2 - 1968</td>
+    <td>15</td>
+    <td><ul>
+      <li>
+        <div align="left">写入多个输出位
+          <ul>
+            <li>每个请求 2 - 1968  个位 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><ul>
+      <li>
+        <div align="left">40001 - 49999（等同于 400001 - 409999）</div>
+      </li>
+      <li>
+        <div align="left">400001 - 465535</div>
+      </li>
+    </ul></td>
+    <td>2 - 123</td>
+    <td>16</td>
+    <td><ul>
+      <li>
+        <div align="left">写入多个保持寄存器
+          <ul>
+            <li>每个请求 2 - 123 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>10001 - 19999</td>
+    <td>1 - 1968</td>
+    <td>15</td>
+    <td><ul>
+      <li>
+        <div align="left">写入输出位
+          <ul>
+            <li>每个请求 1 - 1968 个位</li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><ul>
+      <li>
+        <div align="left">40001 - 49999（等同于 400001 - 409999）</div>
+      </li>
+      <li>
+        <div align="left">400001 - 465535</div>
+      </li>
+    </ul></td>
+    <td>1 - 123</td>
+    <td>16</td>
+    <td><ul>
+      <li>
+        <div align="left">写入保持寄存器
+          <ul>
+            <li>每个请求 1 - 123 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td colspan="2">-</td>
+    <td>11</td>
+    <td><ul>
+      <li>
+        <div align="left">读取服务器的状态字和事件计数器：
+          <ul>
+            <li>状态字反映了处理的状态（0 - 未处理，0xFFFF - 正在处理） </li>
+            <li>Modbus 请求成功执行时，事件计数器将递增。如果执行 Modbus 功能时出错，则服务器将发送消息，但不会递增事件计数器。 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>80</td>
+    <td>-</td>
+    <td>1</td>
+    <td>08</td>
+    <td><ul>
+      <li>
+        <div align="left">通过诊断代码 0x0000 检查服务器状态（返回循环测试 -   服务器发回请求）：
+          <ul>
+            <li>每次调用 1 个字</li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>81</td>
+    <td>-</td>
+    <td>1</td>
+    <td>08</td>
+    <td><ul>
+      <li>
+        <div align="left">通过诊断代码 0x000A 复位服务器的事件计数器：
+          <ul>
+            <li>每次调用 1 个字</li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>104</td>
+    <td>0 - 65535</td>
+    <td>1 - 125</td>
+    <td>04</td>
+    <td><ul>
+      <li>
+        <div align="left">读取输入字
+          <ul>
+            <li>每个请求 1 - 125 个字 </li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+</table>
+<p>注：</p>
+<ul>
+  <li>对于扩展寻址，读写最大长度减少一个字（访问字）或一个字节（访问位）。</li>
+  <li>当 MB_ADDR = 0 为广播模式，此时只允许写操作</li>
+</ul>
+<p>表 3. 对应关系</p>
+<p>⑥ 对于一般的支持 Modbus RTU 设备，可能无法在其设备手册中查找到诸如 40001、30001 这种数据地址，而是以功能码 + 十六进制数形式的变量地址，就需要这样解决：</p>
+<p>通过判断功能码决定是读是写，决定 MB_MODE 为 0 读还是 1 写（2 写比较特殊，只用于不支持 5、6 号功能码的设备），然后将十六进制地址数转化为十进制数，然后对于不同的功能码，十进制数增加不同的偏移量，对于功能码 1、5、15 偏移量为 1，对于功能码 2 偏移量为 10001，对于功能码 3、6、16 偏移量为 40001（对于超过 9999 的地址，偏移量为 400001），对于功能码 4 偏移量为 30001。例如从站设备使用 0x03 功能码，地址 0x00FF ，因为是读，所以  MB_MODE = 0， 0x00FF 转换为十进制为 255，加上偏移量 40001 就是 40256，这样 MB_DATA_ADDR = 40256。</p>
+<p>此外对于功能码 4，如果十进制地址数超过 9998 的，加上偏移量 30001 将超过 39999，此时可以使用 MB_MODE = 104，然后  MB_DATA_ADDR 使用不增加偏移量的十进制地址数也是可以的。例如从站设备使用 0x04 功能码，地址 0x4000 ， 0x4000 转换为十进制为 16384，加上偏移量 30001 将超过 39999，此时使用 MB_MODE = 104，MB_DATA_ADDR = 16384。</p>
+<p>⑦ 对于分布式 IO 上的串口模块，还需要考虑模块拔出或者掉站的情况，具体处理参见<a href="02-Modbus_RTU.htm#e">常见问题 5</a>。</p>
+<h4><a name="d" id="d"></a>b. Modbus RTU 从站编程</h4>
+<p> Modbus RTU 从站编程需要调用 Modbus_Comm_Load 指令和 Modbus_Slave 指令，其中 Modbus_Comm_Load 指令通过 Modbus RTU 协议对通信模块进行组态，Modbus_Slave 指令可通过由 Modbus_Comm_Load 指令组态的端口作为 Modbus 从站进行通信，Modbus_Comm_Load 指令的 MB_DB 参数必须连接到 Modbus_Slave   指令的（静态）MB_DB 参数。</p>
+<p>本例中 CPU 机架 CM1241 RS422/485 作为 Modbus RTU 从站，其相关编程步骤如下：</p>
+<p>OB1 中插入一个 FC，并在函数中拖入 Modbus_Comm_Load 指令和 Modbus_Slave 指令。如图 16 所示。</p>
+<p><img src="images/2-16.png" width="963" height="686"></p>
+<p>
+  图 16. 拖入Modbus RTU 从站指令</p>
+<p>Modbus_Slave 指令各参数意义如表 4 所示：</p>
+<table width="744" border="1">
+  <tr>
+    <th width="126" scope="row"><p><strong>引脚</strong></p></th>
+    <td width="602"><div align="left"><strong>说明</strong></div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MB_ADDR</p></td>
+    <td><p align="left">Modbus 从站的标准寻址：
+      标准寻址范围（1 到   247），
+    扩展寻址范围（0 到 65535） </p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">MB_HOLD_REG</p></td>
+    <td><p align="left">数据指针，指向 Modbus 保持寄存器的地址， Modbus   保持寄存器可以为 M 存储区或 DB 数据区。
+    </p></td>
+  </tr>
+  <tr>
+    <td valign="top"><div align="left">NDR</div></td>
+    <td><div align="left">可用的新数据：
+      <UL>
+        <LI> FALSE ： 无新数据                  
+        <LI> TRUE ： 表示新数据已由 Modbus 主站写入，如果上一个请求完成并且没有错误，NDR 位将变为 TRUE   并保持一个周期。 </LI>
+      </UL>
+    </div></td>
+  </tr>
+  <tr>
+    <td valign="top"><div align="left">DR</div></td>
+    <td><div align="left">读取数据： 
+        <UL>
+          <LI>
+            FALSE ： 无新数据                  
+          <LI>          TRUE ：表示该指令已将 Modbus 主站接收到的数据存储在目标区域中。如果上一个请求完成并且没有错误，DR 位将变为 TRUE 并保持一个周期。 </LI>
+        </UL>
+    </div></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">ERROR</p></td>
+    <td><p align="left">如果上一个请求完成出错，则 ERROR 位将变为 TRUE   并保持一个周期。 如果执行因错误而终止，则 STATUS 参数中的错误代码仅在 ERROR = TRUE 的周期内有效。</p></td>
+  </tr>
+  <tr>
+    <td width="126" valign="top"><p align="left">STATUS</p></td>
+    <td><div align="left">错误代码</div></td>
+  </tr>
+</table>
+<p>表 4. Modbus_Slave 指令参数意义</p>
+<p><strong><img src="images/4.gif" alt="" width="15" height="15">注意： 
+</strong></p>
+<p>① Modbus_Comm_Load 指令不建议在启动组织块 OB100 中调用，建议在 OB1 中调用。</p>
+<p>Modbus_Comm_Load 指令在 OB1 中调用时，其输入位&ldquo;REQ&rdquo;需使用上升沿触发，本例中该输入位采用 &ldquo;FirstScan&rdquo; 系统存储器位。</p>
+<p> ② Modbus_Comm_Load 指令背景数据块中的静态变量 &ldquo;MODE&rdquo; 用于描述点对点模块的工作模式，有效的工作模式包括：</p>
+<ul>
+  <li> 0 = 全双工 （RS232） </li>
+  <li> 1 = 全双工 （RS422） 四线制模式（点对点） </li>
+  <li> 2 = 全双工 （RS422） 四线制模式（多点主站） </li>
+  <li> 3 = 全双工 （RS422） 四线制模式（多点从站） </li>
+  <li>4 = 半双工 （RS485） 二线制模式 </li>
+</ul>
+<p>该静态变量 &ldquo;MODE&rdquo; 默认数据为 0（RS232 全双工模式），需要根据 CM PtP 模块实际组态修改该数值，本例中 CM PtP 模块工作在 RS485 半双工模式需要将该数值修改为 4，参考图 13 。</p>
+<p>③ Modbus_Slave 指令的 &ldquo;MB_HOLD_REG&rdquo; 用于定义 CPU 的 Modbus 保持寄存器的数据区域地址，该数据区域在 V3.0 支持非优化（标准的）数据块。一般建议使用指针方式填写，例如程序中的 P#DB6.DBX0.0 WORD 100，此外也可以使用基本数据类型数组方式填写。指针的含义参见<a href="../../../07-Program/02-basic/01-Data_Type/07-Variant.html#P">链接</a>。</p>
+<p>从 V4.0 版本开始支持优化 DB 块，具体参见<a href="07-Modbus_RTU_V4.htm">链接</a>。</p>
+<p> 在数据块的属性中取消&ldquo;优化的块访问&rdquo;即可将数据块修改为非优化访问的数据块（鼠标右键数据块，选择&ldquo;属性&rdquo;，取消&ldquo;优化的块访问&rdquo;），参考图 14 。</p>
+<p>④ Modbus RTU 从站数据区定义，参见表 5。</p>
+<table width="800" border="1">
+  <tr>
+    <th width="64" scope="col">地址区</th>
+    <th width="127" scope="col">定义</th>
+    <th width="587" scope="col">说明</th>
+  </tr>
+  <tr>
+    <td>输出位</td>
+    <td>Q0.0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">Q0.0 为地址 1，Q0.1 为地址 2，Q0.7 为地址 8，Q1.0 为地址 9...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>输入位</td>
+    <td>I0.0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">I0.0 为地址 10001，I0.1 为地址 10002，I0.7 为地址 10008，I1.0 为地址 10009...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>输入寄存器</td>
+    <td>IW0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">IW0 为地址 30001，IW2 为地址 30002，IW4 为地址 30003...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>保持寄存器</td>
+    <td>由 MB_HOLD_REG 定义</td>
+    <td><ul>
+      <li>
+        <div align="left">指针指向的第一个字为 40001，第二个字为 40002...
+          <ul>
+            <li>例如：MB_HOLD_REG 为 P#M100.0 WORD 8，则 MW100 为 40001，MW102 为 40002，MW104 为 40003...MW114 为 40008 </li>
+            <li>例如：MB_HOLD_REG 为 优化 DB 中 INT 数组[0..7]，数组名为 &ldquo;XXX&rdquo;.AA，则 “XXX”.AA[0] 为 40001，“XXX”.AA[1] 为 40002，“XXX”.AA[2] 为 40003...“XXX”.AA[7] 为 40008</li>
+          </ul>
+        </div>
+      </li>
+    </ul></td>
+  </tr>
+</table>
+<p>注意：数据区从指令集版本 V4.0 开始，可以自由定义，方法参见<a href="07-Modbus_RTU_V4.htm#a">链接</a>。</p>
+<p>表 5. 数据区定义</p>
+<p>⑤ 如果是分布式 IO 上的串口模块，还需要考虑模块拔出或者掉站的情况，具体处理参见<a href="02-Modbus_RTU.htm#e">常见问题 5</a>。</p>
+<h4>c. 编译下载</h4>
+<p>之后将程序和组态编译下载到 PLC 中，即可测试 Modbus RTU 通信了。</p>
+<h3>3. 常见问题 FAQ</h3>
+<h4><strong><img src="images/5.gif" width="15" height="15">1. 新版本 Modbus RTU 指令的使用是否存在些限制条件?</strong></h4>
+<p>新版本 Modbus RTU 指令通过 CM1241 通信模块或 CB1241 通信板进行 Modbus RTU 通信时，需要满足如下条件：</p>
+<ul>
+  <li>    S7-1200 CPU 的固件版本不能低于 V4.1</li>
+  <li>CM1241 通信模块不能低于 V2.1</li>
+  <li>CB1241 没有要求</li>
+  <li>分布式上的串口模块包括：
+    <ul>
+      <li>ET200SP 的 CM PtP</li>
+      <li>ET200MP 的 CM PtP RS232 HF</li>
+      <li>ET200MP 的 CM PtP RS422/485 HF  </li>
+    </ul>
+  </li>
+</ul>
+<p>  S7-1200 V4.0 固件 CPU 可以通过固件更新到 V4.1 及以上版本，V2.0 固件的 CM1241 通信模块也可以通过固件更新的方式更新到 V2.1 及以上版本。
+相关固件更新的方法请参考<a href="../../../04-version/03-firmware_update/01-CPU.htm"> S7-1200 固件更新</a> 。</p>
+<h4><strong><img src="images/5.gif" alt="" width="15" height="15">2. Modbus_Comm_Load 指令背景数据块中的静态变量 &ldquo;MODE&rdquo; 的作用是什么?为什么一般项目中，都需要对该变量进行修改？</strong></h4>
+<p>
+  新版本的 Modbus RTU 指令扩展了 Modbus RTU 的功能，该指令除了支持 CM1241 通信模块、CB1241 通信板还支持
+PROFINET 或 PROFIBUS 分布式 I/O 机架上的点对点通信模块实现 Modbus RTU 通信。 
+而分布式
+I/O 机架上的点对点通信模块可以支持多种工作模式，以 ET200SP CM PtP 模块（订货号：6ES7137-6AA0x-0BA0）为例，其可以支持 RS232、RS485 以及 RS422 等多种工作模式。</p>
+<p>Modbus_Comm_Load 指令背景数据块中的静态变量 &ldquo;MODE&rdquo; 则用于定义点对点模块的工作模式，具体如下说明。
+&ldquo;MODE&rdquo; 的默认数值为 0，代表&ldquo;全双工 （RS232）&rdquo;工作模式，实际项目组态中则需要根据实际工作模式对该变量进行修改。</p>
+<ul>
+  <li> 0 = 全双工 （RS232） </li>
+  <li> 1 = 全双工 （RS422） 四线制模式（点对点） </li>
+  <li> 2 = 全双工 （RS422） 四线制模式（多点主站） </li>
+  <li> 3 = 全双工 （RS422） 四线制模式（多点从站） </li>
+  <li>4 = 半双工 （RS485） 二线制模式</li>
+</ul>
+<h4><strong><img src="images/5.gif" alt="" width="15" height="15">3. Modbus_Comm_Load 指令能否在启动组织块 OB100 中调用?</strong></h4>
+<p>Modbus_Comm_Load 指令可以但不建议在启动组织块 OB100 中调用。</p>
+<p>新版本的 Modbus RTU 指令扩展了 Modbus RTU 的功能，该指令支持
+  PROFINET 或 PROFIBUS 分布式 I/O 机架上的点对点通信模块实现 Modbus RTU 通信。
+操作系统需要调用读取数据记录和写入数据记录等指令来实现与分布式 I/O 机架上点对点模块的 Modbus RTU 通信。读取数据记录和写入数据记录指令为异步读写指令，指令需要多次执行，所以不建议 Modbus_Comm_Load 指令在启动组织块 OB100 中调用。如果需要，可以参考常见问题 5 中的方式，在 OB100 中反复执行 Modbus_Comm_Load  指令，直到指令完成。</p>
+<h4><strong><img src="images/5.gif" alt="" width="15" height="15">4. 如何查询 Modbus RTU 通信错误时的错误代码?</strong></h4>
+<p>以 Modbus_Master 指令为例，当通信出现错误时，Modbus_Master 指令的 &ldquo;ERROR&rdquo; 输出位将变为 TRUE 但是只保持一个扫描周期，所以通过 TIA Portal 软件程序监控时无法查询到错误。
+  Modbus_Master 指令 &ldquo;STATUS&rdquo; 参数中的错误代码仅在 &ldquo;ERROR&rdquo; = TRUE 的扫描周期内有效，为了获取了 Modbus RTU 通信错误的错误代码可以采用如图 17 所示方式编程。</p>
+<p><img src="images/2-17.png" width="513" height="522"></p>
+<p>图 17. 获取 STATUS</p>
+<h4><strong><img src="images/5.gif" alt="" width="15" height="15" /><a name="e" id="e"></a>5. 对于分布式 IO 上的串口模块，如果出现从站掉站或者模块拔出应该怎么办？</strong></h4>
+<p>对于分布式 IO 的串口模块，一旦出现故障以及故障恢复，系统会自动执行相关 OB，拔出插入会执行 OB83，掉站与恢复会执行 OB86。所以需要在相应 OB 中重新触发 Modbus_Comm_Load 指令，方法如下：</p>
+<p>1. 插入&quot;Pull or plug of modules&quot; 中断 OB83。</p>
+<p>分布式 IO 站点中插出、拔入模块时，操作系统都会调用一次 OB83。通过 OB83 接口区的输入变量 &ldquo;Event_Class&rdquo; 判断故障的模块和类型：事件类型16#39表示模块被拔出，事件类型16#38表示模块被插入。</p>
+<p>CM PtP   模块被重新插入的时候，需要在中断 OB83 中调用 Modbus_Comm_Load 指令对通信模块进行重新组态，如图 18 所示。 </p>
+<p><img src="images/2-18.png" width="665" height="799" /></p>
+<p> 图 18. 
+  OB83 中再次调用 Modbus_Comm_Load 指令</p>
+<p><strong><img src="images/4.gif" alt="" width="15" height="15" />注意：</strong></p>
+<p>① OB83 中调用 Modbus_Comm_Load 指令的背景数据块需要与 OB1 中调用的 Modbus_Comm_Load 指令的背景数据块相同。</p>
+<p>② CM PtP 模块的硬件标识符需要在&quot;PLC 变量&quot;---&gt;&quot;系统常数&quot;中查询，参考图 12 所示。</p>
+<p> 2. 插入&quot;Rack or Station failure&quot; 中断 OB86。</p>
+<p> 分布式 IO 站点故障和恢复时，操作系统都会调用一次 OB86。通过 OB86 接口区的输入变量 &ldquo;#Event_Class&rdquo; 判断故障的模块和类型：事件类型 16#39 表示站点故障，事件类型 16#38 表示站点恢复。</p>
+<p>CM PtP   模块所在的 IO 站点恢复时，需要在中断 OB86 中调用 Modbus_Comm_Load 指令对通信模块进行重新组态，如图 19 所示。 </p>
+<p><img src="images/2-19.png" width="669" height="867" /></p>
+<p>图 19. 
+  OB86 中调用 Modbus_Comm_Load 指令</p>
+<p><strong><img src="images/4.gif" alt="" width="15" height="15" />注意：</strong></p>
+<p>① OB86 中调用 Modbus_Comm_Load 指令的背景数据块需要与 OB1 中调用的 Modbus_Comm_Load 指令的背景数据块相同。</p>
+<p>② 分布式 IO 站点的硬件标识符需要在&quot;PLC 变量&quot;---&gt;&quot;系统常数&quot;中查询，参考图 12 所示。</p>
+<h4><strong><img src="images/5.gif" alt="" width="15" height="15" /><a name="f" id="f"></a>6. CM 1241 RS422/485 如何与 CM PtP 连接？</strong></h4>
+<p>对于 CM1241 RS422/485 模块，RS485 模式接线是 3+ 8-，而对于 CM PtP，RS485 模式接线是 14+ 12-，所以本例中连接是将 CM1241 的 3 和 CM PtP 的 14 连接，CM1241 的 8 和 CM PtP 的 12 连接，如图 20 所示。</p>
+<p><img src="images/2-20.png" width="537" height="363" /></p>
+<p>图 20. 连接示意</p>
+</body>
+</html>

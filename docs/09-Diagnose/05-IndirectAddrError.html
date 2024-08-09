@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>为什么 CPU 诊断缓冲区报错&ldquo;区域长度错误&rdquo;</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+<style type="text/css">
+.STYLE1 {font-family: "宋体"}
+</style>
+</head>
+
+<body>
+<h3>为什么 CPU 诊断缓冲区报错“区域长度错误”</h3>
+<p>如图 1 所示，CPU 诊断缓冲区报错报错“区域长度错误”，发生此类错误的原因是，访问地址所寻址的值超出或未完全包含在所允许的操作数范围（CPU 特定变量或数据块大小）。</p>
+<p><img src="images/5-01.png" width="771" height="739" /></p>
+<p>图 1. “区域长度错误”</p>
+<p>可以点击诊断缓冲区下方的“在编辑器中打开”按钮，跳转到发生错误的程序段，如图 2 所示。</p>
+<p>在程序段 2 中，通过对数组下标赋值的方式间接寻址数组中的元素，在程序段 1 中为数组下标赋值为 2。 </p>
+<p>在数据块的声明中，数组只声明了 2 个数组元素，下标为 0-1，下标为 2 超出了数据块中声明变量的范围，故报故障“区域长度错误”。</p>
+<p>可以修改数组下标或者修改数据块中数组元素的个数，保证数据访问的范围在允许的范围内。</p>
+<p><img src="images/5-02.png" width="598" height="460" /></p>
+<p>图 2. 出错的程序段位置</p>
+<p><img src="images/5-03.png" width="339" height="120" /></p>
+<p>图 3. 数组的声明 </p>
+<p>此类错误在间接寻址访问变量时易出现，需要编程人员确保访问地址所寻址的值不超出操作数范围。</p>
+</body>
+</html>

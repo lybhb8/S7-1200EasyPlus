@@ -1,7 +1,7 @@
-![alt text](image.png)
-
 # S7-1200版本
 
-- [CPU 固件常见问题](./question.md)
-- [PLC V4.6 简介](./v46.md)
-- [固件升级](./upgrade.md)
+![alt text](image.png)
+
+- [CPU 固件常见问题](./02-Version/question.md)
+- [PLC V4.6 简介](./02-Version/S7-1200_V4.6.md)
+- [固件升级](./03-firmware_update/index.md)

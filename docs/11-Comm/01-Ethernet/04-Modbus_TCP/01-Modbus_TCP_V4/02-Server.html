@@ -1,0 +1,233 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>MB_SERVER</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 Modbus TCP 通信服务器指令块 MB_SERVER</h3>
+<p>STEP 7  V13 SP1 软件版本中的 Modbus TCP 指令目前最新的版本已升至 V4.0，如图 1 所示。该版本的使用需要具备以下两个条件：</p>
+<p>1. 软件版本： STEP 7  V13 SP1 及其以上 </p>
+<p>2. 固件版本： S7-1200 CPU 的固件版本 V4.1 及其以上</p>
+<p><img src="images/1-01.jpg" width="375" height="221" /></p>
+<p>图1. Modbus TCP V4.0 版本指令块</p>
+<p>V4.0 作为 Modbus TCP 新版指令的第一个基础版本，后续版本新增内容参见：</p>
+<ul>
+  <li>V5.0 版本新功能文档参见<a href="../04-Modbus_TCP_V5.htm">链接</a>。</li>
+  <li>V6.0 版本新功能文档参见<a href="../05-Modbus_TCP_V6.htm">链接</a>。</li>
+</ul>
+<p>V4.0 版本 Modbus TCP 客户端文档参见<a href="01-Client.html">链接</a>。</p>
+<p>旧版指令主要应用于固件版本 V4.0 及其以前的 CPU：</p>
+<ul>
+  <li>客户端指令块文档参见<a href="../02-Modbus_TCP_old/01-Client.htm">链接</a>。</li>
+  <li>服务器指令块文档参见<a href="../02-Modbus_TCP_old/02-Server.htm">链接</a>。</li>
+</ul>
+<h3>S7-1200 Modbus TCP 实验环境</h3>
+<p>下面以两台 S7-1200 之间进行 Modbus TCP 通信为例，详细阐述客户端与服务器侧如何编程及通信的过程，本文档只介绍服务器部分组态编程，客户端部分参见<a href="01-Client.html">链接</a>。</p>
+<p>表 1 列出了具体的实验环境，表 2 列出了双方 CPU 通信所需主要参数。</p>
+<table width="500" height="140" border="1">
+  <tr>
+    <td width="181" height="35">操作系统</td>
+    <td width="468"><p>WIN7 SP1 专业版 64 位&#13;</p></td>
+  </tr>
+  <tr>
+    <td height="34"><p>编程软件&#13;</p></td>
+    <td><p>  STEP 7 Professional V13 SP1 Update 5&#13;</p></td>
+  </tr>
+  <tr>
+    <td height="36"><p>系统硬件&#13;</p></td>
+    <td><ol>
+      <li>CPU1212C 6ES7212-1AE40-0XB0&nbsp;V4.1</li>
+      <li>CPU1215C 6ES7215-1AG40-0XB0 V4.1</li>
+    </ol>      </td>
+  </tr>
+</table>
+<p>表1. Modbus TCP 通信的实验环境</p>
+<table width="515" height="114" border="1">
+  <tr>
+    <td width="92" height="34">&nbsp;</td>
+    <td width="110"><div align="center">CPU类型</div></td>
+    <td width="102"><div align="center">IP 地址</div></td>
+    <td width="83"><div align="center">端口号</div></td>
+    <td width="94"><div align="center">硬件标识符</div></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">客户端</div></td>
+    <td><div align="center">CPU 1212C</div></td>
+    <td><div align="center">192.168.0.6</div></td>
+    <td><div align="center">0</div></td>
+    <td><div align="center">64</div></td>
+  </tr>
+  <tr>
+    <td height="35"><div align="center">服务器</div></td>
+    <td><div align="center">CPU 1215C</div></td>
+    <td><div align="center">192.168.0.4</div></td>
+    <td><div align="center">502</div></td>
+    <td><div align="center">64</div></td>
+  </tr>
+</table>
+<p>表2. Modbus TCP 通信双方的基本配置</p>
+<p>硬件标识符是在&ldquo;设备组态&rdquo;中，双击 PROFINET 接口，然后在&ldquo;属性&rdquo;中的&ldquo;硬件标识符&rdquo;中查看，如图 2 所示。</p>
+<p><img src="images/1-02.JPG" width="679" height="558" /></p>
+<p>图 2. S7-1200 设备的 PROFINET 接口硬件标识符</p>
+<h3>S7-1200 Modbus TCP 服务器编程</h3>
+<p>“MB_SERVER&rdquo;指令将处理 Modbus TCP 客户端的连接请求、接收并处理 Modbus 请求并发送响应。</p>
+<p><strong>1. </strong><strong>调用 MB_SERVER</strong></p>
+<p>将 MB_SERVER 指令块在&ldquo; 程序块 &gt; OB1 &rdquo;中的程序段里调用，调用时会自动生成背景 DB ，点击确定即可，如图 3 所示。</p>
+<p><img src="images/2-01.JPG" width="361" height="153" /></p>
+<p>图 3. 调用 MB_SERVER 指令块</p>
+<p>该功能块各个引脚定义如表 3 所示：</p>
+<table width="605" height="172" border="1">
+  <tr>
+    <td><strong>参数</strong></td>
+    <td><p align="left"><strong>说明</strong></p></td>
+  </tr>
+  <tr>
+    <td width="138">DISCONNET</td>
+    <td width="560"><p>0（默认）：被动建立与客户端的通信连接；1：终止连接。</p></td>
+  </tr>
+  <tr>
+    <td>MB_HOLD_REG</td>
+    <td>指向 Modbus 保持寄存器的数据区。可以设为数据块或 M 存储区地址。数据块可以为优化的数据块，也可以为非优化的数据块。对于优化数据块只能是基本数据类型的数组。对于非优化的数据块没有要求，一般通过 P# 指针的形式输入。具体参见表 4。</td>
+  </tr>
+  <tr>
+    <td>CONNECT</td>
+    <td>指向连接描述结构的指针。使用 TCON_IP_v4 数据类型。</td>
+  </tr>
+  <tr>
+    <td>NDR</td>
+    <td>0：无新写入的数据；1：Modbus 客户端写入了新的数据。</td>
+  </tr>
+  <tr>
+    <td>DR</td>
+    <td>0：未读取数据；1： Modbus 客户端读取了数据</td>
+  </tr>
+  <tr>
+    <td>ERROR</td>
+    <td>错误位：0：无错误；1：出现错误，错误原因查看 STATUS。</td>
+  </tr>
+  <tr>
+    <td height="22">STATUS</td>
+    <td>指令的详细状态信息。</td>
+  </tr>
+</table>
+<p>表 3. MB_SERVER 各个引脚定义说明</p>
+<p>Modbus TCP 服务器数据区定义，参见表 4。</p>
+<table width="800" border="1">
+  <tr>
+    <th width="63" scope="col">地址区</th>
+    <th width="137" scope="col">定义</th>
+    <th width="578" scope="col">说明</th>
+  </tr>
+  <tr>
+    <td>输出位</td>
+    <td>Q0.0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">Q0.0 为地址 1，Q0.1 为地址 2，Q0.7 为地址 8，Q1.0 为地址 9...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>输入位</td>
+    <td>I0.0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">I0.0 为地址 10001，I0.1 为地址 10002，I0.7 为地址 10008，I1.0 为地址 10009...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>输入寄存器</td>
+    <td>IW0 开始</td>
+    <td><ul>
+      <li>
+        <div align="left">IW0 为地址 30001，IW2 为地址 30002，IW4 为地址 30003...</div>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>保持寄存器</td>
+    <td>由 MB_HOLD_REG 定义</td>
+    <td><ul>
+      <li>
+        <div align="left">指针指向的第一个字为 40001，第二个字为 40002...        
+          <ul>
+            <li>例如：MB_HOLD_REG 为 P#M100.0 WORD 8，则 MW100 为 40001，MW102 为 40002，MW104 为 40003...MW114 为 40008        </li>
+            <li>例如：MB_HOLD_REG 为 优化 DB 中 INT 数组[0..7]，数组名为 “XXX”.AA，则 “XXX”.AA[0] 为 40001，“XXX”.AA[1] 为 40002，“XXX”.AA[2] 为 40003...“XXX”.AA[7] 为 40008</li>
+          </ul>
+        </div>
+</li>
+    </ul></td>
+  </tr>
+</table>
+<p>表 4. 数据区定义</p>
+<p><img src="images/4.gif" width="15" height="15" />注意：数据区从指令库版本 V5.0 开始，可以自由定义，方法参见<a href="../04-Modbus_TCP_V5.htm">链接</a>。</p>
+<p><strong>2. CONNECT 引脚的指针类型</strong></p>
+<p>第一步，先创建一个新的全局数据块 DB2，如图 4 所示：</p>
+<p><img src="images/1-04.JPG" width="413" height="303" /></p>
+<p>图 4. 创建全局数据块</p>
+<p>第二步，双击打开新生成的 DB2 数据块，定义变量名称为&ldquo;ss&quot;，数据类型为&ldquo;TCON_IP_v4&rdquo;（可以将 TCON_IP_v4 拷贝到该对话框中），然后点击&ldquo;回车&rdquo;按键。该数据类型结构创建完毕。如图 5 所示：</p>
+<p><img src="images/2-02.JPG" width="413" height="235" /></p>
+<p>图 5. 创建 MB_SERVER 中的 TCP 连接结构的数据类型</p>
+<p>各个参数定义说明如表 4 所示：</p>
+<table width="570" border="1">
+  <tr>
+    <td><strong>参数</strong></td>
+    <td><p align="left"><strong>说明</strong></p></td>
+  </tr>
+  <tr>
+    <td width="143">InterfaceId</td>
+    <td width="408"><p align="left">网口硬件标识符，对于本体网口为 64，即16#40。</p></td>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td><p align="left">连接 ID，取值范围 1~4095</p></td>
+  </tr>
+  <tr>
+    <td>Connection Type</td>
+    <td><p align="left">连接类型。TCP 连接默认为：16#0B</p></td>
+  </tr>
+  <tr>
+    <td>ActiveEstablished</td>
+    <td><p align="left">建立连接。主动为 1（客户端），被动为 0（服务器）。</p></td>
+  </tr>
+  <tr>
+    <td>ADDR</td>
+    <td><p align="left">服务器侧的 IP 地址</p></td>
+  </tr>
+  <tr>
+    <td>RemotePort</td>
+    <td><p align="left">远程端口号</p></td>
+  </tr>
+  <tr>
+    <td>LocalPort</td>
+    <td><p align="left">本地端口号</p></td>
+  </tr>
+</table>
+<p>表4. TCON_IP_v4 数据结构的引脚定义</p>
+<p>客户端侧的 IP 地址为 192.168.0.6，端口号为 0，所以 MB_SERVER 服务器侧该数据结构的各项值如图 6 所示。</p>
+<p><img src="images/2-03.JPG" width="415" height="309" /></p>
+<p>图 6. MB_SERVER 服务器侧的 CONNECT 数据结构定义</p>
+<p><strong>注意：</strong></p>
+<ul>
+  <li>CONNECT 引脚的填写需要用<strong>符号寻址</strong>的方式。</li>
+  <li>TCON_IP_v4 是系统数据类型，不是在 PLC 数据类型中创建的。</li>
+  <li>RemotePort 一般使用默认值 0，意思是不指定客户端端口。</li>
+  <li>RemoteAddress 可以不指定，意思是不指定客户端 IP 地址。也可以像图 6 所示指定客户端地址。</li>
+</ul>
+<p><strong>3. S7-1200 服务器侧 MB_SERVER 编程</strong></p>
+<p>调用 MB_SERVER 指令块，实现被客户端读取 2 个保持寄存器的值，如图7所示。</p>
+<p><img src="images/2-04.JPG" width="391" height="226" /></p>
+<p>图7. MB_SERVER 服务器侧编程</p>
+<h3><a name="a" id="a"></a>S7-1200 MODBUS TCP 通信调试</h3>
+<p>S7-1200 MODBUS TCP 服务器侧准备数据，用于客户端读访问，如图8所示。</p>
+<p><img src="images/2-05.JPG" width="573" height="136" /></p>
+<p>图8. 服务器侧监控表</p>
+<p>S7-1200 MODBUS TCP 客户端侧，给 MB_CLIENT 指令块中 REQ 引脚一个上升沿，监控数据读取成功。如图9所示。</p>
+<p><img src="images/2-06.JPG" width="581" height="158" /></p>
+<p>图9. 客户端侧监控表</p>
+</body>
+</html>

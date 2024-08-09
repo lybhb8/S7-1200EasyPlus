@@ -8,7 +8,7 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 目前的固件版本号形如 x.y.z，其中软件组态只关注 x.y ，第 2 个小数点后面的数字，在软件中无法组态，大多数情况只是修复错误，不影响功能使用，但是有这一位的固件变化也是建议更新。
 
-对于每个产品不同订货号的固件最高版本是不一样的，例如 CPU 1211C DC/DC/DC，订货号 6ES7211-1AD30-0XB0，这个订货号的 CPU 1211 只能通过固件更新到版本 V2.2.0，而订货号为 6ES7211-1AE40-0XB0 的 CPU 1211，目前是可以升级到当前最新的 V4.5.1，具体订货号能升级到的最高版本请参见[固件下载链接](../01-resource/08-online_download.md#s7-1200-固件下载)中网页的描述。
+对于每个产品不同订货号的固件最高版本是不一样的，例如 CPU 1211C DC/DC/DC，订货号 6ES7211-1AD30-0XB0，这个订货号的 CPU 1211 只能通过固件更新到版本 V2.2.0，而订货号为 6ES7211-1AE40-0XB0 的 CPU 1211，目前是可以升级到当前最新的 V4.5.1，具体订货号能升级到的最高版本请参见[固件下载链接](../../01-resource/08-online_download.md#s7-1200-固件下载)中网页的描述。
 
 在软件层面，不同版本的 TIA Portal 软件支持的 CPU 最高版本不同，具体参见表 2。需要确保 CPU 中实际固件版本要 ≥ 软件中组态的版本，例如使用 TIA PORTAL V16 ，软件能够组态的最高固件版本是 V4.4，如果使用的 CPU 固件版本是 V4.5，这样是可以正常使用的。但是如果使用 TIA Portal V17， 组态 CPU 固件版本 V4.5，但实际 CPU 固件版本是 V4.4，这种情况是不能够装载组态的。
 
@@ -20,12 +20,12 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 |固件更新方式 | 使用限制 | 链接 |
 |------------|----------|-----|
-|通过SIMATIC存储卡| 无限制 |[链接](../08-Function/10-Memory_Card.md#memorycard)|
-|通过“在线与诊断”或通过可访问的设备 |CPU V4.0及以上版本 | [链接](../version/firmware.md#使用tia软件更新cpu固件) |
-|通过集成的Web服务器 |CPU V3.0及以上版本 |[链接](../version/firmware.md#通过web访问方式更新cpu固件)|
-|通过SIMATIC Automation Tool | CPU V4.0及以上版本| [链接](../09-Diagnose/01-AutomationTool.htm#a)|
+|通过SIMATIC存储卡| 无限制 |[链接](../../08-Function/10-Memory_Card.md#memorycard)|
+|通过“在线与诊断”或通过可访问的设备 |CPU V4.0及以上版本 | [链接](../03-firmware_update/firmware.md#使用tia软件更新cpu固件) |
+|通过集成的Web服务器 |CPU V3.0及以上版本 |[链接](../03-firmware_update/firmware1.md#web访问方式更新cpu固件)|
+|通过SIMATIC Automation Tool | CPU V4.0及以上版本| [链接](../../09-Diagnose/01-AutomationTool.htm#a)|
 
-固件包的下载链接：[链接](../01-resource/08-online_download.md#s7-1200-固件下载)。
+固件包的下载链接：[链接](../../01-resource/08-online_download.md#s7-1200-固件下载)。
 
 ## 固件更新注意事项：
 
@@ -36,13 +36,13 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 表 2 提供了 TIA Portal 版本与可组态的 S7-1200 固件版本的关系：
 
-![alt text](image-11.png)
+![alt text](../image-11.png)
 
 \* 需要 V11 SP2 Update 3 + HSP0026
 
 \** 需要 V15.1 + HSP0276
 
-硬件支持包 HSP [下载链接](../01-resource/08-online_download.md#tia-portal-软件硬件支持包hsp下载)
+硬件支持包 HSP [下载链接](../../01-resource/08-online_download.md#tia-portal-软件硬件支持包hsp下载)
 
 绿色背景为 PLCSIM 支持的版本
 
@@ -60,7 +60,7 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 S7-1200 CPU V4.x 版本， 实际固件高版本可以兼容组态的低版本，可以在 TIA Portal 上组态 CPU 低于实际版本，但是无法使用新的固件功能.
 
-例如：CPU 版本 V4.5，根据表 2 可知使用 TIA Portal V16 最高只能组态 V4.4，将该组态下载可以正常运行。如果是新 CPU 第一次使用这样组态， CPU 会报错，可以尝试进行恢复出厂设置，<u>[方法链接](../08-Function/07-reset.md)</u>，然后重新下载硬件组态，问题就会得到解决。
+例如：CPU 版本 V4.5，根据表 2 可知使用 TIA Portal V16 最高只能组态 V4.4，将该组态下载可以正常运行。如果是新 CPU 第一次使用这样组态， CPU 会报错，可以尝试进行恢复出厂设置，<u>[方法链接](../../08-Function/07-reset.md)</u>，然后重新下载硬件组态，问题就会得到解决。
 
 - 固件降级
 

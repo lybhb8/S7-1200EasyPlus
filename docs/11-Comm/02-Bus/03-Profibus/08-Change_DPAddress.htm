@@ -1,0 +1,141 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>修改CM1242-5的DP地址</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>通过WRREC指令修改CM1242-5的DP地址</h3>
+<p>  S7-1200 增加 CM1242-5 通信模块后可以做 PROFIBUS DP 从站。一般情况下，可以通过TIA Portal 组态该模块的地址，当在软件中修改组态PROFIBUS地址后，需要下载硬件配置或者完整下载整个项目，修改的地址才可以生效。</p>
+<p>对于一些特殊应用场景，PROFIBUS DP从站的站地址无法预先设置成固定的地址值，需要在适当的时候根据需要，在不重新下载硬件配置/项目的情况下，通过程序修改DP地址。为此，本文介绍通过编程调用 WRREC 指令修改 CM1242-5 的 PROFIBUS 地址。</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意</strong>：</p>
+<p>CM1242-5模块固件版本在V1.0.5及更高，支持数据记录 0x2001（8193），当使用WRREC指令写入数据记录之后，从站会以该地址重启。8193数据记录结构如表1.所示</p>
+<p>表1.8193数据记录结构</p>
+<table width="690" border="1">
+  <tr>
+    <th width="99" rowspan="2" scope="col"><p>数据记录</p>
+      <p>结构</p></th>
+    <th width="118" scope="col">字节1</th>
+    <th width="124" scope="col">字节2</th>
+    <th width="158" scope="col">字节3</th>
+    <th width="157" scope="col">字节4</th>
+  </tr>
+  <tr>
+    <td>版本（高字节）</td>
+    <td>版本（低字节）</td>
+    <td><p>Opcode</p>
+      <p>=0 不更改；=1 更改</p></td>
+    <td><p>来自Opcod的数据</p>
+      <p>新地址</p></td>
+  </tr>
+  <tr>
+    <th scope="row">分配示例</th>
+    <td>01h</td>
+    <td>00h</td>
+    <td>01h</td>
+    <td>03h</td>
+  </tr>
+  <tr>
+    <th scope="row">实现功能</th>
+    <td colspan="2">版本为V1.0</td>
+    <td>需要更改DP地址</td>
+    <td>新地址为3</td>
+  </tr>
+</table>
+<h4>实验思路</h4>
+<p>CPU1215+CM1243-5模块作为PROFIBUS DP主站，站名称为&ldquo;DP_Master&rdquo;，CPU1214+CM1242-5作为PROFIBUS DP从站，站名称为&ldquo;DP_Slave&rdquo;，双方进行PROFIBUS DP主从通信。</p>
+<p>在DP_Slave站点中，在CM1242-5模块属性中设置的从站地址为30。为了更直观的验证通过程序修改地址生效，在博途中导入CM1242-5的GSD文件，在DP_Master站点中，在CM1243-5主站模块下方组态2个CM1242-5（GSD）。一个从站地址配置为3，名称修改为Address_3；另外一个从站地址配置为5，名称修改为Address_5。在DP_Slave站点中编程，通过调用WRREC指令分别修改CM1242-5模块的从站地址为3和5，在网络视图中在线监控主站模块是否与相应的从站模块通信成功。网络配置概况如图1.所示。</p>
+<p><img src="images/08-01.PNG" alt="" width="830" height="446" /></p>
+<p>图1.网络配置概况</p>
+<h4>  	硬件和软件需求</h4>
+<p>  	所需硬件及角色分配如表2.所示：</p>
+<p>表2.硬件与版本<br />
+</p>
+<table width="874" border="1">
+  <tr>
+    <th width="90" scope="col">角色</th>
+    <th colspan="2" scope="col">PROFIBUS DP主站</th>
+    <th colspan="2" scope="col">PROFIBUS DP从站</th>
+  </tr>
+  <tr>
+    <th scope="col">硬件</th>
+    <th width="180" scope="col">6ES7 215-1AG40-0XB0</th>
+    <th width="180" scope="col">6GK7 243-5DX30-0XE0</th>
+    <th width="177" scope="col">6ES7 214-1AG40-0XB0</th>
+    <th width="213" scope="col">6GK7 242-5DX30-0XE0 </th>
+  </tr>
+  <tr>
+    <th scope="row">固件</th>
+    <td>V4.4</td>
+    <td>V1.3</td>
+    <td>V4.4</td>
+    <td><strong>V1.0.6</strong></td>
+  </tr>
+</table>
+<p>软件<strong>：</strong>STEP 7 Professional V16</p>
+<h4>CM1242-5 模块组态</h4>
+<p>1.	打开博途软件，创建一个新项目，添加新设备中，添加 CPU1214（6ES7 214-1AG40-0XB0） 模块，固件版本为V4.4。</p>
+<p>  2.	在CPU1214的设备视图中添加CM1242-5模块，设置从站地址为30，如图2.所示。</p>
+<p><img src="images/08-02.PNG" width="789" height="660" /></p>
+<p>图2.添加CM1242-5并设置DP地址</p>
+<p>
+3.	设置CM1242-5的操作模式和传输区域，如图3.所示。</p>
+<p><img src="images/08-03.PNG" width="909" height="314" /></p>
+<p>
+  图3.设置操作模式和传输区域<br />
+</p>
+<h4>CPU1215+CM1243-5组态</h4> 
+<p>1.与CPU1214同一个项目中，添加CPU1215（6ES7 215-1AG40-0XB0），固件版本为V4.4，同时添加CM1243-5模块。 </p>
+<p>2.设置CM1243-5模块的DP地址，如图4所示。</p>
+<p><img src="images/08-04.PNG" width="503" height="638" /></p>
+<p>图4.CM1243-5模块的地址</p>
+<p>3.添加CM1242-5的GSD文件</p>
+<blockquote>
+  <p>CM1242-5 GSD文件下载链接及添加GSD文件的方法，请点击：<a href="../01-Intro/02_GSD.html"><strong>添加和删除GSD文件</strong></a><strong></strong></p>
+  <p>CM1242-5的固件版本如果低于V1.0.5，需要对CM1242-5进行固件更新，CM1242-5固件下载及更新方法，请点击：<strong><a href="images/si01818e.rar">CM1242-5固件下载</a></strong><a href="https://support.industry.siemens.com/cs/cn/en/view/109739814"></a> <strong> 和 </strong><a href="../../../04-version/03-firmware_update/02-SM.htm"><strong>固件更新方法</strong></a></p>
+</blockquote>
+<p>4.从硬件目录中将添加好的CM1242-5的GSD文件拖拽至网络视图中组态，分配PROFIBUS DP主站给CM1242-5，同时修改从站名称为Address_3，如图5.所示。</p>
+<p><img src="images/08-05.PNG" width="659" height="314" /></p>
+<p>图5.分配主站及修改站名称</p>
+<p>5.设置从站地址及传输区，如图6.所示。</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：传输区的组态与CM1242-5模块中组态（参见图3.）的传输区相对应（图3.中为输出，1个字节；此处需要组态为输入，1个字节）。</strong></p>
+<p><img src="images/08-06.PNG" width="790" height="599" /></p>
+<p>图6.对GSD文件组态从站地址及传输区</p>
+<p>6.从硬件目录中添加第二个CM1242-5（GSD）组态，从站地址设置为5，站名称设置为Address_5，添加传输区也是1 Byte Input，操作步骤同重复上述4-6。</p>
+<h4>CPU1214+CM1242-5 编程</h4>
+<p>1.在CPU1214+CM1242-5(站点名称为DP_Slave)中添加全局DB数据块并定义变量，如图7.所示。</p>
+<p>将数据块中RECORD的数组的起始值设置为16#01，16#00，16#01，16#03，此4个字节的含义参见表1.所示。</p>
+<p><img src="images/08-07.PNG" width="693" height="356" /></p>
+<p>图7.添加数据块定义变量</p>
+<p>2.在OB1中调用WRREC指令，指令填写如图8.所示。</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：WRREC指令是异步通信，REQ指令建议使用上升沿触发。如果使用电平信号触发，会不断的向模块写数据记录。如果短时间内多次写入数据记录，则会使用最后写入的地址。</strong></p>
+<p><img src="images/08-08.PNG" width="532" height="698" /></p>
+<p>图8.调用WRREC指令</p>
+<p>3.捕捉指令完成位及错误代码，如图9.所示。</p>
+<p><img src="images/08-09.PNG" width="583" height="386" /></p>
+<p>图9.捕捉错误位和完成位</p>
+<p>4.添加监控图表，在其中添加2个变量，分别为&quot;Change_Address_DB&quot;.DATA.New_Address 和 &quot;Change_Address_DB&quot;.DATA.REQ。将&quot;Change_Address_DB&quot;.DATA.New_Address 修改从站地址为3，然后将&quot;Change_Address_DB&quot;.DATA.REQ修改为1，触发WRREC指令。如图10所示。</p>
+<p><img src="images/08-10.PNG" width="747" height="141" /></p>
+<p>图10.修改从站地址为3触发WRREC指令</p>
+<p>5.切换至网络视图，观察到CPU1215和站地址为3的GSD文件组态的站点通信成功。如图11.所示。<br />
+</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：由于CPU1215下方挂了2个CM1242-5 GSD文件，但是实际只有一个CM1242-5模块，所以同一时刻，只有一个从站通信成功，CPU1215有报错现象属于正常现象。</strong></p>
+<p><img src="images/08-11.PNG" width="729" height="341" /></p>
+<p>图11.修改地址后观察结果1</p>
+<p>6.将&quot;Change_Address_DB&quot;.DATA.New_Address 修改从站地址为5，然后将&quot;Change_Address_DB&quot;.DATA.REQ修改为1，触发WRREC指令，如图12.所示。</p>
+<p><img src="images/08-12.PNG" width="747" height="139" /></p>
+<p>图12.修改从站地址为5触发WRREC指令</p>
+<p>7.网络视图中，观察到CPU1215和站地址为5的GSD文件组态的站点通信成功。如图13.所示。</p>
+<p><img src="images/08-13.PNG" width="730" height="339" /></p>
+<p>图13.修改地址后观察结果2<br />
+</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：</strong></p>
+<p><strong>使用这种方法后，CPU断电重启会恢复组态地址（30），所以如果想要保持性存储DP 从站地址，应将其保存在 CPU 的设置有保持性的 DB块中（参见图7.数据块中的变量设置有保持性，断电从新上电后数据保持断电之前的值不变）</strong>
+<p><strong>在 OB100 中编程调用WRREC指令，将REQ直接填写为TRUE，将数据记录写入 CM1242-5模块中。如图14.所示。</strong>
+<p><strong>注意：因为WRREC指令是异步指令，需要执行多个周期，而OB100只能执行一次，所以在程序中加入跳转指令，即当指令仍在执行时则不跳出OB100继续执行WRREC。</strong>
+<p><strong><img src="images/08-14.PNG" width="1037" height="821" /></strong></p>
+<p>图14.OB100中触发WRREC指令</p>
+</body>
+</html>

@@ -1,0 +1,499 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 USS</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>USS 通信基本原理</h3>
+<p>USS 协议（Universal Serial Interface Protocol，即通用串行接口协议）是西门子专为驱动装置开发的通用通信协议，它是一种基于串行总线进行数据通信的协议。</p>
+<p>USS 通信总是由主站发起，USS 主站不断轮询各个从站，从站根据收到主站报文，决定是否、以及如何响应。从站必须在接收到主站报文之后的一定时间内发回响应到主站，否则主站将视该从站出错。</p>
+<p>USS 协议是主从结构的协议，总线上的每个从站都有唯一的从站地址。一个 S7-1200 CPU 中最多可安装三个 CM 1241 RS422/RS485模块和一个 CB 1241 RS485 板，每个 RS485 端口最多控制 16 台驱动器。</p>
+<h3>S7-1200 与西门子传动设备 V20 之间 USS 通信</h3>
+<p><strong>使用环境</strong></p>
+<ul>
+  <li>TIA Portal STEP 7 V16</li>
+  <li>CPU1215C DC/DC/DC V4.4</li>
+  <li>CM1241 RS422/RS485 V2.2</li>
+  <li>SINAMICS SINAMICS V20（6SL3210-5BE03-7UV0）</li>
+  <li>1LA9 电机（1LA9060-4KA10-Z）</li>
+</ul>
+<p><strong>实现功能</strong></p>
+<ul>
+  <li>S7-1200 与西门子传动设备 V20 之间 USS 通信，控制变频器的启停和频率，并读取和修改变频器的加减速时间。 </li>
+</ul>
+<h4>两类指令“USS通信”与“USS“区别：</h4>
+<p>如图 1 所示，S7-1200 USS 有两个 USS 指令库</p>
+<ul>
+  <li>“USS通信” 指令库下的指令除了适用于 S7-1200 中央机架串口模块（CM 1241 V2.1 以上或 CB 1241 且 S7-1200 CPU V4.1 以上），还可用于分布式 I/O PROFINET 或 PROFIBUS 的 ET200SP/ET200MP 串口通信模块。</li>
+  <li>“USS” 指令库下的指令只能用于 S7-1200 中央机架串口模块（CM 1241 或 CB 1241）</li>
+</ul>
+<p>&ldquo;USS通信&rdquo; 是目前最新的指令库，并且以后的更新也会基于这个指令库。一般情况下，&ldquo;USS&rdquo; 只是在老项目中使用。</p>
+<p>下面的介绍以 “USS 通信” 指令库为例。</p>
+<p><img src="images/3-01.png" width="243" height="409" /></p>
+<p>图 1.S7-1200 PLC 的 USS 通信指令</p>
+<h4>1. SINAMICS V20 变频器设置</h4>
+<p>SINAMICS V20 的启停和频率控制通过 PZD 过程数据来实现，参数读取和修改通过 PKW 参数通道来实现。可以使用连接宏 Cn010 实现 SINAMICS V20 的 USS 通信，也可以直接修改变频器参数。</p>
+<p>变频器参数设置步骤如下：</p>
+<p>(1)	恢复工厂设置
+  设置参数 P0010（调试参数）= 30，P0970（工厂复位）= 21  </p>
+<p>(2)	设置用户访问级别
+  设置参数 P0003（用户访问级别）= 3 (专家访问级别)</p>
+<p>(3)	设置 SINAMICS V20 变频器 USS 通信所需的命令源、协议、波特率、地址等参数。选择连接宏 Cn010 后，需要将参数 P2013 的值由 127（PKW长度可变）修改为 4（PKW长度为 4）；</p>
+<p>此外对于本例需要将参数 P2010 的值由 8（波特率 38400）修改为 6(本例中使用波特率为 9600），P2010 值与波特率对应关系参见表 1。</p>
+<p>表 1 P2010 值与波特率对应关系</p>
+<table width="531" border="1">
+  <tr>
+    <td width="99"><div align="left">参数值</div></td>
+    <td width="46"><div align="left">6</div></td>
+    <td width="53"><div align="left">7</div></td>
+    <td width="54"><div align="left">8</div></td>
+    <td width="54"><div align="left">9</div></td>
+    <td width="55"><div align="left">10</div></td>
+    <td width="58"><div align="left">11</div></td>
+    <td width="60"><div align="left">12</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">波特率（bps）</div></td>
+    <td><div align="left">9600</div></td>
+    <td><div align="left">19200</div></td>
+    <td><div align="left">38400</div></td>
+    <td><div align="left">57600</div></td>
+    <td><div align="left">76800</div></td>
+    <td><div align="left">93750</div></td>
+    <td><div align="left">115200</div></td>
+  </tr>
+</table>
+<p>本例中使用如下表 2 所列的设置值。</p>
+<p>表 2.SINAMICS V20 设置变频器参数值</p>
+<table width="531" border="1">
+  <tr>
+    <td width="86"><div align="left">参数</div></td>
+    <td width="131"><div align="left">描述</div></td>
+    <td width="60"><div align="left">设置值</div></td>
+    <td width="226"><div align="left">备注</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P0700[0]</div></td>
+    <td><div align="left">选择命令源</div></td>
+    <td><div align="left">5</div></td>
+    <td><div align="left">命令源来源于 RS485 总线</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P1000[0]</div></td>
+    <td><div align="left">选择设定源</div></td>
+    <td><div align="left">5</div></td>
+    <td><div align="left">设定值来源于 RS485 总线</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2000[0..2]</div></td>
+    <td><div align="left">基准频率值</div></td>
+    <td><div align="left">50.00</div></td>
+    <td><div align="left">百分比100% ==&gt; P2000 的值 </div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2023[0]</div></td>
+    <td><div align="left">RS485 协议选择</div></td>
+    <td><div align="left">1</div></td>
+    <td><div align="left">USS协议</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2010[0]</div></td>
+    <td><div align="left">USS 波特率</div></td>
+    <td><div align="left">6</div></td>
+    <td><div align="left">波特率为 9600</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2011[0]</div></td>
+    <td><div align="left">USS 地址</div></td>
+    <td><div align="left">1</div></td>
+    <td><div align="left">USS 站地址为 1</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2012[0]</div></td>
+    <td><div align="left">USS PZD 长度</div></td>
+    <td><div align="left">2</div></td>
+    <td><div align="left">USS PZD 长度为 2 个字长</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2013[0]</div></td>
+    <td><div align="left">USS PKW 长度</div></td>
+    <td><div align="left">4</div></td>
+    <td><div align="left">USS PKW 长度为 4</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">P2014[0]</div></td>
+    <td><div align="left">USS 报文间断时间</div></td>
+    <td><div align="left">500</div></td>
+    <td><div align="left">可设置范围 0-65535 ms。报文间隔超过此设定时间还没有接收到下一条报文信息，则变频器将会停止运行。</div></td>
+  </tr>
+</table>
+<p>(4)	变频器重新上电</p>
+<p>在更改通信协议 P2023 后，需要对变频器重新上电。在此过程中，请在变频器断电后等待数秒，确保 LED 灯熄灭或显示屏空白后再次接通电源。</p>
+<h4>2. USS_Port_Scan</h4>
+<p>USS_Port_Scan 指令用于处理 USS 网络上的通信。</p>
+<p> 用户程序执行 USS_Port_Scan 指令的次数必须足够多，以防止驱动器超时。通常从循环中断调用 USS_Port_Scan 。 例如添加循环中断 OB30， 并设置循环中断时间 30ms。如图 2 所示：</p>
+<p><img src="images/3-02.PNG" width="859" height="384" /> </p>
+<p>图 2.添加 OB30</p>
+<p>USS_Port_Scan 指令输入引脚”PORT“为分配的串口模块的“硬件标识符”。安装并组态串口模块之后，可用的端口标识符将出现在 “PORT “功能框连接的参数助手下拉列表中。或者，可在系统常量中找到该硬件标识符值。在 OB30 中调用”USS_Port_Scan“指令， 鼠标双击 CPU 1215 DC/DC/DC 站点下的 ”PLC变量&gt;默认变量表“ ， 在”系统常量“标签栏中找到本例所使用的 CM1241 RS422/485 模块，如图 3 所示。</p>
+<p>USS_Port_Scan 指令输入引脚”USS_DB“指向为 USS_Drive_Control 指令放入程序时创建并初始化的背景数据块的名称。详见常见问题&quot;<a href="#如何输入参数USS_DB">如何输入参数 USS_DB?"</a></p>
+<p>表 3 为该指令的接口参数说明。</p>
+<p><img src="images/3-03.PNG" width="1044" height="741" /></p>
+<p>图 3.USS_Port_Scan</p>
+<p>表 3.USS_Port_Scan 指令接口参数说明</p>
+<div align="left"></div>
+<table width="693" border="1">
+  <tr>
+    <td width="70"><div align="left">参数</div></td>
+    <td width="56"><div align="left">类型</div></td>
+    <td width="98"><div align="left">数据类型</div></td>
+    <td width="441"><div align="left">描述</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">PORT</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Port</div></td>
+    <td><div align="left">串口模块硬件标识符</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">BAUD</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">DInt</div></td>
+    <td><div align="left">波特率</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">USS_DB</div></td>
+    <td><div align="left">INOUT</div></td>
+    <td><div align="left">USS_Base</div></td>
+    <td><div align="left">将 USS_Drive_Control 指令放入程序时创建并初始化的背景数据块的名称</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该输出为 True 时，表示发生错误，此时 STATUS 输出错误代码。</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">WORD</div></td>
+    <td><div align="left">USS 通信状态值</div></td>
+  </tr>
+</table>
+<p><strong><img src="images/4.gif" width="15" height="15" />注意：</strong></p>
+<ol>
+  <li>一个串口通信端口无论与几台变频器连接，都只能有一个 USS_Port_Scan 指令，每次调用该函数块都与单个驱动器进行通信。</li>
+  <li>如果使用 CB1241，需要使得 USS_Port_Scan 背景 DB 中的 LINE_PRE 起始值更改为 0。</li>
+</ol>
+<h4>3. USS_Drive_Control</h4>
+<p>USS_Drive_Control 指令用于请求消息、驱动器响应消息，以及与驱动器交换数据。</p>
+<p>例如， 本例中将输入引脚”OFF2“和”OFF3”设置为 True， “”DIR“使能为 True,”Drive“ 设置为 1，&quot;PZD_LEN“设置为 2，”SPEED_SP“设置为 50.0（即 50% 频率值为 25Hz）， 然后将”RUN“ 使能为 True，使变频器以 25HZ 频率运行。如图 4 所示。表 4 为该指令的接口参数说明。</p>
+<p><img src="images/3-04.PNG" width="704" height="1127" /></p>
+<p>图 4.USS_Drive_Control 指令</p>
+<p>表 4.USS_Drive_Control 指令接口参数说明</p>
+<table width="824" border="1">
+  <tr>
+    <td width="123"><div align="left">参数</div></td>
+    <td width="50"><div align="left">类型</div></td>
+    <td width="73"><div align="left">数据类型</div></td>
+    <td width="550"><div align="left">描述</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RUN</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">驱动器起始位：该输入为 True，将使驱动器以预设速度运行。如果在驱动器运行时 RUN 变为 False，电机将减速直至停止</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">OFF2</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">电气停止位：该位为 False 时，将使驱动器在无制动的情况下自然停止</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">OFF3</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">快速停止位：该位为 False 时，将通过制动的方式使驱动器快速停止</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">F_ACK</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">故障确认位</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DIR</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">驱动器方向控制：设位为 True 时指示正方向（对于正 SPEED_SP）</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DRIVE</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">USInt</div></td>
+    <td><div align="left">驱动器地址：该输入是 USS 驱动器的地址。有效范围是驱动器 1 到驱动器 16</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">PZD_LEN</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">USInt</div></td>
+    <td><div align="left">字长度：PZD 数据的字数。有效值为 2、4、6 或 8 个字</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">SPEED_SP</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Real</div></td>
+    <td><div align="left">速度设定值：以组态频率的百分比表示的驱动器速度。正值表示正方向。（DIR为 True 时）</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">CTRL3-CTRL8</div></td>
+    <td><div align="left">IN </div></td>
+    <td><div align="left">Word</div></td>
+    <td><div align="left">控制字</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">NDR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">新数据就绪：该位为 True，表示输出包含新通信请求数据</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该输出为 True 时，表示发生错误，此时 STATUS 输出错误代码</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Word</div></td>
+    <td><div align="left">状态值</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RUN_EN</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">运行已启用：该位指示驱动器是否在运行</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">D_DIR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">驱动器方向：该位指示驱动器是否正在正向运行</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">INHIBIT</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">驱动器已禁止：该位指示驱动器上禁止位的状态</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">FAULT</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">驱动器故障：在该位被置位时，设置 F_ACK 位以清除此位</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">SPEED</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Real</div></td>
+    <td><div align="left">驱动器当前速度（驱动器状态字 2 的标定值）：以组态速度百分数形式表示的驱动器速度值</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS1-STATUS8</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Word</div></td>
+    <td><div align="left">驱动器状态字</div></td>
+  </tr>
+</table>
+<p>可以使用 DIR 或使用符号（正或负）和 SPEED_SP 输入控制驱动器旋转方向。如表 5 所列。</p>
+<p>表 5.SPEED_SP 和 DIR 参数</p>
+<table width="331" border="1">
+  <tr>
+    <td width="116">SPEED_SP</td>
+    <td width="61">DIR</td>
+    <td width="132">驱动器旋转方向</td>
+  </tr>
+  <tr>
+    <td>数值&gt;0</td>
+    <td>0</td>
+    <td>反转</td>
+  </tr>
+  <tr>
+    <td>数值&gt;0</td>
+    <td>1</td>
+    <td>正转</td>
+  </tr>
+  <tr>
+    <td>数值&lt;0</td>
+    <td>0</td>
+    <td>正转</td>
+  </tr>
+  <tr>
+    <td>数值&lt;0</td>
+    <td>1</td>
+    <td>反转</td>
+  </tr>
+</table>
+<p><strong><img src="images/4.gif" width="15" height="15" />注意：</strong></p>
+<p>每个驱动器应使用一个单独的 USS_Drive_Control 函数块，但同一个串口模块接口下的所有 USS 协议变频器使用的 USS_Drive_Control 必须使用同一个背景数据块。</p>
+<h4>4. USS_Write_Param</h4>
+<p>USS_Write_Param 指令用于修改驱动器中的参数。必须从主程序循环 OB 中调用 USS_Write_Param。</p>
+<p>输入参数“USS_DB”详见常见问题&quot;<a href="#如何输入参数USS_DB">如何输入参数 USS_DB?&quot;</a></p>
+<p>例如， 本例中将输入引脚 ”Drive“ 设置为 1，&quot;PARAM“设置为 1120，”INDEX“设置为0 (即 V20 的加减速时间参数为 1120， 该参数下标为 0), &quot;EEPROM&quot;设置为 False， “VALUE”设置为“10.0”（即加减速时间 10.0s）。然后将”EN“ 和&quot;REQ&quot;使能为 True，将修改变频器的加减速时间为 10.0s。如图 5 所示。表 6 为该指令的接口参数说明。</p>
+<p><img src="images/3-05.PNG" width="704" height="605" /></p>
+<p>图 5.USS_Write_Param 指令</p>
+<p>表 6.USS_Write_Param 指令接口参数说明</p>
+<table width="743" border="1">
+  <tr>
+    <td width="75"><div align="left">参数</div></td>
+    <td width="56"><div align="left">类型</div></td>
+    <td width="111"><div align="left">数据类型</div></td>
+    <td width="473"><div align="left">描述</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">REQ</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">REQ 为 True 时，表示新的读请求</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DRIVE</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">USInt</div></td>
+    <td><div align="left">驱动器地址：DRIVE 是 USS 驱动器的地址。有效范围是驱动器 1 到驱动器 16</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">PARAM</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">UInt</div></td>
+    <td><div align="left">参数编号：PARAM 指示要写入的驱动器参数。该参数的范围为 0 到 2047</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">INDEX</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">UInt</div></td>
+    <td><div align="left">要写入的驱动器参数索引</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">EEPROM</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该参数为 True 时，写驱动器的参数将存储在驱动器 EEPROM 中</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">VALUE</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Word, Int,<br />
+      UInt,DWord,<br />
+      DInt, UDInt,Real</div></td>
+    <td><div align="left">要写入的参数值，REQ 为 True 时该值必须有效</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">USS_DB</div></td>
+    <td><div align="left">INOUT</div></td>
+    <td><div align="left">USS_BASE</div></td>
+    <td><div align="left">将 USS_Drive_Control 指令放入程序时创建并初始化的背景数据块的名称</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DONE</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">DONE 为 True 时，表示输入 VALUE 已写入驱动器</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该输出为 True 时，表示发生错误，此时 STATUS 输出错误代码</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Word</div></td>
+    <td><div align="left">写请求的状态代码</div></td>
+  </tr>
+</table>
+<p><strong><img src="images/4.gif" width="15" height="15" />注意：</strong></p>
+<p>请勿过多使用 EEPROM 永久写操作。请尽可能减少 EEPROM 写操作次数以延长 EEPROM 的寿命。</p>
+<h4>5. USS_Read_Param</h4>
+<p>USS_Read_Param 指令用于从驱动器读取参数。必须从主程序循环 OB 调用 USS_Read_Param。</p>
+<p>输入参数“USS_DB”详见常见问题&quot;<a href="#如何输入参数USS_DB">如何输入参数 USS_DB?&quot;</a></p>
+<p>例如， 本例中将输入引脚 ”Drive“ 设置为 1，&quot;PARAM“设置为 1120，”INDEX“设置为 0 (即 V20 的加减速时间参数为 1120， 该参数下标为 0)。然后将”EN“ 和&quot;REQ&quot;使能为 True，读取变频器的加减速时间， 该值输出在参数“VALUE”。如图 6 所示。表 7 为该指令的接口参数说明。</p>
+<p><img src="images/3-06.PNG" width="701" height="464" /></p>
+<p>图 6. USS_Read_Param 指令</p>
+<p>表 7.USS_Read_Param 指令接口参数说明</p>
+<table width="752" border="1">
+  <tr>
+    <td width="74"><div align="left">参数</div></td>
+    <td width="56"><div align="left">类型</div></td>
+    <td width="123"><div align="left">数据类型</div></td>
+    <td width="471"><div align="left">描述</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">REQ</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">REQ 为 True 时，表示新的读请求</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DRIVE</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">USInt</div></td>
+    <td><div align="left">驱动器地址：DRIVE 是 USS 驱动器的地址。有效范围是驱动器 1 到驱动器 16</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">PARAM</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">UInt</div></td>
+    <td><div align="left">要读取的驱动器参数编号。该参数的范围为 0 到 2047</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">INDEX</div></td>
+    <td><div align="left">IN</div></td>
+    <td><div align="left">UInt</div></td>
+    <td><div align="left">要读取的驱动器参数索引</div></td>
+  </tr>
+  <tr>
+    <td height="24"><div align="left">USS_DB</div></td>
+    <td><div align="left">INOUT</div></td>
+    <td><div align="left">USS_BASE</div></td>
+    <td><div align="left">将 USS_Drive_Control 指令放入程序时创建并初始化的背景数据块的名称</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DONE</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该参数为 True 时，VALUE 输出请求的读取参数值</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Bool</div></td>
+    <td><div align="left">该输出为 True 时，表示发生错误，此时 STATUS 输出错误代码</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Word</div></td>
+    <td><div align="left">读请求的状态代码</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">VALUE</div></td>
+    <td><div align="left">OUT</div></td>
+    <td><div align="left">Word, Int,<br />
+      UInt,DWord,<br />
+    DInt, UDInt, Real</div></td>
+    <td><div align="left">已读取的参数的值，仅当 DONE 位为 True 时才有效</div></td>
+  </tr>
+</table>
+<h3>USS 通信常见问题</h3>
+<h4><img src="images/3.gif" width="15" height="15" />&quot;如何输入参数 USS_DB?&quot;<a name="如何输入参数USS_DB" id="如何输入参数USS_DB"></a></h4>
+<p> USS_Drive_Control 指令放入程序时会自动创建背景数据块。例如“USS_Drive_Control_DB”。例如在“USS_Port_Scan”指令输入引脚“USS_DB”下拉菜单可选择“USS_Drive_Control_DB“，之后左键点击自动出现的”USS_DB“即可。如图 7 所示：</p>
+<p><img src="images/3-07.png" width="701" height="740" /></p>
+<p>图 7. USS_DB 输入</p>
+</body>
+</html>

@@ -263,14 +263,13 @@ nav:
           - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
           - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
         - 数学函数:
-          - 数学计算: 07-Program\03-instruction\10-Math_functions\calculate.md
-          - 加减乘除: 07-Program\03-instruction\10-Math_functions\add.md
-          - 取模: 07-Program\03-instruction\10-Math_functions\mod.md
-          - 取反: 07-Program\03-instruction\10-Math_functions\neg.md
-          - 递增和递减: 07-Program\03-instruction\10-Math_functions\inc_dec.md
-          - 绝对值: 07-Program\03-instruction\10-Math_functions\abs.md
-          - 最小值和最大值: 07-Program\03-instruction\10-Math_functions\max_min.md
-          - 极限值: 07-Program\03-instruction\10-Math_functions\limit.md
-          - 指数、对数及三角函数: 07-Program\03-instruction\10-Math_functions\exponent.md
-
-    
+          - 07-Program\03-instruction\01-Basic\10-Math_functions\index.md
+          - 数学计算: 07-Program\03-instruction\01-Basic\10-Math_functions\calculate.md
+          - 加减乘除: 07-Program\03-instruction\01-Basic\10-Math_functions\add.md
+          - 取模: 07-Program\03-instruction\01-Basic\10-Math_functions\mod.md
+          - 取反: 07-Program\03-instruction\01-Basic\10-Math_functions\neg.md
+          - 递增和递减: 07-Program\03-instruction\01-Basic\10-Math_functions\inc_dec.md
+          - 绝对值: 07-Program\03-instruction\01-Basic\10-Math_functions\abs.md
+          - 最小值和最大值: 07-Program\03-instruction\01-Basic\10-Math_functions\max_min.md
+          - 极限值: 07-Program\03-instruction\01-Basic\10-Math_functions\limit.md
+          - 指数、对数及三角函数: 07-Program\03-instruction\01-Basic\10-Math_functions\exponent.md

@@ -35,8 +35,7 @@
 
 
 - ![alt text](./img/home/展开目录.png){width="20" height="20"} __[TIA Portal STEP 7 V18]__ <br> S7-1200 PLC 开发工具平台组态软件TIA Portal STEP 7 V18 安装要求和安装实例
-- ![alt text](./img/home/image.png){width="25" height="25"} __[TIA Portal STEP7 组态软件操作]__  <br> STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 WinAC 控
-制器系列的工程组态软件。
+- ![alt text](./img/home/image.png){width="25" height="25"} __[TIA Portal STEP7 组态软件操作]__  <br> STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 WinAC 控制器系列的工程组态软件。
 - ![alt text](./img/home/Code.png){width="20" height="20"} __[编程基础]__ <br> S7-1200 PLC 数据类型、OB组织块、 FC函数、FB函数块、DB背景数据块。
 - ![alt text](./img/home/PLC编程.png){width="20" height="20"} __[编程指令]__ <br>  S7-1200 PLC 编程语言中的指令和编程语言：基础指令、扩展指令、工艺指令、SCL语言、间接寻址等。
 

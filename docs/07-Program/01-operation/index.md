@@ -22,6 +22,14 @@ STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 W
 ② STEP 7 Professional 用于组态 S7-1200、S7-1500、S7-300/400 和 WinAC，且也自带
 WinCC Basic，用于 Basic 面板的组态。
 
+## STEP 7 (TIA Portal) V18 软件安装
+
+<div class="grid cards" markdown>
+
+- ![alt text](<安装 (3).png>){width="25"  height="20"} __[TIA Portal STEP 7 V18 安装]__ <br> 最新版本的 STEP 7 (TIA Portal) V18 可以从产品代理商处订购。
+
+</div>
+
 ## 新建项目
 
 <div class="grid cards" markdown>
@@ -64,6 +72,7 @@ WinCC Basic，用于 Basic 面板的组态。
 
 </div>
 
+ [TIA Portal STEP 7 V18 安装]: ../install.md
  [新建]: ./01-New_Project.md
  [CPU参数]: ./02-CPU_Properties.md
  [常见问题FAQ]: ./03-ConfigFAQ.md

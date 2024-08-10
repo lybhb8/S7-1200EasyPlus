@@ -184,10 +184,11 @@ nav:
         - 模块固件: 04-version\03-firmware_update\firmware1.md
   
   - 组态编程:
-  
-    - STEP7 V18 安装: 07-Program\install.md
-    - TIA Portal组态软件操作: 
+
+    #- STEP7 V18 安装: 07-Program\install.md
+    - TIA Portal组态软件操作:
       - 07-Program\01-operation\index.md
+      - STEP7 V18 安装: 07-Program\install.md 
       - 新建项目: 07-Program\01-operation\01-New_Project.md
       - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
       - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
@@ -239,15 +240,20 @@ nav:
     - 编程指令:
       - 07-Program\03-instruction\index.md
       - 基础指令: 
-        - 07-Program\03-instruction\\01-Basic\index.md 
+        #- 07-Program\03-instruction\\01-Basic\index.md 
         - 位逻辑指令: 07-Program\03-instruction\01-Basic\08-bit.md
         - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
         - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md
         - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
         - 计数器: 07-Program\03-instruction\01-Basic\02-COUNTER.md
-        - 比较指令: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
+        - 比较指令: 
+          - 07-Program\03-instruction\01-Basic\03-compare\index.md
+          - 值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_value.md
+          - 范围值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_range.md
+          - OK有效性比较: 07-Program\03-instruction\01-Basic\03-compare\eq_ok.md
+          - 变量比较: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
         - 移动操作: 
-          - 07-Program\03-instruction\01-Basic\04-Move\index.md
+          #- 07-Program\03-instruction\01-Basic\04-Move\index.md
           - MOVE系列: 07-Program\03-instruction\01-Basic\04-Move\01-MOVE.md
           - 序列化: 07-Program\03-instruction\01-Basic\04-Move\02-DeserializeSerialize.md
           - FILL_BLK: 07-Program\03-instruction\01-Basic\04-Move\03-FILL_BLK.md
@@ -256,4 +262,15 @@ nav:
         - 程序控制:
           - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
           - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
+        - 数学函数:
+          - 数学计算: 07-Program\03-instruction\10-Math_functions\calculate.md
+          - 加减乘除: 07-Program\03-instruction\10-Math_functions\add.md
+          - 取模: 07-Program\03-instruction\10-Math_functions\mod.md
+          - 取反: 07-Program\03-instruction\10-Math_functions\neg.md
+          - 递增和递减: 07-Program\03-instruction\10-Math_functions\inc_dec.md
+          - 绝对值: 07-Program\03-instruction\10-Math_functions\abs.md
+          - 最小值和最大值: 07-Program\03-instruction\10-Math_functions\max_min.md
+          - 极限值: 07-Program\03-instruction\10-Math_functions\limit.md
+          - 指数、对数及三角函数: 07-Program\03-instruction\10-Math_functions\exponent.md
+
     

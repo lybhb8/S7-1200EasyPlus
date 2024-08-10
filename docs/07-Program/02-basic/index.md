@@ -3,7 +3,7 @@
 ![alt text](image.png)
 
 
-## [数据类型]
+## 数据类型
 
 <div class="grid cards" markdown>
 
@@ -45,7 +45,7 @@
 
 </div>
 
-## [FC,FB功能块]
+## FC,FB功能块
 
 <div class="grid cards" markdown>
 
@@ -56,7 +56,7 @@
 
 </div>
 
-  [数据类型]: ./01-Data_Type/index.md
+
   [基本数据类型]:./01-Data_Type/01-basic.md
   [结构数据Struct]: ./01-Data_Type/02-Struct.md
   [UDT]: ./01-Data_Type/03-UDT.md
@@ -80,7 +80,7 @@
   [插拔中断 OB83]: ./02-OB/10-OB83.md
   [机架或站故障 OB86]: ./02-OB/11-OB86.md
   [启动 OB100]: ./02-OB/08-OB100.md
-  [FC,FB功能块]: ./03-Block/index.md
+  
   [FC功能]: ./03-Block/01-FC.md
   [DB数据块]: ./03-Block/02-DB.md
   [DB快照功能]: ./03-Block/03-DB_Snapshots.md

@@ -7,3 +7,5 @@
 - [定时器](./01-TIMER.md)
 - [计数器](./02-COUNTER.md)
 - [比较指令](./03-Compare_Variant.md)
+- [MOVE](./04-Move/index.md)
+- [移位和循环指令](./06-Shift_and_Rotate.md)

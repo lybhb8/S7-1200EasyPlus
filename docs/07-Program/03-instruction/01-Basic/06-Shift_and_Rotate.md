@@ -22,7 +22,11 @@
 
 ![](images/06-03.gif){width="574" height="149"}
 
-![](images/06-04.gif){width="1364" height="159"}
+|参数  |  操作数 | 值  |
+|------|--------|-----|
+|IN    | TagIn_Value| 0011 1111 1010 1111|
+|N     |TagNumber|3  |
+|OUT   |TagOut_Value| 0000 0111 1111 0101|
 
 如果操作数"TagIn"的信号状态为"1"，则将执行"右移"指令。
 "TagIn_Value"操作数的内容将向右移动 3 位。
@@ -47,7 +51,11 @@
 
 ![](images/06-06.gif){width="571" height="147"}
 
-![](images/06-07.gif){width="1364" height="156"}
+|参数  |  操作数 | 值  |
+|------|--------|-----|
+|IN    | TagIn_Value| 0011 1111 1010 1111|
+|N     |TagNumber|4 |
+|OUT   |TagOut_Value| 1111 1010 1111 0000|
 
 如果操作数"TagIn"的信号状态为"1"，则执行"左移"指令。
 操作数"TagIn_Value"的内容将向左移动 4 位。
@@ -73,7 +81,11 @@ IN
 
 ![](images/06-10.gif){width="570" height="144"}
 
-![](images/06-11.gif){width="1361" height="153"}
+|参数  |  操作数 | 值  |
+|------|--------|-----|
+|IN    | TagIn_Value| 0000 1111 1001 0101|
+|N     |TagNumber    |            5     |
+|OUT   |TagOut_Value| 1010 1000 0111 1100|
 
 如果操作数"TagIn"的信号状态为"1"，则将执行"循环右移"指令。
 "TagIn_Value"操作数的内容将向右循环移动 5 位。
@@ -99,7 +111,11 @@ N 的值为"0"时，输入 IN 的值将复制到输出 OUT 中的操作数中。
 
 ![](images/06-13.gif){width="575" height="150"}
 
-![](images/06-14.gif){width="1362" height="156"}
+|参数  |  操作数 | 值  |
+|------|--------|-----|
+|IN    | TagIn_Value| 1010 1000 1111 0110|
+|N     |TagNumber    |            5     |
+|OUT   |TagOut_Value| 0001 1110 1101 0101|
 
 如果输入"TagIn"的信号状态为"1"，则执行"循环左移"指令。
 "TagIn_Value"操作数的内容将向左循环移动 5 位。

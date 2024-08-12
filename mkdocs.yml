@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme: 
-  name: readthedocs # material 
+  name: material # readthedocs # 
   custom_dir: material/overrides
   features:
 
@@ -253,7 +253,7 @@ nav:
           - OK有效性比较: 07-Program\03-instruction\01-Basic\03-compare\eq_ok.md
           - 变量比较: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
         - 移动操作: 
-          #- 07-Program\03-instruction\01-Basic\04-Move\index.md
+          - 07-Program\03-instruction\01-Basic\04-Move\index.md
           - MOVE系列: 07-Program\03-instruction\01-Basic\04-Move\01-MOVE.md
           - 序列化: 07-Program\03-instruction\01-Basic\04-Move\02-DeserializeSerialize.md
           - FILL_BLK: 07-Program\03-instruction\01-Basic\04-Move\03-FILL_BLK.md
@@ -262,6 +262,7 @@ nav:
         - 程序控制:
           - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
           - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
+        - 移位和循环: 07-Program\03-instruction\01-Basic\06-Shift_and_Rotate.md
         - 数学函数:
           - 07-Program\03-instruction\01-Basic\10-Math_functions\index.md
           - 数学计算: 07-Program\03-instruction\01-Basic\10-Math_functions\calculate.md
@@ -273,3 +274,9 @@ nav:
           - 最小值和最大值: 07-Program\03-instruction\01-Basic\10-Math_functions\max_min.md
           - 极限值: 07-Program\03-instruction\01-Basic\10-Math_functions\limit.md
           - 指数、对数及三角函数: 07-Program\03-instruction\01-Basic\10-Math_functions\exponent.md
+      - 扩展指令:
+        - 日期和时间: 07-Program\03-instruction\02-Extend\01-Time.md
+        - 字符串: 07-Program\03-instruction\02-Extend\02-String.md
+        - 读取序列号: 07-Program\03-instruction\02-Extend\03-Others\01-Get_IM_Data.md
+        - 判断程序改动: 07-Program\03-instruction\02-Extend\03-Others\02-GetChecksum.md
+        - 应用例程: 07-Program\03-instruction\02-Extend\04-ApplicationExample.md

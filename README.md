@@ -1,3 +1,5 @@
+![](https://assets.new.siemens.com/siemens/assets/api/uuid:949810fa4b3b04bf5027400fa6bb8e0b83b51c03/quality:high/width:1125/crop:0:0,2265625:0,9978142076502732:0,501953125/digital-layer-basic-controller.jpg)
+
 ## 说明
 
 - S7-1200 Easy Plus 包括 S7-1200 PLC 系列的使用、通信、技术工艺等的编程配置的详细步骤，并对用户经常，甚至是必然遇到的问题、疑问的解答，以及隐含着其他许多问题答案的叙述性文字，还有一些作者认为有助于读者理解、解决问题的背景知识。S7-1200 Easy Plus力争做到精简实用，帮助技术人员快速上手，解决使用中的常见问题。

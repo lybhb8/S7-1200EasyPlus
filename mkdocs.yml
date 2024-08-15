@@ -15,7 +15,7 @@ copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 # Configuration
 theme: 
-  name: mkdocs # readthedocs # material # 
+  name: readthedocs # mkdocs # material # 
   custom_dir: material/overrides
   features:
 

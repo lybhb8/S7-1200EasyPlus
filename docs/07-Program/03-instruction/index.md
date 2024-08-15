@@ -49,4 +49,4 @@
   [运行时]: ./01-Basic/05-Program_Control/02-RUNTIME.md
 
   [日期和时间]: ./02-Extend/01-Time.md
-  [字符串]: ./02-Extend/02-String.htm
+  [字符串]: ./02-Extend/02-String.md

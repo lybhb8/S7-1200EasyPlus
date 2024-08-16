@@ -1,4 +1,3 @@
-
 # Project information
 site_name: S7-1200PLC技术手册 - EasyPlus
 site_url: 
@@ -13,156 +12,29 @@ repo_url: https://github.com/lybhb8/S7-1200EasyPlus
 # Copyright
 copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
-# Configuration
-theme: 
-  name: readthedocs # mkdocs # material # 
-  custom_dir: material/overrides
-  features:
+theme:
+  name: 'readthedocs'
+  custom_dir: custom_theme
 
-    - announce.dismiss
-    - content.action.edit
-    - content.action.view
-    - content.code.annotate
-    - content.code.copy
-    - content.code.select
-    - content.footnote.tooltips
-    - content.tabs.link
-    - content.tooltips
-    # - header.autohide
-    - navigation.expand
-    - navigation.footer
-    - navigation.indexes
-    - navigation.instant
-    - navigation.instant.prefetch
-    # - navigation.instant.progress
-    # - navigation.prune
-    - navigation.path
-    - navigation.sections
-    - navigation.tabs
-    - navigation.tabs.sticky
-    - navigation.top
-    - navigation.tracking
-    - search.highlight
-    - search.share
-    - search.suggest
-    - toc.follow
-    # - toc.integrate
-  palette:
-    - media: "(prefers-color-scheme)"
-      toggle:
-        icon: material/link
-        name: Switch to light mode
-    - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: indigo # deep purple
-      accent:  indigo # deep purple
-      toggle:
-        icon: material/toggle-switch
-        name: Switch to dark mode
-    - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: black
-      accent: indigo
-      toggle:
-        icon: material/toggle-switch-off
-        name: Switch to system preference
-  font:
-    text: Roboto
-    code: Roboto Mono
-  favicon: assets/images/favicon.ico
-  icon:
-    logo: logo
-
-# Plugins
-plugins:
-  #- blog
-  - search:
-      separator: '[\s\u200b\-_,:!=\[\: )"`/]+|\.(?!\d)|&[lg]t;|(?!\b)(?=[A-Z][a-z])'
-  - minify:
-      minify_html: true
-
-# Hooks
-hooks:
-  - material/overrides/hooks/shortcodes.py
-  - material/overrides/hooks/translations.py
-
-# Additional configuration
-extra:
-  status:
-    new: Recently added
-    deprecated: Deprecated
-  analytics:
-    provider: google
-    property: !ENV GOOGLE_ANALYTICS_KEY
-  social:
-    - icon: fontawesome/brands/github
-      link: https://github.com/lybhb8
-    - icon: fontawesome/brands/blogger
-      link: https://blowmoldingshare.cn/      
-    - icon: fontawesome/solid/s
-      link: https://www.ad.siemens.com.cn/download/filter?productTypeId=1224
-    - icon: fontawesome/brands/python
-      link: https://pypi.org/project/mkdocs-material/
-
-    # - icon: fontawesome/brands/x-twitter
-    # link: https://x.com/squidfunk
-
-# Extensions
 markdown_extensions:
-  - abbr
-  - admonition
-  - attr_list
-  - def_list
-  - footnotes
-  - md_in_html
-  - pymdownx.superfences
-
-  - toc:
-      permalink: true
-  - pymdownx.arithmatex:
-      generic: true
-  - pymdownx.betterem:
-      smart_enable: all
-  - pymdownx.caret
-  - pymdownx.details
-  - pymdownx.emoji:
-      emoji_generator: !!python/name:material.extensions.emoji.to_svg
-      emoji_index: !!python/name:material.extensions.emoji.twemoji
   - pymdownx.highlight:
       anchor_linenums: true
-      line_spans: __span
-      pygments_lang_class: true
   - pymdownx.inlinehilite
-  - pymdownx.keys
-  - pymdownx.magiclink:
-      normalize_issue_symbols: true
-      repo_url_shorthand: true
-      user: squidfunk
-      repo: mkdocs-material
+  - pymdownx.snippets
+  - abbr
+  - admonition
+  - pymdownx.arithmatex:
+      generic: true
+  - footnotes
+  - pymdownx.details
+  - pymdownx.superfences
   - pymdownx.mark
-  - pymdownx.smartsymbols
-  - pymdownx.snippets:
-      auto_append:
-        - includes/mkdocs.md
-  - pymdownx.superfences:
-      custom_fences:
-        - name: mermaid
-          class: mermaid
-          format: !!python/name:pymdownx.superfences.fence_code_format
-  - pymdownx.tabbed:
-      alternate_style: true
-      combine_header_slug: true
-      slugify: !!python/object/apply:pymdownx.slugs.slugify
-        kwds:
-          case: lower
-  - pymdownx.tasklist:
-      custom_checkbox: true
-  - pymdownx.tilde
+  - attr_list
+  - pymdownx.emoji:
+      emoji_index: !!python/name:material.extensions.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
 
-not_in_nav: |
-  /tutorials/**/*.md
-
-# Page tree
+docs_dir: 'docs'
 
 
 nav:
@@ -280,3 +152,6 @@ nav:
         - 读取序列号: 07-Program\03-instruction\02-Extend\03-Others\01-Get_IM_Data.md
         - 判断程序改动: 07-Program\03-instruction\02-Extend\03-Others\02-GetChecksum.md
         - 应用例程: 07-Program\03-instruction\02-Extend\04-ApplicationExample.md
+
+
+

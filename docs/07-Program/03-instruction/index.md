@@ -4,7 +4,7 @@
 
 ## 基本指令
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 - ![alt text](icon-常闭触点-01.png){width="25" height="25"} __[位逻辑]__ <br> 位逻辑指令用于二进制数的逻辑运算。位逻辑运算的结果简称为 RLO。
 位逻辑指令是最常用的指令之一，主要有与运算指令、与非运算指令、或运算指令、或
@@ -21,18 +21,18 @@
     - __[获取错误]__
     - __[运行时]__
 
-</div>
+<!-- </div> -->
 
 ## 扩展指令
 
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 - __[日期和时间]__
 - __[字符串]__
 
 
-</div>
+<!-- </div> -->
 
 
 

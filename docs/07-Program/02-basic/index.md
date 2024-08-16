@@ -5,7 +5,7 @@
 
 ## 数据类型
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 - ![alt text](<database - FontAweso.png>){width="15" height="20"} __[基本数据类型]__ <br> 包括 位、位序列、整数、浮点数、日期时间。此外 字符 也属于基本数据类型。
 - ![alt text](<structured data.png>){width="15" height="20"} __[结构数据Struct]__ <br> Struct类型是一种由多个不同数据类型元素组成的数据结构，其元素可以是基本数据类型，也可以是Struct、数组等复杂数据类型以及PLC数据类型（UDT）等。
@@ -19,12 +19,13 @@
 - ![alt text](unicode.png){width="20" height="15"} __[宽字符WString]__ <br> 数据类型为 wstring（宽字符串）的操作数用于在一个字符串中存储多个数据类型为 wchar 的 Unicode 字符。如果未指定长度，则字符串的长度为预置的 254 个字。
 - ![](../../source/Blue%20grey/26x22/Date_Time.png){width="20" height="15"} [时间数据DTL] <br> 日期和时间的数据类型 DTL 的操作数长度为 12个字节，用于存储日期和时间信息。
 
-</div>
+
+<!-- </div> -->
 
 
 ## 组织块OB
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 - ![alt text](Overview.png){width="20" height="25"} __[组织块OB简介]__ <br> 组织块是操作系统和用户程序之间的接口。OB 用于执行具体的程序：
       - 在 CPU 启动时
@@ -43,18 +44,18 @@
 - ![alt text](Alarm_Window.png){width="20" height="25"} __[机架或站故障 OB86]__ <br> 当 CPU 检测到分布式机架或站出现故障或发生通信丢失时，可以编程访问机架或站故障 OB86 的启动信息判断触发中断的站并作出响应。
 - ![alt text](启动.png){width="20" height="25"} __[启动 OB100]__ <br> 如果 CPU 的操作模式从 STOP 切换到 RUN 时，包括启动模式处于 RUN 模式时 CPU 断电再上电和执行 STOP 到 RUN 命令切换时，启动组织块 OB 将被执行一次。
 
-</div>
+<!-- </div> -->
 
 ## FC,FB功能块
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 - ![alt text](fc.png){width="20" height="25"} __[FC功能]__ <br> FC（功能）是不含存储区的代码块,常用于对一组输入值执行特定运算，例如：可使用FC执行标准运算和可重复使用的运算（例如数学计算）或者执行工艺功能（如使用位逻辑运算执行独立的控制）。
 - ![alt text](database.png){width="20" height="25"} __[DB数据块]__ <br> 在项目中添加了S7-1200设备之后,在项目树中此PLC的"程序块"下即可以添加新的数据块。
 - ![alt text](快照备份ico.png){width="20" height="25"} __[DB快照功能]__ <br> 通过捕获 DB 块变量实际值快照用于恢复值操作，捕获的实际快照值可以复制到 CPU 中的实际值中，也可以用于替换变量的起始值。
 - ![alt text](fb.png){width="20" height="25"} __[FB功能块]__ <br> 功能块 (FB) 是从另一个代码块（OB、FB 或 FC）进行调用时执行的子例程。在调用 FB 块时会生成与之相匹配的背景数据块，在背景数据块中可以存储定义的接口参数及静态变量。
 
-</div>
+<!-- </div> -->
 
 
   [基本数据类型]: ./01-Data_Type/01-basic.md

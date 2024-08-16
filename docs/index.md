@@ -14,7 +14,7 @@
 
 ## S7-1200 PLC 基础汇总
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 
 - ![alt text](./img/home/93预览.png){width="20" height="20"} __[S7-1200 简介]__ <br> SIMATIC S7-1200 特性综述。
@@ -22,7 +22,7 @@
 - ![alt text](./img/home/Internet.png){width="20" height="20"} __[网络资源]__  <br> SIMATIC S7-1200 PLC 西门子工业在线支持的网络资源汇总。
 - ![alt text](./img/home/version.png){width="20" height="20"} __[版本信息]__  <br> 本文档简要 S7-1200 系列 CPU 的固件常见的升降级、组态、兼容性相关问题。
 
-</div>
+<!-- </div> -->
 
   [S7-1200 简介]: introduction/index.md
   [S7-1200 硬件]: hardware/index.md
@@ -31,7 +31,7 @@
 
 ## [S7-1200 PLC 组态编程](07-Program/index.md)
 
-<div class="grid cards" markdown>
+<!-- <div class="grid cards" markdown> -->
 
 
 - ![alt text](./img/home/展开目录.png){width="20" height="20"} __[TIA Portal STEP 7 V18]__ <br> S7-1200 PLC 开发工具平台组态软件TIA Portal STEP 7 V18 安装要求和安装实例
@@ -40,7 +40,7 @@
 - ![alt text](./img/home/PLC编程.png){width="20" height="20"} __[编程指令]__ <br>  S7-1200 PLC 编程语言中的指令和编程语言：基础指令、扩展指令、工艺指令、SCL语言、间接寻址等。
 
 
-</div>
+<!-- </div> -->
 
  [TIA Portal STEP 7 V18]: ./07-Program/install.md
  [TIA Portal STEP7 组态软件操作]: ./07-Program/01-operation/index.md

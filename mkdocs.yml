@@ -29,11 +29,19 @@ markdown_extensions:
   - smarty
   - codehilite:
       linenums: true
-      use_pygments: false
+      use_pygments: true
   - sane_lists
   - toc:
       permalink: "#"
       baselevel: 3
+  - attr_list
+  - def_list
+  - tables
+  - pymdownx.highlight:
+      use_pygments: false
+  - pymdownx.snippets
+  - pymdownx.superfences
+  - footnotes
 
 # markdown_extensions:
 #   - pymdownx.highlight:

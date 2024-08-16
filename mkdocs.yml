@@ -13,26 +13,46 @@ repo_url: https://github.com/lybhb8/S7-1200EasyPlus
 copyright: Copyright &copy; 2016 - 2024 FrankLin & lybhb8
 
 theme:
-  name: 'readthedocs'
+  name: readthedocs
   custom_dir: custom_theme
+  highlightjs: true
+  hljs_languages:
+    - go
+    - yaml
+
+extra_css:
+  - css/extra.css
 
 markdown_extensions:
-  - pymdownx.highlight:
-      anchor_linenums: true
-  - pymdownx.inlinehilite
-  - pymdownx.snippets
-  - abbr
+  - extra
   - admonition
-  - pymdownx.arithmatex:
-      generic: true
-  - footnotes
-  - pymdownx.details
-  - pymdownx.superfences
-  - pymdownx.mark
-  - attr_list
- # - pymdownx.emoji:
-      #emoji_index: !!python/name:material.extensions.emoji.twemoji
-      #emoji_generator: !!python/name:materialx.emoji.to_svg
+  - smarty
+  - codehilite:
+      linenums: true
+      use_pygments: false
+  - sane_lists
+  - toc:
+      permalink: "#"
+      baselevel: 3
+
+# markdown_extensions:
+#   - pymdownx.highlight:
+#       anchor_linenums: true
+#   - pymdownx.inlinehilite
+#   - pymdownx.snippets
+#   - abbr
+#   - admonition
+#   - pymdownx.arithmatex:
+#       generic: true
+#   - footnotes
+#   - pymdownx.details
+#   - pymdownx.superfences
+#   - pymdownx.mark
+#   - attr_list
+#   - pymdownx.emoji:
+#       #emoji_index: !!python/name:material.extensions.emoji.twemoji
+#       #emoji_generator: !!python/name:materialx.emoji.to_svg
+
 
 docs_dir: 'docs'
 

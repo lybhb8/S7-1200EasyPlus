@@ -8,7 +8,7 @@
 - ![alt text](绝对值.png){width="18" height="25"} &nbsp;__[绝对值]__
 - ![alt text](最大值最小值2.png){width="18" height="25"}&nbsp; __[最小值和最大值]__
 - ![alt text](极限值.png){width="20" height="25"}&nbsp; __[极限值]__
-- :fontawesome-solid-square-root-variable: &nbsp; __[指数、对数及三角函数]__ 
+- ![alt text](icon_png_formula.png){width="20" height="25"} &nbsp; __[指数、对数及三角函数]__ 
 
 [数学计算]: ./calculate.md
 [加减乘除]: ./add.md

@@ -1,0 +1,63 @@
+﻿FUNCTION "ArrayManage" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_IN_OUT 
+      src : Array[0..7] of DInt;   // 源数组
+      dst : Array[0..5] of DInt;   // 目的数组
+   END_VAR
+
+   VAR_TEMP 
+      tempSrc : DInt;   // 源数组下标
+      tempDst : DInt;   // 目的数组下标
+      tempMax : DInt;   // 源数组最大的数
+      tempMin : DInt;   // 源数组最小的数
+      tempMaxPos : DInt;   // 源数组最大的数位置
+      tempMinPos : DInt;   // 源数组最小的数位置
+   END_VAR
+
+
+BEGIN
+	//源数组最开始的最大的数、最小的数的位置都设置为 0
+	//源数组最开始的最大的数、最小的数都设置为元素 0
+	#tempMaxPos := 0;
+	#tempMinPos := 0;
+	#tempMax := #src[0];
+	#tempMin := #src[0];
+	
+	//从源数组下标 1 到 7 中找最大，如果大于最大，则记录最大的数和位置
+	//从源数组下标 1 到 7 中找最小，如果小于最小，则记录最小的数和位置
+	FOR #tempSrc := 1 TO 7 DO
+	    IF #src[#tempSrc] > #tempMax
+	    THEN
+	        #tempMax := #src[#tempSrc];
+	        #tempMaxPos := #tempSrc;
+	    END_IF;
+	    IF #src[#tempSrc] < #tempMin
+	    THEN
+	        #tempMin := #src[#tempSrc];
+	        #tempMinPos := #tempSrc;
+	    END_IF;
+	END_FOR;
+	
+	//极端情况，如果每个数一样大，那么最大的数的位置还是 0，最小的数的位置设置为 1
+	IF #tempMaxPos = #tempMinPos
+	THEN
+	    #tempMinPos := 1;
+	END_IF;
+	
+	//目的数组下标变量清零
+	#tempDst := 0;
+	//源数组下标 0 到 7 
+	FOR #tempSrc := 0 TO 7 DO
+	    //如果当前源数组下标既不是最大的数的位置也不是最小的数的位置，则目的数组赋值，并且目的数组下标自加一
+	    IF #tempSrc <> #tempMaxPos AND #tempSrc <> #tempMinPos
+	    THEN
+	        #dst[#tempDst] := #src[#tempSrc];
+	        #tempDst += 1;
+	        //否则什么都不做
+	    ELSE
+	        CONTINUE;
+	    END_IF;
+	END_FOR;
+END_FUNCTION
+

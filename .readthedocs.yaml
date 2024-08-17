@@ -10,9 +10,9 @@ build:
   tools:
     python: "3.12"
     
-  commands:
-    - pip install mkdocs-material
-    - mkdocs build --site-dir $READTHEDOCS_OUTPUT/html
+  # commands:
+  #   - pip install mkdocs-material
+  #   - mkdocs build --site-dir $READTHEDOCS_OUTPUT/html
 
 mkdocs:
   configuration: mkdocs.yml

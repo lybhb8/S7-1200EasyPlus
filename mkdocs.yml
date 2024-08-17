@@ -32,118 +32,118 @@ markdown_extensions:
 docs_dir: 'docs'
 
 
-nav:
-  - 基础综述: 
-    - index.md
-    - S7-1200简介: introduction\index.md
-    - 网络资源: source\index.md
-    - S7-1200硬件: 
-      - hardware\index.md
-      - 参数总汇: specifications\parameters.md
-      - 性能参数V4.0: specifications\feature.md
-    - S7-1200版本: 
-      - 04-version\index.md
-      - CPU 固件常见问题: 04-version\02-Version\question.md
-      - PLC V4.6 简介: 04-version\02-Version\S7-1200_V4.6.md
-      - 固件升级: 
-        - 04-version\03-firmware_update\index.md
-        - CPU固件: 04-version\03-firmware_update\firmware.md
-        - 模块固件: 04-version\03-firmware_update\firmware1.md
+# nav:
+#   - 基础综述: 
+#     - index.md
+#     - S7-1200简介: 02-introduction\index.md
+#     - 网络资源: 01-resource\source\index.md
+#     - S7-1200硬件: 
+#       - 03-hardware\index.md
+#       - 参数总汇: 03-hardware\specifications\parameters.md
+#       - 性能参数V4.0: 03-hardware\specifications\feature.md
+#     - S7-1200版本: 
+#       - 04-version\index.md
+#       - CPU 固件常见问题: 04-version\02-Version\question.md
+#       - PLC V4.6 简介: 04-version\02-Version\S7-1200_V4.6.md
+#       - 固件升级: 
+#         - 04-version\03-firmware_update\index.md
+#         - CPU固件: 04-version\03-firmware_update\firmware.md
+#         - 模块固件: 04-version\03-firmware_update\firmware1.md
   
-  - 组态编程:
+#   - 组态编程:
 
-    #- STEP7 V18 安装: 07-Program\install.md
-    - TIA Portal组态软件操作:
-      - 07-Program\01-operation\index.md
-      - STEP7 V18 安装: 07-Program\install.md 
-      - 新建项目: 07-Program\01-operation\01-New_Project.md
-      - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
-      - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
-      - 项目下载: 07-Program\01-operation\04-Download.md
-      - 运行下载: 07-Program\01-operation\05-download_run.md
-      - 硬件检测: 07-Program\01-operation\06-detect_hardware.md
-      - 上载程序: 07-Program\01-operation\07-upload_program.md
-      - 上载站点: 07-Program\01-operation\08-upload_station.md
-      - 上传时版本的兼容性: 07-Program\01-operation\09-upload_compatibility.md
-      - 项目升级: 07-Program\01-operation\10-update.md
-      - 程序升级: 07-Program\01-operation\11-Program_Update.md
+#     #- STEP7 V18 安装: 07-Program\install.md
+#     - TIA Portal组态软件操作:
+#       - 07-Program\01-operation\index.md
+#       - STEP7 V18 安装: 07-Program\install.md 
+#       - 新建项目: 07-Program\01-operation\01-New_Project.md
+#       - CPU参数配置: 07-Program\01-operation\02-CPU_Properties.md
+#       - 常见问题FAQ: 07-Program\01-operation\03-ConfigFAQ.md
+#       - 项目下载: 07-Program\01-operation\04-Download.md
+#       - 运行下载: 07-Program\01-operation\05-download_run.md
+#       - 硬件检测: 07-Program\01-operation\06-detect_03-hardware.md
+#       - 上载程序: 07-Program\01-operation\07-upload_program.md
+#       - 上载站点: 07-Program\01-operation\08-upload_station.md
+#       - 上传时版本的兼容性: 07-Program\01-operation\09-upload_compatibility.md
+#       - 项目升级: 07-Program\01-operation\10-update.md
+#       - 程序升级: 07-Program\01-operation\11-Program_Update.md
 
-    - 编程基础:
-      - 07-Program\\02-basic\index.md
-      - 数据类型: 
-        - 07-Program\02-basic\01-Data_Type\index.md
-        - 基本数据: 07-Program\02-basic\01-Data_Type\01-basic.md
-        - 结构数据Struct: 07-Program\02-basic\01-Data_Type\02-Struct.md
-        - UDT: 07-Program\02-basic\01-Data_Type\03-UDT.md
-        - 数组: 07-Program\02-basic\01-Data_Type\04-Array.md
-        - 系统数据SDT: 07-Program\02-basic\01-Data_Type\05-SDT.md
-        - 硬件数据: 07-Program\02-basic\01-Data_Type\06-hardware.md
-        - Variant: 07-Program\02-basic\01-Data_Type\07-Variant.md
-        - DB_ANY: 07-Program\02-basic\01-Data_Type\08-DB_ANY.md
-        - 字符String: 07-Program\02-basic\01-Data_Type\09-String.md
-        - 宽字符WString: 07-Program\02-basic\01-Data_Type\10-WString.md
-        - 时间数据DTL: 07-Program\02-basic\01-Data_Type\11-DTL.md
+#     - 编程基础:
+#       - 07-Program\\02-basic\index.md
+#       - 数据类型: 
+#         - 07-Program\02-basic\01-Data_Type\index.md
+#         - 基本数据: 07-Program\02-basic\01-Data_Type\01-basic.md
+#         - 结构数据Struct: 07-Program\02-basic\01-Data_Type\02-Struct.md
+#         - UDT: 07-Program\02-basic\01-Data_Type\03-UDT.md
+#         - 数组: 07-Program\02-basic\01-Data_Type\04-Array.md
+#         - 系统数据SDT: 07-Program\02-basic\01-Data_Type\05-SDT.md
+#         - 硬件数据: 07-Program\02-basic\01-Data_Type\06-03-hardware.md
+#         - Variant: 07-Program\02-basic\01-Data_Type\07-Variant.md
+#         - DB_ANY: 07-Program\02-basic\01-Data_Type\08-DB_ANY.md
+#         - 字符String: 07-Program\02-basic\01-Data_Type\09-String.md
+#         - 宽字符WString: 07-Program\02-basic\01-Data_Type\10-WString.md
+#         - 时间数据DTL: 07-Program\02-basic\01-Data_Type\11-DTL.md
 
-      - 组织块 OB: 
-        - 组织块 OB简介: 07-Program\02-basic\02-OB\01-intro.md
-        - 程序循环 OB1: 07-Program\02-basic\02-OB\02-OB1.md
-        - 延时中断 OB20: 07-Program\02-basic\02-OB\03-OB20.md
-        - 循环中断 OB30: 07-Program\02-basic\02-OB\04-OB30.md
-        - 硬件中断 OB40: 07-Program\02-basic\02-OB\05-OB40.md
-        - 时间错误 OB80: 07-Program\02-basic\02-OB\06-OB80.md
-        - 诊断错误 OB82: 07-Program\02-basic\02-OB\07-OB82.md
-        - 启动 OB100: 07-Program\02-basic\02-OB\08-OB100.md
-        - 时间中断 OB10: 07-Program\02-basic\02-OB\09-OB10.md
-        - 插拔中断 OB83: 07-Program\02-basic\02-OB\10-OB83.md
-        - 机架或站故障 OB86: 07-Program\02-basic\02-OB\11-OB86.md
+#       - 组织块 OB: 
+#         - 组织块 OB简介: 07-Program\02-basic\02-OB\01-intro.md
+#         - 程序循环 OB1: 07-Program\02-basic\02-OB\02-OB1.md
+#         - 延时中断 OB20: 07-Program\02-basic\02-OB\03-OB20.md
+#         - 循环中断 OB30: 07-Program\02-basic\02-OB\04-OB30.md
+#         - 硬件中断 OB40: 07-Program\02-basic\02-OB\05-OB40.md
+#         - 时间错误 OB80: 07-Program\02-basic\02-OB\06-OB80.md
+#         - 诊断错误 OB82: 07-Program\02-basic\02-OB\07-OB82.md
+#         - 启动 OB100: 07-Program\02-basic\02-OB\08-OB100.md
+#         - 时间中断 OB10: 07-Program\02-basic\02-OB\09-OB10.md
+#         - 插拔中断 OB83: 07-Program\02-basic\02-OB\10-OB83.md
+#         - 机架或站故障 OB86: 07-Program\02-basic\02-OB\11-OB86.md
 
-      - FC功能、FB功能块: 
-        - 07-Program\02-basic\03-Block\index.md
-        - FC功能: 07-Program\02-basic\03-Block\01-FC.md
-        - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
-        - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
-        - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
+#       - FC功能、FB功能块: 
+#         - 07-Program\02-basic\03-Block\index.md
+#         - FC功能: 07-Program\02-basic\03-Block\01-FC.md
+#         - DB数据块: 07-Program\02-basic\03-Block\02-DB.md
+#         - DB快照功能: 07-Program\02-basic\03-Block\03-DB_Snapshots.md
+#         - FB功能块: 07-Program\02-basic\03-Block\04-FB.md
 
-    - 编程指令:
-      - 07-Program\03-instruction\index.md
-      - 基础指令: 
-        #- 07-Program\03-instruction\\01-Basic\index.md 
-        - 位逻辑指令: 07-Program\03-instruction\01-Basic\08-bit.md
-        - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
-        - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md
-        - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
-        - 计数器: 07-Program\03-instruction\01-Basic\02-COUNTER.md
-        - 比较指令: 
-          - 07-Program\03-instruction\01-Basic\03-compare\index.md
-          - 值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_value.md
-          - 范围值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_range.md
-          - OK有效性比较: 07-Program\03-instruction\01-Basic\03-compare\eq_ok.md
-          - 变量比较: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
-        - 移动操作: 
-          - 07-Program\03-instruction\01-Basic\04-Move\index.md
-          - MOVE系列: 07-Program\03-instruction\01-Basic\04-Move\01-MOVE.md
-          - 序列化: 07-Program\03-instruction\01-Basic\04-Move\02-DeserializeSerialize.md
-          - FILL_BLK: 07-Program\03-instruction\01-Basic\04-Move\03-FILL_BLK.md
-          - 位序列的组合与分解: 07-Program\03-instruction\01-Basic\04-Move\04-SCATTERGATHER.md
-          - 移动操作-Variant: 07-Program\03-instruction\01-Basic\04-Move\05-MOVE_Variant.md
-        - 程序控制:
-          - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
-          - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
-        - 移位和循环: 07-Program\03-instruction\01-Basic\06-Shift_and_Rotate.md
-        - 数学函数:
-          - 07-Program\03-instruction\01-Basic\10-Math_functions\index.md
-          - 数学计算: 07-Program\03-instruction\01-Basic\10-Math_functions\calculate.md
-          - 加减乘除: 07-Program\03-instruction\01-Basic\10-Math_functions\add.md
-          - 取模: 07-Program\03-instruction\01-Basic\10-Math_functions\mod.md
-          - 取反: 07-Program\03-instruction\01-Basic\10-Math_functions\neg.md
-          - 递增和递减: 07-Program\03-instruction\01-Basic\10-Math_functions\inc_dec.md
-          - 绝对值: 07-Program\03-instruction\01-Basic\10-Math_functions\abs.md
-          - 最小值和最大值: 07-Program\03-instruction\01-Basic\10-Math_functions\max_min.md
-          - 极限值: 07-Program\03-instruction\01-Basic\10-Math_functions\limit.md
-          - 指数、对数及三角函数: 07-Program\03-instruction\01-Basic\10-Math_functions\exponent.md
-      - 扩展指令:
-        - 日期和时间: 07-Program\03-instruction\02-Extend\01-Time.md
-        - 字符串: 07-Program\03-instruction\02-Extend\02-String.md
-        - 读取序列号: 07-Program\03-instruction\02-Extend\03-Others\01-Get_IM_Data.md
-        - 判断程序改动: 07-Program\03-instruction\02-Extend\03-Others\02-GetChecksum.md
-        - 应用例程: 07-Program\03-instruction\02-Extend\04-ApplicationExample.md
+#     - 编程指令:
+#       - 07-Program\03-instruction\index.md
+#       - 基础指令: 
+#         #- 07-Program\03-instruction\\01-Basic\index.md 
+#         - 位逻辑指令: 07-Program\03-instruction\01-Basic\08-bit.md
+#         - 置位和复位指令: 07-Program\03-instruction\01-Basic\09-set.md
+#         - 上升沿和下降沿: 07-Program\03-instruction\01-Basic\07-Edge.md
+#         - 定时器: 07-Program\03-instruction\01-Basic\01-TIMER.md
+#         - 计数器: 07-Program\03-instruction\01-Basic\02-COUNTER.md
+#         - 比较指令: 
+#           - 07-Program\03-instruction\01-Basic\03-compare\index.md
+#           - 值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_value.md
+#           - 范围值比较: 07-Program\03-instruction\01-Basic\03-compare\eq_range.md
+#           - OK有效性比较: 07-Program\03-instruction\01-Basic\03-compare\eq_ok.md
+#           - 变量比较: 07-Program\03-instruction\01-Basic\03-Compare_Variant.md
+#         - 移动操作: 
+#           - 07-Program\03-instruction\01-Basic\04-Move\index.md
+#           - MOVE系列: 07-Program\03-instruction\01-Basic\04-Move\01-MOVE.md
+#           - 序列化: 07-Program\03-instruction\01-Basic\04-Move\02-DeserializeSerialize.md
+#           - FILL_BLK: 07-Program\03-instruction\01-Basic\04-Move\03-FILL_BLK.md
+#           - 位序列的组合与分解: 07-Program\03-instruction\01-Basic\04-Move\04-SCATTERGATHER.md
+#           - 移动操作-Variant: 07-Program\03-instruction\01-Basic\04-Move\05-MOVE_Variant.md
+#         - 程序控制:
+#           - GetError: 07-Program\03-instruction\01-Basic\05-Program_Control\01-GetError_GetErrorID.md
+#           - RUNTIME: 07-Program\03-instruction\01-Basic\05-Program_Control\02-RUNTIME.md
+#         - 移位和循环: 07-Program\03-instruction\01-Basic\06-Shift_and_Rotate.md
+#         - 数学函数:
+#           - 07-Program\03-instruction\01-Basic\10-Math_functions\index.md
+#           - 数学计算: 07-Program\03-instruction\01-Basic\10-Math_functions\calculate.md
+#           - 加减乘除: 07-Program\03-instruction\01-Basic\10-Math_functions\add.md
+#           - 取模: 07-Program\03-instruction\01-Basic\10-Math_functions\mod.md
+#           - 取反: 07-Program\03-instruction\01-Basic\10-Math_functions\neg.md
+#           - 递增和递减: 07-Program\03-instruction\01-Basic\10-Math_functions\inc_dec.md
+#           - 绝对值: 07-Program\03-instruction\01-Basic\10-Math_functions\abs.md
+#           - 最小值和最大值: 07-Program\03-instruction\01-Basic\10-Math_functions\max_min.md
+#           - 极限值: 07-Program\03-instruction\01-Basic\10-Math_functions\limit.md
+#           - 指数、对数及三角函数: 07-Program\03-instruction\01-Basic\10-Math_functions\exponent.md
+#       - 扩展指令:
+#         - 日期和时间: 07-Program\03-instruction\02-Extend\01-Time.md
+#         - 字符串: 07-Program\03-instruction\02-Extend\02-String.md
+#         - 读取序列号: 07-Program\03-instruction\02-Extend\03-Others\01-Get_IM_Data.md
+#         - 判断程序改动: 07-Program\03-instruction\02-Extend\03-Others\02-GetChecksum.md
+#         - 应用例程: 07-Program\03-instruction\02-Extend\04-ApplicationExample.md

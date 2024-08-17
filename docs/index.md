@@ -24,9 +24,9 @@
 
 <!-- </div> -->
 
-  [S7-1200 简介]: introduction/index.md
-  [S7-1200 硬件]: hardware/index.md
-  [网络资源]: source/index.md
+  [S7-1200 简介]: 02-introduction/index.md
+  [S7-1200 硬件]: 03-hardware/index.md
+  [网络资源]: 01-resource/source/index.md
   [版本信息]: 04-version/index.md
 
 ## [S7-1200 PLC 组态编程](07-Program/index.md)

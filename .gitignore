@@ -1,6 +1,9 @@
+# npm stuff
+.nodeenv
+node_modules
 
-.vscode
-
-build/*
-
-*.class
+# Python stuff
+.nox
+/build
+/dist
+__pycache__

@@ -6,12 +6,13 @@ build:
     python: "3.12"
   commands:
     - pip install myst_parser
-
+    - mkdir -p $READTHEDOCS_OUTPUT/html/
+    
 # Optionally build your docs in additional formats such as PDF and ePub
 
-formats:
-   - pdf
-   - epub
+# formats:
+#    - pdf
+#    - epub
 
 
 sphinx:

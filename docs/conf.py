@@ -42,7 +42,7 @@ source_suffix = {
 }
 
 
-#source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
+source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 
 
 # -- Options for HTML output -------------------------------------------------

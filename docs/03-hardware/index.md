@@ -130,3 +130,14 @@ SIMATIC S7-1200 是 SIMATIC S7 可编程控制器系列中的新型模块化微�
 
 ![](https://pic4.zhimg.com/80/v2-984750f17e53909da2897a286b07b38f_1440w.webp)
 
+
+
+```{toctree}
+:maxdepth: 2
+
+specifications/feature
+specifications/parameters
+
+```
+
+

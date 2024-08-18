@@ -2,8 +2,20 @@
 
 ![alt text](image-2.png)
 
+```{toctree}
+:maxdepth: 2
 
-- [TIA Portal STEP 7 V18 安装](./install.md)
+install
+01-operation/index
+02-basic/index
+03-instruction/index
+
+```
+
+
+
+
+<!-- - [TIA Portal STEP 7 V18 安装](./install.md)
 - [TIA Portal组态软件操作](./01-operation/index.md)
     - [新建项目](./01-operation/01-New_Project.md)
     - [CPU参数](./01-operation/02-CPU_Properties.md)
@@ -29,4 +41,4 @@
         - [上升沿和下降沿](./03-instruction/01-Basic/07-Edge.md)
         - [定时器](./03-instruction/01-Basic/01-TIMER.md)
         - [计数器](./03-instruction/01-Basic/02-COUNTER.md)
-        - [比较指令](./03-instruction/01-Basic/03-Compare_Variant.md)
+        - [比较指令](./03-instruction/01-Basic/03-Compare_Variant.md) -->

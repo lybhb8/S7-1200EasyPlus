@@ -6,8 +6,8 @@ build:
     python: "3.12"
   commands:
     - pip install myst_parser
-    - mkdir -p $READTHEDOCS_OUTPUT/html/
-    
+    - mkdir -p $READTHEDOCS_OUTPUT/htm/html/
+
 # Optionally build your docs in additional formats such as PDF and ePub
 
 # formats:

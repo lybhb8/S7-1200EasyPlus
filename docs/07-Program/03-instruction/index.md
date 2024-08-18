@@ -2,7 +2,20 @@
 
 ![alt text](image.png)
 
-## 基本指令
+```{toctree}
+:maxdepth: 2
+
+01-Basic/index
+02-Extend/index
+03-Address/index
+04-Example/index
+05-SCL/index
+06-CEM
+
+```
+
+
+<!-- ## 基本指令
 
 <div class="grid cards" markdown>
 
@@ -49,4 +62,4 @@
   [运行时]: ./01-Basic/05-Program_Control/02-RUNTIME.md
 
   [日期和时间]: ./02-Extend/01-Time.md
-  [字符串]: ./02-Extend/02-String.md
+  [字符串]: ./02-Extend/02-String.md -->

@@ -2,8 +2,16 @@
 
 ![alt text](image.png)
 
+```{toctree}
+:maxdepth: 2
 
-## 数据类型
+01-Data_Type/index
+02-OB/index
+03-Block/index
+
+```
+
+<!-- ## 数据类型
 
 <div class="grid cards" markdown>
 
@@ -85,4 +93,4 @@
   [FC功能]: ./03-Block/01-FC.md
   [DB数据块]: ./03-Block/02-DB.md
   [DB快照功能]: ./03-Block/03-DB_Snapshots.md
-  [FB功能块]: ./03-Block/04-FB.md
+  [FB功能块]: ./03-Block/04-FB.md -->

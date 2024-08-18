@@ -1,11 +1,17 @@
 version: 2
 
 build:
-  os: "ubuntu-20.04"
+  os: "ubuntu-22.04"
   tools:
     python: "3.12"
   commands:
     - pip install myst_parser
+
+# Optionally build your docs in additional formats such as PDF and ePub
+
+formats:
+   - pdf
+   - epub
 
 
 sphinx:

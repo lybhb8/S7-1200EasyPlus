@@ -20,12 +20,12 @@ release = '4.3'
 import os, sys; sys.path.append(os.path.abspath('sphinxext'))
 
 extensions = [
-    "sphinx.ext.todo",
-    "sphinx.ext.intersphinx",
-    "sphinx.ext.autosectionlabel",
+    #"sphinx.ext.todo",
+    #"sphinx.ext.intersphinx",
+    #"sphinx.ext.autosectionlabel",
     "myst_parser",
-    "sphinx_design",
-    "sphinx_copybutton",
+    #"sphinx_design",
+    #"sphinx_copybutton",
     #"sphinx_togglebutton",
     #'extname',
 ]

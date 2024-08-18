@@ -17,9 +17,7 @@ release = '4.3'
 # -- General configuration ---------------------------------------------------
 # https://www.sphinx-doc.org/en/master/usage/configuration.html#general-configuration
 
-import sys, os
-
-sys.path.append(os.path.abspath('sphinxext'))
+import os, sys; sys.path.append(os.path.abspath('sphinxext'))
 
 extensions = [
     "sphinx.ext.todo",
@@ -33,11 +31,7 @@ extensions = [
 ]
 
 templates_path = ['_templates']
-exclude_patterns = [
-    '_build',
-    'Thumbs.db',
-    '.DS_Store',
-]
+exclude_patterns = []
 language = 'zh_CN'
 
 source_suffix = {

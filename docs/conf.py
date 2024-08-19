@@ -23,6 +23,7 @@ release = '4.3'
 #
 
 extensions = [
+    
     # Sphinx's own extensions
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
@@ -52,7 +53,7 @@ source_suffix = {
 }
 
 
-# source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
+source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
 
 
 

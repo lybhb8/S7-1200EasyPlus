@@ -22,45 +22,45 @@ S7-1200的计数器包含3种计数器，指令位置参见图1：
 
 表1 计数器类型及范围
 
- |整数类型  | 计数器类型     | 计数器类型（TIA博途V14开始）   |        计数范围  |
- |----------|---------------|----------------------|-----------------------------------|
- | SINT    |   IEC_SCOUNTER |   CTU_SINT     \|        CTD_SINT \|   CTUD_SINT  |  -128～127|
- | INT     |   IEC_COUNTER   |  CTU_INT       \|     CTD_INT  \|   CTUD_INT   |  -32768～32767|
- | DINT    |   IEC_DCOUNTER  |  CTU_DINT     \|    CTD_DINT  \|  CTUD_DINT    |-2147483648～2147483647|
- | USINT   |   IEC_USCOUNTER  | CTU_USINT     \|     CTD_USINT  \| CTUD_USINT  | 0～255|
- |UINT     |  IEC_UCOUNTER  |  CTU_UINT     \|          CTD_UINT  \|  CTUD_UINT  |  0～65535|
- | UDINT    |  IEC_UDCOUNTER  | CTU_UDINT   \|   CTD_UDINT  \| CTUD_UDINT  | 0～4294967295|
+ | 整数类型 | 计数器类型    | 计数器类型（TIA博途V14开始）                     | 计数范围                |
+ | -------- | ------------- | ------------------------------------------------ | ----------------------- |
+ | SINT     | IEC_SCOUNTER  | CTU_SINT     \|        CTD_SINT \|   CTUD_SINT   | -128～127               |
+ | INT      | IEC_COUNTER   | CTU_INT       \|     CTD_INT  \|   CTUD_INT      | -32768～32767           |
+ | DINT     | IEC_DCOUNTER  | CTU_DINT     \|    CTD_DINT  \|  CTUD_DINT       | -2147483648～2147483647 |
+ | USINT    | IEC_USCOUNTER | CTU_USINT     \|     CTD_USINT  \| CTUD_USINT    | 0～255                  |
+ | UINT     | IEC_UCOUNTER  | CTU_UINT     \|          CTD_UINT  \|  CTUD_UINT | 0～65535                |
+ | UDINT    | IEC_UDCOUNTER | CTU_UDINT   \|   CTD_UDINT  \| CTUD_UDINT        | 0～4294967295           |
 
 表2 计数器引脚汇总
 
 
  输入的变量
 
-  |名称       |  说明        |     数据类型 |  备注             |
-  |------------|----------------|----------|-------------------|
-  |CU          | 加计数输入脉冲 |  BOOL   |    仅出现在CTU、CTUD|
-  |CD          | 减计数输入脉冲  | BOOL     |  仅出现在CTD、CTUD|
-  | R          |  CV清0         |   BOOL   |    仅出现在CTU、CTUD|
-  |LD          |CV设置为PV     |  BOOL    |   仅出现在CTD、CTUD|
-  |PV          | 预设值         |  整数    |   仅出现在CTU、CTUD|
+  | 名称 | 说明           | 数据类型 | 备注              |
+  | ---- | -------------- | -------- | ----------------- |
+  | CU   | 加计数输入脉冲 | BOOL     | 仅出现在CTU、CTUD |
+  | CD   | 减计数输入脉冲 | BOOL     | 仅出现在CTD、CTUD |
+  | R    | CV清0          | BOOL     | 仅出现在CTU、CTUD |
+  | LD   | CV设置为PV     | BOOL     | 仅出现在CTD、CTUD |
+  | PV   | 预设值         | 整数     | 仅出现在CTU、CTUD |
   
   输出的变量
 
-  |名称       |  说明        |     数据类型 |  备注             |
-  |------------|----------------|----------|-------------------|
-  |Q          |  输出位       |    BOOL    |   仅出现在CTU、CTD|
-  |QD          | 输出位        |   BOOL     |  仅出现在CTUD|
-  |QU          | 输出位        |   BOOL      | 仅出现在CTUD|
-  |CV           |计数值         |  整数        |   |
+  | 名称 | 说明   | 数据类型 | 备注             |
+  | ---- | ------ | -------- | ---------------- |
+  | Q    | 输出位 | BOOL     | 仅出现在CTU、CTD |
+  | QD   | 输出位 | BOOL     | 仅出现在CTUD     |
+  | QU   | 输出位 | BOOL     | 仅出现在CTUD     |
+  | CV   | 计数值 | 整数     |                  |
 
 
 表3计数器使用及时序图
 
-| 指令  | 说明                | 时序图  |
-|-------------|--------------------------|------|
-| 加计数 <br>LAD： <br>  ![](icon/02-01.png){width="113" height="171"} <br>SCL：CTU  | <br>      <br>        当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV增加1； <br>      <br>      <br>        当CV=PV时，Q输出&ldquo;1&rdquo;，此后当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，Q保持输出&ldquo;1&rdquo;，CV继续增加1直到达到计数器指定的整数类型的最大值。；<br>      <br>      <br>        在任意时刻，只要R为&ldquo;1&rdquo;时，Q输出&ldquo;0&rdquo;，CV立即停止计数并回到0；<br>      <br>  |    ![](icon/02-02.png){width="414" height="261"}  |
-| 减计数 <br>      LAD： <br>  ![](icon/02-03.png){width="113" height="117"}    <br>      SCL：CTD   | <br>      <br>        当CD从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV减少1； <br>      <br>      <br>        当CV=0时，Q输出&ldquo;1&rdquo;，此后当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，Q保持输出&ldquo;1&rdquo;，CV继续减少1直到达到计数器指定的整数类型的最小值；<br>      <br>      <br>        只要LD为&ldquo;1&rdquo;时，Q输出&ldquo;0&rdquo;，CV立即停止计数并回到PV值；<br>      <br>   | ![](icon/02-04.png){width="411" height="218"}     |
-| 加减计数 <br>      LAD： <br>  ![](icon/02-05.png){width="113" height="250"}    <br>      SCL：CTUD | <br>      <br>  当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV增加1；<br>         <br>        当CD从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV减少1； <br>          <br>    当CV&gt;=PV时，QU输出&ldquo;1&rdquo;；当CV&lt;PV时，QU输出&ldquo;0&rdquo;；<br>          <br>    当CV&lt;=0时，QD输出&ldquo;1&rdquo;；当CV&gt;0时，QD输出&ldquo;0&rdquo;； <br>           <br>     CV的上下限取决于计数器指定的整数类型的最大值与最小值；<br>        <br>        只要R为&ldquo;1&rdquo;时，QD输出&ldquo;1&rdquo;，CV立即停止计数并回到0；<br>       <br>        只要LD为&ldquo;1&rdquo;时，QU输出&ldquo;1&rdquo;，CV立即停止计数并回到PV值。 <br>      <br>     | ![](icon/02-06.png){width="409" height="274"}     |
+| 指令                                                                                                | 说明                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              | 时序图                                        |
+| --------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| 加计数 <br>LAD： <br>  ![](icon/02-01.png){width="113" height="171"} <br>SCL：CTU                   | <br>      <br>        当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV增加1； <br>      <br>      <br>        当CV=PV时，Q输出&ldquo;1&rdquo;，此后当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，Q保持输出&ldquo;1&rdquo;，CV继续增加1直到达到计数器指定的整数类型的最大值。；<br>      <br>      <br>        在任意时刻，只要R为&ldquo;1&rdquo;时，Q输出&ldquo;0&rdquo;，CV立即停止计数并回到0；<br>      <br>                                                                                                                                                                                                                                           | ![](icon/02-02.png){width="414" height="261"} |
+| 减计数 <br>      LAD： <br>  ![](icon/02-03.png){width="113" height="117"}    <br>      SCL：CTD    | <br>      <br>        当CD从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV减少1； <br>      <br>      <br>        当CV=0时，Q输出&ldquo;1&rdquo;，此后当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，Q保持输出&ldquo;1&rdquo;，CV继续减少1直到达到计数器指定的整数类型的最小值；<br>      <br>      <br>        只要LD为&ldquo;1&rdquo;时，Q输出&ldquo;0&rdquo;，CV立即停止计数并回到PV值；<br>      <br>                                                                                                                                                                                                                                                      | ![](icon/02-04.png){width="411" height="218"} |
+| 加减计数 <br>      LAD： <br>  ![](icon/02-05.png){width="113" height="250"}    <br>      SCL：CTUD | <br>      <br>  当CU从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV增加1；<br>         <br>        当CD从&ldquo;0&rdquo;变为&ldquo;1&rdquo;，CV减少1； <br>          <br>    当CV&gt;=PV时，QU输出&ldquo;1&rdquo;；当CV&lt;PV时，QU输出&ldquo;0&rdquo;；<br>          <br>    当CV&lt;=0时，QD输出&ldquo;1&rdquo;；当CV&gt;0时，QD输出&ldquo;0&rdquo;； <br>           <br>     CV的上下限取决于计数器指定的整数类型的最大值与最小值；<br>        <br>        只要R为&ldquo;1&rdquo;时，QD输出&ldquo;1&rdquo;，CV立即停止计数并回到0；<br>       <br>        只要LD为&ldquo;1&rdquo;时，QU输出&ldquo;1&rdquo;，CV立即停止计数并回到PV值。 <br>      <br> | ![](icon/02-06.png){width="409" height="274"} |
 
 ## S7-1200 计数器创建
 
@@ -134,7 +134,7 @@ S7-1200计数器创建有以下几种方法：
 
 ## S7-1200 计数器常见问题
 
-!!! question "1\. 为什么计数器不计数？"
+1\. 为什么计数器不计数?
 
     答：可能原因如下：
 
@@ -142,7 +142,7 @@ S7-1200计数器创建有以下几种方法：
 
     - （2）计数器的背景数据块重复使用。
 
-!!! question "2\. 如何编程自复位计数器并产生脉冲？"
+2\. 如何编程自复位计数器并产生脉冲?
 
     答：正确答案见图11，错误答案见图12、13。
 

@@ -2,7 +2,7 @@
 
 ## OB 组织块
 
-!!! question "什么是组织块？"
+什么是组织块?
 
     组织块是操作系统和用户程序之间的接口。OB 用于执行具体的程序：
     
@@ -22,25 +22,25 @@ OB 内部调用 FB、FC，并且这些 FB、FC 还可以继续向下嵌套调用
 
 !!! info "组织块 OB 的类型"
 
-    | &nbsp;                            | 允许的数量   | 默认的优先级                                                                                                                                                                                       |
-    |-----------------------------------|---------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-    | 程序循环（Program cycle）               | &gt;=0  | 1                                                                                                                                                                                            |
-    | 启动OB（Startup）                     | &gt;=0  | 1                                                                                                                                                                                            |
-    | 时间中断（Time of day）**               | &lt;=2  | 2                                                                                                                                                                                            |
-    | 延时中断（Time delay interrupt）*       | &lt;=4  | OB 20：3 <br>      OB 21：4 <br>      OB 22：5 <br>      OB 23：6 <br>      OB 123 - OB 32767：3                                                                                                  |
-    | 循环中断（Cyclic interrupt）*           | &lt;=4  | OB 30：8 <br>      OB 31：9 <br>      OB 32：10 <br>      OB 33：11 <br>      OB 34：12 <br>      OB 35：13 <br>      OB 36：14 <br>      OB 37：16 <br>      OB 38：17 <br>      OB 123 - OB 32767：7 |
-    | 硬件中断（Hardware interrupt）          | &lt;=50 | 18                                                                                                                                                                                           |
-    | 时间错误（Time error interrupt）        | &lt;=1  | 22或26                                                                                                                                                                                        |
-    | 诊断中断（Diagnostic error interrupt）  | &lt;=1  | 5                                                                                                                                                                                            |
-    | 插拔中断（Pull or plug of modules）**   | &lt;=1  | 6                                                                                                                                                                                            |
-    | 机架或站故障（Rack or station failure）** | &lt;=1  | 6                                                                                                                                                                                            |
-    | 状态中断（Status）**                    | &lt;=1  | 4                                                                                                                                                                                            |
-    | 更新中断（Update）**                    | &lt;=1  | 4                                                                                                                                                                                            |
-    | 配置文件中断（Profile）**                 | &lt;=1  | 4                                                                                                                                                                                            |
-    | MC-Servo ***                      | &lt;=1  | 25                                                                                                                                                                                           |
-    | MC-Interpolator ***               | &lt;=1  | 24                                                                                                                                                                                           |
-    | MC-PreServo ****                  | &lt;=1  | -                                                                                                                                                                                            |
-    | MC-PostServo ****                 | &lt;=1  | -                                                                                                                                                                                            |
+    | &nbsp;                                    | 允许的数量 | 默认的优先级                                                                                                                                                                                           |
+    | ----------------------------------------- | ---------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+    | 程序循环（Program cycle）                 | &gt;=0     | 1                                                                                                                                                                                                      |
+    | 启动OB（Startup）                         | &gt;=0     | 1                                                                                                                                                                                                      |
+    | 时间中断（Time of day）**                 | &lt;=2     | 2                                                                                                                                                                                                      |
+    | 延时中断（Time delay interrupt）*         | &lt;=4     | OB 20：3 <br>      OB 21：4 <br>      OB 22：5 <br>      OB 23：6 <br>      OB 123 - OB 32767：3                                                                                                       |
+    | 循环中断（Cyclic interrupt）*             | &lt;=4     | OB 30：8 <br>      OB 31：9 <br>      OB 32：10 <br>      OB 33：11 <br>      OB 34：12 <br>      OB 35：13 <br>      OB 36：14 <br>      OB 37：16 <br>      OB 38：17 <br>      OB 123 - OB 32767：7 |
+    | 硬件中断（Hardware interrupt）            | &lt;=50    | 18                                                                                                                                                                                                     |
+    | 时间错误（Time error interrupt）          | &lt;=1     | 22或26                                                                                                                                                                                                 |
+    | 诊断中断（Diagnostic error interrupt）    | &lt;=1     | 5                                                                                                                                                                                                      |
+    | 插拔中断（Pull or plug of modules）**     | &lt;=1     | 6                                                                                                                                                                                                      |
+    | 机架或站故障（Rack or station failure）** | &lt;=1     | 6                                                                                                                                                                                                      |
+    | 状态中断（Status）**                      | &lt;=1     | 4                                                                                                                                                                                                      |
+    | 更新中断（Update）**                      | &lt;=1     | 4                                                                                                                                                                                                      |
+    | 配置文件中断（Profile）**                 | &lt;=1     | 4                                                                                                                                                                                                      |
+    | MC-Servo ***                              | &lt;=1     | 25                                                                                                                                                                                                     |
+    | MC-Interpolator ***                       | &lt;=1     | 24                                                                                                                                                                                                     |
+    | MC-PreServo ****                          | &lt;=1     | -                                                                                                                                                                                                      |
+    | MC-PostServo ****                         | &lt;=1     | -                                                                                                                                                                                                      |
 
 
 

@@ -23,35 +23,36 @@ of Byte可以MOVE到Array\[1..2\] of Byte。
 
 表1 MOVE的传送条件
 
-| 传送源 (IN) | 传送目标 (OUT1) |     |
-| --- | --- | --- |
-| |进行 IEC 检查 | 不进行 IEC 检查 |
-| BYTE | BYTE、WORD、DWORD | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、TIME、DATE、TOD、CHAR |
-| WORD | WORD、DWORD | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、TIME、DATE、TOD、CHAR |
-| DWORD | DWORD | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、REAL、TIME、DATE、TOD、CHAR |
-| SINT | SINT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| USINT | USINT, UINT, UDINT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| INT | INT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| UINT | USINT, UINT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| DINT | DINT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| UDINT | UDINT | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD |
-| REAL | REAL | DWORD, REAL |
-| LREAL | LREAL | LREAL |
-| TIME | TIME | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME |
-| DATE | DATE | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, DATE |
-| TOD | TOD | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TOD |
-| CHAR | CHAR, String中的字符 | BYTE, WORD, DWORD，CHAR，String中的字符 |
-| WCHAR | WCHAR, WString中的字符 | BYTE，WORD，DWORD，CHAR，WCHAR，WString中的字符 |
-| String中的字符 | CHAR, String中的字符 | CHAR, String中的字符 |
-| WString中的字符 | WCHAR, WString中的字符 | WCHAR, WString中的字符 |
+| 传送源 (IN)     | 传送目标 (OUT1)        |                                                                                     |
+| --------------- | ---------------------- | ----------------------------------------------------------------------------------- |
+|                 | 进行 IEC 检查          | 不进行 IEC 检查                                                                     |
+| BYTE            | BYTE、WORD、DWORD      | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、TIME、DATE、TOD、CHAR       |
+| WORD            | WORD、DWORD            | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、TIME、DATE、TOD、CHAR       |
+| DWORD           | DWORD                  | BYTE、WORD、DWORD、SINT、USINT、INT、UINT、DINT、UDINT、REAL、TIME、DATE、TOD、CHAR |
+| SINT            | SINT                   | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| USINT           | USINT, UINT, UDINT     | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| INT             | INT                    | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| UINT            | USINT, UINT            | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| DINT            | DINT                   | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| UDINT           | UDINT                  | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME, DATE, TOD             |
+| REAL            | REAL                   | DWORD, REAL                                                                         |
+| LREAL           | LREAL                  | LREAL                                                                               |
+| TIME            | TIME                   | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TIME                        |
+| DATE            | DATE                   | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, DATE                        |
+| TOD             | TOD                    | BYTE, WORD, DWORD, SINT, USINT, INT, UINT, DINT, UDINT, TOD                         |
+| CHAR            | CHAR, String中的字符   | BYTE, WORD, DWORD，CHAR，String中的字符                                             |
+| WCHAR           | WCHAR, WString中的字符 | BYTE，WORD，DWORD，CHAR，WCHAR，WString中的字符                                     |
+| String中的字符  | CHAR, String中的字符   | CHAR, String中的字符                                                                |
+| WString中的字符 | WCHAR, WString中的字符 | WCHAR, WString中的字符                                                              |
 
-!!! note "注意"
+:::{attention}
 
     - 1.如果输入 IN 数据类型的位长度超出输出 OUT
     数据类型的位长度，则源值的高位会丢失。如果输入 IN
     数据类型的位长度低于输出 OUT 数据类型的位长度，则目标值的高位会被改写为0。
     - 2.REAL传送至DWORD时是按位传送，不是取整。如果需要取整，可以使用ROUND、CONVERT_REAL_TO_DINT等指令。
     - 3.（不）进行IEC检查是指，在MOVE指令所在的OB/FC/FB属性中的\"IEC检查\"选项，仅在此块中生效。默认的\"IEC检查\"不激活。设置如图2所示。
+:::
 
 ![](images/01-02.jpg){width="641" height="350"}
 
@@ -101,10 +102,11 @@ of Byte可以MOVE到Array\[1..2\] of Byte。
   
 图9 存储器预留区域设置
 
-!!! warning "注意"
+:::{warning}
 
     - 1.IN和OUT的DB必须同时为优化DB或者非优化DB
     - 2.不允许同时输出到多个DB，即图4的形式。
+:::
 
 ![](images/01-10.jpg){width="889" height="120"}
 
@@ -128,7 +130,7 @@ LAD和SCL均为(U)MOVE_BLK指令。
 
 图13 指令详情
 
-!!! note "注意"
+:::{attention}
 
     1\.IN和OUT必须是数组的一个元素，例如\"DB26\".Static_1\[0\]，不能是常数、常量、普通变量，也不能是数组名。
 
@@ -170,15 +172,15 @@ MOVE_BLK_VARIANT的基本功能是数组之间部分元素的传送，并且是�
 
 表2 参数说明
 
-  |参数       |  声明    | 数据类型|
-  |------------|--------|------------------------------------------------|
-  |SRC        |  Input   | Variant、Array、其他（不包括Bool，Array of Bool）|
-  |COUNT     |   Input  |  UDINT|
-  |SRC_INDEX  |  Input  |  DINT|
-  |DEST_INDEX |  Input   | DINT|
-  |DEST       |  Output  |
-   Variant、Array、其他（不包括Bool，Array of Bool）|
-  |RET_VAL    |  Return  | INT|
+  | 参数                                              | 声明   | 数据类型                                          |
+  | ------------------------------------------------- | ------ | ------------------------------------------------- |
+  | SRC                                               | Input  | Variant、Array、其他（不包括Bool，Array of Bool） |
+  | COUNT                                             | Input  | UDINT                                             |
+  | SRC_INDEX                                         | Input  | DINT                                              |
+  | DEST_INDEX                                        | Input  | DINT                                              |
+  | DEST                                              | Output |
+  | Variant、Array、其他（不包括Bool，Array of Bool） |
+  | RET_VAL                                           | Return | INT                                               |
 
 MOVE_BLK_VARIANT指令通常用于将源数组SRC的部分元素传送至目的数组DEST的部分元素中，SRC与DEST数组元素必须完全相同。COUNT是传送的元素个数，SRC_INDEX是待传送的源数组的起始编号，DEST_INDEX是目的数组接收的起始编号，此处用编号不是下标的意思是，SRC_INDEX和DEST_INDEX都从0开始，对应SRC和DEST的第一个元素。
 

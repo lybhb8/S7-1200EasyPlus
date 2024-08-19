@@ -16,7 +16,7 @@ LAD和SCL均为(U)FILL_BLK指令。
 
 图2 指令详情
 
-!!! note "注意"
+:::{attention}
 
     1\.IN只能是基本数据类型，或者常数，不能是Struct、UDT、DTL等复杂数据类型。
 
@@ -38,6 +38,7 @@ LAD和SCL均为(U)FILL_BLK指令。
     3\.COUNT是传输个数，可以是正整数的常数，如果是变量，数据类型支持USINT、UINT、UDINT。
 
     4\.如果接收区域的变量个数小于COUNT，则只传送可接收的区域的数据。如果激活指令的ENO功能，则ENO=False。
+:::
 
 ## (U)FILL_BLK的使用
 

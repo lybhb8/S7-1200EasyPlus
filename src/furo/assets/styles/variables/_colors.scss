@@ -13,13 +13,13 @@
   --color-foreground-primary: #080505; // for main text and headings
   --color-foreground-secondary: #5a5c63; // for secondary text
   --color-foreground-muted: #646776; // for muted text
-  --color-foreground-border: #878787; // for content borders
+  --color-foreground-border: #676767; // for content borders
 
   --color-background-primary: #fcfcfc; // for content
   --color-background-secondary: #f8f8ff; // for navigation + ToC
   --color-background-hover: #eeeeee; // for navigation-item hover
   --color-background-hover--transparent: #efeff400;
-  --color-background-border: #eaebea; // for UI borders
+  --color-background-border: #8a8b8a; // for UI borders
   --color-background-item: #ccc; // for "background" items (eg: copybutton)
 
   // Announcements
@@ -51,7 +51,7 @@
 
   // GUI Labels
   --color-guilabel-background: #ddeeff80;
-  --color-guilabel-border: #bedaf580;
+  --color-guilabel-border: #8eaad580;
   --color-guilabel-text: var(--color-foreground-primary);
 
   // Admonitions!

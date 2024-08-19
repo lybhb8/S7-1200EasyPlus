@@ -112,7 +112,7 @@ html_theme_options: Dict[str, Any] = {
     "source_repository": "https://github.com/lybhb8/S7-1200EasyPlus",
     "source_branch": "sphinx-rtd",
     "source_directory": "docs/",
-    "sidebar_hide_name": True,
+    "sidebar_hide_name": False,
     "navigation_with_keys": True,
     "globaltoc_includehidden": True,
 }
@@ -145,11 +145,11 @@ if RTD_TESTING or "FURO_RTD_TESTING" in os.environ:
         "https://assets.readthedocs.org/static/javascript/readthedocs-doc-embed.js",
     ]
     html_context["READTHEDOCS"] = True
-    html_context["current_version"] = "4.3"
+    html_context["current_version"] = "latest"
     html_context["conf_py_path"] = "/docs/"
     html_context["display_github"] = True
     html_context["github_user"] = "lybhb8"
-    html_context["github_repo"] = "https://github.com/lybhb8/S7-1200EasyPlus"
+    html_context["github_repo"] = "S7-1200EasyPlus"
     html_context["github_version"] = "latest"
     html_context["slug"] = "furo"
 

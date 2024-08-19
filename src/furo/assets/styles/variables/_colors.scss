@@ -11,12 +11,12 @@
 
   // Base Colors
   --color-foreground-primary: #080505; // for main text and headings
-  --color-foreground-secondary: #505c60; // for secondary text
+  --color-foreground-secondary: #5a5c63; // for secondary text
   --color-foreground-muted: #646776; // for muted text
   --color-foreground-border: #878787; // for content borders
 
-  --color-background-primary: #fafafa; // for content
-  --color-background-secondary: #f2f2fe; // for navigation + ToC
+  --color-background-primary: #fcfcfc; // for content
+  --color-background-secondary: #f8f8ff; // for navigation + ToC
   --color-background-hover: #eeeeee; // for navigation-item hover
   --color-background-hover--transparent: #efeff400;
   --color-background-border: #eaebea; // for UI borders
@@ -27,8 +27,10 @@
   --color-announcement-text: #eeebee;
 
   // Brand colors
-  --color-brand-primary: #254ab0;
-  --color-brand-content: #324fa6;
+  --color-brand-primary: #1a50f0;
+  --color-brand-content: #3767cd;
+  --color-brand-visited: #872ee0;
+
 
   // API documentation
   --color-api-background: var(--color-background-hover--transparent);

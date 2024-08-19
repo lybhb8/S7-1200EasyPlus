@@ -24,7 +24,7 @@ dependencies = [
 
 license = { file = "LICENSE"}
 authors = [
-    {name = "Pradyun Gedam", email = "mail@pradyunsg.me"},
+    {name = "lybhb8", email = "1341979804@qq.com"},
 ]
 classifiers = [
   "Framework :: Sphinx",
@@ -48,4 +48,4 @@ classifiers = [
 "sphinx.html_themes" = {furo = "furo"}
 
 [project.urls]
-GitHub = "https://github.com/lybhb8/Smart20-Docs"
+GitHub = "https://github.com/lybhb8/S7-1200EasyPlus"

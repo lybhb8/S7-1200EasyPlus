@@ -48,9 +48,32 @@ V4.3 ... ... 2022.02.01
 * 修正所有链接，并且更新到最新
 * 修正细小错误
 
-## Mkdocs-material Commands
+## Furo
 
-* `mkdocs new [dir-name]` * Create a new project.
-* `mkdocs serve` * Start the live-reloading docs server.
-* `mkdocs build` * Build the documentation site.
-* `mkdocs -h` * Print help message and exit.
+A clean customisable Sphinx documentation theme.
+
+### Quickstart
+
+Furo is distributed on [PyPI]. To use the theme in your Sphinx project:
+
+1. Install Furo in documentation's build environment.
+
+   ```text
+   pip install furo
+   ```
+
+2. Update the `html_theme` in `conf.py`.
+
+   ```py
+   html_theme = "furo"
+   ```
+
+3. Your Sphinx documentation's HTML pages will now be generated with this theme! 🎉
+
+[pypi]: https://pypi.org/project/furo/
+
+
+
+For more information, visit [Furo's documentation][quickstart-docs].
+
+[quickstart-docs]: https://pradyunsg.me/furo/quickstart

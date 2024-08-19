@@ -22,8 +22,8 @@ release = '4.3'
 # -- General configuration ---------------------------------------------------
 #
 
+
 extensions = [
-    
     # Sphinx's own extensions
     "sphinx.ext.autodoc",
     "sphinx.ext.extlinks",
@@ -45,20 +45,8 @@ extensions = [
 # 内联标签
 autosectionlabel_prefix_document = True
 
-source_suffix = {
-    
-    '.rst': 'restructuredtext',
-    '.txt': 'markdown',
-    '.md': 'markdown',
-}
 
-
-source_parsers = {'.md': 'recommonmark.parser.CommonMarkParser'}
-
-
-
-# -- Options for extlinks ----------------------------------------------------
-#
+# -- Options for extlinks --------
 
 extlinks = {
     "pypi": ("https://pypi.org/project/%s/", "%s"),
@@ -96,6 +84,16 @@ language = "zh_CN"
 html_static_path = ["_static"]
 html_css_files = ["pied-piper-admonition.css"]
 
+html_logo = "_static/logo.png"
+html_favicon = "_static/favicon.ico"
+
+
+# html_theme_options = {
+#     "light_logo": "logo.png",
+#     "dark_logo": "logo_dark.png",}
+
+
+
 html_theme_options: Dict[str, Any] = {
     "footer_icons": [
         {
@@ -112,9 +110,9 @@ html_theme_options: Dict[str, Any] = {
     "source_repository": "https://github.com/lybhb8/S7-1200EasyPlus",
     "source_branch": "sphinx-rtd",
     "source_directory": "docs/",
-    "sidebar_hide_name": False,
+    "sidebar_hide_name": True,
     "navigation_with_keys": True,
-    "globaltoc_includehidden": True,
+    "globaltoc_includehidden": False,
 }
 
 #if "READTHEDOCS" in os.environ:
@@ -150,7 +148,7 @@ if RTD_TESTING or "FURO_RTD_TESTING" in os.environ:
     html_context["display_github"] = True
     html_context["github_user"] = "lybhb8"
     html_context["github_repo"] = "S7-1200EasyPlus"
-    html_context["github_version"] = "latest"
+    html_context["github_version"] = "furo"
     html_context["slug"] = "furo"
 
 FONT_AWESOME_TESTING = False
@@ -170,11 +168,6 @@ if FONT_AWESOME_TESTING:
         },
     ]
 
-#html_logo = "_static/logo.png"
-html_favicon = "_static/favicon.ico"
 
-html_static_path = ["_static"]
-html_theme_options = {
-    "light_logo": "logo.png",
-    "dark_logo": "logo_dark.png",
-}
+
+

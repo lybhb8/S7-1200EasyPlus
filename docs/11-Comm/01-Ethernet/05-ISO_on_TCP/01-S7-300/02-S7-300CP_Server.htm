@@ -1,0 +1,382 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-300CP_Server_TIA</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 CPU 与S7-300 CP ISO on TCP通信（S7-1200作为客户端，S7-300使用TIA PORTAL）</h3>
+<p>S7-1200 CPU 与S7-300之间通过ISO on TCP 通信，需要在双方都建立连接，连接对象选择&ldquo;Unspecified&rdquo;。<br />
+所完成的通信任务为：<br />
+① S7-1200将DB3里的100个字节发送到S7-300的DB4中<br />
+② S7-300将DB3里的10个字节发送到S7-1200的DB4中</p>
+<h4>  硬件和软件需求及所完成的通信任务</h4>
+<p>  <strong>硬件：</strong><br />
+  ① S7-1200 CPU/S7-300 CPU+CP343-1<br />
+  ② PC（带以太网卡）<br />
+③ TP电缆</p>
+<p>  <strong>软件：</strong><br />
+  STEP7 V11 or Higher</p>
+<h3>S7-1200  组态</h3>
+<p>  <strong>1.	打开 STEP7 V11 软件并新建项目</strong><br />
+  <br />
+在 STEP7 V11的 “Portal View” 中选择 “Create new project” 创建一个新项目</p>
+<p>  <strong>2.	添加硬件并命名PLC</strong><br />
+  <br />
+  然后进入 “Project view”，在“Project tree” 下双击 “Add new device”，在对话框中选择所使用的S7-1200 CPU添加到机架上，命名为 PLC_1，如图1所示。<br />
+  <br />
+  <img src="images/2-01.gif" width="704" height="550" /><br />
+  <br />
+图1. 添加新设备  </p>
+<p>为了编程方便，使用 CPU 属性中定义的时钟位，定义方法如下：<br />
+  在 “Project tree” &gt; “PLC_1” &gt; “Device configuration” 中，选中 CPU ，然后在下面的属性窗口中，“Properties” &gt; “System and clock memory” 下，将系统位定义在MB1，时钟位定义在MB0，如图2所示。<br />
+  时钟位我们主要使用 M0.3，它是以2Hz 的速率在0和1之间切换的一个位，可以使用它去自动激活发送任务。</p>
+<p><img src="images/2-02.gif" width="568" height="516" /></p>
+<p>  图2. 系统位与时钟位<br />
+  <br />
+  <strong>3.	为 PROFINET 通信口分配以太网地址</strong><br />
+  <br />
+  在 “Device View”中点击 CPU 上代表PROFINET 通信口的绿色小方块，在下方会出现PROFINET 接口的属性，在 “Ethernet addresses” 下分配IP 地址为 192.168.0.1 ，子网掩码为255.255.255.0，如图3. 所示。<br />
+  <br />
+  <img src="images/2-03.gif" width="535" height="355" /><br />
+图3. 分配IP 地址<br />
+</p>
+<h3>S7-1200  编程</h3>
+<p><strong>１．在 PLC_1 的 OB1 中调用&ldquo;TCON&rdquo; 通信指令<br />
+  <br />
+  </strong> ① 在第一个 CPU 中调用发送通信指令，进入 &ldquo;Project tree&rdquo; &gt; &ldquo; PLC_1&rdquo; &gt; &ldquo;Program blocks&rdquo; &gt; &ldquo;OB1&rdquo; 主程序中，从右侧窗口 &ldquo;Instructions&rdquo; &gt; &ldquo;Communications&rdquo; &gt; &ldquo;OPEN User Communications&rdquo;下调用 &ldquo;TCON&rdquo; 指令，创建连接，如图4所示。<br />
+  <img src="images/2-04.gif" width="511" height="273" /><br />
+  <br />
+  图4. 调用&ldquo;TCON&rdquo;通信指令</p>
+<p>② 创建DB2 分配连接参数，见图5所示</p>
+<p><img src="images/2-05.gif" width="634" height="601" /></p>
+<p>图5. 创建连接数据块 DB2(Con_DB) </p>
+<p><br />
+  ③ 定义PLC_1的 &ldquo;TCON&rdquo;连接参数 <br />
+  <br />
+  PLC_1 的 TCON 指令的连接参数需要在指令下方的属性窗口&ldquo;Properties&rdquo;&gt; &ldquo;Configuration&rdquo;&gt;&ldquo;Connection parameter&rdquo;中设置，如图6所示。<br />
+  <br />
+  <img src="images/2-06.gif" width="634" height="538" /> <br />
+  <br />
+  图6. 定义 TCON 连接参数 <br />
+  <br />
+  <strong>连接参数说明：</strong></p>
+<table width="684" border="0">
+  <tr>
+    <td width="117">End point </td>
+    <td width="595">：可以通过点击选择按钮选择伙伴 CPU ：PLC3 </td>
+  </tr>
+  <tr>
+    <td>Connection type</td>
+    <td>：选择通信协议为 ISO on TCP（也可以选择 TCP 或UDP协议）</td>
+  </tr>
+  <tr>
+    <td>Connection ID　</td>
+    <td> ：连接的地址 ID 号，这个 ID 号在后面的编程里会用到</td>
+  </tr>
+  <tr>
+    <td>Connection data</td>
+    <td><p>：创建连接时，生成的Con_DB块。见图2所示</p></td>
+  </tr>
+  <tr>
+    <td>Active connection setup</td>
+    <td>：选择本地 PLC_1作为主动连接</td>
+  </tr>
+  <tr>
+    <td>Address details　</td>
+    <td>：定义通信伙伴方的端口号为：2000；如果选用的是 ISO on TCP 协议，则需要设定的TSAP 地址（ASCII 形式），本地 PLC_1可以设置成&ldquo;PLC1&rdquo;，伙伴方 Unspecified 可以设置成&ldquo;PLC3&rdquo;。　　　　</td>
+  </tr>
+</table>
+<p><br />
+  <strong>2．定义 PLC_1 的&ldquo;TSEND&rdquo;发送通信块接口参数</strong><br />
+  <br />
+  ①　调用 &ldquo;TSEND&rdquo; 在OB1内调用  发送100个字节数据到PLC2中 <br />
+  进入 &ldquo;Project tree&rdquo; &gt; &ldquo; PLC_1&rdquo; &gt; &ldquo;Program blocks&rdquo; &gt; &ldquo;OB1&rdquo; 主程序中，从右侧窗口 &ldquo;Instructions&rdquo; &gt; &ldquo;Communications&rdquo; &gt; &ldquo;OPEN User Communications&rdquo;下调用 &ldquo;TSEND&rdquo; 指令，如图7所示。<br />
+  <img src="images/2-07.gif" width="805" height="462" /> <br />
+  <br />
+  图7. 调用 TSEND <br />
+  <br />
+  ②　创建并定义PLC_1的发送数据区 DB 块。<br />
+  <br />
+  通过&ldquo;Project tree&rdquo;&gt;&ldquo;PLC_1&rdquo;&gt;&ldquo;Program blocks&rdquo;&gt;&ldquo;Add new block&rdquo;，选择&ldquo;Data block&rdquo; 创建 DB 块，选择绝对寻址，点击&ldquo;OK&rdquo;键，定义发送数据区为 100个字节的数组，如图8~9所示。</p>
+<p><img src="images/2-08.gif" width="634" height="601" /><br />
+  <br />
+  图8. 创建发送数据区 DB 块<br />
+  <br />
+  注意：对于双边编程通信的 CPU ，如果通信数据区使用 DB 块，既可以将 DB 块定义成符号寻址，也可以定义成绝对寻址。使用指针寻址方式，必须创建绝对寻址的 DB 块。</p>
+<p><img src="images/2-09.gif" width="677" height="95" /></p>
+<p>图9. 定义发送数据区为字节类型的数组 图 PLC1_TSENDC_DATA</p>
+<p> ③　定义 PLC_1 的&ldquo;TSEND&rdquo;发送通信块接口参数，如图10所示。</p>
+<p><img src="images/2-10.gif" width="485" height="305" /><br />
+  <br />
+  图10. 定义 TSEND 接口参数<br />
+  <br />
+  <strong>参数说明：</strong><br />
+  <strong>输入接口参数：</strong></p>
+<table width="680" border="0
+">
+  <tr>
+    <td width="96"><div align="left">REQ　　</div></td>
+    <td width="192"><div align="left">：= M0.3 </div></td>
+    <td width="378"><div align="left">// 使用 2Hz 的时钟脉冲，上升沿激活发送任务</div></td>
+  </tr>
+  <tr>
+    <td>ID</td>
+    <td>: = 1 </td>
+    <td>//创建连接ID</td>
+  </tr>
+  <tr>
+    <td><div align="left">LEN</div></td>
+    <td><div align="left">：= 100 </div></td>
+    <td><div align="left">//发送数据长度</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DATA　</div></td>
+    <td><div align="left">：= P#DB3.DBX0.0 BYTE 100 </div></td>
+    <td><div align="left">// 发送数据区的数据，使用指针寻址时，DB块要选用绝对寻址</div></td>
+  </tr>
+</table>
+<p><strong>输出接口参数：</strong></p>
+<table width="608" border="0">
+  <tr>
+    <td width="97"><div align="left">DONE</div></td>
+    <td width="193"><div align="left">：= M300.0</div></td>
+    <td width="304" ><div align="left">//任务执行完成并且没有错误，该位置 1</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">BUSY　</div></td>
+    <td><div align="left">：= M300.1 </div></td>
+    <td><div align="left">// 该位为 1，代表任务未完成，不能激活新任务</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR　　　</div></td>
+    <td><div align="left">：= M300.2 </div></td>
+    <td><div align="left">//通信过程中有错误发生，该位置 1</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">：= MW302 </div></td>
+    <td><div align="left">//有错误发生时，会显示错位信息号</div></td>
+  </tr>
+</table>
+<p><strong>3．在 PLC_1 的OB1中调用接收指令T_RCV 并配置基本参数</strong><br />
+  <br />
+  为了实现 PLC_1 接收来自 PLC_2 的数据，则在 PLC_1 中调用接收指令T_RCV 并配置基本参数。</p>
+<p>①　调用 &ldquo;TRCV&rdquo; 在OB1内调用 <br />
+  进入 &ldquo;Project tree&rdquo; &gt; &ldquo; PLC_1&rdquo; &gt; &ldquo;Program blocks&rdquo; &gt; &ldquo;OB1&rdquo; 主程序中，从右侧窗口 &ldquo;Instructions&rdquo; &gt; &ldquo;Communications&rdquo; &gt; &ldquo;OPEN User Communications&rdquo;下调用 &ldquo;TRCV&rdquo; 指令，配置接口参数，如图11所示。<br />
+  <br />
+  <img src="images/2-11.gif" width="464" height="307" /><br />
+  图11. 调用 TRCV 指令并配置接口参数</p>
+<p><strong>参数说明：</strong><br />
+  <strong>输入接口参数：</strong></p>
+<table width="729" border="0">
+  <tr>
+    <td width="100"><div align="left">EN_R </div></td>
+    <td width="195"><div align="left">：= TRUE</div></td>
+    <td width="420"><div align="left">// 准备好接收数据</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ID</div></td>
+    <td><div align="left">：= 1</div></td>
+    <td><div align="left">// 连接号，使用的是 TCON 的连接参数中 ID号</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">LEN</div></td>
+    <td><div align="left">：= 8 </div></td>
+    <td><div align="left">// 接收数据长度为 10 个字节</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DATA </div></td>
+    <td><div align="left">：= P#DB5.DBX0.0 BYTE 10 </div></td>
+    <td><div align="left">// 接收数据区的地址</div></td>
+  </tr>
+</table>
+<p><strong>输出接口参数：</strong></p>
+<table width="629" border="0">
+  <tr>
+    <td width="99"><div align="left">NDR </div></td>
+    <td width="165"><div align="left">：= M310.0 </div></td>
+    <td width="351"><div align="left">//  该位为 1，接收任务成功完成</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">BUSY</div></td>
+    <td><div align="left">：= M310.1 </div></td>
+    <td><div align="left">// 该位为 1，代表任务未完成，不能激活新任务</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR </div></td>
+    <td><div align="left">：= M310.2 </div></td>
+    <td><div align="left">// 通信过程中有错误发生，该位置 1</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">：= MW312 </div></td>
+    <td><div align="left"> // 有错误发生时，会显示错误信息号</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RCVD_LEN　　</div></td>
+    <td><div align="left">：= MW314 </div></td>
+    <td><div align="left">// 实际接收数据的字节数</div></td>
+  </tr>
+</table>
+<p>②　创建并定义PLC_1的接收数据区 DB 块。<br />
+  <br />
+通过&ldquo;Project tree&rdquo;&gt;&ldquo;PLC_1&rdquo;&gt;&ldquo;Program blocks&rdquo;&gt;&ldquo;Add new block&rdquo;，选择&ldquo;Data block&rdquo; 创建 DB 块，选择绝对寻址，点击&ldquo;OK&rdquo;键，定义接收数据区为 100个字节的数组，如图12~13所示。</p>
+<p><img src="images/2-12.gif" width="634" height="601" /><br />
+  <br />
+  图12. 创建接收数据区 DB 块<br />
+  <br />
+  注意：对于双边编程通信的 CPU ，如果通信数据区使用 DB 块，既可以将 DB 块定义成符号寻址，也可以定义成绝对寻址。使用指针寻址方式，必须创建绝对寻址的 DB 块。</p>
+<p><img src="images/2-13.gif" width="653" height="112" /></p>
+<p>图13 定义接收数据区为字节类型的数组</p>
+<h3> S7-300 组态</h3>
+<p> <strong>1. 使用 STEP7 V11 软件添加新设备</strong><strong>并命名PLC3</strong><br />
+  <br />
+  然后进入 &ldquo;Project view&rdquo;，在&ldquo;Project tree&rdquo; 下双击 &ldquo;Add new device&rdquo;，在对话框中选择所使用的S7-300 CPU添加到机架上，命名为 PLC3，如图14所示。<br />
+  <br />
+  <img src="images/2-14.gif" width="704" height="697" /><br />
+  <br />
+  图14. 添加新设备 </p>
+<p><strong>2. 使用 STEP7  V11 软件</strong><strong>配制硬件组态</strong></p>
+<p>进入 &ldquo;PLC3&rdquo;，在&ldquo;Project tree&rdquo; 下双击 &ldquo;Device configuration&rdquo;，在对话框中选择所使用的S7-300 CP通讯卡添加到机架上，如图15所示。</p>
+<p><img src="images/2-15.gif" width="640" height="355" /><br />
+  图15. 组态CP卡</p>
+<p>为了编程方便，使用 CPU 属性中定义的时钟位，定义方法如下：<br />
+  在 &ldquo;Project tree&rdquo; &gt; &ldquo;PLC3&rdquo; &gt; &ldquo;Device configuration&rdquo; 中，选中 CPU ，然后在下面的属性窗口中，&ldquo;Properties&rdquo; &gt; &ldquo;clock memory&rdquo; 下时钟位定义在MB0，如图16所示。<br />
+  时钟位我们主要使用 M0.3，它是以2Hz 的速率在0和1之间切换的一个位，可以使用它去自动激活发送任务。</p>
+<p><img src="images/2-16.gif" width="378" height="357" /></p>
+<p> 图16. 系统位与时钟位<br />
+  <br />
+  <strong>3.	为 PROFINET 通信口分配以太网地址</strong><br />
+  <br />
+  在 &ldquo;Device View&rdquo;中点击 CP设备 上代表PROFINET 通信口的绿色小方块，在下方会出现PROFINET 接口的属性，在 &ldquo;Ethernet addresses&rdquo; 下分配IP 地址为 192.168.0.3 ，子网掩码为255.255.255.0，如图17所示。<br />
+  <br />
+  <img src="images/2-17.gif" width="730" height="515" /><br />
+  图17. 分配IP 地址</p>
+<p><strong>4.	创建 CPU的逻辑网络连接</strong><br />
+  <br />
+  在项目树 &ldquo;Project tree&rdquo;&gt;&ldquo;Devices &amp; Networks&rdquo; &gt;&ldquo;Networks view&rdquo; 视图下，创建两个设备的连接。用鼠标点中 PLC_3 上 CP343-1的PROFINET通信口的绿色小方框，然后拖拽出一条线，到另外一个PLC_1 上的PROFINET通信口上，松开鼠标，连接就建立起来了，如图18所示。<br />
+  <br />
+  <img src="images/2-18.gif" width="451" height="149" /><br />
+  图18. 建立两个 CPU的逻辑连接</p>
+<p><strong>5. 网络组态</strong><br />
+  <br />
+打开 &ldquo;Network View&rdquo; 配置网络，选中 CPU，然后选中 &ldquo;Connnection&rdquo; 在连接列表里建立新的连接并选择连接对象和通信协议，如图19. 所示。</p>
+<p><img src="images/2-19.gif" width="857" height="438" /></p>
+<p> 图19. 创建新的连接并选择 ISO-on-TCP 协议<br />
+  <br />
+  点击确定，配置详细连接参数如IP 地址及TSAP号, 如图20. 所示。<br />
+  <br />
+  <img src="images/2-20.gif" width="908" height="356" /><br />
+  <br />
+  图20. 详细通讯参数<br />
+  <br />
+  配置完连接并编译存盘后。</p>
+<h3> S7-300 编程</h3>
+<p><strong>1. 软件编程</strong><br />
+  <br />
+  在OB1中，从&ldquo;Instruction&rdquo;&gt;&ldquo;Communication processor&rdquo;&gt;&ldquo;Simatic NET CP&rdquo;下，调用AG_SEND、AG_RECV通信指令。创建发送和接收数据块 DB3和DB4，定义成100个字节的数组。 如图21~22 </p>
+<p><img src="images/2-21.gif" width="994" height="344" /></p>
+<p>图21. 调用AG_SEND</p>
+<p><img src="images/2-22.gif" width="982" height="344" /></p>
+<p>图22. 调用AG_RECV</p>
+<table width="593" border="0">
+  <tr>
+    <td colspan="2"><div align="left">CALL  &ldquo;AG_SEND&rdquo;</div></td>
+    <td width="290"><div align="left">//调用AG_SEND</div></td>
+  </tr>
+  <tr>
+    <td width="88"><div align="left">ACT        　</div></td>
+    <td width="201"><div align="left">：=%M0.2 </div></td>
+    <td><div align="left">//为１时，激活发送任务</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ID </div></td>
+    <td><div align="left">：=1</div></td>
+    <td><div align="left">// 连接号，要与连接配置中一致</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">LADDR</div></td>
+    <td><div align="left">：=W#16#100 </div></td>
+    <td><div align="left">//CP的地址，要与配置中一致见图3</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">SEND</div></td>
+    <td><div align="left">：=P#DB3.DBX0.0 BYTE 10 </div></td>
+    <td><div align="left">//发送数据区</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">LEN</div></td>
+    <td><div align="left">：=10</div></td>
+    <td><div align="left">//发送数据的长度</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DONE </div></td>
+    <td><div align="left">：=%M10.0</div></td>
+    <td><div align="left">//为1时，发送完成</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR</div></td>
+    <td><div align="left">：=%M10.2</div></td>
+    <td><div align="left">//为1时，有故障发生</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">：=%MW12</div></td>
+    <td><div align="left">//状态代码</div></td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+<table width="593" border="0">
+  <tr>
+    <td colspan="2"><div align="left">CALL &ldquo; AG_RECV&rdquo;</div></td>
+    <td width="290"><div align="left">//调用AG_RECV</div></td>
+  </tr>
+  <tr>
+    <td width="88"><div align="left">ID</div></td>
+    <td width="201"><div align="left">：=1</div></td>
+    <td><div align="left"> // 连接号，要与连接配置列表中一致，</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">LADDR</div></td>
+    <td><div align="left">：=W#16#100 </div></td>
+    <td><div align="left">//CP的地址，要与配置中一致，见图3</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RECV     　</div></td>
+    <td><div align="left">：=P#DB4.DBX 0.0 BYTE 100</div></td>
+    <td><div align="left"> //接收数据区</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">NDR </div></td>
+    <td><div align="left">：=%M20.0 </div></td>
+    <td><div align="left">//为1时，接收到新数据</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ERROR </div></td>
+    <td><div align="left">：=%M20.1</div></td>
+    <td><div align="left">//为1时，有故障发生</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">STATUS</div></td>
+    <td><div align="left">：=%MW22</div></td>
+    <td><div align="left"> //状态代码</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">LEN</div></td>
+    <td><div align="left">：=%MW24</div></td>
+    <td><div align="left">//接收到的实际数据长度</div></td>
+  </tr>
+</table>
+<br />
+<p>注意：AG_SEND/AG_RECV 管用 LADDER定义为 CP卡硬件地址，参考图15</p>
+<h3> 监控通信结果 </h3>
+<p> 下载S7-1200和S7-300中的所有组态及程序，监控通信结果，如图23所示。<br />
+  在S7-1200 CPU中向DB3中写入数据：&ldquo;1&rdquo;、&ldquo;2&rdquo;、&ldquo;3&rdquo;....，则在S7-300中的DB4块收到数据也为&ldquo;1&rdquo;、&ldquo;2&rdquo;、&ldquo;3&rdquo;...。<br />
+  在S7-300 CPU中向DB3中写入数据：&ldquo;10&rdquo;、&ldquo;20&rdquo;、&ldquo;30&rdquo;....，则在S7-1200中的DB4块收到数据也为&ldquo;10&rdquo;、&ldquo;20&rdquo;、&ldquo;30&rdquo;...。<br />
+  <img src="images/2-23.gif" width="1023" height="384" /><br />
+图23. 监控表</p>
+</body>
+</html>

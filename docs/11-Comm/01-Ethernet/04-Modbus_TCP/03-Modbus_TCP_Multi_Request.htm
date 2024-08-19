@@ -1,0 +1,209 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Modbus_TCP_Multi_Request</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 MODBUS TCP 通信多请求处理</h3>
+<p class="STYLE3">单独的客户机连接需要遵循的规则：</p>
+<p class="STYLE2">1. 每个“MB_CLIENT”连接需要使用一个不同的背景数据块；</p>
+<p class="STYLE2">2. 每个“MB_CLIENT”连接必须指定一个服务器 IP 地址；</p>
+<p class="STYLE2">3. 每个“MB_CLIENT”连接必须指定一个唯一的连接 ID；</p>
+<p class="STYLE2">4. 是否需要唯一的 IP 端口号取决于服务器组态；</p>
+<p class="STYLE2">连接 ID 和背景数据块组合成对，对每个连接来说，组合对都是唯一的。</p>
+<p class="STYLE3">对于多请求处理，有两种方法：</p>
+<p class="STYLE2">方法一：如果 TCP 连接充裕，可以建立多个不同的连接发送请求，即每个请求使用一个独立的连接，调用独立的“MB_CLIENT”功能块，具体操作参考“Modbus TCP”部分，<a href="01-Modbus_TCP_V4/01-Client.html">链接</a>。</p>
+<p class="STYLE2">通过不同的连接发送多个请求，“MB_CLIENT”功能块多次调用，但是需要使用不同的背景数据块，不同的 ID 号和不同的端口号。</p>
+<p class="STYLE2"><a href="03-Modbus_TCP_Multi_Request.htm#a">方法二：通过公共的连接发送多个请求</a></p>
+<p class="STYLE2">这个方法适合 CPU 访问一个 Modbus TCP 服务器，但是有多个作业的情况，例如有读也有写，或者读多个区域等。</p>
+<p class="STYLE2">通过公共的连接发送多个请求，“MB_CLIENT”功能块多次调用，但是需要使用相同的背景数据块，连接 ID 号，IP 地址和端口号，根据需要修改模式、地址、长度、指针等。</p>
+<p class="STYLE2">在任意时间，只能有一个 MB_CLIENT 请求处于激活状态，在一个请求完成执行后，下一个请求再开始执行，轮循处理。</p>
+<p class="STYLE2"><a href="03-Modbus_TCP_Multi_Request.htm#b">方法二特例：MODBUS TCP 客户端访问网关后的多个 MODBUS RTU 从站</a></p>
+<p class="STYLE2">这个方法适合 CPU 通过 Modbus TCP 转 Modbus RTU 网关，访问网关后多个 Modbus RTU 从站数据。CPU 仅仅和网关建立一个 Modbus TCP 连接，就可以访问多个站的数据。</p>
+<p class="STYLE2">通过公共的连接发送多个请求，&ldquo;MB_CLIENT&rdquo;功能块多次调用，但是需要使用相同的背景数据块，连接 ID 号，IP 地址和端口号。参数&ldquo; MB_Unit_ID &rdquo; 使用不同的值，根据需要修改模式、地址、长度、指针等。</p>
+<p class="STYLE2">在任意时间，只能有一个 MB_CLIENT 请求处于激活状态，在一个请求完成执行后，下一个请求再开始执行，轮循处理。</p>
+<h4 class="STYLE2"><a name="a" id="a"></a>方法二轮循处理的操作</h4>
+<p class="STYLE2">一.软硬件要求</p>
+<p class="STYLE2">MB_Client 指令的使用要求：软件 V11 SP1 及以上版本，CPU 固件版本 V1.02 及以上版本。</p>
+<p class="STYLE2">二.测试条件</p>
+<p class="STYLE2">硬件：CPU 1214C(DC/DC/DC) V4.5 ，电脑（ModSim32 调试软件）；</p>
+<p class="STYLE2">软件：TIA PORTAL STEP 7 V17</p>
+<p class="STYLE2">实验：S7-1200 作 Modbus TCP 客户机，用功能码 3 对调试软件先进行读取地址 40001 开始的 2 个字，然后用功能码 16 对地址 40003 开始的 2 个字进行写入。 </p>
+<p class="STYLE2">三.组态配置</p>
+<p class="STYLE2">1. S7-1200 的 IP 地址192.168.1.42，如图 1 所示。</p>
+<p class="STYLE2"><img src="images/3-01.png" width="944" height="385" /></p>
+<p class="STYLE2">图 1. IP 地址设置</p>
+<p class="STYLE2">2. ModSim32 调试软件设置</p>
+<p class="STYLE2">服务器采用 ModSim32 软件测试，首先将测试电脑的 IP 地址设置成192.168.1.201，如图 2 所示。</p>
+<p class="STYLE2"><img src="images/3-02.png" width="464" height="580" /></p>
+<p class="STYLE2">图 2. 电脑的 IP 地址</p>
+<p class="STYLE2">打开 ModSim32 软件，然后通过 &ldquo;File&rdquo;&gt;&quot;New&quot;，新建设置 03 地址区、起始地址 40001、长度 4、设备 ID 255 等，如图 3 所示。</p>
+<p class="STYLE2"><img src="images/3-03.png" width="529" height="496" /></p>
+<p class="STYLE2">图 3. ModSim32 调试软件的从站设置</p>
+<p class="STYLE2">在“Connection”中选择“Modbus/TCP Svr”，设置本地服务器端口号为 502，如图 4 所示。 </p>
+<p class="STYLE2"><img src="images/3-04.png" width="517" height="485" /></p>
+<p class="STYLE2">图 4. 连接设置 </p>
+<p class="STYLE2">四.编程</p>
+<p class="STYLE2">1. 新建 FB</p>
+<p class="STYLE2">如图 5 所示，新建 FB，命名为 Comm，在静态变量中增加参数。</p>
+<p class="STYLE2"><img src="images/3-05.png" width="523" height="615" /></p>
+<p class="STYLE2">图 5. 设置 FB 参数</p>
+<p class="STYLE2">参数含义参见表 1：</p>
+<p class="STYLE2">表 1. FB 接口参数含义</p>
+<table width="500" border="1">
+  <tr>
+    <th scope="col">参数</th>
+    <th scope="col">含义</th>
+  </tr>
+  <tr>
+    <th scope="row">statStep</th>
+    <td>步骤号</td>
+  </tr>
+  <tr>
+    <th scope="row">instClient</th>
+    <td>MB_CLIENT 多重背景</td>
+  </tr>
+  <tr>
+    <th scope="row">statReq</th>
+    <td rowspan="5">MB_CLIENT 的实参，程序中会在需要时修改其值</td>
+  </tr>
+  <tr>
+    <th scope="row">statMode</th>
+  </tr>
+  <tr>
+    <th scope="row">statAddr</th>
+  </tr>
+  <tr>
+    <th scope="row">statLen</th>
+  </tr>
+  <tr>
+    <th scope="row">statPtr</th>
+  </tr>
+  <tr>
+    <th scope="row">statConn</th>
+    <td>连接参数，具体含义参见<a href="01-Modbus_TCP_V4/01-Client.html">链接</a>文档</td>
+  </tr>
+  <tr>
+    <th scope="row">statRead</th>
+    <td>读取到的数据</td>
+  </tr>
+  <tr>
+    <th scope="row">statWrite</th>
+    <td>待写入的数据</td>
+  </tr>
+</table>
+<p class="STYLE2">2. 编写轮循功能</p>
+<p class="STYLE2">如图 6 所示，例子中使用 SCL 的 CASE OF 方式编写轮询程序，SCL 的 CASE OF 指令编写顺控可以参考链接：<a href="../../../07-Program/03-instruction/05-SCL/03-FAQ.html#b">文档</a>。</p>
+<p class="STYLE2">思路如下：</p>
+<p class="STYLE2">步骤 0：等待连接建立，当连接建立则跳转到步骤 1。</p>
+<p class="STYLE2">步骤 1：设置读取参数，触发读取，当读取正常后，将读取到的数据存入指定数据区，然后跳转到步骤 2，如果故障则跳转到步骤 100。</p>
+<p class="STYLE2">步骤 2：设置写入参数，将待写入数据送入指定区域，触发写入，当写入正常后，跳转到步骤 1，如果故障则跳转到步骤 100。</p>
+<p class="STYLE2">步骤 100：当故障消失，则跳转到步骤 0。</p>
+<p class="STYLE2">如果有更多的读写需要，可以建立更多的步骤。</p>
+<p class="STYLE2">以下程序的源文件压缩包链接：<a href="files/Comm.zip">源文件</a>。将压缩包下载解压缩后，得到文件&ldquo;Comm.scl&rdquo;，然后在 TIA Portal 项目中导入即可使用，导入源文件方式参见链接：<a href="../../../07-Program/03-instruction/05-SCL/03-FAQ.html#c">文档</a>。</p>
+<p class="STYLE2">以下例程仅供参考。<strong>读者如欲采纳，风险自担</strong>。</p>
+<p class="STYLE2"><img src="images/3-06.png" width="492" height="1428" /></p>
+<p>图 6. 例子程序</p>
+<p>3. 在主程序中调用该 FB，如图 7 所示。</p>
+<p><img src="images/3-07.png" width="559" height="107" /></p>
+<p>图 7. 调用程序</p>
+<p>五.通讯测试</p>
+<p>对 FB 背景数据块与 Modsim32 软件进行监视，如图 8 所示。</p>
+<p><img src="images/3-08.png" width="942" height="466" /></p>
+<p>图 8. 测试结果</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：</strong></p>
+<ol>
+  <li>如果需要更多的读写任务可以按照例子自行添加。</li>
+  <li>ModSim32 是做 Modbus RTU 从站以及 Modbus TCP 服务器的测试软件，是第三方软件，可以从网络上下载。</li>
+</ol>
+<h4 class="STYLE2"><a name="b" id="b"></a>方法二特例轮循处理的操作</h4>
+<p class="STYLE2">一.软硬件要求</p>
+<p class="STYLE2">MB_Client 指令的使用要求：软件 V11 SP1 及以上版本，CPU 固件版本 V1.02 及以上版本。</p>
+<p class="STYLE2">二.测试条件</p>
+<p class="STYLE2">硬件：CPU 1214C(DC/DC/DC) V4.5 ，电脑（ModSim32 调试软件）；</p>
+<p class="STYLE2">软件：TIA PORTAL STEP 7 V17</p>
+<p class="STYLE2">实验：S7-1200 作 Modbus TCP 客户机，用功能码 3 对调试软件先后进行读取 ID 为 1 的 40001 开始的 2 个字以及 ID 为 2 的 40003 开始的 2 个字。 </p>
+<p class="STYLE2">该实验仿真读取 Modbus TCP 转 Modbus RTU 网关后的多个 Modbus RTU 从站数据的功能。</p>
+<p class="STYLE2">三.组态配置</p>
+<p class="STYLE2">1. CPU 硬件组态参考图 1 的设置。</p>
+<p class="STYLE2">2. 电脑 IP 地址设置参考图 2 的设置。</p>
+3. ModSim32 <span class="STYLE2">通过 &ldquo;File&rdquo;&gt;&quot;New&quot;，新建 2 个文件，设置 03 地址区、起始地址 40001、长度 2、设备 ID 分别是 1 和 2，如图 9 所示。</span>然后参考图 4 进行连接设置。
+<p><img src="images/3-09.png" width="668" height="478" /></p>
+<p>图 9. ModSim32 的设置</p>
+<p class="STYLE2">四.编程</p>
+<p class="STYLE2">1. 新建 FB</p>
+<p class="STYLE2">如图 10 所示，新建 FB，命名为 CommUnitId，在静态变量中增加参数。</p>
+<p class="STYLE2"><img src="images/3-10.png" width="516" height="614" /></p>
+<p>图 10. 设置 FB 参数</p>
+<p class="STYLE2">参数含义参见表 2：</p>
+<p class="STYLE2">表 2. FB 接口参数含义</p>
+<table width="500" border="1">
+  <tr>
+    <th scope="col">参数</th>
+    <th scope="col">含义</th>
+  </tr>
+  <tr>
+    <th scope="row">statStep</th>
+    <td>步骤号</td>
+  </tr>
+  <tr>
+    <th scope="row">instClient</th>
+    <td>MB_CLIENT 多重背景</td>
+  </tr>
+  <tr>
+    <th scope="row">statReq</th>
+    <td rowspan="5">MB_CLIENT 的实参，程序中会在需要时修改其值</td>
+  </tr>
+  <tr>
+    <th scope="row">statMode</th>
+  </tr>
+  <tr>
+    <th scope="row">statAddr</th>
+  </tr>
+  <tr>
+    <th scope="row">statLen</th>
+  </tr>
+  <tr>
+    <th scope="row">statPtr</th>
+  </tr>
+  <tr>
+    <th scope="row">statConn</th>
+    <td>连接参数，具体含义参见<a href="01-Modbus_TCP_V4/01-Client.html">链接</a>文档</td>
+  </tr>
+  <tr>
+    <th scope="row">statRead1</th>
+    <td>1 号站读取到的数据</td>
+  </tr>
+  <tr>
+    <th scope="row">statRead2</th>
+    <td>2 号站读取到的数据</td>
+  </tr>
+</table>
+<p class="STYLE2">2. 编写轮循功能</p>
+<p class="STYLE2">如图 11 所示，例子中使用 SCL 的 CASE OF 方式编写轮询程序，SCL 的 CASE OF 指令编写顺控可以参考链接：<a href="../../../07-Program/03-instruction/05-SCL/03-FAQ.html#b">文档</a>。</p>
+<p class="STYLE2">思路如下：</p>
+<p class="STYLE2">步骤 0：等待连接建立，当连接建立则跳转到步骤 1。</p>
+<p class="STYLE2">步骤 1：设置读取参数，设置 MB_Unit_ID = 1，触发读取，当读取正常后，将读取到的数据存入指定数据区，然后跳转到步骤 2，如果故障同样跳转到步骤 2，如果连接中断则跳转到步骤 0。</p>
+<p class="STYLE2">步骤 2：设置读取参数，设置 MB_Unit_ID = 2，触发读取，当读取正常后，将读取到的数据存入指定数据区，然后跳转到步骤 1，如果故障同样跳转到步骤 1，如果连接中断则跳转到步骤 0。</p>
+<p class="STYLE2">如果有更多的读写需要，可以建立更多的步骤。</p>
+<p class="STYLE2">以下程序的源文件压缩包链接：<a href="files/CommUnitId.zip">源文件</a>。将压缩包下载解压缩后，得到文件&ldquo;CommUnitId.scl&rdquo;，然后在 TIA Portal 项目中导入即可使用，导入源文件方式参见链接：<a href="../../../07-Program/03-instruction/05-SCL/03-FAQ.html#c">文档</a>。</p>
+<p class="STYLE2">以下例程仅供参考。<strong>读者如欲采纳，风险自担</strong>。</p>
+<p class="STYLE2"><img src="images/3-11.png" width="519" height="1563" /></p>
+<p class="STYLE2">图 11. 例子程序</p>
+<p>3. 在主程序中调用该 FB，如图 12 所示。</p>
+<p><img src="images/3-12.png" alt="" width="556" height="95" /></p>
+<p>图 12. 调用程序</p>
+<p>五.通讯测试</p>
+<p>通讯结果如图 13 所示。</p>
+<p><img src="images/3-13.png" width="909" height="463" /></p>
+<p>图 13. 测试结果</p>
+<p><img src="images/3.gif" width="15" height="15" /><strong>注意：</strong></p>
+<ol>
+  <li>如果需要更多的读写任务可以按照例子自行添加。</li>
+  <li>ModSim32 是做 Modbus RTU 从站以及 Modbus TCP 服务器的测试软件，是第三方软件，可以从网络上下载。</li>
+</ol>
+</body>
+</html>

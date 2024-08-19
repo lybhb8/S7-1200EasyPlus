@@ -1,0 +1,203 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 与 S7-1200/S7-1500 S7 通信</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">S7-1200 与 S7-1200/S7-1500 S7 通信</h3>
+<p> S7-1200 的 PROFINET 通信口可以做 S7 通信的服务器端或客户端(CPU V2.0及以上版本)。S7-1200 仅支持 S7   单边通信，仅需在客户端单边组态连接和编程，而服务器端只准备好通信的数据就行。<br />
+</p>
+<p class="stl"><span class="styl4">硬件：</span></p>
+<ol>
+  <li>CPU 1214C DC/DC/DC，<strong>V2.0</strong></li>
+  <li>CPU 1214C DC/DC/DC，V4.1</li>
+</ol>
+<p class="styl4"><strong>软件： </strong></p>
+<ol>
+  <li>Step7 V13 SP1</li>
+</ol>
+<p><span class="styl4"><strong>所完成的通信任务：</strong></span></p>
+<ol>
+  <li>S7-1200 CPU Clinet 将通讯数据区 DB1 块中的 10 个字节的数据发送到 S7-1200 CPU server 的接收数据区 DB1   块中；</li>
+  <li>S7-1200 CPU Clinet 将S7-1200 CPU server 发送数据区 DB2 块中的 10 个字节的数据读到 S7-1200 CPU Clinet 的接收数据区 DB2   块中。</li>
+</ol>
+<p>S7-1200之间 S7 通讯，可以分2种情况来操作，具体如下：</p>
+<ol>
+  <li><a href="01-S7-1200.html#a">第一种情况：两个 S7-1200 在一个项目中操作 </a></li>
+  <li><a href="01-S7-1200.html#b">第二种情况：两个 S7-1200 不在一个项目中的操作</a></li>
+</ol>
+<p>此外本文也可用作S7-1200与S7-1500之间的S7通信文档。</p>
+<h3><a name="a" id="a"></a>一. 第一种情况（同一项目中操作）</h3>
+<p>使用 STEP 7 V13 在同一个项目中，新建两个S7-1200站点，然后做 S7 通讯。 </p>
+<h4>1.1 使用 Step7 V13生成项目</h4>
+<p>使用 STEP7 V13 创建一个新项目，并通过&ldquo;添加新设备&rdquo;组态 S7-1200 站 client V4.1，选择 CPU1214C DC/DC/DC V4.1（client IP:192.168.0.10）；接着组态另一个S7-1200站 server v2.0，选择 CPU1214C DC/DC/DC V2.0（server IP:192.168.0.12），如图 1 所示。</p>
+<p><img src="images/1-01.jpg" width="378" height="293" />   <img src="images/1-02.jpg" width="706" height="420" /></p>
+<p>图 1 在新项目中插入2个 S7-1200 站点</p>
+<h3><span class="STYLE3">1.2 网络配置，</span><strong class="STYLE3">组态 S7 连接</strong></h3>
+<p>在&ldquo;设备组态&rdquo;中 ，选择&ldquo;网络视图&rdquo;栏进行配置网络，点中左上角的&ldquo;连接&rdquo;图标，连接框中选择&ldquo;S7连接&rdquo;，然后选中client v4.1 CPU（客户端），右键选择&ldquo;添加新的连接&rdquo;，在创建新连接对话框内，选择连接对象&ldquo;server v2.0 CPU&rdquo;，选择&ldquo;主动建立连接&rdquo;后建立新连接，如图 2 所示。</p>
+<p><img src="images/1-03.jpg" width="640" height="406" /></p>
+<p><img src="images/1-04.jpg" width="899" height="552" /></p>
+<p>图 2 建立 S7 连接</p>
+<h4>1.3 S7 连接及其属性说明
+</h4>
+<p>在中间栏的&ldquo;连接&rdquo;条目中，可以看到已经建立的&ldquo;S7_连接_1&rdquo;，如图 3 所示。</p>
+<p><img src="images/1-05.jpg" width="646" height="104" /></p>
+<p>图 3 S7 连接</p>
+<p>点中上面的连接，在&ldquo;S7_连接_1&rdquo;的连接属性中查看各参数，如图 4 所示。</p>
+<p>在常规中，显示连接双方的设备，IP地址。</p>
+<p><img src="images/1-06.jpg" width="848" height="428" /></p>
+<p>在本地ID中：显示通讯连接的ID 号，这里ID=W#16#100（编程使用）。</p>
+<p><img src="images/1-07.jpg" width="532" height="247" /></p>
+<p>在特殊连接属性中：可以选择是否为主动连接，这里client v4.1是主动建立连接。</p>
+<p><img src="images/1-08.jpg" width="577" height="226" /></p>
+<p>在地址详细信息中：定义通讯双方的 TSAP 号，这里不需要修改。</p>
+<p><img src="images/1-09.jpg" width="894" height="300" /></p>
+<p>图 4 连接的属性</p>
+<p>配置完网络连接，双方都编译存盘并下载。如果通讯连接正常，连接在线状态，如图 5 所示。</p>
+<p><img src="images/1-10.jpg" width="639" height="107" /></p>
+<p>图 5 连接状态<br />
+</p>
+<h4>1.4 软件编程</h4>
+<p>在 S7-1200 两侧，分别创建发送和接收数据块 DB1 和 DB2，定义成 10 个字节的数组，如图 6 所示。</p>
+<p><img src="images/1-11.jpg" width="756" height="687" /></p>
+<p>图 6 数据块</p>
+<p>注意： 数据块的属性中，需要选择非优化块访问（把默认的勾去掉），如图 7 所示。</p>
+<p><img src="images/1-12.jpg" width="420" height="205" /></p>
+<p>图 7 数据块属性-非优化的块访问</p>
+<p>在主动建连接侧编程（client v4.1 CPU），在OB1中，从&ldquo;Instruction&rdquo; &gt;&ldquo;Communication&rdquo; &gt;&ldquo;S7 Communication&rdquo;下，调用 Get、Put   通信指令，如图 8 所示。</p>
+<p><img src="images/1-13.jpg" width="802" height="813" /></p>
+<p>图 8 发送接收指令调用</p>
+<p>功能块参数意义如下表1.</p>
+<table border="0" width="567">
+  <tbody>
+    <tr>
+      <td width="129">CALL &ldquo;PUT&rdquo;</td>
+      <td width="167">, %DB3</td>
+      <td width="257">//调用 PUT，使用背景DB块：DB3</td>
+    </tr>
+    <tr>
+      <td>REQ </td>
+      <td>：=%M0.0</td>
+      <td>//上升沿触发</td>
+    </tr>
+    <tr>
+      <td>ID </td>
+      <td>：=W#16#100</td>
+      <td>//连接号，要与连接配置中一致，创建连接时的本地连接号</td>
+    </tr>
+    <tr>
+      <td>DONE </td>
+      <td>：=%M0.5</td>
+      <td>// 为1时，发送完成</td>
+    </tr>
+    <tr>
+      <td>ERROR </td>
+      <td>：=%M0.6</td>
+      <td>// 为1时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS </td>
+      <td>：=%MW10</td>
+      <td>// 状态代码</td>
+    </tr>
+    <tr>
+      <td>ADDR_1 </td>
+      <td>：=P#DB1.DBX0.0 BYTE 10 </td>
+      <td>// 发送到通信伙伴数据区的地址</td>
+    </tr>
+    <tr>
+      <td>SD_1</td>
+      <td>：=P#DB1.DBX0.0 BYTE 10 </td>
+      <td>// 本地发送数据区</td>
+    </tr>
+  </tbody>
+</table>
+<table border="0" width="569">
+  <tbody>
+    <tr>
+      <td width="130">CALL &ldquo;GET&rdquo; </td>
+      <td width="167">, %DB4</td>
+      <td width="258">//调用 GET，使用背景DB块：DB4</td>
+    </tr>
+    <tr>
+      <td>REQ　</td>
+      <td>：=%M1.0</td>
+      <td>//上升沿触发 </td>
+    </tr>
+    <tr>
+      <td>ID </td>
+      <td>：=W#16#100</td>
+      <td>//连接号，要与连接配置中一致，创建连接时的本地连接号</td>
+    </tr>
+    <tr>
+      <td>NDR </td>
+      <td>：=%M1.5</td>
+      <td>//为1时，接收到新数据</td>
+    </tr>
+    <tr>
+      <td>ERROR </td>
+      <td>：=%M1.6 </td>
+      <td>//为1时，有故障发生</td>
+    </tr>
+    <tr>
+      <td>STATUS</td>
+      <td>：=%MW12</td>
+      <td>//状态代码</td>
+    </tr>
+    <tr>
+      <td>ADDR_1</td>
+      <td>：=P#DB2.DBX0.0 BYTE 10 </td>
+      <td>//从通信伙伴数据区读取数据的地址</td>
+    </tr>
+    <tr>
+      <td>RD_1</td>
+      <td>：=P#DB2.DBX0.0 BYTE 10 </td>
+      <td>//本地接收数据地址</td>
+    </tr>
+  </tbody>
+</table>
+<p>表1.  功能块参数意义 </p>
+<h4 align="left">1.5 监控结果</h4>
+<p align="left">通过在 S7-1200 客户机侧编程进行 S7 通讯，实现两个 CPU 之间数据交换，监控结果如图  9 所示。</p>
+<p align="left"><img src="images/1-14.jpg" width="997" height="520" /></p>
+<p align="left">图 9 监控结果</p>
+<h3><a name="b" id="b"></a>二. 第二种情况（不在同一项目中操作）</h3>
+<p>使用 STEP 7 V13 不在一个项目中，新建两个S7-1200站点，然后做 S7 通讯。 </p>
+<h3><span class="STYLE3">2.1 使用 Step7 V13生成项目</span></h3>
+<p>使用 STEP7 V13 创建一个新项目，并通过&ldquo;添加新设备&rdquo;组态 S7-1200 站 client V4.1，选择 CPU1214C DC/DC/DC V4.1；接着在另一个项目组态S7-1200站 server v2.0，选择 CPU1214C DC/DC/DC V2.0。</p>
+<h4><span class="STYLE3">2.2 网络配置，<strong class="STYLE3">组态 S7 连接</strong></span></h4>
+<p>在&ldquo;设备组态&rdquo;中 ，选择&ldquo;网络视图&rdquo;栏进行配置网络，点中左上角的&ldquo;连接&rdquo;图标，连接框中选择&ldquo;S7连接&rdquo;，然后选中client v4.1 CPU（客户端），右键选择&ldquo;添加新的连接&rdquo;，在创建新连接对话框内，选择连接对象&ldquo;未指定&rdquo;，如图 10 所示。</p>
+<p><img src="images/1-15.jpg" width="495" height="376" /></p>
+<p><img src="images/1-16.jpg" width="904" height="551" /></p>
+<p>图 10 建立 S7 连接</p>
+<h4><span class="STYLE3">2.3 S7 连接及其属性说明
+</span></h4>
+<p>在中间栏的&ldquo;连接&rdquo;条目中，可以看到已经建立的&ldquo;S7_连接_1&rdquo;，如图 11 所示。</p>
+<p><img src="images/1-17.jpg" width="609" height="74" /></p>
+<p>图 11 S7 连接</p>
+<p>点中上面的连接，在&ldquo;S7_连接_1&rdquo;的连接属性中查看各参数，如图 12 所示。</p>
+<p>在常规中，显示连接双方的设备，在伙伴方&ldquo;站点&rdquo;栏选择&ldquo;未知&rdquo;；在&ldquo;地址&rdquo;栏填写伙伴的IP地址192.168.0.12。</p>
+<p><img src="images/1-18.jpg" width="795" height="458" /></p>
+<p>在本地ID中：显示通讯连接的ID 号，这里ID=W#16#100。</p>
+<p><img src="images/1-19.jpg" width="470" height="259" /></p>
+<p>在特殊连接属性中：建未指定的连接，建连接侧为主动连接，这里client v4.1是主动建立连接。</p>
+<p><img src="images/1-20.jpg" width="525" height="239" /></p>
+<p>在地址详细信息中：定义伙伴侧的 TSAP 号（<strong>注意：S7-1200预留给S7连接两个TSAP地址：03.01和03.00</strong>），这里设置伙伴的 TSAP:03.00。</p>
+<p><img src="images/1-21.jpg" width="822" height="292" /></p>
+<p><img src="images/1-22.jpg" width="545" height="76" /></p>
+<p>图 12 连接的属性及设置后连接状态</p>
+<p>配置完网络连接，编译存盘并下载。如果通讯连接正常，连接在线状态，如图 13 所示。</p>
+<p><img src="images/1-23.jpg" width="610" height="145" /></p>
+<p>图 13 连接状态</p>
+<h4>2.4 软件编程</h4>
+<p>在主动建连接的客户机侧调用 Get、Put   通信指令，具体使用同上一种情况。</p>
+<h3><a name="conn_mech" id="conn_mech"></a>三、附加说明</h3>
+<p>请注意，以上例子中使用的作为服务器的PLC是固件版本V2.0的S7-1200 CPU，如果您使用固件版本为 V4.0 以上的 S7-1200 CPU 作为服务器，则需要如下额外设置，才能保证S7通信正常。</p>
+<p>请点开作为S7服务器(sever）的 CPU 的设备组态，&ldquo;属性-&gt;常规-&gt;防护与安全&rdquo;（V14及以前是&ldquo;属性-&gt;常规-&gt;保护&rdquo;）里&ldquo;连接机制&rdquo;一项需要勾选&ldquo;允许来自远程对象的PUT/GET通信访问&rdquo;（V14及以前是&ldquo;允许从远程伙伴（PLC\HMI\OPC\...)使用 PUT/GET 通信访问&rdquo;），如下图所示：</p>
+<p><img src="images/1-24.jpg" width="741" height="390" /></p>
+<p>图14 通信保护设置</p>
+</body>
+</html>

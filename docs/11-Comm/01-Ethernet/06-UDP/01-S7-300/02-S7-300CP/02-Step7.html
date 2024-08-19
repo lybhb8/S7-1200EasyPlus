@@ -1,0 +1,155 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 与 S7-300 CP/S7-400 CP STEP7 UDP 通信</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 CPU 与S7-300 CP STEP7 UDP通信</h3>
+<p>S7-1200 与 S7-300 CP 之间的以太网通信可以通过 UDP 协议来实现，使用的通信指令是在S7-1200 CPU 侧调用通信-开放式用户通信TSEND_C，TRCV_C指令或TCON，TDISCON，TUSEND，TURCV 指令,在 S7-300 CPU 侧调用 AG-SEND, AG-RECV 指令来实现。</p>
+<p>此外对于伙伴是S7-400 CP也可以参考本文档。</p>
+<h3>硬件和软件需求及所完成的通信任务</h3>
+<p><strong>测试软/硬件：</strong></p><p>
+  ① S7-1214 DC/DC/DC  V4.4</p><p>
+  ② S7-315-2PN/DP  V2.6</p><p>
+  ③S7-300 CP343-1 V2.0</p><p>
+  ④STEP7  V16</p><p>
+  ⑤STEP7  V5.5 SP4</p>
+<p><strong>所完成的通信任务：</strong></p><p>
+  ① S7-1200 CPU将通讯数据区 DB4 块中的 10 个字节的数据发送到 S7-300 CPU的接收数据区 DB5 块中。 </p><p>
+② S7-300 CPU将通讯数据区 DB5 块中的 10 个字节的数据发送到 S7-1200 CPU的接收数据区 DB4 块中。</p>
+<h3>S7-1200 侧硬件组态、编程和连接参数的配置</h3>
+<p>该部分内容和 S7-1200 CPU 与S7-300 CP UDP通信-TIA不同项目-&gt;S7-1200 侧硬件组态、编程和连接参数的配置章节一致，请参见<a href="01-TIA.html">链接</a>。</p>
+<h3>S7-300CP 侧硬件组态、编程和连接参数的配置</h3>
+<p><strong>1.添加300CPU和CP343-1硬件</strong></p><p>
+在硬件配置内添加300机架，在300机架内添加315-2PN/DP CPU和CP343-1，如图1所示。</p>
+<p><img src="images/2-01.JPG" width="779" height="712" /></p>
+<p>图1. 添加300 CPU和CP343-1设备</p>
+<p>为了编程方便，使用 CPU 属性中定义的时钟位，定义方法如下：</p><p>
+双击硬件配置机架内的CPU 315-2PN/DP ，进入CPU属性设置，选择Cycle/Clock Memory，然后激活Clock memory时钟字节定义为 MB0，如图2所示。</p><p>
+时钟位使用 M0.5，以 1Hz   的速率自动激活发送任务。</p>
+<p><img src="images/2-02.JPG" width="526" height="439" /></p>
+<p>图2. 启动时钟存储器</p>
+<p><strong>2.组态CP343-1并配以太网地址</strong></p><p>
+双击CP343-1设置CP IP地址，分配 IP 地址为   192.168.0.4，子网掩码为255.255.255.0，如图3所示。</p>
+<p><img src="images/2-03.JPG" width="624" height="829" /></p>
+<p>图3. 分配300CP IP 地址</p>
+<p><strong>3.在Netpro内组态UDP连接</strong></p>
+<p>①硬件配置完毕后，点击Netpro图标，如图1所示。进入Netpro组态UDP连接，如图4所示。</p>
+<p><img src="images/2-04.JPG" width="547" height="399" /></p>
+<p>图4. Netpro内新建UDP连接</p>
+<p>②选择未指定的伙伴，然后确定，如图5所示。</p>
+<p><img src="images/2-05.JPG" width="363" height="480" /></p>
+<p>图5. 新建未指定UDP连接</p>
+<p>③添加完成后，可进一步设置UDP连接参数， 如图6所示。</p>
+<p><img src="images/2-06.JPG" width="473" height="355" /></p>
+<p>图6. 查看新建的UDP连接</p>
+<p>④连接的属性-地址内，设置新建连接的本地ID和伙伴IP及端口，如图7所示。</p>
+<p><img src="images/2-07.JPG" width="475" height="357" /></p>
+<p>图7.设置连接伙伴IP及端口号</p>
+<p>⑤300侧新建UDP连接配置完毕，如图8所示。</p>
+<p><img src="images/2-08.JPG" width="1094" height="535" /></p>
+<p>图8.Netpro内新建的UDP连接</p>
+<p><strong>4.在 S7-300 中调用通信指令</strong></p>
+<p>
+打开OB1，在作出指令树内调用UDP通信指令， &ldquo;库&rdquo; &gt; &ldquo;SIMATIC_NET_CP&rdquo; &gt;   &ldquo;CP300&rdquo;下，调用 &ldquo;AG_SEND&rdquo; 、&ldquo;AG_RECV&rdquo; 指令。创建接收和发送数据块 DB5，发送10字节数组，接收10字节数组，如图9所示。</p>
+<p><img src="images/2-09.JPG" width="787" height="966" /></p>
+<p>图9. 调用AG_SEND和AG_RECV指令</p>
+<p><strong>指令管脚参数说明：</strong></p>
+<table border="0" cellpadding="0" width="684">
+  <tr>
+    <td height="16" colspan="2"><p align="left">CALL &ldquo;AG_SEND&rdquo;</p></td>
+    <td width="361"><p align="left">// 调用 AG_SEND</p></td>
+  </tr>
+  <tr>
+    <td width="101" height="16"><p align="left">ACT 　 </p></td>
+    <td width="214"><p align="left">:=%M0.5</p></td>
+    <td><p align="left">// 使用 1Hz 的时钟脉冲，上升沿激活发送任务 </p></td>
+  </tr>
+  <tr>
+    <td height="16"><p align="left">ID </p></td>
+    <td><p align="left">:=1</p></td>
+    <td><p align="left">//  连接号，要与连接配置中一致 </p></td>
+  </tr>
+  <tr>
+    <td height="18"><p align="left">LADDR</p></td>
+    <td><p align="left">:=W#16#100 </p></td>
+    <td><p align="left">// CP 的地址，要与配置中一致见图8，块参数</p></td>
+  </tr>
+  <tr>
+    <td height="18"><p align="left">SEND</p></td>
+    <td><p align="left">:=&ldquo;Data&rdquo;.usend</p></td>
+    <td><p align="left">// 发送数据区 </p></td>
+  </tr>
+  <tr>
+    <td height="16"><p align="left">LEN</p></td>
+    <td><p align="left">:=10</p></td>
+    <td><p align="left">// 发送数据的长度 </p></td>
+  </tr>
+  <tr>
+    <td height="15"><p align="left">DONE </p></td>
+    <td><p align="left">:=%M10.1</p></td>
+    <td><p align="left">// 为1时，发送完成 </p></td>
+  </tr>
+  <tr>
+    <td height="17"><p align="left">ERROR</p></td>
+    <td><p align="left">:=%M10.2</p></td>
+    <td><p align="left">// 为1时，有故障发生 </p></td>
+  </tr>
+  <tr>
+    <td height="18"><p align="left">STATUS</p></td>
+    <td><p align="left">:=%MW12</p></td>
+    <td><p align="left">// 状态代码 </p></td>
+  </tr>
+</table>
+<p></p>
+<table border="0" cellpadding="0" width="686">
+  <tr>
+    <td height="18" colspan="2"><p align="left">CALL &ldquo; AG_RECV&rdquo;</p></td>
+    <td width="357"><p align="left">// 调用 AG_RECV</p></td>
+  </tr>
+  <tr>
+    <td width="117" height="15"><p align="left">ID</p></td>
+    <td width="204"><p align="left">:=1</p></td>
+    <td><p align="left">//  连接号，要与连接配置列表中一致， </p></td>
+  </tr>
+  <tr>
+    <td height="18"><p align="left">LADDR</p></td>
+    <td><p align="left">:=W#16#100 </p></td>
+    <td><p align="left">// CP 的地址，要与配置中一致见图8，块参数</p></td>
+  </tr>
+  <tr>
+    <td height="19"><p align="left">RECV 　 </p></td>
+    <td><p align="left">:==&ldquo;Data&rdquo;.urcv</p></td>
+    <td><p align="left">// 接收数据区 </p></td>
+  </tr>
+  <tr>
+    <td height="16"><p align="left">NDR </p></td>
+    <td><p align="left">:=%M20.0 </p></td>
+    <td><p align="left">// 为1时，接收到新数据 </p></td>
+  </tr>
+  <tr>
+    <td height="16"><p align="left">ERROR </p></td>
+    <td><p align="left">:=%M20.1</p></td>
+    <td><p align="left">// 为1时，有故障发生 </p></td>
+  </tr>
+  <tr>
+    <td height="19"><p align="left">STATUS</p></td>
+    <td><p align="left">:=%MW22</p></td>
+    <td><p align="left">// 状态代码 </p></td>
+  </tr>
+  <tr>
+    <td height="14"><p align="left">LEN</p></td>
+    <td><p align="left">:=%MW24</p></td>
+    <td><p align="left">// 接收到的实际数据长度 </p></td>
+  </tr>
+</table>
+<p>300CPU侧配置和编程完成，编译并存盘。</p>
+<h3>下载硬件组态及程序并监控通信结果</h3>
+<p>下载两个 CPU 中的所有硬件组态及程序，实现 两个 CPU 之间数据交换，监控结果如图10所示。</p>
+<p><img src="images/2-10.JPG" width="1265" height="568" /></p>
+<p>图10. 监控结果 </p>
+</body>
+</html>

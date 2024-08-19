@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>写入变量</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3> AWP 命令 - 写入变量</h3>
+<p>用户定义的 Web 页面可将值写入 CPU 的 PLC 变量和数据块变量，前提是这些变量已激活&ldquo;从 HMI/OPC UA/Web API 可访问&ldquo;和&ldquo;从 HMI/OPC UA/Web API 可写&ldquo;。</p>
+<p>语法：</p>
+<ul>
+  <li>&lt;!-- AWP_In_Variable Name=&lsquo;&lt;Varname1&gt;&rsquo;--&gt; ： 要将 IN 变量写入 CPU，必须首先通过一个明确的 AWP 指令来定义变量；<br />
+  </li>
+</ul>
+要将数据写入 CPU，应使用标准 HTTP POST 命令，配合常用的文本输入域语法如下：
+<p>添加表单：</p>
+<ul>
+  <li>&lt;form action=&quot;&quot; method=&quot;post&quot;&gt; &lt;/form&gt;</li>
+</ul>
+<p>添加文本域，input name 后双引号中间写变量名称：</p>
+<ul>
+  <li>&lt;input name=&quot;&quot; type=&quot;text&quot; /&gt; ：</li>
+</ul>
+<p>添加按钮，类型选择&quot;submit&quot;，value 后双引号中间写按钮显示的内容：</p>
+<ul>
+  <li>&lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;&quot; /&gt; ：</li>
+</ul>
+<p><strong>定义变量示例：</strong></strong></p>
+<ul>
+  <li>&lt;!-- AWP_In_Variable Name='&quot;test_MB&quot;' --&gt;</li>
+  <li>&lt;!-- AWP_In_Variable Name='&quot;test_MW&quot;' --&gt;</li>
+  <li>&lt;!-- AWP_In_Variable Name='&quot;web_test2_优化&quot;.b' --&gt;</li>
+</ul>
+<p><strong>实现功能：</strong></strong></p>
+<ul>
+  <li>定义变量 &ldquo;test_MB&rdquo;，&ldquo;test_MW&rdquo;，&ldquo;&quot;web_test2_优化&quot;.b&rdquo; 可写。</li>
+</ul>
+<p><strong>写入修改值示例：</strong></p>
+<blockquote>
+  <p>
+    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;<br />
+    &lt;input name='&quot;test_MB&quot;' type=&quot;text&quot; /&gt;<br />
+    &lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;set&quot; /&gt;<br />
+    &lt;/form&gt;<br />
+    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;<br />
+    &lt;input name='&quot;test_MW&quot;' type=&quot;text&quot; /&gt;<br />
+    &lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;set&quot; /&gt;<br />
+    &lt;/form&gt;<br />
+    &lt;form action=&quot;&quot; method=&quot;post&quot;&gt;<br />
+    &lt;input name='&quot;web_test2_优化&quot;.b' type=&quot;text&quot; /&gt;<br />
+    &lt;input name=&quot;&quot; type=&quot;submit&quot; value=&quot;set&quot; /&gt;<br />
+    &lt;/form&gt;</p></blockquote>
+  <p>
+    <strong>实现功能：</strong></strong></strong></p>
+  <ul>
+    <li>添加三个表单，每个表单中添加一个文本域，文本域中写入变量修改值，点击按钮 set 提交修改值。</li>
+  </ul>
+<p>在 HTML 编辑器中编辑界面如图 1 所示：</p>
+<p><img src="images/05-01.jpg" width="564" height="510" /></p>
+<p>图 1.HTML 编辑器中编辑</p>
+<p>编辑完成在网页中显示如图 2 所示。</p>
+<p><img src="images/05-02.jpg" width="240" height="151" /></p>
+<p>图 2.网页中显示界面</p>
+</body>
+</html>

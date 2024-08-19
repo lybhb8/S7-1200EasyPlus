@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WWW 指令</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>用户定义 Web 页面编写 WWW 指令</h3>
+<p>用户程序必须包含并执行 WWW 指令，以便能够通过标准 Web 页面访问用户定义 Web 页面。控制数据块是 WWW 指令的输入参数，指定如片段数据块中所表示的页面内容、状态以及控制信息。在组态用户定义 Web 页面时单击&quot;生成块&quot;按钮后，TIA Portal 便会创建控制数据块，如图 1 所示。</p>
+<p><img src="images/07-01.jpg" width="821" height="399" /></p>
+<p>图 1. Web Server 生成数据块</p>
+<h4>编写 WWW 指令</h4>
+<p>要通过标准 Web 页面访问用户定义的 Web 页面，程序必须执行 WWW 指令。如果希望用户定义的 Web 页面仅在应用程序要求和首选项指定的一些情况下可用。在这种情况下，程序逻辑可控制何时调用 WWW 指令，如图 2 所示。</p>
+<p><img src="images/07-02.jpg" width="566" height="315" /></p>
+<p>图 2. Web Server 程序调用 WWW 指令</p>
+<p>WWW 指令位于&ldquo;通信指令 &gt; WEB 服务器&rdquo;指令库下，如图 3 所示。</p>
+<p><img src="images/07-03.jpg" width="329" height="196" /></p>
+<p>图 3. WWW指令</p>
+<p>CTRL_DB 参数对应于控制 DB 的 DB 编号，参考图 1 的标注 3 处的 &ldquo;Web DB 号&rdquo;，该参数必须正确填写。返回值 (RET_VAL) 包含函数结果。 </p>
+<p>注意，WWW 指令异步执行，RET_VAL 输出的初始值可能为 0，但这不能说明后来不会发生错误。</p>
+<p>程序会检查控制 DB 的状态，以确定应用程序是否已成功启动，或者通过随后对 WWW 的调用来检查 RET_VAL。表 1 为 RET_VAL  的值说明。</p>
+<p>表 1  RET_VAL  的值说明</p>
+<table width="734" border="1">
+  <tr>
+    <td width="86"><div align="left">RET_VAL</div></td>
+    <td width="336"><div align="left">说明</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">0</div></td>
+    <td><div align="left">无错误</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">16#00yx</div></td>
+    <td><div align="left">x： 相关位声称的请求处于等待状态：<br />
+      x=1： 请求 0<br />
+      x=2： 请求 1<br />
+      x=4： 请求 2<br />
+      x=8： 请求 3<br />
+      可以对 x 值进行逻辑或运算，以说明多个请求处于等待状态。 例如，如果 x = 6，则说明请求 1 和请求 2 处于等待状态。<br />
+    y： 0: 没有错误；1： 存在错误，并且已在控制 DB 中置位&quot;last_error&quot; </div></td>
+  </tr>
+  <tr>
+    <td><div align="left">16#803a </div></td>
+    <td><div align="left">未装载控制 DB。</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">16#8081 </div></td>
+    <td><div align="left">控制 DB 的类型、格式或版本错误。</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">16#80C1 </div></td>
+    <td><div align="left">没有资源可用于初始化 Web 应用程序。</div></td>
+  </tr>
+</table>
+
+</body>
+</html>

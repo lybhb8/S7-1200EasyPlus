@@ -1,0 +1,115 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>SharedDevice</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">S7-1200 作为共享设备硬件要求</h3>
+<p>S7-1200 CPU 从固件 V4.1 起支持共享设备功能，可与最多 2 个 IO 控制器连接。</p>
+<p>此外如果 S7-1200 CPU 作为共享设备的 IO 控制器，也需要至少固件版本 V4.1。 </p>
+<h3 class="STYLE1">S7-1200 与 S7-1200 / S7-1500  共享设备通信功能</h3>
+<p><strong>软件：</strong></p>
+<p>TIA V17</p>
+<p><strong>硬件：</strong></p>
+<p>CPU1217C DC/DC/DC V4.5</p>
+<p>CPU1512C-1 PN V2.9</p>
+<p>CPU1516F-3 PN/DP V2.9</p>
+<p><strong>设备类型及地址：</strong></p>
+<table width="600" border="1">
+  <tr>
+    <td >CPU 型号</td>
+    <td >设备类型</td>
+    <td >设备名称</td>
+    <td >IP 地址</td>
+    <td >子网掩码</td>
+  </tr>
+  <tr>
+    <td>CPU1217C</td>
+    <td>共享设备</td>
+    <td>device_1217c</td>
+    <td>192.168.0.17</td>
+    <td>255.255.255.0</td>
+  </tr>
+  <tr>
+    <td height="22">CPU1512C-1 PN</td>
+    <td>IO 控制器 1</td>
+    <td>controler_1512c</td>
+    <td>192.168.0.12</td>
+    <td>255.255.255.0</td>
+  </tr>
+  <tr>
+    <td height="22">CPU1516F-3 PN/DP</td>
+    <td>IO 控制器 2</td>
+    <td>controler_1516f</td>
+    <td>192.168.0.16</td>
+    <td>255.255.255.0</td>
+  </tr>
+</table>
+<p>表1 设备类型及地址</p>
+<h4 class="STYLE3"><span class="STYLE4">1. 共享设备（CPU1217C）组态</span></h4>
+<p><strong>（1）添加共享设备 CPU1217C</strong></p>
+<p>使用 STEP7 V17 创建一个新项目，添加 CPU1217C 。在设备视图中，设置 IP 地址 （192.168.0.17）、子网掩码（255.255.255.0）和设备名称&ldquo;device_1217c&rdquo;，如图 1 所示。</p>
+<p><img src="images/4-01.JPG" width="1077" height="981" /></p>
+<p>图 1 添加 CPU1217C 并设置 IP和设备名称</p>
+<p><strong>（2）使能&ldquo; IO 设备&rdquo;组态</strong></p>
+<p>在 CPU1217C 以太网接口属性巡视窗口中，选择&ldquo;常规 &gt; 操作模式&rdquo;，在&ldquo;操作模式&rdquo;界面中，使能&ldquo;IO 设备&rdquo;并将&ldquo;已分配的 IO 控制器&rdquo;设置为&ldquo;未分配&rdquo;， 如图 2 所示。</p>
+<p><img src="images/4-02.JPG" width="1082" height="998" /></p>
+<p>图 2 使能操作模式</p>
+<p><strong>（3）组态传输区</strong></p>
+<p>在 CPU1217C 以太网接口属性巡视窗口中，选择&ldquo;常规 &gt; 操作模式 &gt; 智能设备通信&rdquo;。在&ldquo;传输区域&rdquo;界面中，添加传输区，并定义本地的通信地址区域和通信长度。如图 3 所示，定义了 4 个传输区，&ldquo;传输区_1&rdquo;和&ldquo;传输区_2&rdquo;将用于与&ldquo;controler_1512c&rdquo; 通信；&ldquo;传输区_3&rdquo;和&ldquo;传输区_4&rdquo;将用于与&ldquo;controler_1516f&rdquo; 通信。</p>
+<p><img src="images/4-03.JPG" width="1085" height="764" /></p>
+<p>图 3 配置共享设备传输区域</p>
+<p><strong>（4）设置访问共享设备的 IO 控制器的数量</strong></p>
+<p>在 CPU1217C 以太网接口属性巡视窗口中，选择&ldquo;常规 &gt; 操作模式 &gt; 实时设定&rdquo;，在&ldquo;Shared Device&rdquo;中设置&ldquo;可访问该智能设备的 IO 控制器的数量&rdquo;为 2，如图 4 所示。</p>
+<p><strong><img src="images/4-04.JPG" width="1083" height="869" /></strong></p>
+<p>图 4 设置访问共享设备的 IO 控制器的数量</p>
+<p><strong>（5）导出 GSD 文件</strong></p>
+<p>保存编译 CPU1217C 硬件配置后，在 CPU1217C 以太网接口属性巡视窗口中，选择&ldquo;常规 &gt; 操作模式 &gt; 智能设备通信&rdquo;，在&ldquo;智能设备通信&rdquo;设置界面底部，单击&quot;导出&quot;按钮，生成共享设备的 GSD 文件，选择路径导出并将其保存。如图 5 所示。</p>
+<p><img src="images/4-05.JPG" width="1086" height="606" /></p>
+<p>图 5 导出共享设备 GSD 文件</p>
+<h4 class="STYLE3"><span class="STYLE4">2. </span>IO 控制器 1（CPU1512C-1 PN）组态</h4>
+<p><strong>（1）添加 IO 控制器 1 （CPU1512<span class="STYLE3">C-1 PN</span>）</strong></p>
+<p>在 STEP7 V17 中，添加 CPU1512C-1 PN。在设备视图中，为 CPU1512C-1 PN 以太网接口添加子网，设置 IP 地址 （192.168.0.12）、子网掩码（255.255.255.0）和设备名称&ldquo;controler_1512c&rdquo;，如图 6 所示。</p>
+<p><img src="images/4-06.JPG" width="1080" height="1049" /></p>
+<p>图 6 添加 CPU1512C-1 PN 并设置 IP 和设备名称</p>
+<p><strong>（2）导入 GSD 文件</strong></p>
+<p>在 TIA Portal 软件主菜单栏中，选择&ldquo;选项 &gt; 管理通用站描述文件&rdquo;，在弹出的对话框中选择安装共享设备导出的 GSD 文件，如图 7 所示。</p>
+<p><img src="images/4-07.JPG" width="643" height="604" /></p>
+<p>图 7 导入共享设备 GSD 文件</p>
+<p><strong>（3）添加共享设备</strong></p>
+<p>GSD 文件安装成功后，其将存在&ldquo;硬件目录 &gt; 其他现场设备 &gt; PROFINET IO &gt; PLCs &amp; CPs &gt; SIEMENS AG&rdquo;路径下。在网络视图内，将共享设备拖放组态，并将其分配给 IO 控制器1 的 PROFINET 接口，如图 8 所示。</p>
+<p><img src="images/4-08.JPG" width="1124" height="591" /></p>
+<p>图 8 添加共享设备</p>
+<p><strong><img src="images/3.gif" width="15" height="15" />注意：</strong>添加共享设备的 GSD 文件的设备名称需要跟共享设备 CPU1217C  的设备名称保持一致，CPU1217C 设备名称为&ldquo;device_1217c&rdquo;，此处需要设置一致，如图 9 所示。</p>
+<p><img src="images/4-10.JPG" width="1080" height="1015" /></p>
+<p>图 9 设置设备名称跟共享设备一致</p>
+<p><strong>（4）配置传输区访问权和地址区</strong></p>
+<p>在共享设备的设备视图中，选择&ldquo;常规 &gt; Shared Device&rdquo;。在 Shared Device 访问权分配表中，为各个传输区分配 IO 控制器和 IO 地址，如图 10 所示。</p>
+<p><img src="images/4-09.JPG" width="1110" height="725" /></p>
+<p>图 10 配置访问区权限和 IO 地址</p>
+<p>1 . 不被 &ldquo;controler_1512c&rdquo; 访问的传输区，其访问权限需要设置为&ldquo;---&rdquo;，本例中，传输区_3 和传输区_4 是由&ldquo;controler_1516f&rdquo;访问，传输区_1 和传输区_2 是由 &ldquo;controler_1512c&rdquo; 访问，直接选择 &ldquo;controler_1512c&rdquo;。</p>
+<p>2.在&ldquo;设备概览&rdquo;中，为共享设备中可被 &ldquo;controler_1512c&rdquo; 访问的传输区分配 IO 地址。本例中 &ldquo;controler_1512c&rdquo;使用 QB200~QB209 作为数据发送区，该地址对应共享设备 CPU1217C 侧的数据接收区为 IB200~IB209；&ldquo;controler_1512c&rdquo;使用 IB200~IB209 作为数据接收区，该地址对应共享设备  CPU1217C 侧的数据发送区为 QB200~QB209。</p>
+<p><strong><img src="images/3.gif" alt="" width="15" height="15" />注意：</strong>确保共享设备的一个传输区只有一个 IO 控制器具有访问权，如果传输区在一个 IO 控制器中设置了访问权，则必须在另一个 IO 控制器中设置访问权&ldquo;---&rdquo;，反之亦然。</p>
+<h4><span class="STYLE3"><span class="STYLE4">3. </span>IO 控制器 2（CPU1516F-3 PN/DP）组态</span></h4>
+<p><strong>（1）添加 IO 控制器 2 （CPU<span class="STYLE3"> 1516F-3 PN/DP</span>）</strong></p>
+<p>在 STEP7 V17 中，添加 <span class="STYLE3"> CPU1516F-3 PN/DP</span> CPU。在设备视图中，为<span class="STYLE3"> CPU1516F-3 PN/DP</span> 以太网接口添加子网，设置 IP 地址 （192.168.0.16）、子网掩码（255.255.255.0）和设备名称&ldquo;controler_1516f&rdquo;，如图 11 所示。</p>
+<p><img src="images/4-11.JPG" width="1079" height="1049" /></p>
+<p>图 11 添加 <span class="STYLE3"> CPU1516F-3 PN/DP</span> 并设置 IP 和设备名称</p>
+<p><strong>（2）导入 GSD 文件</strong></p>
+<p><strong>（3）添加共享设备</strong></p>
+<p>步骤 2 、3 与 IO 控制器 1 组态一致，这里不再赘述。</p>
+<p><strong>（4）配置传输区访问权和地址区</strong></p>
+<p>在共享设备的设备视图中，选择&ldquo;常规 &gt; Shared Device&rdquo;。在 Shared Device 访问权分配表中，为各个传输区分配 IO 控制器和 IO 地址，如图 12 所示。</p>
+<p><img src="images/4-12.JPG" width="1005" height="738" /></p>
+<p>图 12 配置访问区权限和 IO 地址</p>
+<p>1 . 不被 &ldquo;controler_1516f&rdquo; 访问的传输区，其访问权限需要设置为&ldquo;---&rdquo;，本例中，传输区_1 和传输区_2 是由&ldquo;controler_1512c&rdquo;访问，传输区_3 和传输区_4 是由 &ldquo;controler_1516f&rdquo; 访问，直接选择 &ldquo;controler_1516f&rdquo;。</p>
+<p>2.在&ldquo;设备概览&rdquo;中，为共享设备中可被 &ldquo;controler_1516f&rdquo; 访问的传输区分配 IO 地址。本例中 &ldquo;controler_1516f&rdquo;使用 QB300~QB309 作为数据发送区，该地址对应共享设备 CPU1217C 侧的数据接收区为 IB300~IB309；&ldquo;controler_1516f&rdquo;使用 IB300~IB309 作为数据接收区，该地址对应共享设备 CPU1217C 侧的数据发送区为 QB300~QB309。</p>
+<h4><span class="STYLE3">4. 通信状态测试</span></h4>
+<p>将 3 个 CPU 站点组态配置分别下载到对应的 CPU 中， CPU 间的 Profinet IO 通信将自动建立。在监控表中添加传输区数据，给 Q 区赋值，监控发送和接收数据区是一致的，如图 13 所示。</p>
+<p><img src="images/4-13.JPG" width="1528" height="1014" /></p>
+<p>图 13 通信测试</p>
+</body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Modbus_RTU_V4</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">Modbus RTU V4 及以上版本新功能介绍</h3>
+<p>TIA Portal V15 版本开始，Modbus （RTU）指令集更新到 V4.0 及以上版本：</p>
+<p>注意：S7-1200 固件至少需要 V4.2 版本</p>
+<p>以 V16 为例，如图 1 所示，Modbus （RTU）指令集为 V4.4 版本。</p>
+<p><img src="images/7-01.jpg" width="402" height="346" /><br>
+图 1. Modbus RTU V4 指令集</p>
+<p>V4 版本的 Modbus RTU 指令有以下重要功能的更新。</p>
+<p><strong>Modbus_Master 指令变化：</strong></p>
+<ul>
+  <li>DATA_PTR 接口的 DB 可以支持&quot;优化块访问&quot;</li>
+</ul>
+<p><strong>Modbus_Slave 指令变化：</strong></p>
+<ul>
+  <li>MB_HOLD_REG 接口的 DB 可以支持&quot;优化块访问&quot;</li>
+  <li>可以选择对输入输出过程映像区的读访问限制</li>
+  <li>可以自定义访问 DB 中的数据区域，而不是默认的 IQ 区与 MB_HOLD_REG  </li>
+</ul>
+本文档仅介绍相比指令集 V3.0 基础功能的新变化，指令集 V3.0 基础功能使用请参见<a href="02-Modbus_RTU.htm">链接</a>。
+<h3>优化块的支持</h3>
+<p align="left">DATA_PTR 参数指向要写入或读取的 DB 或 M 地址。如果使用数据块，则必须创建一个全局数据块为读写 Modbus 从站提供数据存储位置。</p>
+<p align="left">自指令版本 V4.0 起：</p>
+<p align="left">该参数可以指向优化的 DB 数据块，在优化数据块中，允许使用以下数据类型的单个元素或者数组：Bool、Byte、Char、Word、Int、DWord、DInt、Real、USInt、UInt、UDInt、SInt或 WChar。</p>
+<p align="left">MB_HOLD_REG 指向 Modbus RTU 保持寄存器，可以是 M 存储区或者 DB 数据块。</p>
+<p align="left">自指令版本 V4.0 起：</p>
+<p align="left">该参数可以指向优化的 DB 数据块，在优化数据块中，允许使用以下数据类型的单个元素或者数组：Bool、Byte、Char、Word、Int、DWord、DInt、Real、USInt、UInt、UDInt、SInt 或 WChar。</p>
+<p align="left"><strong>例：使用 TIA Portal V16，CPU1215C 配置 CM1241 RS422/485 模块作为 Modbus RTU 主站，CPU1215C 配置 CM1241 RS422/485 模块作为 Modbus RTU 从站</strong></p>
+<p align="left"><strong>CPU1215C 在 OB1 中编写 Modbus 主站的程序，创建优化 DB 数据块 DB3-Master，DATA_PTR 填写该优化的 DB 块区域</strong>：</p>
+<p align="left"><img src="images/7-02.JPG" width="881" height="396" /></p>
+<p align="left">图 2. CPU1215C 主站 Modbus 编程</p>
+<p align="left"><img src="images/7-03.JPG" width="713" height="271" /></p>
+<p align="left">图 3. 优化的数据块 DB3-Master</p>
+<p align="left"><strong> CPU1214C 在 OB1 中编写 Modbus 从站的程序，创建优化的 DB 数据块 DB8，MB_HOLD_REG 填写该优化的 DB 块区域：</strong></p>
+<p align="left"><img src="images/7-04.JPG" width="874" height="400" /></p>
+<p align="left">图 4. CPU1214C 从站 Modbus 编程</p>
+<p align="left"><img src="images/7-05.JPG" width="859" height="318" /></p>
+<p align="left">图 5. 优化的数据块 DB8</p>
+<p align="left"><strong>主站 Master 的 REQ 管脚触发，主站读取从站的保持性寄存器 40001，长度为 5 个字，读取结果如图 6 所示：</strong></p>
+<p align="left"><img src="images/7-06.JPG" width="392" height="271" /></p>
+<p align="left">图 6. 主站 Master 读取到的数据</p>
+<h3>Modbus Slave 指令的使用</h3>
+<p><strong>Modbus_Slave V4 背景 DB 的数据内容</strong></p>
+<p>如图 7 所示：</p>
+<p><img src="images/7-07.JPG" width="490" height="419" /></p>
+<p>图 7. Modbus_Slave V4 背景数据块</p>
+<p>用户程序可以修改图 7 中圈出的变量：</p>
+<p>红色为 Modbus RTU V4 指令集中 Modbus_Slave 增加的变量，要求的版本是 TIA PORTAL V15 及其以上，CPU版本 V4.2 及其以上</p>
+<ul>
+  <li>QB_Read_Start</li>
+  <li>QB_Read_Count</li>
+  <li>IB_Read_Start</li>
+  <li>IB_Read_Count</li>
+  <li>Data_Area_Array</li>
+</ul>
+<p>黑色为 Modbus_Slave V3 指令集中 Modbus_Slave V3 增加的变量，要求的版本是 TIA PORTAL V14SP1 及其以上，CPU版本 V4.1.1 及其以上</p>
+<ul>
+  <li>QB_Start</li>
+  <li>QB_Count</li>
+</ul>
+<p>蓝色为 Modbus_Slave V3 指令集中 Modbus_Slave V2 的变量（即初始版本），要求的版本是 TIA PORTAL V13SP1 及其以上，CPU版本 V4.1.1 以及其上</p>
+<ul>
+  <li>HR_Start_Offset</li>
+  <li>Extended_Addressing</li>
+</ul>
+<p>下面将介绍这些可修改变量  </p>
+
+<h4>过程映像读写访问限制</h4>
+<p>过程映像中写入区域的定义：</p>
+<p>QB_Start：CPU 可写入的输出字节的起始地址</p>
+<p>QB_Count：CPU 可写入的输出字节的字节数。如果 QB_Count = 0，则 CPU 的输出字节均无法写入。</p>
+<p>默认是 QB_Start 为 0，QB_Count 为65535，即所有输出字节区域均可以写访问。</p>
+<p>示例：要想只允许 QB10 到 QB17 可写入，则 QB_Start = 10且 QB_Count = 8。</p>
+<p>过程映像中读取区域的定义：</p>
+<p>QB_Read_Start：CPU 可读取的输出字节的起始地址</p>
+<p>QB_Read_Count：CPU 可读取的输出字节的字节数。如果 QB_Read_Count = 0，则 CPU 的输出字节均无法读取。</p>
+<p>默认是 QB_Read_Start 为 0，QB_Read_Count 为 65535，即所有输出字节区域均可以读访问。</p>
+<p>示例：要想只允许 QB10 到 QB17 可读取，则 QB_Read_Start = 10 且 QB_Read_Count = 8。</p>
+<p>IB_Read_Start：CPU 可读取的输入字节的起始地址</p>
+<p>IB_Read_Count：CPU 可读取的输入字节的字节数。如果 IB_Read_Count = 0，CPU 的输入字节均无法读取。</p>
+<p>默认是 IB_Read_Start 为 0，IB_Read_Count 为 65535，即所有输入字节区域均可以读访问。</p>
+<p>示例：要想只允许 IB10 到 IB17 可读取，则 IB_Read_Start = 10 且 IB_Read_Count = 8。</p>
+<h4><a name="a" id="a"></a>访问数据块中的数据区域，而不是直接访问 Modbus 地址</h4>
+<p>Modbus_Slave 指令版本 V4.0 以及 S7-1200 CPU 固件版本 V4.2 起，用户可访问数据块中的数据区域，而不用直接访问过程映像和保持寄存器。为此，在全局 DB 属性页中，必须取消选中&quot;仅存储在装载存储器中和&quot;优化块访问复选框。<br>
+</p>
+<p>如果 MODBUS 请求到达时，尚未定义相应功能代码的 MODBUS 数据类型的数据区域，请求会按之前的指令版本处理，即直接访问过程映像和保持性寄存器。</p>
+<p>如果 MODBUS 请求到达时，已定义功能代码的 MODBUS 数据类型的数据区域，则 Modbus_Slave 指令会对此数据区域执行读写操作。具体是读操作还是写操作取决于作业类型。</p>
+<p>单个 MODBUS 请求只能对一个数据区域进行读写操作。如果要读取覆盖多个数据区域的保持性寄存器，则需要多个 MODBUS 请求。</p>
+<p>数据区域的定义规则如下：</p>
+<ul>
+  <li>最多可以定义 8 个数据区，位于 Data_Area_Array[1..8] 中。</li>
+  <li>数据区数组元素定义必须连续，如果中间某数组元素定义无效，则后面的区域不生效。</li>
+  <li>如果在数据区定义了保持寄存器，则 MB_HOLD_REG 映射失效，如果在数据区定义了过程映像输出，则对应的 Q 区映射失效，如果在数据区定义了过程映像输入，则对应的 I 区映射失效，如果在数据区定义了输入寄存器，则对应的 AI 区映射失效。也就是说，如果在数据区内没有定义哪个区域，则原有的映射依然保留。</li>
+  <li>单个 MODBUS 请求只能对恰好一个数据区域进行读写操作。</li>
+  <li>每个字段元素 Data_Area_Array[x]（其中 1 &lt;= x &lt;= 8）都是 MB_DataArea 类型的 UDT，结构参见表 1：</li>
+</ul>
+<table width="800" border="1">
+  <tr>
+    <th scope="col">参数</th>
+    <th scope="col">数据类型</th>
+    <th scope="col">含义</th>
+  </tr>
+  <tr>
+    <th scope="row">data_type</th>
+    <td>UInt</td>
+    <td><div align="left">映射到此数据区域的 MODBUS 数据类型的标识符： <br />
+      &bull;  0：空字段元素或未使用数据区域的标识符。此时，db、start 和 length 的值无效。 <br />
+      &bull;  1：过程映像输出（与功能代码 1、5 和 15 一起使用） <br />
+      &bull;  2：过程映像输入（与功能代码 2 一起使用） <br />
+      &bull;  3：保持寄存器（与功能代码 3、6 和 16 一起使用） <br />
+    &bull;  4：输入寄存器（与功能代码 4 一起使用） </div></td>
+  </tr>
+  <tr>
+    <th scope="row">db</th>
+    <td>UInt</td>
+    <td><div align="left">映射的数据区编号，该 DB 必须是非优化 DB</div></td>
+  </tr>
+  <tr>
+    <th scope="row">start</th>
+    <td>UInt</td>
+    <td><div align="left">映射到数据块中的首个 MODBUS 地址，从 0 开始</div></td>
+  </tr>
+  <tr>
+    <th scope="row">length</th>
+    <td>UInt</td>
+    <td><div align="left">Bool 个数（对于data_type 1 或者 2），Word 个数（data_type 3 或者 4）</div></td>
+  </tr>
+</table>
+<p>表 1. Data_Area_Array 数组的元素及其含义</p>
+<p><strong>本例中，使用 TIA Portal V16，CPU1215C 配置 CM1241 RS422/485 模块作为 Modbus RTU 主站，CPU1214C 配置 CM1241 RS422/485 模块作为 Modbus RTU 从站，主站访问从站的数据块中的数据区域：</strong></p>
+<p><strong>主站配置：在 OB1 中，拖入 Modbus_Comm_Load 指令和 Modbus_Master 指令，MODE=0，DATA_ADDR=40006，DATA_LEN=5，如图 8 所示：</strong></p>
+<p><img src="images/7-08.JPG" width="921" height="410" /></p>
+<p>图 8. 主站调用 Master 指令</p>
+<p><strong>从站配置：在 OB1 中，拖入 Modbus_Comm_Load 指令和 Modbus_Slave 指令，参考图 4 所示：</strong></p>
+<p>从站的背景 DB 中 Data_Area_Array 进行如图 9 所示配置：</p>
+<p><img src="images/7-09.jpg" width="474" height="552" /></p>
+<p>图 9. CPU1214C  Modbus_Slave 背景 DB 中 Data_Area_Array</p>
+<p>Data_Area_Array[1]:data_type = 3，db = 3，start = 0，length = 5,，即 DB3.DBW0-DB3.DBW8 对应 40001-40005。</p>
+<p>Data_Area_Array[2]:data_type = 3，db = 4，start = 5，length = 5,，即 DB4.DBW0-DB4.DBW8 对应 40006-40010。</p>
+<p>Data_Area_Array[3]:data_type = 3，db = 5，start = 10，length = 5,，即 DB5.DBW0-DB5.DBW8 对应 40011-40015。</p>
+<p>Data_Area_Array[4]:data_type = 0，db = 0，start = 0，length = 0。</p>
+<p>Data_Area_Array[5]:data_type = 3，db = 6，start = 15，length = 5，即 DB6.DBW0-DB6.DBW8 对应 40016-40020，<strong>由于 Data_Area_Array[4] 参数为空，所以 Data_Area_Array[5] 参数失效。</strong></p>
+<p><strong>在 CPU1214C 创建 4 个非优化 DB 块，DB3/DB4/DB5/DB6，如图 10 所示：</strong></p>
+<p><img src="images/7-10.JPG" width="860" height="613" /></p>
+<p>图 10.CPU1214C 创建数据块</p>
+<p><strong>CPU1215C 的 Master 块读取 40006-40010 地址，对应 CPU1214C 的 DB4 块中的 DB4.DBW0-DB4.DBW8 内容，Master 块读取到内容如图 11 所示：</strong></p>
+<p><img src="images/7-11.JPG" width="351" height="270" /></p>
+<p>图 11. 主站 CPU 读取到的数据</p>
+<p><strong>如果主站 Master 读取从站 Modbus 地址 40016，数据长度 5，如图 12 所示：</strong></p>
+<p><img src="images/7-12.JPG" width="920" height="414" /></p>
+<p>图 12. 主站调用 Master 指令</p>
+<p><strong>由于从站 CPU1214C 没有 40016-40020 地址对应的数据区域，所以 Master 指令执行之后报错，如图 13 所示：</strong></p>
+<p><strong>16#8383：请求帧中的数据地址无效。</strong>.</p>
+<p><img src="images/7-13.JPG" width="552" height="577" /></p>
+<p>图 13. Master 指令执行报错</p>
+<h4>HR_Start_Offset</h4>
+<p>HR_Start_Offset 用于指定 Modbus 保持寄存器的起始地址，存储在 Modbus_Slave 背景数据块中，默认是 0。</p>
+<p>Modbus 保持寄存器地址从 40001 或 400001 开始。这些地址与保持寄存器的 PLC 存储器起始地址对应。通过组态&quot;HR_Start_Offset&quot;变量，可以将 Modbus 保持寄存器的起始地址定义为除 40001 或 400001 之外的其它值。</p>
+<p>例如，如果保持寄存器被组态为起始于 MW100 并且长度为 100 个字（即 MB_HOLD_REG 设置为 P#M100.0 WORD 100）。偏移量 20 可指定保持寄存器的起始地址为 40021 而不是 40001。低于 40021 和高于 40120 的任何地址都将导致寻址错误。</p>
+<table width="500" border="1">
+  <tr>
+    <th scope="col">HR_Start_Offset</th>
+    <th scope="col">地址</th>
+    <th scope="col">最小值</th>
+    <th scope="col">最大值</th>
+  </tr>
+  <tr>
+    <th rowspan="2" scope="row">0</th>
+    <td>Modbus 地址</td>
+    <td>40001</td>
+    <td>40100</td>
+  </tr>
+  <tr>
+    <td>S7-1200 地址</td>
+    <td>MW100</td>
+    <td>MW298</td>
+  </tr>
+  <tr>
+    <th rowspan="2" scope="row">20</th>
+    <td>Modbus 地址</td>
+    <td>40021</td>
+    <td>40120</td>
+  </tr>
+  <tr>
+    <td>S7-1200 地址</td>
+    <td>MW100</td>
+    <td>MW298</td>
+  </tr>
+</table>
+<p>例如，将 Modbus_Slave 放入程序段后，可以切换到先前的程序段，分配 HR_Start_Offset 值。该值必须在执行 Modbus_Slave 前分配，如图 14 所示：</p>
+<p><img src="images/7-14.JPG" width="508" height="598" /></p>
+<p>图 14. 从站的 Slave 编程</p>
+<p><img src="images/4.gif" width="15" height="15" />使用 Data_Area_Array 修改保持寄存器区域，不建议修改 HR_Start_Offset。</p>
+<h4>Extended_Addressing</h4>
+<p>Modbus 从站寻址可组态为单字节（Modbus 标准方式）或双字节。扩展寻址用于对单一网络内地址超过 247 进行寻址。选择扩展寻址后，最多可以对 65535 个地址进行寻址。</p>
+<p>Extended_Addressing 为 FALSE（默认设置）： 1 字节地址，地址范围 0 到 247。</p>
+<p>Extended_Addressing 为 TRUE ： 2 字节地址，地址范围 0 到 65535。
+</p>
+</body>
+</html>

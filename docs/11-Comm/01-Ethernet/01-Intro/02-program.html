@@ -1,0 +1,183 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>program</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>开放式用户通信分类</h3>
+<p> TIA PORTAL 软件内提供了以下指令：</p>
+<ul>
+  <li>不带连接管理的通信指令
+    <ul>
+      <li>&ldquo;TCON &rdquo;       ：建立以太网连接</li>
+      <li>&ldquo;TDISCON&rdquo;	：断开以太网连接 </li>
+      <li>&ldquo;TSEND&rdquo;	：TCP 和 ISO ON TCP 使用的发送数据</li>
+      <li>&ldquo;TRCV&rdquo;：	TCP 和 ISO ON TCP 使用的接收数据 </li>
+      <li>&ldquo;TUSEND&rdquo;：UDP 使用的发送数据</li>
+      <li>&ldquo;TURCV&rdquo;：	UDP 使用的接收数据<br />
+      </li>
+    </ul>
+  </li>
+  <li>带连接管理的通信指令
+    <ul>
+      <li>&ldquo;TSEND_C &rdquo;	：建立以太网连接并发送数据</li>
+      <li>&ldquo;TRCV_C &rdquo;	：建立以太网连接并接收数据</li>
+    </ul>
+  </li>
+  <li>修改 TCP 连接的终止方式：TCONSettings</li>
+  <li>发送邮件：TMAIL_C</li>
+  <li>复位连接：T_RESET</li>
+  <li>诊断连接：T_DIAG</li>
+  <li>修改以太网口组态：T_CONFIG</li>
+</ul>
+<h3>开放式用户通信指令版本</h3>
+<p>开放式用户通信如图1所示。</p>
+<p><img src="images/02-01.png" width="385" height="441" /></p>
+<p>图1 开放式用户通信指令</p>
+<p>①指令集版本</p>
+<p>②指令版本</p>
+<p>开放式用户通信指令集由以上指令组成。每个版本 CPU 都可以支持多个版本的开放式用户通信指令集，见表1，<strong><u>建议使用默认的指令集版本也就是最高的版本</u></strong>，低版本指令集一般是用来低版本 CPU 程序移植到高版本 CPU 时用的。</p>
+<table width="500" border="1">
+  <tr>
+    <th scope="col">CPU 版本</th>
+    <th scope="col">支持的开放式用户通信指令集版本</th>
+  </tr>
+  <tr>
+    <td>V1.0-V4.0</td>
+    <td>V2.x-V3.x</td>
+  </tr>
+  <tr>
+    <td>V4.1</td>
+    <td>V2.x-V4.x</td>
+  </tr>
+  <tr>
+    <td>V4.2-V4.3</td>
+    <td>V2.x-V6.x</td>
+  </tr>
+  <tr>
+    <td>V4.4-V4.6</td>
+    <td>V2.x-V8.x</td>
+  </tr>
+</table>
+<p>对于基本的 TCP、ISO ON TCP 以及 UDP 来说，指令集总体分为 V4.x 以下与 V4.x 及以上。</p>
+<p>V4.x 以下所有指令集版本功能基本一致，只是内部微调；</p>
+<p>V4.x 及以上所有指令集版本基本功能一致，变化较大是 V6.x 支持安全 TCP 通信，V8.x支持 TCONSettings 指令。此外 Tmail_C 这个发邮件指令在 V4.x 及以上所有指令集版本中变化很大。</p>
+<h3>V4.x 以下和 V4.x 及以上指令集主要区别</h3>
+<h4>V4.x 以下指令集使用组合</h4>
+<p>对于 TCP、ISO ON TCP 通信</p>
+<p>TSEND_C = TCON + TSEND + TDISCON</p>
+<p>TRCV_C = TCON + TRCV + TDISCON</p>
+<p>一般使用组合是：</p>
+<ul>
+  <li>TCON + TSEND + TRCV + TDISCON</li>
+  <li>TSEND_C + TRCV </li>
+  <li>TSEND + TRCV_C </li>
+  <li>TSEND_C +  TRCV_C </li>
+</ul>
+<p>对于 UDP 通信</p>
+<p>一般使用组合是：</p>
+<ul>
+  <li>TCON + TUSEND + TURCV + TDISCON</li>
+</ul>
+<h4>V4.x 及以上指令集使用组合</h4>
+<p>对于 TCP、ISO ON TCP 通信</p>
+<p>TSEND_C = TCON + TSEND + TDISCON</p>
+<p>TRCV_C = TCON + TRCV + TDISCON</p>
+<p>对于 UDP 通信</p>
+<p>TSEND_C = TCON + TUSEND + TDISCON</p>
+<p>TRCV_C = TCON + TURCV + TDISCON</p>
+<p>对于 TCP、ISO ON TCP 一般使用组合是：</p>
+<ul>
+  <li>TCON + TSEND +  TRCV + TDISCON</li>
+  <li>TSEND_C + TRCV </li>
+  <li>TSEND + TRCV_C </li>
+  <li>TSEND_C +  TRCV_C </li>
+</ul>
+<p>对于 UDP 一般使用组合是：</p>
+<ul>
+  <li>TCON + TUSEND +  TURCV + TDISCON</li>
+  <li>TSEND_C + TRCV </li>
+  <li>TSEND + TRCV_C </li>
+  <li>TSEND_C +  TRCV_C </li>
+</ul>
+<h4>V4.x 以下和 V4.x 及以上指令集主要区别列表</h4>
+<table width="1000" border="1">
+  <tr>
+    <th scope="col">&nbsp;</th>
+    <th scope="col">V4.x 以下指令集</th>
+    <th scope="col">V4.x 及以上指令集</th>
+  </tr>
+  <tr>
+    <td><strong>连接管理的指令 TSEND_C 和 TRCV_C </strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>对 UDP 的支持</td>
+    <td>不支持</td>
+    <td>支持</td>
+  </tr>
+  <tr>
+    <td>连接建立</td>
+    <td>一个扫描周期 DONE=1 STATUS=0</td>
+    <td>一个扫描周期 DONE=0 STATUS=1</td>
+  </tr>
+  <tr>
+    <td>作业中</td>
+    <td> STATUS=7002</td>
+    <td><ul>
+      <li><strong>TSEND_C</strong>：STATUS=7005</li>
+      <li><strong>TRCV_C</strong>：STATUS=7006</li>
+    </ul>    </td>
+  </tr>
+  <tr>
+    <td><strong>TCON</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>客户端无法访问到服务器</td>
+    <td>BUSY=1 不报错误，一直等待连接伙伴</td>
+    <td>ERROR=1，重新连接需要重新触发</td>
+  </tr>
+  <tr>
+    <td><strong>接收指令 TRCV_C、TRCV</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>TCP 变长接收</td>
+    <td>LEN=65535</td>
+    <td>ADHOC = True</td>
+  </tr>
+  <tr>
+    <td><strong>连接指令 TSEND_C、TRCV_C 、TCON</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>连接参数</td>
+    <td><p>TCON_Param</p></td>
+    <td><ul>
+      <li>TCP、UDP：TCON_IP_V4</li>
+      <li>ISO ON TCP：TCON_IP_RFC</li>
+      <li>（也兼容支持 TCON_Param）*</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><strong>CP1243-1</strong></td>
+    <td>&nbsp;</td>
+    <td>&nbsp;</td>
+  </tr>
+  <tr>
+    <td>CP1243-1 使用 OUC 指令</td>
+    <td>不支持</td>
+    <td>支持</td>
+  </tr>
+</table>
+<p>*V6.x 开始支持 TCON_IP_V4_SEC、V7.x 使用 V3.2 版本 CP1243-1 支持 TCON_QDN 和 TCON_QDN_SEC，其中&ldquo;SEC&rdquo;为安全 TCP 通信使用，&ldquo;QDN&rdquo;为域名访问。</p>
+</body>
+</html>

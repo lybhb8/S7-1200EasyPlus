@@ -1,0 +1,75 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>IO_device</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 PROFINET与 IO device  通信</h3>
+<p>PROFINET IO 设备指分配给一个或多个 IO 控制器的分布式现场设备（例如，远程 IO、阀岛、变频器和交换机等）。PROFINET IO 控制器对连接的 IO 设备进行寻址，与现场设备交换输入和输出信号。</p>
+<h4>硬件和软件需求及所完成的通信任务</h4>
+<p><strong>硬件：</strong><br />
+  ① S7-1200 CPU V2.0 或更高版本 （文档中使用V4.2版本S7-1215C DC/DC/DC）<br />
+  ② PC （带以太网卡），TP电缆(以太网电缆）<br />
+  ③ 分布式IO（文档中使用ET200SP IM 155-6 PN HF V3.3）</p>
+<p><strong>软件：</strong><br />
+  TIA 博图 STEP7 V11 或更高版本（文档中使用V14 SP1 UPD3）</p>
+<p><strong>所完成的通信任务：</strong><br />
+  ① S7-1200  读取IM 155-6 PN HF数字量输入点数据<br />
+  ② S7-1200 向IM 155-6 PN HF输出点传送数据</p>
+<h4>通信的编程，连接参数及通信参数的配置</h4>
+<p><strong>1. 打开TIA 博图STEP 7软件并新建项目</strong><br />
+  <br />
+在 TIA 博图 STEP 7软件的 “项目视图” 中点击 “创建新项目” 创建一个新项目</p>
+<p><strong>2. S7-1200硬件组态及参数分配</strong></p>
+<p>在硬件列表中选择对应的订货号，如图1所示。</p>
+<p><img src="images/1-01.png" width="708" height="696" /></p>
+<p>图1 添加S7-1200 CPU </p>
+<p>在设备视图中显示出 S7-1200 的组态画面，如图2所示。</p>
+<p><img src="images/1-02.png" alt="1200组态画面" width="800" height="400" /></p>
+<p>图2 S7-1200 设备视图 </p>
+<p>接着需要给S7-1200 CPU 设置 IP 地址，通过在设置视图中点击S7-1200的以太网口&gt;“属性” &gt; &ldquo;常规&rdquo;&gt;“以太网地址”  设置，如图3所示。</p>
+<p><img src="images/1-03.png" alt="设置1200IP" width="800" height="550" /></p>
+<p>图3 设置IP地址</p>
+<p>进入网络视图，在硬件目录中选择IM155-6PN HF（6ES7155-6AU00-0CN0）并插入，如图4所示。 </p>
+<p><img src="images/1-04.png" alt="添加151-3PN " width="800" height="300" /></p>
+<p>图4 添加IM155-6PN HF</p>
+<p>然后双击IM155-6PN HF  进入设备视图进行硬件组态，为IM155-6PN HF添加IO模块，如图5所示。 </p>
+<p>需要注意底座颜色（浅色为使用新的电位组，深色为使用左侧模块的电位组），以及IO模块的版本。</p>
+<p><img src="images/1-05.png" alt="151-3组态" width="800" height="484" /></p>
+<p>&nbsp;</p>
+<p>图5 IM155-6PN HF 硬件组态</p>
+<p>回到设备视图，点击IM155-6PN HF模块的图标，然后在&ldquo;属性&rdquo; 〉&ldquo;常规&rdquo; &gt; &ldquo;项目信息&rdquo;中定义该接口模块的名称 &ldquo;ET200SP HF&rdquo;，如图6所示。 </p>
+<p><img src="images/1-06.png" alt="添加设备名称" width="800" height="400" /></p>
+<p>图6 IM155-6PN HF设置名称。</p>
+<p>设置名称后，需要给IM155-6PN HF设置IP 地址，在网络视图中点击IM155-6PN HF以太网口，然后在&ldquo;属性&rdquo; 〉&ldquo;常规&rdquo; 〉&ldquo;以太网地址&rdquo;中设置IP 地址&ldquo;192.168.1.11&rdquo;，如图7所示。</p>
+<p>并且从图7中可知该IM155-6PN HF的设备名称和项目信息中的名称相同，只是大写字母换成了小写字母&ldquo;et200sp hf&rdquo;。</p>
+<p><img src="images/1-07.png" alt="添加IP地址" width="800" height="750" /></p>
+<p>图7 设置IM155-6PN HF IP 地址</p>
+<p>在网络视图中左键点击IM155-6PN HF的&ldquo;未分配&rdquo;图标，在弹出框中选择该IO设备的控制器，文档中选择&ldquo;PLC_1.PROFINET接口_1&rdquo;，即前面新建的CPU S7-1215C，如图8所示。<br />
+</p>
+<p><img src="images/1-08.png" alt="151-3分配控制器" width="800" height="250" /></p>
+<p>图8 IM155-6PN HF 分配IO控制器</p>
+<p>这样在IM155-6PN HF的地址总览中可以看到IM155-6PN HF所占用的S7-1200 I/O 区域，以及网络结构，如图9所示。</p>
+<p><img src="images/1-09.png" alt="151-3 IO 地址" width="800" height="600" /></p>
+<p>图9 IM155-6PN HF IO 地址及网络结构</p>
+<p>右键点击PROFINET 网络给IM155-6PN HF分配设备名称，如图10所示。</p>
+<p><img src="images/1-10.png" width="800" height="650" /></p>
+<p>图10 分配设备名称</p>
+<p>在弹出页面&ldquo;分配PROFINET设备名称&rdquo;中，点击&ldquo;更新列表&rdquo;按钮，搜索ET200SP。</p>
+<p>如果此时搜索到的网络节点包含多个ET200SP，则可以通过检查MAC地址的方式确定此刻需要分配设备名称的ET200SP。ET200SP网口的MAC地址位于接口模块24V电源正上方。</p>
+<p>如果此时待分配设备名称的ET200SP状态显示&ldquo;设备名称不同&rdquo;，则此时组态的离线设备名称（&ldquo;et200sp hf&rdquo;）与在线设备名称不同（&ldquo;im155-6&rdquo;），如图11所示。</p>
+<p>如果此时待分配设备名称的ET200SP状态显示&ldquo;确定&rdquo;，则此时组态的离线设备名称与在线设备名称相同，可以跳过该模块的设备名称分配（即跳过图12）。</p>
+<p><img src="images/1-11.png" width="839" height="772" /></p>
+<p>图11 离线在线设备名称不同</p>
+<p>如果离线设备名称与在线设备名称不同，则左键选中该节点，点击&ldquo;分配名称&rdquo;按钮，几秒钟后，该网络节点ET200SP的在线设备名称变为&ldquo;et200sp hf&rdquo;，与组态的离线设备名称相同，状态变为&ldquo;确定&rdquo;，此时完成一个IO设备的设备名称分配，如图12所示。</p>
+<p><img src="images/1-12.png" alt="给151-3分配设备名称" width="837" height="771" /></p>
+<p>图12 离线在线设备名称相同</p>
+<p>项目硬件和软件全部编译后下载，在S7-1200  变量表中可以监控DI变量的状态，也可以给DO 变量赋值， 观察DO模块的输出，如图13所示。</p>
+<p><img src="images/1-13.png" width="800" height="150" /></p>
+<p>图13 变量表监控 </p>
+
+</body>
+</html>

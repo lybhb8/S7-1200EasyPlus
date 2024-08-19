@@ -1,0 +1,34 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>GSD</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>安装和删除 GSD 文件</h3>
+<p>当 DP 从站为第三方设备，或在硬件列表中找不到西门子设备，可通过安装 GSD 文件将该设备添加到硬件目录。</p>
+<p>S7-1200 DP从站模块 CM1242-5 GSD 文件下载如下：</p>
+<p> <img src="images/2-01.jpg" alt="" width="33" height="33" /><a href="images/si01818e.rar"><strong>CM1242-5 GSD 文件本地下载</strong></a></p>
+<p>在 TIA PORTAL 软件中菜单栏选择&ldquo;选项&rdquo;&gt;&ldquo;管理通用站描述文件(GSD)&rdquo;可安装或删除已经安装完成的 GSD 文件。如图 1 所示：<br />
+</p>
+<p><img src="images/2-02.png" width="537" height="167" /></p>
+<p>图 1.管理通用站描述文件(GSD)</p>
+<p>以安装西门子设备 EM277 的 GSD 文件为例，如上选择&ldquo;管理通用站描述文件(GSD)&rdquo;，出现&ldquo;管理通用站描述文件&rdquo;窗口。</p>
+<p>从&ldquo;源路径&rdquo;选择要安装 GSD 文件的文件夹，从所显示 GSD 文件的列表中选择要安装的一个或者多个文件如&ldquo;siem089d.gsd&rdquo;，单击&ldquo;安装&rdquo;按钮。如图 2 所示：<br />
+</p>
+<p><img src="images/2-03.jpg" width="645" height="396" /></p>
+<p>图 2.选择并安装 GSD 文件</p>
+<p>安装成功后，可在硬件目录下，其它现场设备找到安装的 GSD 文件的设备，如图 3 所示：</p>
+<p><img src="images/2-04.jpg" width="286" height="493" /></p>
+<p>图 3.硬件目录</p>
+<p>使用STEP 7 V13 SP1 以上的软件，也可将已经安装的 GSD 文件删除。</p>
+<p>要删除已经安装完成的 GSD 文件，按如图 1 所示，选择菜单栏&ldquo;选项&rdquo;&gt;&ldquo;安装通用站描述文件 (GSD)&rdquo;，进入&ldquo;管理通用站描述文件&rdquo;窗口。</p>
+<p>在源路径中浏览到例如&ldquo;C:\ProgramData\Siemens\Automation\Portal V15_1（取决于TIA PORTAL 版本）\data\xdd\GSD\&rdquo;，选择一个 GSD 的文件夹，例如&quot;SIEM089D.GSD&quot;，在下方的导入路径的内容中选择文件，例如&ldquo;siem089d.gsd&rdquo;，单击&ldquo;删除&rdquo; 按钮。如图 4 所示：<br />
+</p>
+<p><img src="images/2-05.jpg" width="643" height="398" /></p>
+<p>图 4.选择并删除 GSD 文件</p>
+<p>此后，所选的 GSD 文件将被删除，DP 从站不再出现在硬件目录中。</p>
+</body>
+</html>

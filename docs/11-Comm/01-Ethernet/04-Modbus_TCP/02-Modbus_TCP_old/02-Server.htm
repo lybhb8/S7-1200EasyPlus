@@ -1,0 +1,248 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Server</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200集成PN接口MODBUS TCP通信概述</h3>
+<p>Modbus TCP是标准的网络通信协议，通过CPU上PN接口进行TCP/IP通信，不需要额外的通信硬件模块，Modbus TCP使用开放式用户通信连接作为Modbus通信路径，所支持的混合客户机和服务器连接数最大为CPU所允许的最大开放式用户通信连接数8个。</p>
+<p>软件 STEP7 V11 SP1版本开始，S7-1200CPU 从Firmware V1.0.2开始，不再需要安装Modbus TCP的库文件，可以直接调用Modbus TCP的库指令“MB_CLIENT”和“MB_SERVER”使用实现Modbus TCP通信功能，如图1所示。</p>
+<p><img src="images/1-01.JPG" width="285" height="432" /></p>
+<p>图1. Modbus TCP的库指令</p>
+<h4><strong>S7-1200 做 Modbus Tcp Server </strong>（服务器）</h4>
+“MB_SERVER”指令将处理Modbus TCP客户机的连接请求、接收Modbus功能的请求并发送响应。
+<p>1.调用MB_SERVER通信指令，进入  “Program blocks” &gt; “OB1” 主程序中调用，设置连接ID、IP端口等参数，如下图2所示。</p>
+<p><img src="images/2-01.JPG" width="428" height="228" /></p>
+<p>图2.调用MB_SERVER通信指令</p>
+<p>功能块参数意义如下表5.</p>
+<table width="757" border="1">
+  <tr>
+    <td>管脚</td>
+    <td>说明</td>
+  </tr>
+  <tr>
+    <td>DISCONNECT</td>
+    <td>“MB_SERVER”指令建立与客户机的被动连接：0-建立与指定IP地址和端口号的通讯连接，默认为0；1-断开通讯连接，在终止连接的过程中，不执行任何其他功能；</td>
+  </tr>
+  <tr>
+    <td width="90">CONNECT_ID</td>
+    <td width="651">连接的ID号：每个连接只有一个唯一的ID号；</td>
+  </tr>
+  <tr>
+    <td>IP_PORT IP</td>
+    <td>端口号将定义Modbus 客户机连接请求中要监控的IP端口号，默认值：502；</td>
+  </tr>
+  <tr>
+    <td>HB_HOLD_REG</td>
+    <td>指向“MB_SERVER”指令的Modbus保持寄存器的指针：保持寄存器可以是全局DB块或M区，如果是DB块则需要定义为“标准与S7- 300/400兼容”的类型，如图3所示，保持寄存器包含Modbus客户机可通过Modbus功能 FC03(读取)、FC06(写入)和FC16（读取）访问的值； </td>
+  </tr>
+  <tr>
+    <td>NDR</td>
+    <td>新数据就绪：0-没有新数据；1-从Modbus客户机写入新数据； </td>
+  </tr>
+  <tr>
+    <td>DR</td>
+    <td>数据读取：0-没有读取数据；1-从Modbus客户机读取数据；</td>
+  </tr>
+  <tr>
+    <td>ERROR</td>
+    <td>错误位：0-无错误；1-出现错误，错误原因查看STATUS；</td>
+  </tr>
+  <tr>
+    <td>STATUS</td>
+    <td>错误代码；</td>
+  </tr>
+</table>
+<p>表1. 功能块“MB_SERVER”参数</p>
+<p>2.MB_DATA_PTR数据块的新建</p>
+<p>通过“Program blocks”&gt;“Add new block”，选择“Data block”创建 DB 块，选择“标准与S7- 300/400兼容” ，点击“OK”键，定义数据区为100个字的数组，如图3所示。</p>
+<p><img src="images/2-02.JPG" width="635" height="601" /></p>
+<p><img src="images/2-03.JPG" width="448" height="81" /></p>
+<p>图3.新建MB_DATA_PTR数据块</p>
+<p>3.Modbus地址的对应关系</p>
+<p>“MB_SERVER”指令允许到达的Modbus功能（FC01、FC02、FC04、FC05、FC15）直接读取和写入访问S7-1200CPU的过程映像输入/输出区（数据类型：BOOL和WORD），通过Modbus功能代码（FC03、FC06和FC16）将到达的Modbus消息写入Modbus保持寄存器或从寄存器中读取（可通过MB_SERVER指令的参数“MB_HOLD_REG”指定保持寄存器），保持寄存器的大小（MB_HOLD_REG参数）必须大于1个字节，详细参考表2.。</p>
+<table width="537" height="137" border="1">
+  <tr>
+    <td colspan="4">Modbus功能</td>
+    <td colspan="2">S7-1200 </td>
+  </tr>
+  <tr>
+    <td width="49">代码</td>
+    <td width="78">功能</td>
+    <td width="62">数据区</td>
+    <td width="104">地址空间</td>
+    <td width="103">数据区</td>
+    <td width="101">CPU地址</td>
+  </tr>
+  <tr>
+    <td>FC01</td>
+    <td>读取：位</td>
+    <td>Output</td>
+    <td>00001到08192</td>
+    <td>过程映像输出</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+  <tr>
+    <td>FC02</td>
+    <td>读取：位</td>
+    <td>Input</td>
+    <td>10001到18192</td>
+    <td>过程映像输入</td>
+    <td>I0.0到I1023.7</td>
+  </tr>
+  <tr>
+    <td>FC04</td>
+    <td>读取：字</td>
+    <td>Input</td>
+    <td>30001到30512</td>
+    <td>过程映像输入</td>
+    <td>IW0到IW1022</td>
+  </tr>
+  <tr>
+    <td>FC05</td>
+    <td>写入：位</td>
+    <td>Output</td>
+    <td>00001到08192</td>
+    <td>过程映像输出</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+  <tr>
+    <td height="17">FC15</td>
+    <td>写多入：位</td>
+    <td>Output</td>
+    <td>00001到08192</td>
+    <td>过程映像输出</td>
+    <td>Q0.0到Q1023.7</td>
+  </tr>
+</table>
+<p>表2.Modbus地址的对应关系</p>
+<p> 4.客户机端 Modscan32 软件设置</p>
+<p><strong><img src="images/3.gif" width="15" height="15" />注意：</strong>客户机采用Modscan32软件测试，Modscan32 做 Modbus TCP Client 测试软件，是第三方软件，可以从 internet 网络上下载。</p>
+<p>将测试电脑的IP地址设置成192.168.0.210，打开Modscan32 软件，在Modscan32的“Setup-&gt;Data Definition”中设置功能码、起始地址、长度等，如图4所示。</p>
+<p><img src="images/2-04.JPG" width="556" height="370" /></p>
+<p>图4.设置“Data Definition”参数</p>
+<p>在“Connection-&gt;connect...”中打开连接属性对话框，选择“Remote modbus TCP Server”，设置服务器的IP地址，端口号，如图5所示。</p>
+<p><img src="images/2-05.JPG" width="552" height="415" /></p>
+<p><img src="images/2-06.JPG" width="663" height="311" /></p>
+<p>图5.设置连接属性</p>
+<p><strong><img src="images/3.gif" width="15" height="15" />注意：</strong>用Modsscan32做客户机不需要考虑Device ID和服务器一致的情况，服务器自动响应客户机的Device ID。</p>
+<p>5.通讯测试</p>
+<p>S7-1200作服务器，客户机Modscan32用<strong>FC03</strong>功能码读取服务器的两个字，设置客户机和服务器的功能、起始地址、端口等参数相对应，具体设置如图5~6所示，</p>
+<p><img src="images/2-07.JPG" width="412" height="322" /></p>
+<p>图6.S7-1200作服务器</p>
+<p>通讯结果如下图7所示，Modscan32从服务器读到数据10，20到客户机的DB4.DBW0和DB4.DBW2区域。</p>
+<p><img src="images/2-08.JPG" width="556" height="390" /></p>
+<p>图7.<strong>FC03</strong>通讯结果</p>
+<p>用功能<strong>FC15</strong>向服务器的Q0.0~Q0.7写8位数据，设置连接参数，Modscan32设置结果如下图8所示。</p>
+<p><img src="images/2-09.JPG" width="605" height="367" /></p>
+<p>图8.使用<strong>FC15</strong>通讯，设置Modscan32</p>
+<p>测试结果，服务器侧直接对应过程映像输出区，00001~00008对应Q0.0~Q0.7，如下图9所示。</p>
+<p><img src="images/2-10.JPG" width="554" height="421" /></p>
+<p>图9. 使用<strong>FC15</strong>通讯测试结果</p>
+<p>6.HR_Start_Offset背景参数</p>
+<p>HR_Start_Offset是类型为字，用于指定Modbus保持寄存器的起始地址，存储在MB_SERVER背景数据块中，默认值是0，可以通过编程将值写入HR_Start_Offset。以上面FC03功能读2个字为例，将HR_Start_Offset的偏移量设置成2，其他参数不修改，HR_Start_Offset偏移前后地址对应关系如下表7，编程调用和结果如图10~11所示。</p>
+<table width="533" height="138" border="1">
+  <tr>
+    <td width="114">HR_Start_Offset</td>
+    <td width="141">地址</td>
+    <td width="107">数据1</td>
+    <td width="143">数据2</td>
+  </tr>
+  <tr>
+    <td rowspan="2">0</td>
+    <td>Modbus 地址（字） </td>
+    <td>40001</td>
+    <td>40002</td>
+  </tr>
+  <tr>
+    <td>S7-1200地址</td>
+    <td>DB4.DBW0</td>
+    <td>DB4.DBW2</td>
+  </tr>
+  <tr>
+    <td rowspan="2">2</td>
+    <td>Modbus 地址（字）</td>
+    <td>40003</td>
+    <td>40004</td>
+  </tr>
+  <tr>
+    <td>S7-1200地址</td>
+    <td>DB4.DBW0</td>
+    <td>DB4.DBW2</td>
+  </tr>
+</table>
+<p>表3. HR_Start_Offset偏移前后地址对应关系</p>
+<p>编程调用如下图10所示 </p>
+<p><img src="images/2-11.JPG" width="598" height="58" /></p>
+<p><img src="images/2-12.JPG" width="470" height="159" /></p>
+<p>图10.HR_Start_Offset的偏移量设置</p>
+<p>通讯结果如下图11所示</p>
+<p><img src="images/2-13.JPG" width="552" height="411" /></p>
+<p>图11. 通讯结果</p>
+<p>7.MB_SERVER参数STATUS的查询参考下面列表4.</p>
+<table width="686" height="211" border="1">
+  <tr>
+    <td width="137">STATUS（W#16#）</td>
+    <td width="100">发送到Modbus客户端的响应代码（B#16#）</td>
+    <td width="427">错误说明</td>
+  </tr>
+  <tr>
+    <td>7001</td>
+    <td>&nbsp;</td>
+    <td>MB_SERVER  正在等待Modbus客户机连接到指定的TCP端口，仅在第一次执行连接或断开操作时才报告此代码</td>
+  </tr>
+  <tr>
+    <td>7002</td>
+    <td>&nbsp;</td>
+    <td>MB_SERVER  正在等待Modbus客户机连接到指定的TCP端口，等待连接或断开操作完成时，将针对任何后续执行报告此代码</td>
+  </tr>
+  <tr>
+    <td>7003</td>
+    <td>&nbsp;</td>
+    <td>断开操作已成功完成（仅在一个PLC扫描周期内有效）</td>
+  </tr>
+  <tr>
+    <td>8187</td>
+    <td>&nbsp;</td>
+    <td>参数MB_HOLD_REG中的指针无效，数据区过小</td>
+  </tr>
+  <tr>
+    <td>818C</td>
+    <td>&nbsp;</td>
+    <td>参数MB_HOLD_REG指向优化的区域（必须为“标准与S7- 300/400兼容”的DB或M区）或因执行超时出错（55秒）</td>
+  </tr>
+  <tr>
+    <td>8381</td>
+    <td>01</td>
+    <td>不支持此功能代码</td>
+  </tr>
+  <tr>
+    <td>8382</td>
+    <td>03</td>
+    <td>数据长度错误</td>
+  </tr>
+  <tr>
+    <td>8383</td>
+    <td>02</td>
+    <td>数据地址错误或访问了保持寄存器（MB_HOLD_REG参数）地址以外的区域</td>
+  </tr>
+  <tr>
+    <td>8384</td>
+    <td>03</td>
+    <td>数据值错误</td>
+  </tr>
+  <tr>
+    <td>8385</td>
+    <td>03</td>
+    <td>不支持此数据诊断代码值（功能FC08）</td>
+  </tr>
+</table>
+<p>表4.MB_SERVER参数STATUS</p>
+<p>除了上面列出的错误外，也可以从底层传输通信指令（TCON、TDISCON、TSEND和TRCV）返回错误，参考相应指令的错误代码。</p>
+<p>说明：Modbus Slave做 Modbus TCP server 测试软件，Modscan32 做 Modbus TCP Client 测试软件，两者都是第三方软件，可以从 internet 网络上下载。　</p>
+
+</body>
+</html>

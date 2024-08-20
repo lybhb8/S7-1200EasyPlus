@@ -4,6 +4,8 @@ node_modules
 
 # Python stuff
 .nox
-/build
-/dist
+build/
+dist/
 __pycache__
+
+_build/

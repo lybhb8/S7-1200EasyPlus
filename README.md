@@ -9,7 +9,7 @@
 - 虽然作者已经尽力保证其正确性，但疏漏难免。读者如欲采纳，请注意风险。
 - 如果您认为本项目对您有所帮助，请您[加星+关注](https://github.com/lybhb8/S7-1200EasyPlus/tree/main "本项目github仓库")，也可以给朋友分享：
     - [本项目github/gh-pages部署](https://blowmoldingshare.cn/S7-1200EasyPlus/)。
-    - [本项目readthedocs部署](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/latest/)。
+    - [本项目readthedocs部署](https://s7-1200plc-easyplus.readthedocs.io/en/latest/)。
 - 感谢大家的支持和帮助。
 - 本项目依照[GPL-3.0 license](https://github.com/lybhb8/S7-1200EasyPlus?tab=GPL-3.0-1-ov-file#)发布,如果用于商业用途，请遵守协议中的约定。
 
@@ -48,6 +48,22 @@ V4.3 ... ... 2022.02.01
 * 修正所有链接，并且更新到最新
 * 修正细小错误
 
+## 项目电子书在线
+
+  ### 1. Read the Docs
+  
+  部署在 Read the Docs，点击下方链接即可在线查看电子书。链接如下：<https://s7-1200plc-easyplus.readthedocs.io/en/latest/>
+
+  ### 2. github/gh-pages
+  
+  应用了[Mkdocs-material](#material-for-mkdocs中文教程)主题框架，部署在github/gh-pages上。链接如下：
+
+  <https://s7-1200plc-easyplus.readthedocs.io/en/latest/>
+
+### 关于免费的开源托管平台 Read the Docs
+
+Read the Docs 通过自动为您构建，版本控制和托管文档来简化软件文档。
+
 ## Furo
 
 A clean customisable Sphinx documentation theme.
@@ -77,3 +93,8 @@ Furo is distributed on [PyPI]. To use the theme in your Sphinx project:
 For more information, visit [Furo's documentation][quickstart-docs].
 
 [quickstart-docs]: https://pradyunsg.me/furo/quickstart
+
+
+## [Material for MkDocs中文教程](https://mkdoc-material.llango.com/getting-started/)
+
+是MkDocs的一个主题，MkDocs是一个用于生成静态页面的程序。

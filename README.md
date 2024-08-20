@@ -9,7 +9,7 @@
 - 虽然作者已经尽力保证其正确性，但疏漏难免。读者如欲采纳，请注意风险。
 - 如果您认为本项目对您有所帮助，请您[加星+关注](https://github.com/lybhb8/S7-1200EasyPlus/tree/main "本项目github仓库")，也可以给朋友分享：
     - [本项目github/gh-pages部署](https://blowmoldingshare.cn/S7-1200EasyPlus/)。
-    - [本项目readthedocs部署](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/latest/)。
+    - [本项目readthedocs部署](https://s7-1200plc-easyplus.readthedocs.io/en/latest/)。
 - 感谢大家的支持和帮助。
 - 本项目依照[GPL-3.0 license](https://github.com/lybhb8/S7-1200EasyPlus?tab=GPL-3.0-1-ov-file#)发布,如果用于商业用途，请遵守协议中的约定。
 

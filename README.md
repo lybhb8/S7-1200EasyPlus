@@ -58,7 +58,7 @@ V4.3 ... ... 2022.02.01
   
   应用了[Mkdocs-material](#material-for-mkdocs中文教程)主题框架，部署在github/gh-pages上。链接如下：
 
-  <https://s7-1200plc-easyplus.readthedocs.io/en/latest/>
+  <https://blowmoldingshare.cn/S7-1200EasyPlus/>
 
 ### 关于免费的开源托管平台 Read the Docs
 

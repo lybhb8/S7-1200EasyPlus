@@ -108,7 +108,7 @@ html_theme_options: Dict[str, Any] = {
         },
     ],
     "source_repository": "https://github.com/lybhb8/S7-1200EasyPlus",
-    "source_branch": "sphinx-rtd",
+    "source_branch": "furo-rtd",
     "source_directory": "docs/",
     "sidebar_hide_name": True,
     "navigation_with_keys": True,

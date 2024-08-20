@@ -50,11 +50,11 @@ V4.3 ... ... 2022.02.01
 
 ## 项目电子书在线
 
-  ### 1. Read the Docs
+### 1. Read the Docs
   
   部署在 Read the Docs，点击下方链接即可在线查看电子书。链接如下：<https://s7-1200plc-easyplus.readthedocs.io/en/latest/>
 
-  ### 2. github/gh-pages
+### 2. github/gh-pages
   
   应用了[Mkdocs-material](#material-for-mkdocs中文教程)主题框架，部署在github/gh-pages上。链接如下：
 
@@ -64,11 +64,11 @@ V4.3 ... ... 2022.02.01
 
 Read the Docs 通过自动为您构建，版本控制和托管文档来简化软件文档。
 
-## Furo
+### Furo
 
 A clean customisable Sphinx documentation theme.
 
-### Quickstart
+#### Quickstart
 
 Furo is distributed on [PyPI]. To use the theme in your Sphinx project:
 
@@ -95,6 +95,6 @@ For more information, visit [Furo's documentation][quickstart-docs].
 [quickstart-docs]: https://pradyunsg.me/furo/quickstart
 
 
-## [Material for MkDocs中文教程](https://mkdoc-material.llango.com/getting-started/)
+### [Material for MkDocs](https://mkdoc-material.llango.com/getting-started/ "Material for MkDocs中文教程")
 
 是MkDocs的一个主题，MkDocs是一个用于生成静态页面的程序。

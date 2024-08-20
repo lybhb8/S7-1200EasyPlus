@@ -2,12 +2,12 @@
 
 伴随着TIA 软件V13 版本以及S7-1200 CPU V4.0 固件版本的发布，S7-1200 CPU的固件已经可以通过以下几种方式进行升级：
 
-- 使用存储卡更新CPU固件，具体步骤请参考 [存储卡](../08-Function/10-Memory_Card.md#memorycard使用存储卡更新s7-1200cpu的固件版本-使用存储卡更新s7-1200cpu的固件版本-style1)的使用章节
+- 使用存储卡更新CPU固件，具体步骤请参考 [存储卡](../../08-Function/10-Memory_Card.md#memorycard使用存储卡更新s7-1200cpu的固件版本-使用存储卡更新s7-1200cpu的固件版本-style1)的使用章节
 - 使用TIA软件更新CPU固件
 - 通过Web访问方式更新CPU固件
 
 本文将详细介绍上述方法中的后两种。
-固件下载链接参见：[链接](../01-resource/08-online_download.md#s7-1200-固件下载)。
+固件下载链接参见：[链接](../../01-resource/08-online_download.md#s7-1200-固件下载)。
 
 ## 使用TIA软件更新CPU固件
 

@@ -16,11 +16,9 @@ STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 W
 
 ![alt text](image-3.png)
 
-① STEP 7 Basic 主要用于组态 S7-1200，并且自带 WinCC Basic，用于 Basic 面板的 
-组态。
+- STEP 7 Basic 主要用于组态 S7-1200，并且自带 WinCC Basic，用于 Basic 面板的组态。
 
-② STEP 7 Professional 用于组态 S7-1200、S7-1500、S7-300/400 和 WinAC，且也自带
-WinCC Basic，用于 Basic 面板的组态。
+- STEP 7 Professional 用于组态 S7-1200、S7-1500、S7-300/400 和 WinAC，且也自带 WinCC Basic，用于 Basic 面板的组态。
 
 
 ```{toctree}

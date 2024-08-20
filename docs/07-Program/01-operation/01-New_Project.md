@@ -124,10 +124,12 @@ S7-1200 系列模块的连接特点是：
 
 ⑤以拖拽的方式建立连接，视图会出现一个轨道连接，表示连接已经创建。
 
-![](images/4.gif){width="15" height="15"} **注意**：
+:::{attention} 注意：
+
 网络视图的以太网连接中虽然有多种连接选项，但对于 S7-1200 PLC V4.4
-及其之前只能在此创建 S7 或 HMI 连接。从 V4.5 开始 TCP、UDP、ISO-on-TCP
-可以在此创建连接，方法参见[链接](../../11-Comm/01-Ethernet/07-OUC_Config.html)。
+及其之前只能在此创建 S7 或 HMI 连接。从 V4.5 开始 TCP、UDP、ISO-on-TCP 可以在此创建连接，方法参见[链接](../../11-Comm/01-Ethernet/07-OUC_Config.html)。
+
+:::
 
 ## 添加程序块
 

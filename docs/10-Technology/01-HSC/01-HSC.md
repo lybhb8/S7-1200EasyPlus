@@ -50,7 +50,7 @@ CPU 和信号板的硬件输入地址有关。
 
 表 2. 信号板信息
 
-![](images/4.gif){width="15" height="15"}表 2 中的 5V
+![](images/4.gif) 表 2 中的 5V
 信号都是集电极开路信号，不是 5V 差分信号。
 
 ![](images/4.gif){width="15"
@@ -61,7 +61,7 @@ height="15"}如果希望使用更多的高速计数器，或者连接 SSI
 绝对值编码器，可以通过分布式的方式扩展例如 ET200SP
 的高速计数器模块，这种方式不占用 S7-1200 高速计数器任何资源。
 
-![](images/4.gif){width="15" height="15"}对于 CPU V4.2
+![](images/4.gif) 对于 CPU V4.2
 版本以前的高速计数器，资源和功能请参见[链接](03-HSC_Archive.html)。
 
 ![](images/4.gif){width="15"
@@ -318,7 +318,7 @@ Word
 
 2\. 建立数据块，并建立数据类型为 HSC_Count 的变量，如图 10 所示。
 
-![](images/4.gif){width="15" height="15"} HSC_Count 数据类型在 DB
+![](images/4.gif)  HSC_Count 数据类型在 DB
 块的数据类型中无法选择，需要完整输入后输入回车才会出现。
 
 ![](images/01-10.png){width="683" height="627"}
@@ -355,7 +355,7 @@ ID1000 的值即为 HSC1 的计数值。**
 
 2\. 建立数据块，并建立数据类型为 HSC_Frequency 的变量，如图 14 所示。
 
-![](images/4.gif){width="15" height="15"} HSC_Frequency 数据类型在 DB
+![](images/4.gif)  HSC_Frequency 数据类型在 DB
 块的数据类型中无法选择，需要完整输入后输入回车才会出现。
 
 ![](images/01-14.png){width="393" height="98"}
@@ -392,7 +392,7 @@ ID1000 的值即为 HSC1 的频率值。**
 
 2\. 建立数据块，并建立数据类型为 HSC_Period 的变量，如图 18 所示。
 
-![](images/4.gif){width="15" height="15"} HSC_Period 数据类型在 DB
+![](images/4.gif)  HSC_Period 数据类型在 DB
 块的数据类型中无法选择，需要完整输入后输入回车才会出现。
 
 ![](images/01-18.png){width="667" height="177"}

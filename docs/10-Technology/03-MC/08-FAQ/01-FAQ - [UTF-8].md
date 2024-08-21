@@ -141,7 +141,7 @@ PROFIdrive 驱动装置和 PROFIdrive 编码器可通过 PROFIdrive
 -   \"设备中的写保护数据块\"(Data block write-protected in the device)
 -   \"优化块访问\"(Optimized block access)\*
 
-![](images/4.gif){width="15" height="15"}\*：从 V4.4
+![](images/4.gif) \*：从 V4.4
 固件版本以后，工艺对象 V7.0 开始，可以使用优化块
 
 ![](images/1-11.png){width="474" height="230"}
@@ -321,7 +321,7 @@ GSD 文件组态的 V90 PN 驱动器。使用硬件支持包组态的 V90 PN
 变量支持的访问及更改后的生效方式详见"S7-1200
 运动控制使用手册"附录中"定位轴工艺对象的变量"章节的描述，手册可以去以下页面下载：[链接](../../../01-resource/03-online_doc.htm#d)。
 
-**![](images/4.gif){width="15" height="15"}注意： 如果想要在 CPU
+**![](images/4.gif) 注意： 如果想要在 CPU
 掉电、STOP 到 RUN
 或者工艺对象重启之后，对工艺数据块所做的更改仍然保留，则必须使用扩展指令"WRIT_DBL"将这些更改写入装载存储器的起始值中。**
 

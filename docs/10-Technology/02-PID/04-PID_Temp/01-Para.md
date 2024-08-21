@@ -389,7 +389,7 @@ PID_Temp 的输出参数包括 PID
 
 表 3. 输出参数
 
-![](images/4.gif){width="15" height="15"}注意：
+![](images/4.gif) 注意：
 
 1.  若 PID 控制器未正常工作，请先检查 PID 的输出状态 State 来判断 PID
     的当前工作模式，并检查错误信息。
@@ -523,7 +523,7 @@ PID_Temp 的输入输出参数如表 4 所示：
 
 表 4. 输入输出参数
 
-![](images/4.gif){width="15" height="15"}注意：
+![](images/4.gif) 注意：
 
 当 ManualEnable = TRUE，无法通过 ModeActivate
 的上升沿或使用调试对话框来更改工作模式。

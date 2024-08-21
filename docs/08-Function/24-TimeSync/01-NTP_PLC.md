@@ -56,7 +56,7 @@ NTP 服务器功能的 GPS 等，本文以 CPU 为例介绍 NTP 客户端的组�
 有些国家可能会采用夏令时，如果需要使用夏令时，正确设置时区之后，勾选"启用夏令时"，PLC
 会根据 NTP 服务器时钟所在的时区，自动计算 PLC 的本地时间。
 
-![](images/4.gif){width="15" height="15"}[**注意：如果希望 PC 和 CPU
+![](images/4.gif) [**注意：如果希望 PC 和 CPU
 同步后时间相同，请确保 PC 侧的时区和 CPU 的时区相同。**]{.underline}
 
 ![](images/01-02.png){width="830" height="815"}

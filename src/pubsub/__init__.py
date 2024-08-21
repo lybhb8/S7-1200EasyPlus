@@ -5,7 +5,7 @@ Pubsub package initialization.
 :license: BSD, see LICENSE_BSD_Simple.txt for details.
 """
 
-__version__ = "4.0.3"
+__version__ = "4.3"
 
 __all__ = [
     'pub',

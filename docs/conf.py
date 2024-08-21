@@ -55,8 +55,32 @@ autosectionlabel_prefix_document = True
 templates_path = ['_templates']
 
 # The suffix of source filenames.
-source_suffix = ['.rst','.md']
+# source_suffix = ['.rst','.md']
 
+source_suffix = {
+    '.rst': 'restructuredtext',
+    '.txt': 'markdown',
+    '.md': 'markdown',
+}
+
+##-----------------------------------
+myst_enable_extensions = [
+    "amsmath",
+    "attrs_inline",
+    "colon_fence",
+    "deflist",
+    "dollarmath",
+    "fieldlist",
+    "html_admonition",
+    "html_image",
+    #"linkify",
+    "replacements",
+    "smartquotes",
+    "strikethrough",
+    "substitution",
+    "tasklist",
+]
+##-----------------------------------------
 # The encoding of source files.
 # source_encoding = 'utf-8-sig'
 

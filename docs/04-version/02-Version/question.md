@@ -18,12 +18,12 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 固件更新方法的说明参见表
 
-|固件更新方式 | 使用限制 | 链接 |
-|------------|----------|-----|
-|通过SIMATIC存储卡| 无限制 |[链接](../../08-Function/10-Memory_Card.md#memorycard)|
-|通过“在线与诊断”或通过可访问的设备 |CPU V4.0及以上版本 | [链接](../03-firmware_update/firmware.md#使用tia软件更新cpu固件) |
-|通过集成的Web服务器 |CPU V3.0及以上版本 |[链接](../03-firmware_update/firmware1.md#web访问方式更新cpu固件)|
-|通过SIMATIC Automation Tool | CPU V4.0及以上版本| [链接](../../09-Diagnose/01-AutomationTool.htm#a)|
+| 固件更新方式                       | 使用限制           | 链接                                                              |
+| ---------------------------------- | ------------------ | ----------------------------------------------------------------- |
+| 通过SIMATIC存储卡                  | 无限制             | [链接](../../08-Function/10-Memory_Card.md#memorycard)            |
+| 通过“在线与诊断”或通过可访问的设备 | CPU V4.0及以上版本 | [链接](../03-firmware_update/firmware.md#使用tia软件更新cpu固件)  |
+| 通过集成的Web服务器                | CPU V3.0及以上版本 | [链接](../03-firmware_update/firmware1.md#web访问方式更新cpu固件) |
+| 通过SIMATIC Automation Tool        | CPU V4.0及以上版本 | [链接](../../09-Diagnose/01-AutomationTool.htm#a)                 |
 
 固件包的下载链接：[链接](../../01-resource/08-online_download.md#s7-1200-固件下载)。
 
@@ -46,7 +46,7 @@ CPU 操作系统将各种功能集成在固件之中，如果需要在 CPU 中�
 
 绿色背景为 PLCSIM 支持的版本
 
-:::{Attention}
+:::{tip}
 除了上面列出的两个通过安装 HSP 支持更新版本的固件，其余都无法通过加载诸如 HSP、GSD 的方式使得低版本软件组态高版本 CPU，如果想使用高版本 CPU 的功能，必须更换软件。
 :::
 

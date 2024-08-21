@@ -257,7 +257,7 @@ V1.0版本：GATHER_BLK指令是将Bool数组合并成位序列（Byte、Word、
 
 V1.1版本：IN除Bool数组之外，可以是Struct、UDT类型的变量，变量内是连续的Bool变量，IN处填写Struct、UDT类型内的接收的Bool起始变量。
 
-:::{attention}
+:::{tip}
 
     1\.
     当COUNT_IN超过了位序列数组元素个数，将不执行指令。如果激活指令的ENO功能，则ENO=False。

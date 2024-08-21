@@ -45,7 +45,7 @@ of Byte可以MOVE到Array\[1..2\] of Byte。
 | String中的字符  | CHAR, String中的字符   | CHAR, String中的字符                                                                |
 | WString中的字符 | WCHAR, WString中的字符 | WCHAR, WString中的字符                                                              |
 
-:::{attention}
+:::{tip}
 
     - 1.如果输入 IN 数据类型的位长度超出输出 OUT
     数据类型的位长度，则源值的高位会丢失。如果输入 IN
@@ -130,7 +130,7 @@ LAD和SCL均为(U)MOVE_BLK指令。
 
 图13 指令详情
 
-:::{attention}
+:::{tip}
 
     1\.IN和OUT必须是数组的一个元素，例如\"DB26\".Static_1\[0\]，不能是常数、常量、普通变量，也不能是数组名。
 

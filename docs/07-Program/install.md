@@ -59,7 +59,7 @@ STEP 7 Professional / Basic V18 可以安装于以下操作系统
 - STEP 7 V5.6 SP1 到 V5.6 SP2 
 - STEP 7 Professional 2017 SR1 到 2017 SR2 
 
-注意: 仅TIA PORTAL V13 SP1以后的项目才能升级到TIA PORTAL V18 
+ 仅TIA PORTAL V13 SP1以后的项目才能升级到TIA PORTAL V18 
  
 ### 5 与SIMATIC HMI 产品的兼容性
 

@@ -1,11 +1,17 @@
-# npm stuff
-.nodeenv
-node_modules
-
-# Python stuff
-.nox
-build/
-dist/
+*.bak
 __pycache__
 
-_build/
+/.vscode
+/build
+/dist
+
+/docs/html
+/docs/_build
+
+/src/PyPubSub.egg-info
+
+/tests/suite/htmlcov/
+/tests/*.pstats
+/tests/suite/.coverage
+
+/pypubsub.code-workspace

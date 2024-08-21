@@ -1,0 +1,77 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7_TIA</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>TIA Portal  组态PC Station 与 S7-1200  CM1243-5 基于Profibus 的S7 通信</h3>
+<p>由于 CM1243-5 支持 S7 通信，因此，可以使用 SIMATIC NET 组态的 OPC 服务器与其建立 S7 通信连接。</p>
+<h4>硬件和软件需求</h4>
+<p><strong>硬件：</strong><br />
+  ① CPU1215C  DC/DC/DC V3.0<br />
+  ② CM1243-5<br />
+③ CP5611 A2</p>
+<p><br />
+  <strong>软件：</strong><br />
+  ① SIMATIC NET  V8.1<br />
+  ② STEP7 V12 SP1 Update2</p>
+<h3><strong>操作步骤</strong></h3>
+<h4>  1、组态 S7-1200 PLC 站 </h4>
+<p>（1）在项目 CP1243-5 OPC 中“添加新设备”组态 S7-1200 站 PLC_1 ，选择 CPU1215C  DC/DC/DC V3.0 创建项目。如图1所示。</p>
+<p><img src="images/2-01.JPG" width="830" height="386" /></p>
+<p>图1 创建 S7-1200 PLC 站 </p>
+<p>（2）组态 CM1243-5 ，为 CM1243-5 添加子网 PROFIBUS _1 ，分配站地址为2。如图2所示。</p>
+<p><img src="images/2-02.JPG" width="661" height="316" /></p>
+<p>图2 组态 CM1243-5</p>
+<p>  （3）点击“添加新块”，生成全局块数据块 DB1。如图3所示。 <br />
+  <img src="images/2-03.JPG" width="693" height="595" /></p>
+<p>图3 创建 DB 块</p>
+<p>  将 DB 块设置为标准块：在 DB 块的“属性”中取消选择“优化的块访问”。如图4所示。</p>
+<p><img src="images/2-04.jpg" width="711" height="401" /></p>
+<p>图4. DB 块属性设置 </p>
+<p>双击 DB1 ，添加数据元素 data ，数组数据类型，1000个字节，编译 DB1 。如图5所示。</p>
+<p><img src="images/2-05.JPG" width="461" height="269" /></p>
+<p>图5 创建DB块元素</p>
+<h4>2、组态SIMATIC PC Station</h4>
+<p>  （1）通过“添加新设备”&gt;“PC 系统”&gt;“常规 PC”插入一个 PC 站，PC 站的名字为：“PC station”。如图6所示。</p>
+<p><img src="images/2-06.jpg" width="867" height="629" /> </p>
+<p>图6 插入并组态 PC 站</p>
+<p>（2）通过点击“设备组态”进入 PC station “设备视图”界面，如图7所示。</p>
+<p>在第一个槽中，从“用户应用程序”下选择“OPC 服务器”，添加一个 OPC Server 。</p>
+<p>在第二个槽中，从“通信模块”&gt;“PROFIBUS”下选择“CP5611(A2)”。</p>
+<p><img src="images/2-07.jpg" width="1018" height="495" /></p>
+<p>图7 PC station 的硬件组态</p>
+<p>然后配置 CP 卡网络类型及地址。如图8所示。</p>
+<p><img src="images/2-08.jpg" width="626" height="645" /></p>
+<p>图8 设置 CP 卡</p>
+<p>（3）配置网络连接。</p>
+<p>通过点击“网络视图”进入网络配置，然后添加 S7 连接。步骤详见图9所示。</p>
+<p><img src="images/2-09.jpg" width="811" height="800" /></p>
+<p>图9 建立连接及定义连接属性</p>
+<p>添加完成连接后，在连接视图中将会有连接信息。如图10所示。</p>
+<p><img src="images/2-10.jpg" width="785" height="518" /></p>
+<p>图10 S7 连接信息</p>
+<p>（4）生成 OPC 配置文件。</p>
+<p>点击 PC station 站，“属性”&gt;“XDB”组态，选择“生成XDB文件”复选框，然后对 PC station 站进行“编译”即生成该 OPC 配置文件，文件的默认保存路径为项目文件的子目录 XDB 。如图11所示。 </p>
+<p><img src="images/2-11.jpg" width="632" height="429" /></p>
+<p>图11 生成 OPC 配置文件</p>
+<p>（5）导入组态到 OPC Server</p>
+<p>双击“Station Configurator”进入“Station Configuration Editor”，点击“Import Station”导入上一步骤中生成的文件“PC station.xdb”。如图12所示。</p>
+<p><img src="images/2-12.jpg" width="742" height="630" /></p>
+<p>图12 导入组态到 OPC Server</p>
+<p>组态正确导入后，连接建立。如图13所示。</p>
+<p><img src="images/2-13.jpg" width="480" height="499" /></p>
+<p>图13 OPC Server 状态</p>
+<h4>3、检查通信连接</h4>
+<p>在计算机“开始”菜单中，执行 SIMATIC NET 的 OPC Scout V10 。如图14所示。</p>
+<p>打开“S7 connection_1”的“objects”下添加变量，将添加的变量拖拽到“DA view”，点击“Moniting ON”查看变量状态。</p>
+<p><img src="images/2-14.jpg" width="1033" height="578" /> </p>
+<p>图14 OPC Server 状态</p>
+<p>同时在 STEP7 V12 中监控变量状态，比较变量的值。如图15所示。</p>
+<p><img src="images/2-15.jpg" width="460" height="156" /> </p>
+<p>图15 PLC 中的变量监控 </p>
+</body>
+</html>

@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 与 S7-1200/S7-1500 同一个项目下 UDP 通信</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 与 S7-1200/S7-1500 同一个项目下 UDP 通信</h3>
+<p>S7-1200 与 S7-1200 之间的以太网通信可以通过 UDP 协议来实现。本列中使用TSEND_C，TRCV_C指令建立双方的UDP通讯。TSEND_C，TRCV_C指令在两台PLC间必须成对存在。</p>
+<p>此外S7-1200 与 S7-1500 在同一个项目下UDP通信也可以参考本文档。</p>
+<h3> 一、概述</h3>
+<p>  <strong>硬件：</strong><br />
+  ① 两台 S7-1200 CPU V4.4<br />
+  ② PC（带以太网卡）<br />
+③ TP电缆(以太网电缆）</p>
+<p>  <strong>软件：</strong><br />
+  STEP7 V16</p>
+<p><strong>连接关系：</strong></p>
+<img src="images/01-01.PNG" alt="" width="768" height="380" />
+<p>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图1. 连接关系</p>
+<h3>二、建立项目并组态CPU</h3>
+<p> <strong>1.	打开 STEP7 V16 软件并新建项目</strong><br />
+  <br />
+在 STEP7 V16的 “Portal 视图” 中创建一个新项目。</p>
+<p> <strong>2.	添加硬件并命名PLC</strong><br />
+  <br />
+  在“项目树” 下双击 “添加新设备”，在对话框中选择所使用的S7-1200 CPU添加到机架上，命名为PLC_1。<br />
+  同样方法再添加通信伙伴的S7-1200 CPU ，命名为 PLC_2。<br />
+</p>
+<img src="images/01-02.PNG" alt="" width="816" height="372" />
+<p>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图2. 添加CPU</p>
+<p><strong>3. 组态系统时钟</strong><br />
+  <br />
+在CPU 属性中定义的时钟位， 在 “项目树” &gt; “PLC_1” &gt; “设备组态” 中，选中 CPU ，然后在下面的属性窗口中，“属性” &gt; “常规”&gt;“系统和时钟存储器” 下，勾选“启用系统存储器字节”及“启用时钟存储器字节”。同样方式，启用PLC_2 CPU的系统和时钟存储器位。</p>
+<img src="images/01-03.PNG" alt="" width="609" height="547" />
+<p>  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图3. 系统位与时钟位</p>
+<p><strong>4. 组态PROFINET通讯接口</strong><br />
+  <br />
+  在CPU的属性窗口中，“属性” &gt; “常规”&gt;“PROFINET接口[X1]”&gt;“以太网地址”下，点击添加新子网，分配PLC_1 CPU &nbsp; IP地址：192.168.0.2，子网掩码：255.255.255.0。</p>
+<p>同样方式，为PLC_2 CPU，分配IP：192.168.0.3，子网掩码：255.255.255.0 。</p>
+<img src="images/01-04.PNG" width="831" height="581" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图4. 组态PROFINET接口</p>
+<p><strong>5. 分别编译两个CPU的硬件组态并下载 。</strong><br />
+  <br />
+  在设备视图下，“编辑”菜单 &gt; “编译”。</p>
+<p> 在设备视图下，“在线”菜单 &gt; “下载到设备”。</p>
+<h3>三、在 PLC_1 &nbsp;CPU中调用TSEND_C、TRCV_C指令</h3>
+<h4> <strong>1. 建立通讯用DB</strong></h4>
+<p>在项目树下添加新块，分别命名为PLC1_Rcv，PLC1_Send。</p>
+<p>在 DB 块中建立用于接收及发的数据数组(本例中建立100个byte)。</p>
+<p>建立完成 DB 后，右键点击 DB 块，在打开的快捷菜单中打开 DB 的属性，去除 DB 的“优化的块访问属性”，见图6。</p>
+<img src="images/01-05.PNG" width="640" height="257" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图5. 建立通讯用DB块</p>
+<img src="images/01-06.PNG" width="495" height="549" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图6. 去除DB块的优化属性</p>
+<h4><strong>2. 建立通讯连接</strong></h4>
+<p>从指令表(图7)加入指令块 TSEND_C 到主程序中。</p>
+<img src="images/01-07.PNG" width="749" height="400" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图7. 加入 TSEND_C功能块</p>
+<p>点击指令块上的开始组态按钮，打开“连接参数”组态窗口。</p>
+<img src="images/01-08.PNG" width="1079" height="551" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图8. 组态连接参数</p>
+<p><strong>图8中的参数： </strong></p>
+<p>端点：连接伙伴侧选择PLC_2 CPU。</p>
+<p>连接类型：UDP，此处使用UDP通讯。</p>
+<p>连接ID：不能和CPU中的其它通讯ID冲突 。</p>
+<p>连接数据：此处本地及伙伴处新建连接。</p>
+<p>端口： 本例中双方通讯端口都为2000。</p>
+<h4><strong>3. 配置 TSEND_C 指令</strong>&nbsp;</h4>
+<img src="images/01-09.PNG" alt="" width="397" height="346" />
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图9. TSEND_C功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>REQ：此处使用时钟脉冲信号，上升沿执行发送作业。</p>
+<p>LEN：发送数据长度，此值必须小于或者等于DATA中指定的发送区长度，单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。示例中发送10个Byte到接收区。</p>
+<p>DATA：指向发送数据区的指针。p#db3.dbx0.0 byte 20：起始地址为db3.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB3块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：发送作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图26。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图27。</p>
+<h4><strong>4. 配置 TRCV_C 指令</strong></h4>
+<p>从指令表(图10)加入指令块 TRCV_C 到主程序中。</p>
+<img src="images/01-10.PNG" width="730" height="405" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图10. 加入 TRCV_C 功能块</p>
+<p>点击指令块上的开始组态按钮，打开“连接参数”组态窗口，并选择图8中组态好的参数块。</p>
+<img src="images/01-11.PNG" width="1267" height="657" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图11. 组态连接参数</p>
+<p>配置TRCV_C指令</p>
+<img src="images/01-12.PNG" width="401" height="363" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图12. TRCV_C 功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>EN_R：启用接收功能 ，此处设置为1，一直打开接收。</p>
+<p>LEN：接收数据长度，必须和通讯伙伴的发送长度设置一致。单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。</p>
+<p>DATA：指向接收数据区的指针。p#db4.dbx0.0 byte 20：起始地址为db4.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB4块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：接收作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图28。</p>
+<p>RCVD_LEN：接收到的字节数。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图29。</p>
+<h3>四、在 PLC_2 &nbsp;CPU中调用TSEND_C、TRCV_C指令</h3>
+<h4> <strong>1. 建立通讯用DB</strong></h4>
+<p>在项目树下添加新块，分别命名为PLC2_Rcv，PLC2_Send。</p>
+<p>在 DB 块中建立用于接收及发的数据数组(本例中建立100个byte)。</p>
+<p>建立完成 DB 后，右键点击 DB 块，在打开的快捷菜单中打开 DB 的属性，去除 DB 的“优化的块访问属性”，见图14。</p>
+<img src="images/01-13.PNG" width="642" height="222" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图13. 建立通讯用DB块</p>
+<img src="images/01-14.PNG" width="490" height="517" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图14. 去除DB块的优化属性</p>
+<h4><strong>2. 配置 TSEND_C 指令</strong>&nbsp;</h4>
+<p>从指令表(图14)加入指令块 TSEND_C 到主程序中。</p>
+<img src="images/01-15.PNG" width="714" height="380" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图15. 加入 TSEND_C功能块</p>
+<p>点击指令块上的开始组态按钮，打开&ldquo;连接参数&rdquo;组态窗口，并选择图8中组态好的参数块。</p>
+<img src="images/01-16.PNG" width="1082" height="547" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图16. 组态连接参数</p>
+<p>配置TSEND_C指令</p>
+<img src="images/01-17.PNG" width="395" height="346" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图17. TSEND_C功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>REQ：此处使用时钟脉冲信号，上升沿执行发送作业。</p>
+<p>LEN：发送数据长度，此值必须小于或者等于DATA中指定的发送区长度，单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。示例中发送10个Byte到接收区。</p>
+<p>DATA：指向发送数据区的指针。p#db3.dbx0.0 byte 20：起始地址为db3.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB3块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：发送作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图26。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图27。</p>
+<h4><strong>3. 配置 TRCV_C 指令</strong>&nbsp;</h4>
+<p>从指令表(图17)加入指令块 TRCV_C 到主程序中。</p>
+<img src="images/01-18.PNG" width="730" height="405" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图18. 加入 TRCV_C 功能块</p>
+<p>点击指令块上的开始组态按钮，打开&ldquo;连接参数&rdquo;组态窗口，并选择图8中组态好的参数块。</p>
+<img src="images/01-19.PNG" width="1064" height="552" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图19. 组态连接参数</p>
+<p>配置TRCV_C指令</p>
+<img src="images/01-20.PNG" width="397" height="361" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图20. TRCV_C 功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>EN_R：启用接收功能 ，此处设置为1，一直打开接收。</p>
+<p>LEN：接收数据长度，必须和通讯伙伴的发送长度设置一致。单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。</p>
+<p>DATA：指向接收数据区的指针。p#db4.dbx0.0 byte 20：起始地址为db4.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB4块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：接收作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图28。</p>
+<p>RCVD_LEN：接收到的字节数。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图29。</p>
+<h3>五、检查通讯连接DB块</h3>
+<strong>1. PLC_1中的连接DB块检查</strong>
+<p>在“程序块”－“系统块”－“程序资源”下，双击打开DB块“PLC_1_Send_DB”。</p>
+<img src="images/01-21.PNG" width="805" height="557" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图21. 检查通讯连接DB</p>
+<p>红色框内填写通讯伙伴的IP(此处为PLC_2的IP地址)和端口。</p>
+<strong>2. PLC_2中的连接DB块检查</strong>
+<p>在&ldquo;程序块&rdquo;－&ldquo;系统块&rdquo;－&ldquo;程序资源&rdquo;下，双击打开DB块&ldquo;PLC_2_Receive_DB&rdquo;。</p>
+<img src="images/01-22.PNG" width="809" height="557" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图22. 检查通讯连接DB</p>
+<p>红色框内填写通讯伙伴的IP(此处为PLC_1的IP地址)和端口。</p>
+<strong>3. 下载两个CPU的程序</strong>
+<h3>六、通讯诊断</h3>
+<h4><strong>1. 通讯数据查看</strong></h4>
+<img src="images/01-23.PNG" width="822" height="357" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图23</span>. 通讯数据</p>
+<h4><strong>2. 连接诊断</strong>&nbsp;</h4>
+<p>将 1200CPU 转至在线状态，打开“网络视图”，可以在“连接”选项卡中看到端口状态。</p>
+<img src="images/01-24.PNG" width="862" height="200" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图24</span>. 连接状态</p>
+<p>将鼠标选中连接，在巡视窗口中，可以检查连接的具体状态。</p>
+<img src="images/01-25.PNG" width="819" height="268" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图25. 连接详细状态</p>
+<h4><strong>3. 利用功能块诊断通讯状态</strong></h4>
+<img src="images/01-26.PNG" width="320" height="118" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图26. 检查已发送次数</p>
+<p>&nbsp;</p>
+<img src="images/01-27.PNG" width="442" height="211" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图27. 抓取发送错误代码</p>
+<p>&nbsp;</p>
+<img src="images/01-28.PNG" width="453" height="195" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图28. 抓取接收次数及最后一次的接收长度</p>
+<p>&nbsp;</p>
+<img src="images/01-29.PNG" width="442" height="190" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图29. 抓取接收错误代码</p>
+</body>
+</html>

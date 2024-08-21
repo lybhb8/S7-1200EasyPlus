@@ -1,0 +1,105 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-200_Client</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 CPU 与 S7-200 CPU S7通信（S7-1200 作为服务器）</h3>
+<p>  S7-1200 CPU 与 S7-200 CPU 之间的通信只能通过 S7 通信来实现，因为 S7-200 的以太网模块只支持S7 通信。当S7-200作为客户端，S7-1200作为服务器，需在客户端单边组态连接和编程，而作为服务器端的S7-1200只需准备好通信的数据以及V4.0版本以上CPU需要激活<a href="../03-S7-1200/01-S7-1200.html#conn_mech">连接机制</a>。</p>
+<h4>  	硬件和软件需求及所完成的通信任务</h4>
+<p>  	<strong>硬件：</strong><br />
+  ① S7-1200 CPU<br />
+  ② S7-200 CPU + CP243-1<br />
+  ③ PC （带以太网卡）<br />
+  ④ PC/PPI 电缆<br />
+  ⑤ TP以太网电缆</p><p>
+  <strong>软件：</strong><br />
+  ① STEP 7 Professional V16<br />
+  ② STEP 7 Micro/WIN V4.0 SP9</p><p>
+  <strong>所完成的通信任务：</strong><br />
+</p>
+<table width="499" border="1">
+  <tr>
+    <th width="102" height="25" scope="col">硬件/角色</th>
+    <th width="143" scope="col">CP243-1（客户端）</th>
+    <th width="67" rowspan="2" scope="col">方向</th>
+    <th width="159" scope="col">CPU1215（服务器）</th>
+  </tr>
+  <tr>
+    <th scope="col">IP地址</th>
+    <th scope="col">192.168.0.101</th>
+    <th scope="col">192.168.0.125</th>
+  </tr>
+  <tr>
+    <th rowspan="2" scope="row">数据</th>
+    <td>VB100-VB101</td>
+    <td>&lt;--</td>
+    <td>DB2.DBB0-DB2.DBB1</td>
+  </tr>
+  <tr>
+    <td>VB200-VB201</td>
+    <td><p>--&gt;</p></td>
+    <td>DB3.DBB0-DB3.DBB1</td>
+  </tr>
+</table>
+<h4>1. S7-200 客户端的组态</h4>
+<p><strong>1.	打开 STEP 7 Micro/WIN 软件，创建一个新项目，在“PLC”&gt;“TYPE”选择所使用 CPU 的型号。</strong></p>
+<p>  <strong>2.	选择“工具”&gt;“以太网向导” 进入 CP243-1 的向导配置，如图1. 所示。</strong></p><p>
+  <img src="images/02-01.png" width="485" height="333" /></p><p>
+  图1. 使用以太网向导</p><p>
+  <strong>3.	选择CP243-1 模板的位置。
+  </strong></p><p>CP243-1 紧临 CPU 安装，所以模板位置为0 ，也可以通过“读取模块”读出模板位置，如图2. 所示。</p><p>
+  <img src="images/02-02.png" width="685" height="432" /></p><p>
+  图2. 选择模板位置</p><p>
+<strong>4.	设置 CP243-1 模板的 IP 地址</strong></p>
+<p><strong>I</strong>P 地址：192. 168. 0. 101 ，子网掩码：255. 255. 255. 0，如图3.所示。</p><p>
+  <img src="images/02-03.png" width="689" height="433" /></p><p>
+  图3. 设置网络地址</p><p>
+<strong>5.	设置连接数，如图4. 所示。</strong></p>
+<p>设置模板所占用输出地址字节和连接数，如图4. 所示。</p><p>
+  <img src="images/02-04.png" width="689" height="436" /></p><p>
+  图4. 设置占用输出地址及网络连接数</p><p>
+  <strong>6.	将CP243-1 定义为 Client 端，如图5. 所示。</strong></p><p>
+  <img src="images/02-05.png" width="543" height="568" /></p><p>
+  图 5. 定义为 Client 端</p><p>
+  <strong>7.	定义读数据传输，如图6. 所示。</strong></p><p>
+<img src="images/02-06.png" width="467" height="557" /></p>
+<p>图6. 定义读数据传输</p><p>
+  <strong><img src="images/3.gif" width="15" height="15" />注意：</strong>如果使用的是S7 单方通信，只需在S7-200一侧编程配置。在 S7-1200 中建立通信数据区 DB2时，需要创建非优化的数据块，即：在DB2的属性中，取消勾&ldquo;选优化的块访问&rdquo;， 否则会导致通信失败。</p>
+<p><strong>8.	定义写数据传输，如图7. 所示。</strong></p><p>
+  <img src="images/02-07.png" width="469" height="558" /></p><p>
+  图7. 定义写数据传输</p><p>
+注意：如果使用的是S7 单方通信，只需在S7-200一侧编程配置。在S7-1200 CPU 中建立通信数据区DB3 时，需要创建非优化的数据块，即：在DB3的属性中，取消勾&ldquo;选优化的块访问&rdquo;， 否则会导致通信失败。</p>
+<p><strong>9.	选择CRC 校验，如图8. 所示。</strong></p><p>
+  <img src="images/02-08.png" width="683" height="433" /></p><p>
+  图8. 选择CRC 较验</p><p>
+  <strong>10.	为配置分配存储区</strong></p><p>
+  根据以态网的配置，需要一个V存储区，用户可以指定一个未用过的V存储区的起始地址。如图9. 所示。</p><p>
+  <img src="images/02-09.png" width="690" height="431" /></p><p>
+  图9. 为配置分配存储区   </p><p>
+  <strong>11.	生成以太网用户子程序，如图10. 所示。</strong></p><p>
+  <img src="images/02-10.png" width="682" height="430" /></p><p>
+图10. 生成子程序   </p>
+<h4>2. S7-200 CPU 编程通信</h4>
+<p> <strong>1.	调用向导生成的子程序，实现数据传输</strong></p>
+<p> 对于S7-200的同一个连接的多个数据传输，不能同时激活，必须分时调用。下面的程序就是用前一个数据传输的完成位去激活下一个数据传输，如图11.图12.图13. 所示。</p><p>
+  <img src="images/02-11.png" width="348" height="416" /></p><p>
+  图11. S7-200程序段1</p><p>
+  <img src="images/02-12.png" width="444" height="444" /></p><p>
+  图12. S7-200程序段2</p><p>
+  <img src="images/02-13.png" width="436" height="337" /></p><p>
+  图13. S7-200程序段3</p><p>
+  <strong>2.	监控通信数据结果</strong></p>
+<p> 配置S7-1200的硬件组态，创建通信数据区DB2、DB3（必须选择绝对寻址）。然后下载S7-200 CPU及S7-1200 CPU的所有组态及程序，并监控通信结果，如图14.所示。<br />
+  在S7-1200 CPU中向DB2中写入数据：&ldquo;3&rdquo;、&ldquo;4&rdquo;，则在S7-200中的VB100、VB101中读取到的数据也为&ldquo;3&rdquo;、&ldquo;4&rdquo;。<br />
+  在S7-200 CPU中，将&ldquo;5&rdquo;、&ldquo;6&rdquo;写入VB200、VB201，则在S7-1200 CPU中的DB3中收到的数据也为&ldquo;5&rdquo;、&ldquo;6&rdquo;。<br />
+  注意：使用单边的S7 通信，S7-1200不需要做任何组态编程，但在创建通信数据区DB块时，一定要选择绝对寻址，才能保证通信成功。</p><p>
+  <img src="images/02-14.png" width="816" height="176" /></p><p>
+  图14. 监控结果
+</p>
+
+</body>
+</html>

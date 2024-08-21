@@ -1,0 +1,96 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>SM1278&mdash;&mdash;使用S7-PCT</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<H3>SM1278&mdash;&mdash;使用S7-PCT</H3>
+
+<p><strong>硬件：
+</strong></p>
+<p>① CPU 1214FC DC/DC/DC  V4.4 
+</p>
+<p>② SM1278 V2.1（IO-Link 协议版本 V1.1）  </p>
+<p>③ 带 IO-Link 接口的 RF260R V1.0  </p>
+<p>④ IO-LINK MODULE K20， 8DI-M8 </p>
+<p><strong>软件：</strong>  </p>
+<p>① 本文中使用 TIA Portal STEP7 V16  </p>
+<p>② 本文中使用 S7-PCT V3.5 SP1</p>
+<p><strong>硬件接线，请参考相关手册：</strong></p>
+<p>① SM1278 接线端子定义，参考下面链接中的手册，章节：A.12.1 SM 1278 4xIO-Link 主站</p>
+<p><img src="images/3.gif" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。 </p>
+<p> <a href="https://support.industry.siemens.com/cs/cn/zh/view/109772940">https://support.industry.siemens.com/cs/cn/zh/view/109772940</a>  </p>
+<p><img src="images/2-01.png" width="752" height="283" /></p>
+<p>图.01  </p>
+<p>② 带 IO-Link 接口的 RF260R 接线端子定义，参考下面链接中的手册，章节：9 连接电缆</p>
+<p><img src="images/3.gif" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。 </p>
+<p> <a href="https://support.industry.siemens.com/cs/cn/zh/view/109747228">https://support.industry.siemens.com/cs/cn/zh/view/109747228</a>  </p>
+<p><img src="images/2-02.png" width="696" height="260" /></p>
+<p>图.02  </p>
+<p>③ IO-LINK MODULE K20， 8DI-M8 接线端子定义，参考下面链接</p>
+<p><img src="images/3.gif" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。 </p>
+<p> <a href="https://support.industry.siemens.com/cs/cn/zh/view/29683449">https://support.industry.siemens.com/cs/cn/zh/view/29683449</a>
+  .</p>
+<p><img src="images/2-03.png" width="408" height="219" /></p>
+<p>图.03</p>
+<p>注意：下文中涉及 RFID 的三种工作模式，SIO 模式，UID 模式，User data 模式；</p>
+<p>相关详细的使用说明，请参见如下手册中的章节：5.3 RF200 IO-Link 阅读器的模式 </p>
+<p><img src="images/3.gif" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。 </p>
+<p><a href="https://support.industry.siemens.com/cs/cn/zh/view/109747228">https://support.industry.siemens.com/cs/cn/zh/view/109747228</a>
+</p>
+<h3>一、使用 S7-PCT，SIO 模式</h3>
+<p>打开 TIA Portal，组态 CPU 1214FC 和 SM1278 模块，取消勾选 &ldquo;组态无需使用 S7-PCT&rdquo;，如图 4 所示：  </p>
+<p><img src="images/2-04.png" width="847" height="576" />  </p>
+<p>图.04</p>
+<p>注意：对于新配置的 SM1278 模块，建议先将该未配置任何 IO-Link 设备的组态下载到 PLC 中，使得 CPU 能通过背板总线正确识别到 SM1278。</p>
+<p>然后，在 SM1278 上鼠标右键，菜单选择&ldquo;启动设备工具&hellip;&rdquo;，如图 5 所示：</p>
+<p> <img src="images/2-05.png" width="524" height="456" /></p>
+<p>
+  图.05</p>
+<p>进入 S7-PCT 配置界面，对 RF260R 和  IO-LINK MODULE K20， 8DI-M8 进行配置，如图 6 所示：</p>
+<p><img src="images/2-06.png" width="949" height="324" /></p>
+<p>
+  图.06</p>
+<p>端口 3 和端口 4 未连接设备，则&ldquo;mode&rdquo;设置为&ldquo;Deactivated&rdquo;。（注：如果使用 RFID 的 SIO 模式，须通过 S7-PCT 进行设置）。</p>
+<p>点击&ldquo;Addresses&rdquo;菜单查看 IO-Link 设备的 IO 地址，如图 7 所示：</p>
+<p> <img src="images/2-07.png" width="730" height="399" />  </p>
+<p>图.07</p>
+<p>在 S7-PCT 中，点击按钮 <img src="images/icon/2-01.jpg" alt="" width="24" height="23" /> ，下载成功后，退出 S7-PCT，打开监控表，如图 8 所示：</p>
+<p> <img src="images/2-08.png" width="627" height="178" />  </p>
+<p>图.08</p>
+<h3>二、使用S7-PCT，UID 模式</h3>
+<p>也可以通过 S7-PCT 读取 RFID 标签中的 UID值，对 RFID 阅读器进行组态方法，如图 9 所示：</p>
+<p><img src="images/2-09.png" width="949" height="324" />  </p>
+<p>图.09</p>
+<p>点击&ldquo;Addresses&rdquo;菜单查看 IO-Link 设备的 IO 地址，如图 10 所示：</p>
+<p> <img src="images/2-10.png" width="636" height="358" />  </p>
+<p>图.10</p>
+<p>选择端口 1 的 RF260R，在属性&quot;Parameters&gt;Operating Mode&quot;中选择&ldquo;Scan UID&rdquo;模式，设置如图 11 所示：</p>
+<p><img src="images/2-11.png" width="564" height="340" />  </p>
+<p>图.11</p>
+<p>在 S7-PCT 中，点击按钮 <img src="images/icon/2-01.jpg" alt="" width="21" height="19" /> ，下载成功后，退出 S7-PCT，打开监控表，如图 12 所示：</p>
+<p> <img src="images/2-12.png" width="565" height="272" />  </p>
+<p>图.12</p>
+<h3>三、使用S7-PCT，User data 模式</h3>
+<p>如需使用 RFID 的 User data 模式（该模式必须使用 S7-PCT 进行组态），在属性&quot;Parameters&gt;Operating Mode&quot;中选择&ldquo;Scan user data&rdquo;模式，设置如图 13 所示：</p>
+<p><img src="images/2-13.png" width="552" height="337" />  </p>
+<p>图.13</p>
+<p> 在 S7-PCT 中，点击按钮 <img src="images/icon/2-02.jpg" alt="" width="21" height="19" /> ，下载成功后，退出 S7-PCT，打开监控表。
+  本例中，对标签的用户数据区，偏移起始地址为16#0A，写入 4 个数据，如图 14 所示为写数据操作：</p>
+<p><img src="images/2-14.png" width="922" height="459" />  </p>
+<p>图.14</p>
+<p>对标签的用户数据区，偏移起始地址为16#0A，读取 4个数据，如图 15 所示为读数据操作：</p>
+<p><img src="images/2-15.png" width="933" height="462" /></p>
+<p>  
+  图.15  </p>
+<p><strong>对于 PIQ 和 PII 的定义和说明请查看本文前部提供的链接中下载的手册。</strong>
+</p>
+<p>通过上述图 14 和图 15 的操作，可见：通过 PIQ 和 PII 操作 RFID 标签的用户数据区不太灵活，且每次操作的数据局限于 4 个字节。</p>
+<p>对于有大量用户数据需要进行读和写操作的应用，建议使用使用西门子官方提供的指令库：</p>
+<p><img src="images/3.gif" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。 </p>
+<p><a href="https://support.industry.siemens.com/cs/cn/en/view/73565887">https://support.industry.siemens.com/cs/cn/en/view/73565887</a></p>
+</BODY>
+</HTML>

@@ -1,0 +1,28 @@
+﻿FUNCTION "ConvertAnalogs" : Void
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      srcAnalog : Array[0..15] of Int;   // 源 IW  数组
+      srcParameter : Array[0..15, 0..1] of Real;   // 每个 IW  对应工程量上下限数组
+   END_VAR
+
+   VAR_OUTPUT 
+      dst : Array[0..15] of Real;   // 目的工程量数组
+   END_VAR
+
+   VAR_TEMP 
+      tempCycle : DInt;
+   END_VAR
+
+
+BEGIN
+	//循环处理数组 0 - 15 的模拟量
+	//先使用 NORM_X 标准化，结果直接作为 SCALE_X 缩放，上下限数组 0 是工程量下限，1 是工程量上限
+	FOR #tempCycle := 0 TO 15 DO
+	    #dst[#tempCycle]:=SCALE_X_REAL(VALUE := NORM_X_REAL(VALUE := #srcAnalog[#tempCycle], MIN := 0, MAX := 27648),
+	                                   MIN := #srcParameter[#tempCycle, 0], MAX := #srcParameter[#tempCycle, 1]);
+	END_FOR;
+	
+	
+END_FUNCTION
+

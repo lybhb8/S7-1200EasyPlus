@@ -1,0 +1,142 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Overview</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+
+<body>
+<h3>OPC UA 功能概述&nbsp;</h3>
+
+<h4>什么是 OPC UA？</h4>
+<p>标准 OPC 仅支持 Windows 操作系统。为了应对这一限制条件，OPC Foundation 研发出了 OPC UA（OPC 统一架构）标准。</p>
+<p>OPC UA 标准并不特定于某个平台，并且针对高性能应用使用优化的基于 TCP 的二进制协议。<br />
+OPC UA 支持诸如 Window、Linux、Apple OS X、实时操作系统或移动操作系统（Android 或 iOS）。</p>
+<p>OPC UA 目前支持以下传输机制和协议：</p>
+<ul>
+  <li>
+    
+    通过 TCP/IP，将消息作为二进制流直接传输 (S7-1200 支持)  </li>
+  <li> 通过 TCP/IP 和 HTTP 采用 XML 形式传送消息。由于这种传输机制仅支持慢速传输，因此极少使用
+    </p>
+  </li>
+</ul>
+<p>S7-1200 基本控制器支持&quot;Micro Embedded Device 2017 Server Profile&quot;。</p>
+<p>由于 OPC UA 标准独立于特定的操作系统，并采用安全传送机制和数据语义描述，因此尤其适合于跨层级的数据交换。机器数据（受控变量，测量值或参数）也可采用这种方式传输。</p>
+<p>OPC UA 采用简单的客户端/服务器的机制进行通信。服务器可在网络中提供大量信息，如有关 CPU、OPC UA 服务器、数据和数据类型的信息。OPC UA 客户端访问这些信息。 </p>
+<img src="images/01-01.png" width="507" height="266" /><br>
+<span class="STYLE1">图1.</span> S7-1200 OPC UA通信</p>
+<h4>通过 OPC UA 可以做些什么？</h4>
+<p>OPC UA 通信常用的有以下功能：</p>
+<li>浏览</li><br />
+<li>读/写</li><br />
+<li>注册读/写</li><br />
+<li>订阅</li>
+<br />
+<li>方法</li>
+<br />
+<li>伴随规范</li><br />
+
+<h4>S7-1200 支持的 OPC UA 功能</h4>
+<p><strong>服务器：</strong></p>
+<p>S7-1200 CPU 固件版本 V4.4 及以上版本均配备 OPC UA 服务器，除了标准的 S7-1200 CPU 外，还包括 S7-1200F 系列 CPU。</p>
+<li>浏览</li><br />
+<li>读/写</li><br />
+<li>订阅</li><br />
+<li>方法（仅 V4.5 支持）</li><br />
+<li>伴随规范
+<p>固件版本 V4.5 开始支持结构化数据类型（结构和数组）、诊断功能。</p>
+<p><strong>客户端：</strong></p>
+<p>S7-1200 CPU 目前不支持，具体信息可以参考表 1 描述。</p>
+<span class="STYLE1">表 1.</span>S7-1200 OPC UA 各版本兼容性
+<table width="500" border="1">
+  <tr>
+    <td colspan="2">&nbsp;</td>
+    <td width="200">S7-1200 以及 TIA Portal 最低版本</td>
+    </tr>
+  <tr>
+    <td width="60" rowspan="7">服务器</td>
+    <td width="100">浏览</td>
+    <td width="200">V4.4/TIA V16</td>
+    </tr>
+  <tr>
+    <td width="100">读/写</td>
+    <td width="200">V4.4/TIA V16</td>
+    </tr>
+  <tr>
+    <td width="100">注册读/写</td>
+    <td width="200">-</td>
+    </tr>
+  <tr>
+    <td width="100">订阅</td>
+    <td width="200">V4.4/TIA V16</td>
+    </tr>
+  <tr>
+    <td width="100">方法</td>
+    <td width="200">V4.5/TIA V17</td>
+    </tr>
+  <tr>
+    <td width="100">伴随规范</td>
+    <td width="200">V4.4/TIA V16</td>
+    </tr>
+  <tr>
+    <td width="100">诊断</td>
+    <td width="200">V4.5/TIA V17</td>
+    </tr>
+  <tr>
+    <td width="60" rowspan="3">客户端</td>
+    <td width="100">浏览</td>
+    <td width="200" rowspan="3">-</td>
+    </tr>
+  <tr>
+    <td width="100">注册读/写</td>
+    </tr>
+  <tr>
+    <td width="100">方法</td>
+    </tr>
+</table>
+<h4>S7-1200 OPC UA性能参数</h4>
+
+
+<p>S7-1200 OPC UA 的性能参数，以固件版本 V4.5 为例，参考表 2 内容。</p>
+
+<span class="STYLE1">表 2.</span>S7-1200 OPC UA 性能参数
+<table width="586" border="1">
+  <tr>
+    <td>&nbsp;</td>
+    <td width="316">S7-1200</td>
+  </tr>
+  <tr>
+    <td width="254">最大会话数</td>
+    <td>10（V4.4 为 5）</td>
+  </tr>
+  <tr>
+    <td>最大访问变量数</td>
+    <td><p>2000（V4.4 为 1000）</p></td>
+  </tr>
+  <tr>
+    <td>最大会话订阅数</td>
+    <td>50（V4.4 为 5）</td>
+  </tr>
+  <tr>
+    <td>最小采样间隔</td>
+    <td>100ms</td>
+  </tr>
+  <tr>
+    <td>最小发布间隔</td>
+    <td>200ms</td>
+  </tr>
+  <tr>
+    <td>最大服务器接口数</td>
+    <td>2</td>
+  </tr>
+  <tr>
+    <td>最大监视项</td>
+    <td>1000（V4.4 为 500）</td>
+  </tr>
+</table>
+<p>&nbsp;</p>
+</body>
+</html>

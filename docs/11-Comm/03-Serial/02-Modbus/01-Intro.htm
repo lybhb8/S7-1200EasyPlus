@@ -1,0 +1,86 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Intro</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 Modbus RTU 通信概述 </h3>
+<p>Modbus 具有两种串行传输模式：分别为 Modbus ASCII 和 Modbus RTU。Modbus 是一种单主站的主从通信模式，Modbus 网络上只能有一个主站存在，主站在 Modbus 网络上没有地址，每个从站必须有唯一的地址，从站的地址范围为 0 - 247，其中 0 为广播地址，从站的实际地址范围为 1 - 247。</p>
+<p>Modbus  RTU 通信以主从的方式进行数据传输，在传输的过程中 Modbus RTU 主站是主动方，即主站发送数据请求报文到从站，Modbus RTU 从站返回响应报文。</p>
+<p>S7-1200 没有  Modbus ASCII  通信的相关指令，如果需要可以根据<a href="../01-PTP/04-Program.html">点到点、或者 PtP Communication 通信指令集</a>进行编程实现。S7-1200 支持 Modbus  RTU 通信指令。</p>
+<p>S7-1200 系列以下模块支持 Modbus RTU通信： </p>
+<table width="600" border="1">
+  <tr>
+    <td width="260">通信模块/通信板</td>
+    <td width="277">最新模块订货号</td>
+    <td width="277">已淘汰模块订货号</td>
+  </tr>
+  <tr>
+    <td>CM1241 RS232</td>
+    <td>6ES7241-1AH32-0XB0</td>
+    <td>6ES7241-1AH30-0XB0</td>
+  </tr>
+  <tr>
+    <td>CM1241 RS422/485</td>
+    <td>6ES7241-1CH32-0XB0</td>
+    <td><p>6ES7241-1CH30-0XB0</p>
+    <p>6ES7241-1CH31-0XB0</p></td>
+  </tr>
+  <tr>
+    <td>CB 1241 RS485</td>
+    <td>6ES7241-1CH30-1XB0</td>
+    <td>&nbsp;</td>
+  </tr>
+</table>
+<p><img src="images/4.gif" width="15" height="15" />注意： </p>
+<ol>
+  <li>使用通信模块 CM 1241 RS232 作为 Modbus RTU 主站时，只能与一个从站通讯。 </li>
+  <li>使用通信模块 CM 1241 RS422/485 作为 Modbus RTU 主站时，则允许建立最多与 32 个从站的通讯。 </li>
+  <li>使用通信板 CB 1241 RS485 时，CPU 固件必须为 V2.0 或更高版本，且使用软件必须为 TIA Porta V11 及以上更高版本。</li>
+</ol>
+<p>上述模块/通信板接线请参考<a href="../01-PTP/02-Wire.htm">链接</a>。</p>
+<h3>新版指令</h3>
+<p>TIA Portal V13 SP1 版本开始软件中提供了两个版本的 Modbus RTU 指令集，如图 1 所示。</p>
+<p><img src="images/1-01.png" width="303" height="293" /><br />
+图 1. 两个版本 Modbus RTU 指令 </p>
+<p>早期版本的 Modbus RTU 指令集（图 1 中 MODBUS）仅可通过主机架 CM1241 通信模块或 CB1241 通信板进行 Modbus RTU 通信。 具体使用请参见文档 ：<a href="03-Modbus_Master.htm">主站</a>、<a href="04-Modbus_Slave.htm">从站</a>。可主要用于早期项目和 V4.0 之前版本的 CPU。</p>
+<p>新版本的 Modbus RTU 指令集（图 1 中 MODBUS （RTU））扩展了 Modbus RTU 的功能，该指令集除了支持主机架 CM1241 通信模块、CB1241 通信板，还支持
+PROFINET 或 PROFIBUS 分布式 I/O 机架上的点对点通信模块实现 Modbus RTU 通信。从这个版本开始 S7-1200 与 S7-1500 在 Modbus RTU 指令集开始一致，并且之后版本更新也是基于该版本，建议 V4.0 以后的 CPU 和串口模块使用该版本指令集。具体使用请参见文档 ：<a href="02-Modbus_RTU.htm">链接</a>。</p>
+<p>硬件要求：</p>
+<ul>
+  <li> S7-1200 CPU 的固件版本不能低于 V4.1</li>
+  <li>CM1241 通信模块不能低于 V2.1</li>
+  <li>CB1241 没有要求</li>
+  <li>分布式上的串口模块包括：
+    <ul>
+      <li>ET200SP 的 CM PtP</li>
+      <li>ET200MP 的 CM PtP RS232 HF</li>
+      <li>ET200MP 的 CM PtP RS422/485 HF</li>
+    </ul>
+  </li>
+</ul>
+<h3><strong>常问问题：</strong></h3>
+<p><strong><img src="images/5.gif" width="15" height="15" /> S7-1200 </strong><strong>是否支持 Modbus ASCII 通信模式？</strong></p>
+<p>西门子不提供支持上述通信模式的的现成指令，需要用户自己用自由口模式编程。 </p>
+<p><strong><img src="images/5.gif" width="15" height="15" /> Modbus RTU</strong><strong> 指令 V1 和 V2 两个版本有什么区别？ </strong></p>
+<p>Modbus RTU 指令版本 V2 将参数 “REQ” 和 “DONE” 添加到 “MB_COMM_LOAD” 指令。而且，“MB_MASTER” 和 “MB_SLAVE” 指令的 “MB_ADDR” 参数现在允许一个 UInt 值以进行扩展寻址。</p>
+<p><strong><img src="images/5.gif" width="15" height="15" /> 同一 CPU 程序中是否可以同时使用两个不同版本的 Modbus RTU 指令？</strong></p>
+<p>不能在同一 CPU 程序中同时使用不同版本指令。用户程序的 Modbus 指令必须具有相同的主版本号；主版本组内的各个指令可具有不同的次版本号。 </p>
+<p><strong><img src="images/5.gif" width="15" height="15" /> S7-1200 通信模块 CM1241 是否可作为 Modbus RTU 主站或作为 Modbus RTU 从站？</strong></p>
+<p>CM1241 组态并编程调用 “Modbus_Comm_Load”指令，可将其设置为 Modbus RTU 通信模式。通过编程调用 “Modbus_Master” 指令，CM1241 可作为 Modbus RTU 主站，或调用 “Modbus_Slave” 指令，CM1241 可作为 Modbus RTU 从站。</p>
+<p><strong><img src="images/4.gif" width="15" height="15" /> 注意：</strong></p>
+<p>无论 CM1241 作为 Modbus RTU 主站还是从站，都需要调用 “Modbus_Comm_Load” 指令进行编程，并且不能同时作为 Modbus RTU 主站与从站。</p>
+<p><strong><img src="images/5.gif" alt="" width="15" height="15" /> CM1241/CB1241  Modbus RTU 通信是否支持两位停止位？</strong></p>
+<p>支持。</p>
+<p><img src="images/4.gif" width="15" height="15" /><strong> 注意：</strong></p>
+<p>CM1241/CB1241 属性里可以设置停止位， 但是该模块用于 Modbus 通信时，此设置的停止位无效， 需要在 “Modbus_Comm_Load” 指令的背景 DB 的静态变量中修改 “STOP_BITS” 数值为 2。如图 2-3 所示：</p>
+<p><img src="images/1-02.png" width="699" height="402" /></p>
+<p>图 2. CM1241 配置停止位参数</p>
+<p>"Modbus_Comm_Load" 指令的背景 DB 的静态变量中修改 "STOP_BITS" 数值为 2（默认值 = 1）。</p>
+<p><img src="images/1-03.png" width="435" height="482" /></p>
+<p>图 3. 修改 Modbus RTU 通信停止位</p>
+</body>
+</html>

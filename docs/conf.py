@@ -64,9 +64,12 @@ source_suffix = ['.rst','.md']
 master_doc = 'index'
 
 # General information about the project.
-project = 'Pypubsub'
-copyright = 'Oliver Schoenborn (since 2006)'
-
+# project = 'Pypubsub'
+# copyright = 'Oliver Schoenborn (since 2006)'
+project = 'S7-1200 PLC 技术手册 EasyPlus'
+copyright = '2024, 宁波双紫信息科技有限公司'
+author = 'lybhb8'
+release = '4'
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
@@ -140,10 +143,11 @@ html_theme = 'bizstyle'
 
 # The name for this set of Sphinx documents.  If None, it defaults to
 # "<project> v<release> documentation".
-html_title = "Pypubsub v" + release + " Documentation"
+# html_title = "Pypubsub v" + release + " Documentation"
+html_title = "S7-1200 PLC 技术手册 EasyPlus" + release  #+ " Documentation"
 
 # A shorter title for the navigation bar.  Default is the same as html_title.
-html_short_title = "Pypubsub  v" + release
+html_short_title = "S7-1200 EasyPlus" + release
 
 # The name of an image file (relative to this directory) to place at the top
 # of the sidebar.
@@ -153,6 +157,9 @@ html_short_title = "Pypubsub  v" + release
 # docs.  This file should be a Windows icon file (.ico) being 16x16 or 32x32
 # pixels large.
 # html_favicon = None
+
+html_logo = "_static/SIEMENS.svg"
+html_favicon = "_static/favicon.ico"
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

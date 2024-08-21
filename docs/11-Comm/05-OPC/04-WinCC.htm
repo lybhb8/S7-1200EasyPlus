@@ -1,0 +1,50 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>WinCC</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>WinCC与S7-1200 CPU的OPC 通信</h3>
+<p>  WinCC V7.2以前版本中没有与S7-1200 CPU 通信的驱动，所以WinCC与S7-1200 CPU之间通过以太网的通信，只能通过OPC的方式实现。S7-1200 作为OPC的Sever端，只需设置IP 地址即可。上位机作为OPC 的Client端，通过SIMATIC NET 软件建立PC Station 来与S7-1200通信，实现步骤见 <span class="STYLE1">SIMATIC NET OPC</span> 。<br />
+  建立好PC Station 后，WinCC中的实现步骤如下：<br />
+  <br />
+  <strong>1.	建立所有WinCC中要用到的变量</strong></p>
+<p>首先在OPC Scout中建立好所有WinCC中要用到的变量，步骤 <span class="STYLE1">OPC scout </span>。<br />
+  <br />
+    <strong>2.	添加新的驱动</strong></p>
+<p>打开WinCC 软件新建一个项目，用鼠标右键点击“变量管理”，在快捷菜单中点击“添加新的驱动程序”，添加新的驱动：Opc.chn。如图1所示。<br />
+  <br />
+  <img src="images/4-01.gif" width="585" height="323" /><br />
+  <br />
+  图1． 添加一个新的驱动new driver， OPC driver<br />
+  <br />
+  <strong>3.	在WinCC中搜索及添加OPC Scout中定义的变量</strong><br />
+  <br />
+  首先用鼠标右键点击OPC Groups ，在快捷菜单中点击“系统参数”，如图2所示。<br />
+  <img src="images/4-02.gif" width="306" height="385" /><br />
+  <br />
+  图2．进入系统参数system parameter<br />
+  <br />
+  然后选中OPC.SimaticNET，点击“浏览服务器”按钮进行搜索。如图3所示。<br />
+  <br />
+  <img src="images/4-03.gif" width="594" height="307" /><br />
+  <br />
+图3．选择服务器浏览</p>
+<p><strong> 4.	建立新连接并添加所需变量</strong></p>
+<p>在变量列表中选择所需要的变量，点“添加条目”按钮添加所需变量，此时会自动要求你建立一个新连接，并将变量添加到这个连接中，如图4所示。<br />
+  <br />
+  <img src="images/4-04.gif" width="594" height="726" /><br />
+  <br />
+  图4．添加变量并建立连接new connection，connection name，select connection<br />
+  <br />
+  成功添加完变量后，WinCC中变量显示，如图5所示。完成以上所有配置，就可以在WinCC里监控这些变量了。<br />
+  <br />
+  <img src="images/4-05.gif" width="580" height="211" /><br />
+  <br />
+  图5．从OPC Scout中成功添加变量item setup
+</p>
+</body>
+</html>

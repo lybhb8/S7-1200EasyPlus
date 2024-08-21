@@ -1,0 +1,123 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312">
+<title>S7-1200 Modbus TCP V6 新功能</title>
+<link href="mnp.css" rel="stylesheet" type="text/css">
+<link href="mnp.css" rel="stylesheet" type="text/css">
+</head>
+
+<body>
+<h3>Modbus TCP  V6.0 新功能概述</h3>
+<p>如图 1 所示 MODBUS TCP 指令  V6.0 增加了 Modbus 客户端功能码 23，可以在一次请求作业下实现从服务器读取和写入一个或多个保持性寄存器，这样省去了轮询的编程工作量，提高了工作效率。</p>
+
+  <p><img src="images/5-01.jpg" alt="" width="292" height="412"></p>
+
+      <p>图 1.MODBUS_TCP 指令</p>
+
+<p align="left"><strong>SIMATIC S7-1200 使用要求</strong></p>
+<ul>
+  <li>TIA Portal V17 及以上版本</li>
+  <li>  CPU 固件 V4.2 及以上版本
+</li>
+</ul>
+<p>对于 Modbus TCP 基础版本 V4.0，请参见：</p>
+<ul>
+  <li>客户端：<a href="01-Modbus_TCP_V4/01-Client.html">链接</a></li>
+  <li>服务器：<a href="01-Modbus_TCP_V4/02-Server.html">链接</a></li>
+</ul>
+<p>对于 Modbus TCP  V5.0 新增功能，请参见：<a href="04-Modbus_TCP_V5.htm">链接</a>。</p>
+<h3>Modbus 功能码 23 实验环境和内容</h3>
+ <p>在本应用实例中，通过以下产品进行 Modbus TCP V6.0 功能 23 编程，实现了从服务器读取和写入多个保持性寄存器。</p>
+
+<p><strong>软件：</strong></p>
+
+     <ul>
+       <li>TIA  Professional V17     </li>
+     </ul>
+<p><strong>硬件：</strong></p>
+   <ul>
+     <li>CPU1217C DC/DC/DC V4.5</li>
+     <li>CPU1215FC DC/DC/DC V4.4</li></ul>
+<h3>Modbus 功能码 23 配置与编程</h3>
+<h4><strong>1、客户端指令调用及参数分配</strong></h4>
+
+   <p>1.1、打开 TIA Portal V17 软件，新建一个项目，在项目中添加 CPU1217C DC/DC/DC V4.5，为以太网接口新建一个子网并设置 IP 地址为   &quot;192.168.0.17&quot;，如图 2 所示。</p>
+   <p><img src="images/5-02.jpg" alt="" width="701" height="558"></p>
+
+                 <p>图 2.分配子网及 IP</p>
+
+<p>1.2、调用客户端指令并为指令引脚参数创建全局 DB，如图 3 所示。</p>
+<p>使用 Modbus 功能码 23 时，MB_MODE 参数的值必须为 123，参数 MB_DATA_ADDR、MB_DATA_LEN 和 MB_DATA_PTR 不可使用，并且这些参数的值必须为默认值，否则将报错返回 STATUS 值 16#818D。Connect 参数与早前版本一致，具体设置请参考以下 V4.0 版本相关说明：<a href="01-Modbus_TCP_V4/01-Client.html">Modbus TCP</a></p>
+<p><img src="images/5-03.jpg" alt="" width="953" height="629"></p>
+
+<p>图 3.客户端指令及 DB 块创建                      </p>
+使用 Modbus 功能码 23   时，将使用六个新参数，如下表 1 所述，这些参数中的每一个参数都以&ldquo;RD_&rdquo;或&ldquo;WR_&rdquo;开头，用于表明其属于读或写任务，这些参数默认处于隐藏状态，单击指令下方黑色三角展开指令，使用 Modbus   功能码 23 时，这六个参数必须全部使用。
+</p>
+<p>如果使用其它 Modbus 功能码，则这六个参数的值必须为 0 或必须为空，否则将报错返回 STATUS 值 16#818D。</p>
+<p>表 1 Modbus 功能码 23 引脚参数 </p>
+  <table width="768" border="1">
+
+    <tr>
+      <th width="142" scope="col">参数</th>
+      <th width="62" scope="col">声明</th>
+      <th width="75" scope="col">数据类型</th>
+      <th width="461" scope="col">说明</th>
+    </tr>
+    <tr>
+      <td><p>RD_MB_DATA_ADDR</p></td>
+      <td><p>Input</p></td>
+      <td><p>UInt</p></td>
+      <td><p align="left">要读取服务器保持性寄存器的起始地址。允许值：0 到 65535</p></td>
+    </tr>
+    <tr>
+      <td><p>RD_MB_DATA_LEN</p></td>
+      <td><p>Input</p></td>
+      <td><p>UInt</p></td>
+      <td><p align="left">要读取服务器保持性寄存器数量。允许值：1 到 125</p></td>
+    </tr>
+    <tr>
+      <td><p>WR_MB_DATA_ADDR</p></td>
+      <td><p>Input</p></td>
+      <td><p>UInt</p></td>
+      <td><p align="left">要写入服务器保持性寄存器的起始地址。允许值：0 到 65535</p></td>
+    </tr>
+    <tr>
+      <td>WR_MB_DATA_LEN</td>
+      <td><p>Input</p></td>
+      <td><p>UInt</p></td>
+      <td><p align="left">要写入服务器保持性寄存器数量。允许值：1 到 121</p></td>
+    </tr>
+    <tr>
+      <td><p>RD_MB_DATA_PTR</p></td>
+      <td><p>InOut</p></td>
+      <td><p>Variant</p></td>
+      <td><p align="left">指向待从 Modbus 服务器读取的寄存器数据缓冲区指针。允许使用与 MB_DATA_PTR 相同的数据类型。</p></td>
+    </tr>
+    <tr>
+      <td><p>WR_MB_DATA_PTR</p></td>
+      <td><p>InOut</p></td>
+      <td><p>Variant</p></td>
+      <td><p align="left">指向待写入 Modbus 服务器的寄存器数据缓冲区指针。允许使用与 MB_DATA_PTR 相同的数据类型。</p></td>
+    </tr>
+</table>
+
+<h4><strong>2、服务器指令调用及参数分配</strong></h4>
+
+   <p>2.1、在项目中添加 CPU1215FC DC/DC/DC V4.4，为以太网接口新建一个子网并设置 IP地址为   &quot;192.168.0.15&quot;。</p>
+<p>2.2、调用服务器指令并为指令引脚参数创建全局 DB，如图 3 所示。</p>
+<p>&ldquo;MB_SERVER&rdquo;指令支持使用 Modbus 功能码 23 在单个作业中被写入和读取保持寄存器，需要使用 V4 以上版本的 Modbus TCP 的块。</p>
+<p><img src="images/5-04.jpg" alt="" width="888" height="517"></p>
+
+<p>图 4.服务器指令及 DB 块创建                      </p>
+
+<h4><strong>3、测试结果</strong></h4>
+
+  <p>分别下载两个 PLC 程序，设置读取服务器保持性寄存器的起始地址为&ldquo;0&rdquo;，长度为&ldquo;5&rdquo;；写入服务器保持性寄存器的起始地址为&ldquo;5&rdquo;，长度为&ldquo;5&rdquo;。触发一次请求，内部执行先写入寄存器数据，再读取寄存器数据。测试结果如图 5 所示。</p>
+   <p><img src="images/5-05.jpg" alt="" width="937" height="407"></p>
+
+                       <p>图 5.测试结果</p>
+
+</body>
+</html>

@@ -5,7 +5,7 @@ V18 下载的程序只能使用 V18 版本 TIA Portal上传，但是也存在一
 
 ![alt text](image.png)
 
-:::{tip}
+:::{note}
 
 绿色背景的区域只允许使用从 CPU中上载程序块。
 :::

@@ -33,7 +33,7 @@
 | ​IN   | ​Input  | ​Byte, Word, DWord                                                             | ​I、Q、M、D、L        | ​所解析的位序列<br><br>​这些值不得位于的 I/O 区域或工艺对象的 DB 内。                                                                                                                  |
 | ​OUT  | ​Output | ​Array[\*] of Bool、Struct 或 PLC 数据类型<br><br>​ \*：8、16、32 或 64 个元素 | ​I、Q、M、D、L        | ​保存各个位的 Array、Struct 或 PLC 数据类型                                                                                                                                            |
 
-:::{tip} 
+:::{note} 
 
     1. **多维 Array of Bool** <br>使用“​将位序列解析为单个位​”指令时，不允许使用多维 Array of Bool。
 
@@ -115,7 +115,7 @@
 | ​COUNT_IN | ​Input  | ​USInt, UInt, UDInt                                                                                                                                      | ​I、Q、M、D、L        | ​将解析到 OUT 参数中的源数组元素数量计数器。<br><br>​执行“count:”后在指令名称下方提供 COUNT_IN 参数的数据类型。<br><br>​COUNT_IN 值不得位于的 I/O 区域或工艺对象的数据库内。                                                                                                                                                                                                                                                  |
 | ​OUT      | ​Output | ​下列一个数组的元素：<br><br>* ​Array \[*\] of Bool<br>    <br>* ​Array \[*\] of Struct<br>    <br>* ​Array \[*\] of &lt;PLC 数据类型&gt;                | ​I、Q、M、D、L        | ​保存各个位的 Array、Struct 或 PLC 数据类型                                                                                                                                                                                                                                                                                                                                                                                   |
 
-:::{tip}
+:::{note}
 
     1. **多维 Array of Bool**<br><br>​如果数组是一个多维 Array of Bool，将对维度中的所有位进行计数。<br><br>​示例 1：Array\[1..10,0..4,1..2\] of Bool 包含 10x5x2 位，共可解析 100 位。<br><br>​示例 2：Array\[0..399\] of Bool 包含 400 个可解析的位。
 
@@ -188,7 +188,7 @@
 | ​OUT  | ​Output | ​Byte, Word, DWord                                                            | ​I、Q、M、D、L        | ​组合后的位序列，保存在一个变量中                                                                                                                                                                                                                                                            |
 
 
-:::{tip}
+:::{note}
 
     1. **多维 Array of Bool**<br><br>​使用“​将各个位组合为位序列​”指令时，不支持多维 Array of Bool。
 
@@ -257,7 +257,7 @@ V1.0版本：GATHER_BLK指令是将Bool数组合并成位序列（Byte、Word、
 
 V1.1版本：IN除Bool数组之外，可以是Struct、UDT类型的变量，变量内是连续的Bool变量，IN处填写Struct、UDT类型内的接收的Bool起始变量。
 
-:::{tip}
+:::{note}
 
     1\.
     当COUNT_IN超过了位序列数组元素个数，将不执行指令。如果激活指令的ENO功能，则ENO=False。

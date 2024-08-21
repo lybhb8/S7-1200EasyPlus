@@ -28,7 +28,7 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1所示�
 
 注意：DST不能是复杂数据类型的数组。
 
-:::{tip}
+:::{note}
 
     1\.
     VariantGet的SRC是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
@@ -58,7 +58,7 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1所示�
 
 注意：SRC不能是复杂数据类型的数组。
 
-:::{tip}
+:::{note}
 
     1\.
     VariantPut的DST是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
@@ -102,7 +102,7 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1所示�
 
 CountOfElements(操作数)，操作数是FC/FB的Input/Output/InOut/Temp中定义为Variant类型的参数，如果操作数对应的实参为数组或者P#指针格式，CountOfElements(操作数)为元素总个数。
 
-:::{tip}
+:::{note}
 
     1\. 如果Variant指向单个变量，则返回0。
 

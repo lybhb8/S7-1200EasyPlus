@@ -16,7 +16,7 @@ LAD和SCL均为(U)FILL_BLK指令。
 
 图2 指令详情
 
-:::{tip}
+:::{note}
 
     1\.IN只能是基本数据类型，或者常数，不能是Struct、UDT、DTL等复杂数据类型。
 

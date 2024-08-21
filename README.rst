@@ -53,7 +53,6 @@ need a working installation of Python and pip.
    pip install -U sphinx
 
 Contributing
-<<<<<<< HEAD:READ.rst
 ============
 
 We appreciate all contributions! Refer to `the contributors guide`_ for
@@ -62,6 +61,3 @@ information.
 .. _the documentation: https://www.sphinx-doc.org/
 .. _the contributors guide: https://www.sphinx-doc.org/en/master/internals/contributing.html
 .. _Python Package Index: https://pypi.org/project/Sphinx/
-=======
-We appreciate all contributions! Refer to the contributors guide for information.
->>>>>>> 4d2d20fbf206f407a4d2b1a06751df2d9cd2ec6f:README.rst

@@ -43,8 +43,7 @@ NTP 服务器功能的 GPS 等，本文以 PC 为例介绍 Windows 操作系统 
 
 请参考以下链接
 
-![](images/3.gif){width="15" height="15"} 按住 Shift
-键时用鼠标点击下列链接，打开新浏览器窗口。
+![](images/3.gif) 点击下列链接，打开新浏览器窗口。
 
 <https://support.industry.siemens.com/cs/cn/zh/view/22144502>
 

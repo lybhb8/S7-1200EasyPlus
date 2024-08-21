@@ -40,15 +40,15 @@ PN、S120、S210 等。
 
 连接方式如图 2 所示。
 
-![](images/3.gif){width="15" height="15"}固件 V4.1 开始的 S7-1200 CPU
+![](images/3.gif)固件 V4.1 开始的 S7-1200 CPU
 才具有 PROFIdrive 的控制方式。
 
-![](images/3.gif){width="15" height="15"}S7-1200
+![](images/3.gif)S7-1200
 可以通过分布式的方式连接 ET200SP 的 TM PTO2 模块，或者连接 ET200MP 的 TM
 PTO 4 模块使用脉冲控制驱动器，这也属于 PROFIdrive 控制方式，并非 PTO
 方式。
 
-![](images/3.gif){width="15" height="15"}此外通过 PROFIdrive
+![](images/3.gif)此外通过 PROFIdrive
 还可以通过分布式的方式连接控制 ET200SP 的 TM Drive
 系列的模块（例如：F-TM ServoDrive ST、F-TM ServoDrive HF、F-TM StepDrive
 ST 等）。

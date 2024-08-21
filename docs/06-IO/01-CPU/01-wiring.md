@@ -146,7 +146,6 @@
 
 如何使用 S7-1200 自带模拟量输入测量 0-20 mA 电流信号?
 
-![](images/3.gif){width="15" height="15"} 按住 Shift
-键时用鼠标点击下列链接，打开新浏览器窗口。
+![](images/3.gif) 点击下列链接，打开新浏览器窗口。
 
 [**https://support.industry.siemens.com/cs/cn/zh/view/67396370**](https://support.industry.siemens.com/cs/cn/zh/view/67396370)

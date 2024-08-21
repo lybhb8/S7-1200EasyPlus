@@ -14,8 +14,7 @@ V90 PN 伺服驱动器固件版本 FW V1.3，速度控制模式，3 号报文或
 
 \(1\) V90 HSP 0185 硬件支持包或 GSD 文件
 
-![](images/3.gif){width="15" height="15"} 按住 Shift
-键时用鼠标点击下列链接，打开新浏览器窗口。
+![](images/3.gif) 点击下列链接，打开新浏览器窗口。
 
 硬件支持包
 
@@ -27,8 +26,7 @@ GSD 文件
 
 \(2\) V-assistant v1.05.05 及以上
 
-![](images/3.gif){width="15" height="15"} 按住 Shift
-键时用鼠标点击下列链接，打开新浏览器窗口。
+![](images/3.gif) 点击下列链接，打开新浏览器窗口。
 
 <https://support.industry.siemens.com/cs/ww/en/view/109738387>
 

@@ -67,8 +67,7 @@ height="15"}如果希望使用更多的高速计数器，或者连接 SSI
 ![](images/4.gif){width="15"
 height="15"}有关编码器的相关知识请参考以下链接
 
-![](images/3.gif){width="15" height="15"} 按住 Shift
-键时用鼠标点击下列链接，打开新浏览器窗口。
+![](images/3.gif) 点击下列链接，打开新浏览器窗口。
 
 [**https://support.industry.siemens.com/cs/cn/zh/view/79192303**](https://support.industry.siemens.com/cs/cn/zh/view/79192303)
 
@@ -486,7 +485,7 @@ EnHSC。HSC_Frequency 和 HSC_Period 的 EnHSC 请参考图 14 和 18。
 指令对起始值进行更改。这样，用户可以将当前计数值与起始值通过外部输入信号进行值同步，同步示例如图
 24 所示。
 
-![](images/3.gif){width="15" height="15"}该功能仅在计数模式下使用。
+![](images/3.gif)该功能仅在计数模式下使用。
 
 **![](images/4.gif){width="15"
 height="15"}注意：即使内部门没有打开也将同步。**
@@ -536,7 +535,7 @@ height="15"}注意：即使内部门没有打开也将同步。**
 可使用捕捉功能通过外部输入信号来保存当前计数值。需要通过执行
 CTRL_HSC_EXT 指令才可实现。
 
-![](images/3.gif){width="15" height="15"}该功能仅在计数模式下使用。
+![](images/3.gif)该功能仅在计数模式下使用。
 
 如图 28 所示组态捕捉功能在上升沿上进行捕捉的示例。
 

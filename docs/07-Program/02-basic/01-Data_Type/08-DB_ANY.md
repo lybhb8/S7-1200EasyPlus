@@ -90,21 +90,21 @@ S7-1200 在 SCL 中提供了两个指令用于 DB_ANY 和 Variant
 
 ![](images/8-11.jpg){width="704" height="26"}
 
-  参数      声明     数据类型   说明
-  --------- -------- ---------- ------------------
-  in        Input    DB_ANY     待读写的数据块
-  err       Output   Int        错误信息
-  Ret_val   Return   Variant    Variant 类型参数
+参数      声明     数据类型   说明
+--------- -------- ---------- ------------------
+in        Input    DB_ANY     待读写的数据块
+err       Output   Int        错误信息
+Ret_val   Return   Variant    Variant 类型参数
 
 图 11 DB_ANY_TO_VARIANT 参数
 
 ![](images/8-12.jpg){width="715" height="29"}
 
-  参数      声明     数据类型   说明
-  --------- -------- ---------- ------------------------
-  in        Input    Variant    Variant 类型参数
-  err       Output   Int        错误信息
-  Ret_val   Return   DB_ANY     Variant 实参的 DB 块号
+参数      声明     数据类型   说明
+--------- -------- ---------- ------------------------
+in        Input    Variant    Variant 类型参数
+err       Output   Int        错误信息
+Ret_val   Return   DB_ANY     Variant 实参的 DB 块号
 
 图 12 VARIANT_TO_DB_ANY 指令参数
 
@@ -252,10 +252,10 @@ TIA Portal V15 开始，S7-1200 V4.2 开始，增加以下指令，用于 DB_ANY
 
 表 1 TypeOfDB 指令
 
-  |LAD   |        SCL     |   位置                    |
-  |-------------|----------|--------------------------|
-  |EQ_TypeOfDB  | TypeOfDB |  基本指令 \-- 比较操作 \-- 变量|
-  |NE_TypeOfDB |  TypeOfDB |  基本指令 \-- 比较操作 \-- 变量|
+|LAD   |        SCL     |   位置                    |
+|-------------|----------|--------------------------|
+|EQ_TypeOfDB  | TypeOfDB |  基本指令 \-- 比较操作 \-- 变量|
+|NE_TypeOfDB |  TypeOfDB |  基本指令 \-- 比较操作 \-- 变量|
 
 DB_ANY 指向的数据块不限于 PLC 数据类型（UDT）或者系统数据类型建立的 DB
 块，还可以是 TO 轴的 DB 块，以及 FB 的背景数据块，见表 2 所示。

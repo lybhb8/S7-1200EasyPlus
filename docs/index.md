@@ -20,7 +20,7 @@ html_theme.sidebar_secondary.remove: true
 - 虽然作者已经尽力保证其正确性，但疏漏难免。读者如欲采纳，请注意风险。
 - 如果您认为本项目对您有所帮助，请您[加星+关注](https://github.com/lybhb8/S7-1200EasyPlus/tree/main "本项目github仓库")，也可以给朋友分享:
     - [__本项目github/gh-pages部署__](https://blowmoldingshare.cn/S7-1200EasyPlus/)。
-    - [__本项目readthedocs部署__](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/latest/)。
+    - [__本项目readthedocs部署__](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/sphinx/index.html)。
 - 感谢大家的支持和帮助。
 
 <!-- ## S7-1200 PLC 基础汇总

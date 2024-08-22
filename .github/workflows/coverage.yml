@@ -1,0 +1,43 @@
+name: Post coverage comment
+
+on:
+  workflow_run:
+    workflows: ["continuous-integration"]
+    types:
+      - completed
+
+jobs:
+  test:
+    name: "Run tests & display coverage"
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.event == 'pull_request' && github.event.workflow_run.conclusion == 'success'
+    permissions:
+      pull-requests: write
+      contents: write # needed to edit the comment vs opening multiple ones
+      actions: read
+    steps:
+      - name: "Get the triggering workflow run details"
+        id: get-run
+        uses: octokit/request-action@v2.x
+        with:
+          route: GET /repos/${{ github.repository }}/actions/runs/${{ github.event.workflow_run.id }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      # this needs the .coverage file so we download from the CI workflow artifacts
+      - name: "Download coverage data 📥"
+        uses: actions/download-artifact@v4
+        with:
+          pattern: coverage-data-*
+          merge-multiple: true
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          run-id: ${{ github.event.workflow_run.id }}
+
+      - name: "Check downloaded files"
+        run: ls -R
+
+      - name: "Post coverage comment"
+        uses: py-cov-action/python-coverage-comment-action@v3
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITHUB_PR_RUN_ID: ${{ github.event.workflow_run.id }}

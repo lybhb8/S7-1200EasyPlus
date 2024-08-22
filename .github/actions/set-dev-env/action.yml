@@ -1,0 +1,40 @@
+name: Setup PST CI environment
+description: Create a PST dev environment
+
+inputs:
+  python-version:
+    description: Default Python version to use if none is specified
+    required: false
+    default: "3.12"
+  pandoc:
+    description: Whether this should install pandoc or not
+    required: false
+    default: "false"
+  graphviz:
+    description: Whether this should install Graphviz or not
+    required: false
+    default: "false"
+
+runs:
+  using: composite
+  steps:
+    - name: "Setup Python 🐍"
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+        cache: "pip"
+        cache-dependency-path: "pyproject.toml"
+        allow-prereleases: true
+
+    - run: python -Im pip install tox-uv
+      shell: bash
+
+    - name: "Install pandoc 📝"
+      uses: r-lib/actions/setup-pandoc@v2
+      with:
+        pandoc-version: "latest"
+      if: ${{ inputs.pandoc }} == true
+
+    - name: "Install Graphviz"
+      uses: ts-graphviz/setup-graphviz@v2
+      if: ${{ inputs.graphviz }} == true

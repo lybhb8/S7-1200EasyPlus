@@ -1,0 +1,50 @@
+name: Scheduled pre-release tests
+
+on:
+  schedule:
+    # Run this workflow twice a week
+    # ref: https://crontab.guru/#0_5_*_*_1,4
+    - cron: "0 5 * * 1,4"
+  workflow_dispatch:
+
+env:
+  FORCE_COLOR: "1" # Make tools pretty
+  PIP_DISABLE_PIP_VERSION_CHECK: "1" # Don't check for pip updates
+
+jobs:
+  prerelease:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        python-version: ["3.9", "3.10", "3.11", "3.12"]
+
+    steps:
+      - name: "Checkout repository 🛎"
+        uses: actions/checkout@v4
+      - name: "Setup CI environment 🛠"
+        uses: ./.github/actions/set-dev-env
+        with:
+          python-version: ${{ matrix.python-version }}
+          pandoc: true
+      - name: "Install (prerelease) dependencies 📦"
+        run: |
+          python -Im pip install --upgrade pip wheel setuptools
+      - name: "Build PST docs and check for warnings 📖"
+        run: |
+          # example substitution: tox run -e docs-py312-docs
+          python -Im tox run -e docs-py$(echo ${{ matrix.python-version }} | tr -d .)-docs -- --keep-going
+      - name: "Run tests ✅ (no coverage)"
+        run: |
+          # this will compile the assets then run the tests
+          python -Im tox run -e compile,py$(echo ${{ matrix.python-version }} | tr -d .)-tests-no-cov
+          echo "PYTEST_ERRORS=$?" >> $GITHUB_ENV
+
+      # If either the docs build or the tests resulted in an error, create an issue to note it
+      - name: "Create an issue if failure"
+        uses: JasonEtco/create-an-issue@v2
+        if: ${{ env.SPHINX_BUILD_UNEXPECTED_WARNINGS || !env.PYTEST_ERRORS }}
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          filename: .github/prerelease-template.md

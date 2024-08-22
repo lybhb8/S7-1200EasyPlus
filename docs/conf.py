@@ -172,7 +172,7 @@ html_theme_options = {
         # },
         {
             "name": "GitHub",
-            "url": "https://github.com/pydata/pydata-sphinx-theme",
+            "url": "https://github.com/lybhb8/S7-1200EasyPlus",
             "icon": "fa-brands fa-github",
         },
         {
@@ -199,13 +199,13 @@ html_theme_options = {
         "image_dark": "_static/SIEMENS-dark.svg",
     },
 
-    "use_edit_page_button": True,
+    "use_edit_page_button": False,
     "show_toc_level": 2,
     "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
-    # "show_nav_level": 2,
-    "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
-    "show_version_warning_banner": True,
-    "navbar_center": ["version-switcher", "navbar-nav"],
+    "show_nav_level": 2,
+   # "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
+   # "show_version_warning_banner": True,
+    "navbar_center": [ "navbar-nav"],#"version-switcher"
     # "navbar_start": ["navbar-logo"],
     # "navbar_end": ["theme-switcher", "navbar-icon-links"],
     # "navbar_persistent": ["search-button"],
@@ -216,7 +216,7 @@ html_theme_options = {
     "footer_center": ["sphinx-version"],
     "secondary_sidebar_items": {
         "**/*": ["page-toc", "edit-this-page", "sourcelink"],
-        "examples/no-sidebar": [],
+        # "examples/no-sidebar": [],
     },
     # "switcher": {
     #     "json_url": json_url,
@@ -286,16 +286,16 @@ favicons = [
 ]
 
 # -- Options for autosummary/autodoc output ------------------------------------
-autosummary_generate = True
-autodoc_typehints = "description"
-autodoc_member_order = "groupwise"
+# autosummary_generate = True
+# autodoc_typehints = "description"
+# autodoc_member_order = "groupwise"
 
-# -- Options for autoapi -------------------------------------------------------
+# # -- Options for autoapi -------------------------------------------------------
 autoapi_type = "python"
 autoapi_dirs = ["../src/pydata_sphinx_theme"]
-autoapi_keep_files = False
-autoapi_root = "api"
-autoapi_member_order = "groupwise"
+# autoapi_keep_files = True
+# autoapi_root = "api"
+# autoapi_member_order = "groupwise"
 
 # -- application setup -------------------------------------------------------
 

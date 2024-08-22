@@ -19,14 +19,9 @@ sys.path.append(str(Path(".").resolve()))
 
 # -- Project information -----------------------------------------------------
 
-# project = "PyData Theme"
-# copyright = "2019, PyData Community"
-# author = "PyData Community"
-
-project = 'S7-1200 PLC 技术手册 EasyPlus'
-copyright = '2024, 宁波双紫信息科技有限公司'
-author = 'lybhb8'
-release = '4'
+project = "PyData Theme"
+copyright = "2019, PyData Community"
+author = "PyData Community"
 
 # -- General configuration ---------------------------------------------------
 
@@ -89,7 +84,7 @@ myst_substitutions = {"rtd": "[Read the Docs](https://readthedocs.org/)"}
 # -- Internationalization ----------------------------------------------------
 
 # specifying the natural language populates some key tags
-language = "zh"
+language = "en"
 
 # -- Ablog options -----------------------------------------------------------
 
@@ -122,54 +117,54 @@ copybutton_selector = ":not(.prompt) > div.highlight pre"
 # -- Options for HTML output -------------------------------------------------
 
 html_theme = "pydata_sphinx_theme"
-html_logo = "_static/SIEMENS.svg"
-html_favicon = "_static/favicon.ico"
+html_logo = "_static/logo.svg"
+html_favicon = "_static/logo.svg"
 html_sourcelink_suffix = ""
 html_last_updated_fmt = ""  # to reveal the build date in the pages meta
 
 # Define the json_url for our version switcher.
 json_url = "https://pydata-sphinx-theme.readthedocs.io/en/latest/_static/switcher.json"
 
-# # Define the version we use for matching in the version switcher.
-# version_match = os.environ.get("READTHEDOCS_VERSION")
-# release = pydata_sphinx_theme.__version__
+# Define the version we use for matching in the version switcher.
+version_match = os.environ.get("READTHEDOCS_VERSION")
+release = pydata_sphinx_theme.__version__
 # If READTHEDOCS_VERSION doesn't exist, we're not on RTD
 # If it is an integer, we're in a PR build and the version isn't correct.
 # If it's "latest" → change to "dev" (that's what we want the switcher to call it)
-# if not version_match or version_match.isdigit() or version_match == "latest":
-#     # For local development, infer the version to match from the package.
-#     if "dev" in release or "rc" in release:
-#         version_match = "dev"
-#         # We want to keep the relative reference if we are in dev mode
-#         # but we want the whole url if we are effectively in a released version
-#         json_url = "_static/switcher.json"
-#     else:
-#         version_match = f"v{release}"
-# elif version_match == "stable":
-#     version_match = f"v{release}"
+if not version_match or version_match.isdigit() or version_match == "latest":
+    # For local development, infer the version to match from the package.
+    if "dev" in release or "rc" in release:
+        version_match = "dev"
+        # We want to keep the relative reference if we are in dev mode
+        # but we want the whole url if we are effectively in a released version
+        json_url = "_static/switcher.json"
+    else:
+        version_match = f"v{release}"
+elif version_match == "stable":
+    version_match = f"v{release}"
 
 html_theme_options = {
-    # "external_links": [
-    #     {
-    #         "url": "https://pydata.org",
-    #         "name": "PyData",
-    #     },
-    #     # {
-    #     #     "url": "https://numfocus.org/",
-    #     #     "name": "NumFocus",
-    #     # },
-    #     # {
-    #     #     "url": "https://numfocus.org/donate",
-    #     #     "name": "Donate to NumFocus",
-    #     # },
-    # ],
-    "header_links_before_dropdown": 2,
+    "external_links": [
+        {
+            "url": "https://pydata.org",
+            "name": "PyData",
+        },
+        {
+            "url": "https://numfocus.org/",
+            "name": "NumFocus",
+        },
+        {
+            "url": "https://numfocus.org/donate",
+            "name": "Donate to NumFocus",
+        },
+    ],
+    "header_links_before_dropdown": 4,
     "icon_links": [
-        # {
-        #     "name": "Twitter",
-        #     "url": "https://twitter.com/PyData",
-        #     "icon": "fa-brands fa-twitter",
-        # },
+        {
+            "name": "Twitter",
+            "url": "https://twitter.com/PyData",
+            "icon": "fa-brands fa-twitter",
+        },
         {
             "name": "GitHub",
             "url": "https://github.com/pydata/pydata-sphinx-theme",
@@ -180,27 +175,21 @@ html_theme_options = {
             "url": "https://pypi.org/project/pydata-sphinx-theme",
             "icon": "fa-custom fa-pypi",
         },
-        # {
-        #     "name": "PyData",
-        #     "url": "https://pydata.org",
-        #     "icon": "fa-custom fa-pydata",
-        # },
+        {
+            "name": "PyData",
+            "url": "https://pydata.org",
+            "icon": "fa-custom fa-pydata",
+        },
     ],
     # alternative way to set twitter and github header icons
     # "github_url": "https://github.com/pydata/pydata-sphinx-theme",
     # "twitter_url": "https://twitter.com/PyData",
-    # "logo": {
-    #     "text": "PyData Theme",
-    #     "image_dark": "_static/logo-dark.svg",
-    # },
-    
     "logo": {
-        "text": "S7-1200 PLC 技术手册",
-        "image_dark": "_static/SIEMENS-dark.svg",
+        "text": "PyData Theme",
+        "image_dark": "_static/logo-dark.svg",
     },
-
     "use_edit_page_button": True,
-    "show_toc_level": 2,
+    "show_toc_level": 1,
     "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
     # "show_nav_level": 2,
     "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
@@ -218,11 +207,11 @@ html_theme_options = {
         "**/*": ["page-toc", "edit-this-page", "sourcelink"],
         "examples/no-sidebar": [],
     },
-    # "switcher": {
-    #     "json_url": json_url,
-    #     "version_match": version_match,
-    # },
-    "back_to_top_button": True,
+    "switcher": {
+        "json_url": json_url,
+        "version_match": version_match,
+    },
+    # "back_to_top_button": False,
 }
 
 html_sidebars = {
@@ -247,9 +236,9 @@ html_sidebars = {
 }
 
 html_context = {
-    "github_user": "lybhb8",
-    "github_repo": "S7-1200EasyPlus",
-    "github_version": "pydata",
+    "github_user": "pydata",
+    "github_repo": "pydata-sphinx-theme",
+    "github_version": "main",
     "doc_path": "docs",
 }
 
@@ -293,7 +282,7 @@ autodoc_member_order = "groupwise"
 # -- Options for autoapi -------------------------------------------------------
 autoapi_type = "python"
 autoapi_dirs = ["../src/pydata_sphinx_theme"]
-autoapi_keep_files = False
+autoapi_keep_files = True
 autoapi_root = "api"
 autoapi_member_order = "groupwise"
 

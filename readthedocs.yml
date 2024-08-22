@@ -1,7 +1,7 @@
 version: 2
-formats:
-  #- htmlzip
-  - epub
+#formats:
+ # - htmlzip
+  #- epub
 
 # build with latest available ubuntu version
 build:

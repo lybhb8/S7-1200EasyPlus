@@ -89,7 +89,7 @@ myst_substitutions = {"rtd": "[Read the Docs](https://readthedocs.org/)"}
 # -- Internationalization ----------------------------------------------------
 
 # specifying the natural language populates some key tags
-language = "zh"
+language = "zh_CN"
 
 # -- Ablog options -----------------------------------------------------------
 
@@ -289,16 +289,16 @@ favicons = [
 ]
 
 # -- Options for autosummary/autodoc output ------------------------------------
-# autosummary_generate = True
-# autodoc_typehints = "description"
-# autodoc_member_order = "groupwise"
+autosummary_generate = True
+autodoc_typehints = "description"
+autodoc_member_order = "groupwise"
 
 # # -- Options for autoapi -------------------------------------------------------
 autoapi_type = "python"
 autoapi_dirs = ["../src/pydata_sphinx_theme"]
-# autoapi_keep_files = True
-# autoapi_root = "api"
-# autoapi_member_order = "groupwise"
+autoapi_keep_files = True
+autoapi_root = "api"
+autoapi_member_order = "groupwise"
 
 # -- application setup -------------------------------------------------------
 

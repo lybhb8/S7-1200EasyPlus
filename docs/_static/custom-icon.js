@@ -6,6 +6,8 @@ FontAwesome.library.add(
     prefix: "fa-custom",
     iconName: "pypi",
     icon: [
+      
+     
       17.313, // viewBox width
       19.807, // viewBox height
       [], // ligature

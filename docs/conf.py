@@ -171,21 +171,24 @@ html_theme_options = {
         #     "icon": "fa-brands fa-twitter",
         # },
         {
-            "name": "GitHub",
+            "name": "手册仓库:GitHub",
             "url": "https://github.com/lybhb8/S7-1200EasyPlus",
             "icon": "fa-brands fa-github",
         },
         {
-            "name": "PyPI",
-            "url": "https://pypi.org/project/pydata-sphinx-theme",
-            "icon": "fa-custom fa-pypi",
+            "name": "西门子下载中心",
+            "url": "https://www.ad.siemens.com.cn/download",
+            "icon": "fa-custom fa-pypi"
         },
         # {
-        #     "name": "PyData",
-        #     "url": "https://pydata.org",
-        #     "icon": "fa-custom fa-pydata",
+        #     "name": "Pypi",
+        #     "url": "https://pypi.org/",
+        #     "icon": "fa-custom fa-pypi",
         # },
     ],
+
+
+
     # alternative way to set twitter and github header icons
     # "github_url": "https://github.com/pydata/pydata-sphinx-theme",
     # "twitter_url": "https://twitter.com/PyData",
@@ -199,10 +202,10 @@ html_theme_options = {
         "image_dark": "_static/SIEMENS-dark.svg",
     },
 
-    "use_edit_page_button": False,
-    "show_toc_level": 2,
+    "use_edit_page_button": True,
+    "show_toc_level": 1,
     "navbar_align": "left",  # [left, content, right] For testing that the navbar items align properly
-    "show_nav_level": 2,
+   # "show_nav_level": 2,
    # "announcement": "https://raw.githubusercontent.com/pydata/pydata-sphinx-theme/main/docs/_templates/custom-template.html",
    # "show_version_warning_banner": True,
     "navbar_center": [ "navbar-nav"],#"version-switcher"
@@ -216,7 +219,7 @@ html_theme_options = {
     "footer_center": ["sphinx-version"],
     "secondary_sidebar_items": {
         "**/*": ["page-toc", "edit-this-page", "sourcelink"],
-        # "examples/no-sidebar": [],
+        "examples/no-sidebar": [],
     },
     # "switcher": {
     #     "json_url": json_url,

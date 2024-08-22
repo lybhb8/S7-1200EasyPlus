@@ -33,11 +33,13 @@
 | ​IN   | ​Input  | ​Byte, Word, DWord                                                             | ​I、Q、M、D、L        | ​所解析的位序列<br><br>​这些值不得位于的 I/O 区域或工艺对象的 DB 内。                                                                                                                  |
 | ​OUT  | ​Output | ​Array[\*] of Bool、Struct 或 PLC 数据类型<br><br>​ \*：8、16、32 或 64 个元素 | ​I、Q、M、D、L        | ​保存各个位的 Array、Struct 或 PLC 数据类型                                                                                                                                            |
 
+
+
 :::{note} 
 
-    1. **多维 Array of Bool** <br>使用“​将位序列解析为单个位​”指令时，不允许使用多维 Array of Bool。
+1. **多维 Array of Bool** <br>使用“​将位序列解析为单个位​”指令时，不允许使用多维 Array of Bool。
 
-    2. **Array、Struct 或 PLC数据类型的长度**<br>​Array、Struct 或 PLC 数据类型中包含的元素数目必须恰好等于位序列指定的数量。例如，如果数据类型为 Byte，则 Array、Struct 或 PLC 数据类型中必须恰好包含 8 个元素（Word = 16、Dword = 32）。 |
+2. **Array、Struct 或 PLC数据类型的长度**<br>​Array、Struct 或 PLC 数据类型中包含的元素数目必须恰好等于位序列指定的数量。例如，如果数据类型为 Byte，则 Array、Struct 或 PLC 数据类型中必须恰好包含 8 个元素（Word = 16、Dword = 32）。
 :::
 
 ### 示例：使用 Array 的 SCATTER 指令
@@ -117,9 +119,9 @@
 
 :::{note}
 
-    1. **多维 Array of Bool**<br><br>​如果数组是一个多维 Array of Bool，将对维度中的所有位进行计数。<br><br>​示例 1：Array\[1..10,0..4,1..2\] of Bool 包含 10x5x2 位，共可解析 100 位。<br><br>​示例 2：Array\[0..399\] of Bool 包含 400 个可解析的位。
+1. **多维 Array of Bool**<br><br>​如果数组是一个多维 Array of Bool，将对维度中的所有位进行计数。<br><br>​示例 1：Array\[1..10,0..4,1..2\] of Bool 包含 10x5x2 位，共可解析 100 位。<br><br>​示例 2：Array\[0..399\] of Bool 包含 400 个可解析的位。
 
-    2. **如果目标数组的 Array下限不是“0”，请注意以下几点**：<br><br>​出于性能原因，索引必须始终以 Byte、Word 或 Dword 边界限值开始。这就意味着数组索引必须从数组的下限处开始计算。 
+2. **如果目标数组的 Array下限不是“0”，请注意以下几点**：<br><br>​出于性能原因，索引必须始终以 Byte、Word 或 Dword 边界限值开始。这就意味着数组索引必须从数组的下限处开始计算。 
 :::
 
 ### 示例：下限为“0”的目标数组
@@ -190,9 +192,9 @@
 
 :::{note}
 
-    1. **多维 Array of Bool**<br><br>​使用“​将各个位组合为位序列​”指令时，不支持多维 Array of Bool。
+1. **多维 Array of Bool**<br><br>​使用“​将各个位组合为位序列​”指令时，不支持多维 Array of Bool。
 
-    2. **Array、Struct 或 PLC 数据类型的长度**<br><br>​Array、Struct 或 PLC 数据类型中包含的元素数目必须恰好等于位序列指定的数量。<br><br>​例如，如果数据类型为 Byte，则 Array、Struct 或 PLC 数据类型中必须恰好包含 8 个元素（Word = 16、Dword = 32）。
+2. **Array、Struct 或 PLC 数据类型的长度**<br><br>​Array、Struct 或 PLC 数据类型中包含的元素数目必须恰好等于位序列指定的数量。<br><br>​例如，如果数据类型为 Byte，则 Array、Struct 或 PLC 数据类型中必须恰好包含 8 个元素（Word = 16、Dword = 32）。
 :::
 
 ### 示例：使用 Array 的 GATHER 指令
@@ -259,11 +261,11 @@ V1.1版本：IN除Bool数组之外，可以是Struct、UDT类型的变量，变�
 
 :::{note}
 
-    1\.
-    当COUNT_IN超过了位序列数组元素个数，将不执行指令。如果激活指令的ENO功能，则ENO=False。
+1\.
+当COUNT_IN超过了位序列数组元素个数，将不执行指令。如果激活指令的ENO功能，则ENO=False。
 
-    2\.
-    当所需的Boo数量超过了已有的Bool数量，将不执行指令，如果激活指令的ENO功能，则ENO=False。
+2\.
+当所需的Boo数量超过了已有的Bool数量，将不执行指令，如果激活指令的ENO功能，则ENO=False。
 :::
 
 使用举例，如图14-15所示：

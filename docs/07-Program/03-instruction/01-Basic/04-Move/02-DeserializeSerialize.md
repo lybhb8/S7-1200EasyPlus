@@ -25,23 +25,23 @@ Deserialize：参数参见表1
 
 表1 Deserialize参数
 
-  |参数      |      声明   |  数据类型       |                 说明|
-  |----------|--------|------------------------------|-------------|
-  |SRC_ARRAY   |    Input |   Variant或Array of Byte   | 标准Byte数组|
-  |POS        |     InOut  |  DInt      |    见下面注意4  |
-  |Ret_Val     |    Return  | Int        |       错误代码|
-  |DEST_VARIABLE |  Output  | Variant或Struct、UDT、Array等  反序列化后的输出变量|
+|参数      |      声明   |  数据类型       |                 说明|
+|----------|--------|------------------------------|-------------|
+|SRC_ARRAY   |    Input |   Variant或Array of Byte   | 标准Byte数组|
+|POS        |     InOut  |  DInt      |    见下面注意4  |
+|Ret_Val     |    Return  | Int        |       错误代码|
+|DEST_VARIABLE |  Output  | Variant或Struct、UDT、Array等  反序列化后的输出变量|
 
 Serialize：参数参见表2
 
 表2 Serialize参数
 
-  |参数        |   声明   |  数据类型           |             说明|
-  |--------------|------|----------------------|--------------------|
-  |SRC_VARIABLE |  Input   | Variant或Struct、UDT、Array等 |  待序列化的输入变量|
-  |POS        |    InOut   | DInt           |                 见下面注意4|
-  |Ret_Val     |   Return  | Int             |                错误代码|
-  |DEST_ARRAY   |  Output   |Variant或Array of Byte    |      标准Byte数组|
+|参数        |   声明   |  数据类型           |             说明|
+|--------------|------|----------------------|--------------------|
+|SRC_VARIABLE |  Input   | Variant或Struct、UDT、Array等 |  待序列化的输入变量|
+|POS        |    InOut   | DInt           |                 见下面注意4|
+|Ret_Val     |   Return  | Int             |                错误代码|
+|DEST_ARRAY   |  Output   |Variant或Array of Byte    |      标准Byte数组|
 
 注意：
 

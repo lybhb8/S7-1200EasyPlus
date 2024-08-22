@@ -242,9 +242,9 @@ html_context = {
     "doc_path": "docs",
 }
 
-rediraffe_redirects = {
-    "contributing.rst": "community/index.rst",
-}
+# rediraffe_redirects = {
+#     "contributing.rst": "community/index.rst",
+# }
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,

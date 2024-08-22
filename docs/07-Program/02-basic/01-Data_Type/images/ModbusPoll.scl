@@ -1,0 +1,125 @@
+﻿TYPE "typeModbus"
+VERSION : 0.1
+   STRUCT
+      mbAddr : UInt;
+      mode : USInt;
+      dataAddr : UDInt;
+      dataLen : UInt;
+      instrument : DB_ANY;
+   END_STRUCT;
+
+END_TYPE
+
+FUNCTION_BLOCK "ModbusPoll"
+{ S7_Optimized_Access := 'TRUE' }
+VERSION : 0.1
+   VAR_INPUT 
+      req : Bool;   // Modbus RTU 初始化请求
+      port : PORT;   // 串口硬件标识符
+      baud : UDInt;   // 通信波特率
+      parity : UInt;   // 通信奇偶校验位
+      respTo : UInt;   // 通信超时时间
+   END_VAR
+
+   VAR_IN_OUT 
+      datas : Array[*] of "typeModbus";   // 通信数据区
+   END_VAR
+
+   VAR 
+      statLower : DInt;   // 数据区数组下标下限
+      statUpper : DInt;   // 数据区数组下标上限
+      statNo : DInt;   // 当前访问的数据区数组下标
+      statByteString : Array[0..249] of Byte;   // DATA_PTR 250 字节数组
+      statDone : Bool;   // 初始化标志位
+      instModbusCommLoad {InstructionName := 'Modbus_Comm_Load'; LibVersion := '3.1'} : Modbus_Comm_Load;   // Modbus_Comm_Load 背景
+      instModbusMaster {InstructionName := 'Modbus_Master'; LibVersion := '3.1'} : Modbus_Master;   // Modbus_Master 背景
+   END_VAR
+
+   VAR_TEMP 
+      tempVariant : Variant;   // DB_ANY_TO_VARIANT  转换后的指针
+      tempPos : DInt;   // （反）序列化的 POS 参数
+      tempError : Int;   // 指令错误代码
+   END_VAR
+
+
+BEGIN
+	//修改初始化通信模式为 4，即 RS485
+	#instModbusCommLoad.MODE := 4;
+	//初始化 Modbus RTU
+	#instModbusCommLoad(REQ:=#req,
+	                    "PORT":=#port,
+	                    BAUD:=#baud,
+	                    PARITY:=#parity,
+	                    RESP_TO:=#respTo,
+	                    MB_DB:=#instModbusMaster.MB_DB);
+	
+	//当初始化完成，记录数据区数组下标上下限，为当前访问的数据区数组下标赋值，初始化标志位置位
+	IF #instModbusCommLoad.DONE
+	THEN
+	    #statLower := LOWER_BOUND(ARR := #datas, DIM := 1);
+	    #statUpper := UPPER_BOUND(ARR := #datas, DIM := 1);
+	    #statNo := #statLower;
+	    #statDone := TRUE;
+	END_IF;
+	//初始化没有完成时跳过下面程序
+	IF NOT #statDone
+	THEN
+	    RETURN;
+	END_IF;
+	
+	//如果 Modbus_Master 没有请求，说明刚刚结束一个访问或准备第一次访问
+	IF NOT #instModbusMaster.REQ
+	THEN
+	    //如果当前访问的数据区模式是 1，则需要向从站写数据
+	    IF #datas[#statNo].mode = 1
+	    THEN
+	        //将数据区的 DB_ANY 元素转化为 tempVariant 这个 Variant 类型指针
+	        #tempVariant := DB_ANY_TO_VARIANT(in := #datas[#statNo].instrument, err => #tempError);
+	        //为序列化指令 POS 参数赋初始值 0
+	        #tempPos := 0;
+	        //执行序列化指令，将 tempVariant 指针指向的变量序列化到 staticByteString 这个字节数组
+	        #tempError := Serialize(SRC_VARIABLE := #tempVariant, DEST_ARRAY => #statByteString, POS := #tempPos);
+	    END_IF;
+	    //触发新的 Modbus_Master 请求
+	    #instModbusMaster.REQ := TRUE;
+	END_IF;
+	
+	//如果 Modbus_Master 完成
+	IF #instModbusMaster.DONE
+	THEN
+	    //如果当前访问的数据区模式是 0，则需要从从站读数据
+	    IF #datas[#statNo].mode = 0
+	    THEN
+	        //将数据区的 DB_ANY 元素转化为 tempVariant 这个 Variant 类型指针
+	        #tempVariant := DB_ANY_TO_VARIANT(in := #datas[#statNo].instrument, err => #tempError);
+	        //为反序列化指令 POS 参数赋初始值 0
+	        #tempPos := 0;
+	        //执行反序列化指令，将读取到的 staticByteString 这个字节数组反序列化到 tempVariant 指针指向区域 
+	        #tempError := Deserialize(SRC_ARRAY := #statByteString, DEST_VARIABLE => #tempVariant, POS := #tempPos);
+	    END_IF;
+	    //当前访问的数据区数组下标如果没到上限，则继续向上加一，否则回到下限
+	END_IF;
+	//如果 Modbus_Master 完成或者错误
+	IF #instModbusMaster.DONE OR #instModbusMaster.ERROR
+	THEN
+	    //复位 Modbus_Master 请求
+	    #instModbusMaster.REQ := FALSE;
+	    IF #statNo < #statUpper
+	    THEN
+	        #statNo += 1;
+	    ELSIF #statNo = #statUpper
+	    THEN
+	        #statNo := #statLower;
+	    END_IF;
+	END_IF;
+	
+	//调用 Modbus_Master 指令，为参数赋值通信数据区的数组元素
+	#instModbusMaster(MB_ADDR:=#datas[#statNo].mbAddr,
+	                  MODE:=#datas[#statNo].mode,
+	                  DATA_ADDR:=#datas[#statNo].dataAddr,
+	                  DATA_LEN:=#datas[#statNo].dataLen,
+	                  DATA_PTR:=#statByteString);
+	
+	
+END_FUNCTION_BLOCK
+

@@ -1,0 +1,217 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 与 S7-1200/S7-1500 不同项目下 UDP 通信</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>S7-1200 与 S7-1200/S7-1500 不同项目下 UDP 通信</h3>
+<p>S7-1200 与 S7-1200 之间的以太网通信可以通过 UDP 协议来实现。本列中使用TSEND_C，TRCV_C指令建立双方的UDP通讯。TSEND_C，TRCV_C指令在两台PLC间必须成对存在。</p>
+<p>此外S7-1200 与 S7-1500 在不同项目下UDP通信也可以参考本文档。</p>
+<h3> 一、硬件及软件环境</h3>
+<p>  <strong>硬件：</strong><br />
+  ① 两台 S7-1200 CPU V4.4<br />
+  ② PC（带以太网卡）<br />
+③ TP电缆(以太网电缆）</p>
+<p>  <strong>软件：</strong><br />
+  STEP7 V16</p>
+<h3>二、PLC_1 CPU配置</h3>
+<h4> 1. 通讯关系</h4>
+<img src="images/02-01.PNG" width="1016" height="493" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图1. 连接关系</p>
+<h4>2. 组态CPU的硬件配置</h4>
+<p> <strong>1.	打开 STEP7 v16 软件并新建项目</strong><br />
+  <br />
+在 STEP7 v16的 “Portal 视图” 中创建一个新项目。</p>
+<p> <strong>2.	添加硬件并命名PLC</strong><br />
+  <br />
+  在“项目树” 下双击 “添加新设备”，在对话框中选择所使用的S7-1200 CPU添加到机架上，命名为PLC_1。<br />
+</p>
+<img src="images/02-02.PNG" width="710" height="452" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图2. 添加CPU</span></p>
+<p><strong>3. 组态系统时钟</strong><br />
+  <br />
+  在CPU 属性中定义的时钟位， 在 “项目树” &gt; “PLC_1” &gt; “设备组态” 中，选中 CPU ，然后在下面的属性窗口中，“属性” &gt; “常规”&gt;“系统和时钟存储器” 下，勾选“启用系统存储器字节”及“启用时钟存储器字节”。 </p>
+<img src="images/02-03.PNG" width="609" height="547" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; ">  &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图3. 系统位与时钟位</span></p>
+<p><strong>4. 组态PROFINET通讯接口</strong><br />
+  <br />
+  在CPU的属性窗口中，“属性” &gt; “常规”&gt;“PROFINET接口[X1]”&gt;“以太网地址”下，点击添加新子网，分配PLC_1 CPU &nbsp; IP地址：192.168.0.2，子网掩码：255.255.255.0。</p>
+<img src="images/02-04.PNG" width="671" height="378" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图4. 组态PROFINET接口</span></p>
+<p><strong>5. 编译CPU的硬件组态并下载 。</strong><br />
+  <br />
+  在设备视图下，“编辑”菜单 &gt; “编译”。</p>
+<p> 在设备视图下，“在线”菜单 &gt; “下载到设备”。</p>
+<h4>3. 建立通讯用DB</h4>
+<p>在项目树下添加新块，分别命名为PLC1_Rcv，PLC1_Send。</p>
+<p>在 DB 块中建立用于接收及发的数据数组(本例中建立100个byte)。</p>
+<p>建立完成 DB 后，右键点击 DB 块，在打开的快捷菜单中打开 DB 的属性，去除 DB 的&ldquo;优化的块访问属性&rdquo;，见图6。</p>
+<img src="images/02-05.PNG" width="632" height="250" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图5. 建立通讯用DB块</p>
+<img src="images/02-06.PNG" width="489" height="541" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图6. 去除DB块的优化属性</p>
+<h4>4. 配置 TSEND_C 指令 </h4>
+<p>从指令表(图7)加入指令块 TSEND_C 到主程序中。</p>
+<img src="images/02-07.PNG" width="749" height="400" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图7. 加入 TSEND_C功能块</p>
+<p>点击指令块上的开始组态按钮，打开&ldquo;连接参数&rdquo;组态窗口。</p>
+<img src="images/02-08.PNG" width="983" height="649" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图8. 组态连接参数</p>
+<p><strong>图8中的参数： </strong></p>
+<p>端点：连接伙伴未在同一项目中，此处选择未指定。</p>
+<p>连接类型：UDP，此处使用UDP通讯。</p>
+<p>连接ID： 不能和CPU中的其它通讯ID冲突 。</p>
+<p>连接数据：此处新建连接。</p>
+<p>端口： 本例中双边通讯端口定为2000。</p>
+<p><strong>配置TSEND_C指令管脚</strong></p>
+<img src="images/02-09.PNG" width="397" height="345" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图9. TSEND_C功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>REQ：此处使用时钟脉冲信号，上升沿执行发送作业。</p>
+<p>LEN：发送数据长度，此值必须小于或者等于DATA中指定的发送区长度，单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。示例中发送10个Byte到接收区。</p>
+<p>DATA：指向发送数据区的指针。p#db3.dbx0.0 byte 20：起始地址为db3.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB3块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：发送作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图30。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图31。</p>
+<h4>5. 配置 TRCV_C 指令 </h4>
+<p>从指令表(图10)加入指令块 TRCV_C 到主程序中</p>
+<img src="images/02-10.PNG" width="730" height="405" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图10. 加入 TRCV_C 功能块</p>
+<p>点击指令块上的开始组态按钮，打开&ldquo;连接参数&rdquo;组态窗口，并选择图8中组态好的参数块。</p>
+<img src="images/02-11.PNG" width="980" height="648" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图11. 组态连接参数</p>
+<p><strong>配置TRCV_C指令管脚</strong></p>
+<img src="images/02-12.PNG" width="397" height="364" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图12. TRCV_C 功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>EN_R：启用接收功能 ，此处设置为1，一直打开接收。</p>
+<p>LEN：接收数据长度，必须和通讯伙伴的发送长度设置一致。单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。</p>
+<p>DATA：指向接收数据区的指针。p#db4.dbx0.0 byte 20：起始地址为db4.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB4块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：接收作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图32。</p>
+<p>RCVD_LEN：接收到的字节数。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图33。</p>
+<h4>6. 检查通讯DB块</h4>
+<p>在&ldquo;程序块&rdquo;－&ldquo;系统块&rdquo;－&ldquo;程序资源&rdquo;下，双击打开DB块&ldquo;PLC_1_Send_DB&rdquo;。</p>
+<img src="images/02-13.PNG" width="734" height="552" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图13. 检查通讯连接DB</p>
+<p>红色框内填写通讯伙伴的IP(此处为PLC_2的IP地址)和端口</p>
+<h3>三、PLC_2 CPU配置</h3>
+<h4> 1. 连接关系</h4>
+<img src="images/02-14.PNG" width="1010" height="492" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图14. 连接关系</p>
+<h4>2. 组态CPU的硬件配置</h4>
+<p> <strong>1.	打开 STEP7 v16 软件并新建项目</strong><br />
+  <br />
+在 STEP7 v16的 &ldquo;Portal 视图&rdquo; 中创建一个新项目。</p>
+<p> <strong>2.	添加硬件并命名PLC</strong><br />
+  <br />
+  在“项目树” 下双击 “添加新设备”，在对话框中选择所使用的S7-1200 CPU添加到机架上，命名为PLC_2。</p>
+<img src="images/02-15.PNG" width="710" height="421" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图15. 添加CPU</span></p>
+<p><strong>3. 组态系统时钟</strong><br />
+  <br />
+  在CPU 属性中定义的时钟位， 在 &ldquo;项目树&rdquo; &gt; &ldquo;PLC_2&rdquo; &gt; &ldquo;设备组态&rdquo; 中，选中 CPU ，然后在下面的属性窗口中，&ldquo;属性&rdquo; &gt; &ldquo;常规&rdquo;&gt;&ldquo;系统和时钟存储器&rdquo; 下，勾选&ldquo;启用系统存储器字节&rdquo;及&ldquo;启用时钟存储器字节&rdquo;。 </p>
+<img src="images/02-16.PNG" width="609" height="547" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图16. 系统位与时钟位</span></p>
+<p><strong>4. 组态PROFINET通讯接口</strong><br />
+  <br />
+  在CPU的属性窗口中，“属性” &gt; “常规”&gt;“PROFINET接口[X1]”&gt;“以太网地址”下，点击添加新子网，分配PLC_2 CPU &nbsp; IP地址：192.168.0.3，子网掩码：255.255.255.0。</p>
+<img src="images/02-17.png" width="667" height="418" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图17. 组态PROFINET接口</span></p>
+<p><strong>5. 编译CPU的硬件组态并下载 。</strong><br />
+  <br />
+在设备视图下，&ldquo;编辑&rdquo;菜单 &gt; &ldquo;编译&rdquo;。</p>
+<p> 在设备视图下，&ldquo;在线&rdquo;菜单 &gt; &ldquo;下载到设备&rdquo;。</p>
+<h4>3. 建立通讯用DB</h4>
+<p>在项目树下添加新块，分别命名为SeverRcv，SeverSend。</p>
+<p>在 DB 块中建立用于接收及发的数据数组(本例中建立100个byte)。</p>
+<p>建立完成 DB 后，右键点击 DB 块，在打开的快捷菜单中打开 DB 的属性，去除 DB 的&ldquo;优化的块访问属性&rdquo;，见图19。</p>
+<img src="images/02-18.PNG" width="603" height="186" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图18. 建立通讯用DB块</p>
+<img src="images/02-19.PNG" width="495" height="491" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图19. 去除DB块的优化属性</p>
+<h4>4. 配置 TSEND_C 指令 </h4>
+<p>从指令表(图20)加入指令块 TSEND_C 到主程序中。</p>
+<img src="images/02-20.PNG" width="749" height="400" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图20. 加入 TSEND_C功能块</p>
+<p>点击指令块上的开始组态按钮，打开&ldquo;连接参数&rdquo;组态窗口。</p>
+<img src="images/02-21.PNG" width="834" height="552" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图21. 组态连接参数</p>
+<p><strong>图21中的参数： </strong></p>
+<p>端点：连接伙伴未在同一项目中，此处选择未指定。</p>
+<p>地址：在伙伴侧写入服务器的通讯地址。</p>
+<p>连接类型：UDP，此处使用UDP通讯。</p>
+<p>连接ID：不能和CPU中的其它通讯ID冲突 。</p>
+<p>连接数据：此处新建连接。</p>
+<p>主动建立连接：选择主动建立连接的为客户端，另外一侧为服务器，本例中伙伴CPU为服务器，本地CPU主动建立连接。</p>
+<p>端口： 本例中双边通讯端口定为2000。</p>
+<p><strong>配置TSEND_C指令管脚</strong></p>
+<img src="images/02-22.png" width="393" height="343" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图22. TSEND_C功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>REQ：此处使用时钟脉冲信号，上升沿执行发送作业。</p>
+<p>LEN：发送数据长度，此值必须小于或者等于DATA中指定的发送区长度，单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。示例中发送10个Byte到接收区。</p>
+<p>DATA：指向发送数据区的指针。p#db3.dbx0.0 byte 20：起始地址为db3.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB3块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：发送作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图30。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图31。</p>
+<h4>5. 配置 TRCV_C 指令 </h4>
+<p>从指令表(图23)加入指令块 TRCV_C 到主程序中。</p>
+<img src="images/02-23.PNG" width="730" height="405" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图23. 加入 TRCV_C 功能块</p>
+<p>点击指令块上的开始组态按钮，打开“连接参数”组态窗口，并选择图21中组态好的参数块。</p>
+<img src="images/02-24.PNG" width="979" height="651" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图24. 组态连接参数</p>
+<p><strong>配置TRCV_C指令管脚</strong></p>
+<img src="images/02-25.PNG" width="399" height="362" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图25. TRCV_C 功能块</p>
+<p><strong>参数说明： </strong></p>
+<p><strong>输入接口参数：</strong></p>
+<p>EN_R：启用接收功能 ，此处设置为1，一直打开接收。</p>
+<p>LEN：接收数据长度，必须和通讯伙伴的发送长度设置一致。单位：字节(此参数默认为隐藏参数，可以点击功能块底部箭头显示)。</p>
+<p>DATA：指向接收数据区的指针。p#db4.dbx0.0 byte 20：起始地址为db4.dbx0.0，长度为20个byte。此处指向的地址及长度必须小于或者等于DB4块中的建立的数据长度。</p>
+<p><strong> 输出接口参数：</strong></p>
+<p>DONE：接收作业成功完成时，会显示一个循环周期的1。抓取DONE位状态程序见诊断程序中的图32。</p>
+<p>RCVD_LEN：接收到的字节数。</p>
+<p>ERROR：当功能块出现错误时为1。</p>
+<p>STATUS：功能块的运行状态。错误状态的抓取程序见诊断程序中的图33。</p>
+<h4>6. 检查通讯DB块</h4>
+<p>在“程序块”－“系统块”－“程序资源”下，双击打开DB块“PLC_2_Send_DB”。</p>
+<img src="images/02-26.PNG" width="746" height="554" alt=""/>
+<p> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图26. 检查通讯连接DB</p>
+<p>红色框内填写通讯伙伴的IP(此处为PLC_1的IP地址)和端口。</p>
+<h3>四、通讯诊断</h3>
+<h4><strong>1. 通讯数据查看</strong></h4>
+<img src="images/02-27.PNG" width="835" height="357" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图27. 通讯数据</span></p>
+<h4><strong>2. 连接诊断</strong>&nbsp;</h4>
+<p>将 1200CPU 转至在线状态，打开“网络视图”，可以在“连接”选项卡中看到连接状态。</p>
+<img src="images/02-28.PNG" width="852" height="167" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图28. 连接状态</span></p>
+<p>将鼠标选中连接，在巡视窗口中，可以检查连接的具体状态。</p>
+<img src="images/02-29.PNG" width="800" height="267" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图29. 连接详细状态</span></p>
+<h4><strong>3. 利用功能块诊断通讯状态</strong></h4>
+<img src="images/02-30.PNG" width="320" height="118" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图30. 检查已发送次数</span></p>
+<p>&nbsp;</p>
+<img src="images/02-31.PNG" width="442" height="211" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图31. 抓取发送错误代码</span></p>
+<p>&nbsp;</p>
+<img src="images/02-32.PNG" width="453" height="195" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;图32. 抓取接收次数及最后一次的接收长度</span></p>
+<p>&nbsp;</p>
+<img src="images/02-33.PNG" width="442" height="190" alt=""/>
+<p><span style="font-variant:normal; letter-spacing:normal; line-height:normal; orphans:auto; text-align:start; text-indent:0px; text-transform:none; white-space:normal; widows:1; word-spacing:0px; -webkit-text-stroke-width:0px; display:inline !important; float:none; font-family:Arial, Helvetica, sans-serif; font-size:medium; color:rgb(0, 0, 0); font-style:normal; font-weight:normal; "> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 图33. 抓取接收错误代码</span></p>
+</body>
+</html>

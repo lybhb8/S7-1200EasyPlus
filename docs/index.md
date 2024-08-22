@@ -74,7 +74,7 @@ html_theme.sidebar_secondary.remove: true
 
 ```
 
-<!-- ### S7-1200 PLC 组态编程
+### S7-1200 PLC 组态编程
 
 
 ```{toctree}
@@ -85,4 +85,4 @@ html_theme.sidebar_secondary.remove: true
 07-Program/02-basic/index
 07-Program/03-instruction/index
 
-``` -->
+```

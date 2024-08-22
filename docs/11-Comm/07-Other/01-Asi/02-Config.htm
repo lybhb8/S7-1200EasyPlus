@@ -1,0 +1,98 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Config</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>如何通过 CM1243-2 与 AS-i 从站通信</h3>
+<p>要实现 CM1243-2 的 AS-i 通信，需要注意：</p>
+<p>1. PC 机上安装有 TIA STEP7 V11 SP2 以上的软件；</p>
+<p>2、S7-1200 CPU 固件 V2.2 以下的 CPU 不支持 CM1243-2 模块；</p>
+<p>3、S7-1200 CPU  固件 V2.2 最多只能支持1个 CM1243-2 模块；</p>
+<p>4、S7-1200 CPU  固件 V3.0 最多只能支持3个 CM1243-2 模块；</p>
+<p>5、S7-1200 CPU 固件 V4.0 及以上，则要求 CM1243-2 模块固件至少为 V1.1。 </p>
+<p>固件更新方法：</p>
+<p>1.将固件文件拷贝到 S7-1200 专用的 24M 存储卡，插入 CPU 中进行更新；具体操作方式请查看 S7-1200 系统手册相关内容；</p>
+<p>2.项目在线后，在CM1243-2模块上，鼠标右键选择“在线和诊断——&gt;功能——&gt;固件更新”根据提示进行操作；</p>
+<p>3.如果使用的是 V4.0 的 CPU，可激活 WebServer 的访问功能，通过 IE 浏览器访问 CPU，可对 CM1243-2 进行固件升级。</p>
+<h4>1. 如何设置 AS-i 从站地址</h4>
+<p>在 AS-i 总线上每一个AS-i 从站都有一个唯一的地址（新购买的从站模块默认地址为0），则需要对 AS-i 从站设置地址，有以下三种方式。</p>
+<p>方法1：使用编址器对每一个从站进行编址，编址器订货号为：3RK1 904-2AB02；外观如图1所示：</p>
+<p><img src="images/2-01.jpg" width="161" height="286"></p>
+<p>图1. 编址器</p>
+<p>编址器使用手册：</p><p><img src="images/3.gif" alt="" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。</p>
+<p><a href="https://support.industry.siemens.com/cs/ww/en/view/18314730"><strong>https://support.industry.siemens.com/cs/ww/en/view/18314730</strong></a></p>
+<p>方法2：使用 CM1243-2 “在线和诊断”功能对从站设置地址，<a href="03-Change.htm#addr1"><strong>链接</strong></a>；</p>
+<p>方法3：通过编程，使用命令控制字修改从站地址，<a href="03-Change.htm#addr2"><strong>链接</strong></a>；</p>
+<p>注意：新的 AS-i 从站出厂的默认地址为0，则使用方法2给新从站设置地址时，每次操作只能设置一个新从站（新从站默认地址为0），并保证新地址在 AS-i 总线上是唯一的。</p>
+<h4>2. 使用 CM1243-2 实现 AS-i 通信</h4>
+<p>CM1243-2 模块是 S7-1200 系列产品中唯一一款 AS-i 主站模块，如果想通过该模块与 AS-i 从站模块实现通信，如何配置呢？下面将对 CM1243-2 模块的使用配置做详细描述。</p>
+<p>硬件：</p>
+<OL>
+  <LI>CPU 1215C DC/DC/DC，V4.1（6ES7 214-1AG40-0XB0）</LI>
+  <LI>CM1243-2，V1.1（3RK7 243-2AA30-0XB0）</LI>
+  <LI>DCM1271，AS-i POWER（3RX9 501-0BA00）</LI>
+  <LI>AS-i 从站，4DI （3RK1 200-0CE00-0AA2） </LI>
+  <LI>AS-i 从站，4AI （3RK1 207-2BQ44-0AA3） </LI>
+</OL>
+<p>软件： </p>
+<OL>
+  <LI>TIA Step7 V13 SP1 UPD4 </LI>
+</OL>
+<p>本例中使用 CM1243-2 模块访问一块地址为2的 4DI 模块和一块地址为3的 4AI 模块，可以通过下述的两种方法实现数据的访问：</p>
+<p>1、在“网络视图”中配置 AS-i 网络总线，并在总线上添加 AS-i 从站，系统会自动给从站分配 IO 地址，可以很方便的访问从站的 IO 数据；请查看本文章节2.1。</p>
+<p>2、在“网络视图”中未配置 AS-i 网络总线，开关量模块信号通过地址表的分配访问，地址分配规则如图2所示，1200 CPU 自带 IO 点，故 AS-i 从站排列的起始地址是2（该起始地址可以在组态中修改），首先排A类从站（或标准站）地址：1A对应的起始地址为2，2A对应的起始地址为3，…………31A对应的起始地址为32；紧接着排B类从站地址：1B对应的起始地址为33，2B对应的起始地址为34，…………31B对应的起始地址为63。</p>
+<p><img src="images/2-02.jpg" width="179" height="261"></p>
+<p>图2. 组开关量模块地址表</p>
+<p>模拟量信号则需要通过编程访问数据记录；请查看本文章节2.2。</p>
+<p>上述两种方法的具体配置步骤如下。</p>
+<h4>2.1 在“网络视图”中配置 AS-i 网络总线的情况</h4>
+<p>首先，通过“设备视图”对 CPU 和 CM1243-2 进行组态，如图2所示： </p>
+<p><img src="images/2-03.jpg" width="886" height="448"></p>
+<p>图2. 组态 CM1243-5 </p>
+<p>点击“网络视图”，在右边的“硬件目录——&gt;现场设备——&gt;AS接口”将需要组态的从站拖拽到“网络视图”中，如图3所示：</p>
+<p><img src="images/2-04.jpg" width="800" height="704"></p>
+<p>图3. 组态 AS-i 从站</p>
+<p>然后，对 AS-i 开关量模块分配站地址，本例中将 4DI 模块地址设置为 1 ，如图4所示： </p>
+<p><img src="images/2-05.jpg" width="561" height="592"></p>
+<p>图4. 为 4DI 模块分配地址</p>
+<p>再对 AS-i 模拟量模块分配站地址，本例中将 4AI 模块地址设置为 2 ，并设置模拟量通道的参数，如图5所示： </p>
+<p><img src="images/2-06.jpg" width="558" height="718"></p>
+<p>图5. 为 4AI 模块分配地址</p>
+<p>编译项目，无错误后，下载到 CPU 中，通过监控表查看从站模块的信号，如图6所示：</p>
+<p><img src="images/2-07.jpg" width="529" height="238"></p>
+<p>图6. 监控测试</p>
+<h4>2.2 在“网络视图”中未配置 AS-i 网络总线的情况</h4>
+<p>首先，通过“设备视图”对 CPU 和 CM1243-2 进行组态，并且不需在“网络视图”中组态 AS-i 从站，如图7所示： </p>
+<p><img src="images/2-08.jpg" width="598" height="620"></p>
+<p>图7. 组态 CM1243-5 </p>
+<p>CM1243-2 手册章节7.2.3.21 所描述的命令，使用指令“RDREC”将索引号 83 发送命令从 AS-i 模拟量从站中读取通道数据，数据记录格式如图8所示：</p>
+<p><img src="images/2-09.jpg" width="620" height="300"></p>
+<p>图8.  模拟量输入模块的数据记录格式</p>
+<p>主程序 OB1 中调用指令“RDREC”，如图9所示： </p>
+<p><img src="images/2-10.jpg" width="772" height="361"></p>
+<p>图9. 调用 RDREC 指令</p>
+<p>然后，选择 AS-i 主站的硬件 ID 号，并填写该指令的相关参数，如图10所示： </p>
+<p><img src="images/2-11.jpg" width="536" height="626"></p>
+<p>图10. 填写 RDREC 指令相关参数</p>
+<p>将程序下载到 CPU 后，通过监控表查看读取到的状态，如图11所示： </p>
+<p><img src="images/2-12.jpg" width="515" height="241"></p>
+<p>图11. 监控测试</p>
+<h4>2.3 关于“AS-i 组态错误时诊断中断”和“自动地址编程”的功能说明 </h4>
+<p>通过“设备视图”选择 CM1243-2 的“工作参数”属性，可见“AS-i 组态错误时诊断中断”和“自动地址编程”功能是必选的，如图12所示： </p>
+<p><img src="images/2-13.jpg" width="549" height="548"></p>
+<p>图12. CM1243-2 “工作参数”选项</p>
+<p>1、“AS-i 组态错误时诊断中断”：</p>
+<p>启用该设备的诊断中断。各种各样的故障事件都会触发诊断中断，而设备（例如电子模块）或模块可通过自身的诊断功能确定这些故障事件。模块会将已经发生的故障事件通知给 CPU。用户可在 OB82 中设计对不同故障事件的响应。</p>
+<p>  2、“自动地址编程”：</p>
+<p>启用该功能，目的用于替换故障模块，可以在设备（AS-i 主站）的保护模式下使用新出厂的 AS-i 从站（AS-i 地址“0”）更换出现故障的 AS-i 从站。AS-i 主站会自动将新 AS-i 从站设置为替换的 AS-i 从站的 AS-i 地址。</p>
+<p>使用条件：① 新出厂的 AS-i 从站（AS-i 地址“0”）；</p>
+<p>② 新出厂的 AS-i 从站型号和故障的 AS-i 从站相同。</p>
+<p>&nbsp;</p>
+<p><img src="images/2.gif" width="15" height="15"> 关于 CM1243-2 模块的更多信息，请查看其手册：</p><p><img src="images/3.gif" alt="" width="15" height="15" /> 按住 Shift 键时用鼠标点击下列链接，打开新浏览器窗口。</p>
+<p><a href="http://support.industry.siemens.com/cs/ww/en/view/57358958"><strong>http://support.industry.siemens.com/cs/ww/en/view/57358958</strong></a></p>
+</body>
+</html>

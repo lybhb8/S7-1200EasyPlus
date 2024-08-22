@@ -1,0 +1,41 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>在线备份页面</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>标准 Web 页面 - 在线备份页面</h3>
+<p>在线备份页面可以为在线 PLC 创建项目备份，或者恢复之前创建的 PLC 备份，如图 1 所示。</p>
+<p><img src="images/4.gif" width="15" height="15" /><strong>注意</strong>：</p>
+<ul>
+  <li>如果需要使用此功能，一定在充分理解该功能并保证现场人员及设备安全的前提下，才可以操作！</li>
+  <li>要在线备份 PLC 项目，需要在组态 Web 服务器用户权限时，勾选&ldquo;创建 CPU 备份&rdquo;和&ldquo;更改工作模式&ldquo;的权限。</li>
+  <li>要恢复已备份的项目，需要在组态 Web 服务器用户权限时，勾选&ldquo;备份文件恢复 CPU&rdquo;和&ldquo;更改工作模式&ldquo;的权限。</li>
+</ul>
+
+<p><img src="images/10-01.jpg" width="967" height="611" /></p>
+<p>图 1.在线备份</p>
+<p>创建或恢复备份之前，需要将 PLC 置于停止模式并停止与 PLC 之间的全部通信（例如，HMI 访问）。如果 CPU 未处于停止模式，则备份和恢复功能会在继续执行之前提示 CPU 处于停止模式，如图 2 、图 3 所示。</p>
+<p><img src="images/4.gif" width="15" height="15" /><strong>注意：</strong></p>
+<p>如果现场不允许停机，请不要使用该功能！</p>
+<p><img src="images/10-02.jpg" width="267" height="110" /></p>
+<p>图 2.备份时需要停止 CPU</p>
+<p><img src="images/10-03.jpg" width="271" height="113" /></p>
+<p>图 3.恢复时需要停止 CPU</p>
+<p>在执行恢复备份项目时，会有恢复的状态提示，如图 4 所示。</p>
+<p>在执行加载组态前，需要重新输入用户名和密码进行用户登录，如图 5 所示。</p>
+<p><img src="images/10-04.jpg" width="536" height="350" /></p>
+<p>图 4.恢复备份项目状态提示</p>
+<p><img src="images/10-05.jpg" width="290" height="162" /></p>
+<p>图 5.恢复备份中用户重新登录</p>
+<p><img src="images/4.gif" width="15" height="15" /><strong>注意：</strong></p>
+<ul>
+  <li>无法通过 Web 服务器恢复 TIA Portal 备份文件</li>
+  <li>也不能通过 TIA Portal 恢复 Web 服务器备份文件。</li>
+  <li>但是，可以将 TIA Portal 备份文件保存到用来存储 Web 服务器备份文件的文件夹中。这样便可以通过 Web 服务器恢复这些文件。</li>
+</ul>
+</body>
+</html>

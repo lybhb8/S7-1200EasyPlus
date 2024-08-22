@@ -1,0 +1,72 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>DP_Slave</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>SIMATIC NET  OPC Server 与 S7-1200  CM1242-5 的 DP 主从通信</h3>
+<p>由于 CM1242-5 支持 Profibus DP 从站通信，因此，可以使用例如 CP5622 卡做 DP 主站，通过 SIMATIC NET 组态的 OPC 服务器与 S7-1200 建立 DP 主从通信。</p>
+<h4>本例使用的硬件和软件需求</h4>
+<p><strong>硬件：</strong><br />
+  ① CPU1215C  DC/DC/DC V3.0<br />
+  ② CM1242-5<br />
+③ CP5622</p>
+<p><br />
+  <strong>软件：</strong><br />
+  ① SIMATIC NET  V8.2<br />
+  ② STEP7 V12 SP1 Update2</p>
+<h3><strong>操作步骤</strong></h3>
+<h4>1、组态SIMATIC PC Station</h4>
+<p> （1）通过“添加新设备”&gt;“PC 系统”&gt;“常规 PC”插入一个 PC 站，PC 站的名字为：“PC station”。如图1所示。</p>
+<p><img src="images/3-01.jpg" width="857" height="621" /></p>
+<p>图1 插入并组态 PC 站</p>
+<p>（2）通过点击“设备组态”进入 PC station “设备视图”界面，如图2所示。</p>
+<p>在第一个槽中，从“用户应用程序”下选择“OPC 服务器”，添加一个 OPC Server 。</p>
+<p>在第二个槽中，从“通信模块”&gt;“PROFIBUS”下选择“CP5622”。</p>
+<p>注意：需要将“生成XDB文件”复选框勾选上。</p>
+<p><img src="images/3-02.jpg" width="672" height="650" /></p>
+<p>图2 PC station 的硬件组态</p>
+<p>（3）然后配置 CP 卡网络类型、地址及操作模式。并编译保存。如图3所示。</p>
+<p><img src="images/3-03.jpg" width="497" height="690" /></p>
+<p>图3 设置 CP 卡</p>
+<h4>2、组态 S7-1200 PLC 站 </h4>
+<p>（1）在项目 CP1242-5 OPC 中“添加新设备”组态 S7-1200 站 PLC_1 ，选择 CPU1215C  DC/DC/DC V3.0 创建项目。如图4所示。</p>
+<p><img src="images/3-04.jpg" width="738" height="388" /></p>
+<p>图4 创建 S7-1200 PLC 站 </p>
+<p>（2）组态 CM1242-5 ，为 CM1242-5 添加子网 PROFIBUS _1 ，分配站地址为2。如图5所示。</p>
+<p><img src="images/3-05.jpg" width="646" height="471" /></p>
+<p>图5 组态 CM1242-5</p>
+<p> （3）点击“操作模式”，为 CP1242-5 分配主站 CP5622 ，并设置传输区域。如图6所示。 </p>
+<p><img src="images/3-06.jpg" width="644" height="525" /></p>
+<p>图6 分配主站，设置传输区域</p>
+<p> （4）分别设置“传输区_1”和“传输区_2”的通讯数据长度为10个字节。如图7所示。</p>
+<p><img src="images/3-07.jpg" width="576" height="491" /></p>
+<p>图7. 设置通讯数据长度 </p>
+<p>确认和 DP 主站通讯数据区的地址对应关系。如图8所示。</p>
+<p><img src="images/3-08.jpg" width="622" height="209" /></p>
+<p>图8 地址关系对应</p>
+<h4>3、导入 OPC 组态。</h4>
+<p>（1）点击 PC station 站，然后对 PC station 站进行“编译”即生成该 OPC 配置文件，文件的默认保存路径为项目文件的子目录 XDB 。 </p>
+<p>（2）导入组态到 OPC Server</p>
+<p>双击“Station Configurator”进入“Station Configuration Editor”，点击“Import Station”导入上一步骤中生成的文件“PC station.xdb”。如图9所示。</p>
+<p><img src="images/3-09.jpg" width="750" height="623" /></p>
+<p>图9 导入组态到 OPC Server</p>
+<p>组态正确导入后，连接建立。如图10所示。</p>
+<p><img src="images/3-10.jpg" width="539" height="558" /></p>
+<p>图10 OPC Server 状态</p>
+<h4>4、检查通信</h4>
+<p>在计算机“开始”菜单中，执行 SIMATIC NET 的 OPC Scout V10 。如图11所示。</p>
+<p>打开“CP 5622_1”的“Slave002”下展开变量，将添加的变量拖拽到“DA view”，点击“Moniting ON”查看变量状态。</p>
+<p><img src="images/3-11.jpg" width="958" height="421" /></p>
+<p>图11 OPC Server 状态</p>
+<p>在“DA view”中的“New value”写入变量数值，通过点击“Write”按钮将数据传输给从站。如图12所示。</p>
+<p><img src="images/3-12.jpg" width="872" height="426" /></p>
+<p>图12 写入变量数据</p>
+<p>同时在 STEP7 V12 中监控表中，写入需要传输给主站的数据；并监控结果。如图13所示。</p>
+<p><img src="images/3-13.jpg" width="785" height="603" /></p>
+<p>图13 测试结果监控 </p>
+</body>
+</html>

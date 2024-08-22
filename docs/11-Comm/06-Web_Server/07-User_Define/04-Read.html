@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>读取变量</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3> AWP 命令 - 读取变量</h3>
+<p>用户定义的 Web 页面可从 CPU 读取 PLC 变量和数据块变量，前提是这些变量已激活&ldquo;从 HMI/OPC UA/Web API 可访问&ldquo;。<br />
+</p>
+<p>语法：</p>
+<ul>
+  <li>:=&lt;Varname&gt;:</li>
+</ul>
+<p>要读取的变量，可以是 PLC 变量名称、数据块变量、I/O 或位存储器。</p>
+<ul>
+  <li> 对于别名或绝对地址访问的 PLC 变量，请勿使用引号将变量名称括起来。</li>
+  <li>对于 PLC 变量，使用双引号将变量名称括起来。</li>
+  <li>对于数据块变量，只用双引号将块名称括起来，变量名称位于引号外。请注意，应使用数据块名称，而不是数据块编号。</li>
+  <li>使用数组元素语法引用数组元素。<br />
+  </li>
+</ul>
+<p><strong>示例如下：</strong></p>
+<ul>
+  <li>&quot;test_MB&quot;  :=&quot;test_MB&quot;:</li>
+  <li>&quot;test_MW&quot;  :=&quot;test_MW&quot;:  </li>
+  <li>&quot;web_test2_优化&quot;.b :=&quot;web_test2_优化&quot;.b:</li>
+</ul>
+<p><strong>上述语句实现功能：</strong>
+<ul>
+  <li>读取名称为 &ldquo;test_MB &rdquo;的变量的数值；</li>
+  <li>读取名称为 &ldquo;test_MW&rdquo; 的变量的数值；</li>
+  <li>读取名称为 &ldquo;web_test2_优化&rdquo; 的 DB 块中名称为 &ldquo;b&rdquo; 的变量的数值。数据块中变量的访问整体为 &quot;web_test2_优化&quot;.b。<br />
+  </li>
+</ul>
+<p>在 HTML 编辑器中编辑如图 1 所示。
+<p><img src="images/04-01.jpg" width="419" height="68" />
+<p>图 1.HTML 编辑器中编辑读取数据
+<p>编辑完成网页中显示界面如图 2 所示 。
+<p><img src="images/04-02.jpg" width="286" height="143" />
+<p>图 2.网页显示页面
+</body>
+</html>

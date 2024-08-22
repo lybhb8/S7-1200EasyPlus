@@ -1,0 +1,122 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Config</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>PROFIBUS DP 主从配置方法步骤：</h3>
+<p>
+
+-创建 STEP 7 项目<br />
+-插入所需的 SIMATIC S7-1200站<br />
+-在站中插入通信模块和其它所需模块<br />
+-添加PROFIBUS DP网络，分配DP 地址，定义操作模式和DP参数</p>
+<ul>
+  <li>DP 地址定义</li>
+  <li>DP 主 / 从模式选择</li>
+  <li>最高地址：因为PROFIBUS令牌只传递给主站，合适的最高 PROFIBUS 地址可优化总线</li>
+</ul>
+<p>-连接 DP 从站到主站<br />
+  -组态其它模块<br />
+-项目保存并下载</p>
+<h4>1、一般DP从站的组态方法：</h4>
+<p>以S7-1200和ET200S 为例，说明组态过程。<br />
+（1）S7-1200 通过CM1243-5 做DP主站</p>
+<p><img src="images/2-01.JPG" width="753" height="409" border="1" /></p>
+<p>（2）创建DP主站系统<br />
+在网络视图右键单击 DP 主站模块CM1243-5的 DP 接口，通过操作“分配主站系统”来创建DP主站。</p>
+<p><img src="images/2-02.JPG" width="291" height="338" border="1" /></p>
+<p>（3）组态从站<br />
+从硬件目录/ 分布式I/O 中将ET200S拖入网络视图，鼠标拖动从站通信接口到主站接口， 释放鼠标按钮，即可创建 PROFIBUS 连接。</p>
+<p><img src="images/2-03.JPG" width="519" height="133" border="1" /></p>
+<p>点击 ET200S 上 &ldquo;未分配&rdquo;，将从ET200S 分配给 CM1243-5 。显示如下图</p>
+<p><img src="images/2-04.JPG" width="509" height="269" border="1" /></p>
+<p>鼠标右键点击网线可查看网络参数，在网络设置中可修改传输速率、最高站地址等。</p>
+<p><img src="images/2-05.JPG" width="656" height="177" border="1" /></p>
+<p><img src="images/2-06.JPG" width="650" height="198" border="1" /></p>
+<p>（4）双击ET200S组态从站其它模块<br />
+如图示分别插入电源模块PM-E，DO模块和DI模块。</p>
+<p><img src="images/2-07.JPG" width="748" height="471" border="1" /></p>
+<p>（5）编译存盘，下载到S7-1200 CPU </p>
+<h4>2、智能从站组态方法</h4>
+<p>以2个 S7-1200 DP组态通信为例。<br />
+（1）PLC_1_DP_Master通过CM1243-5 做PROFIBUS DP主站，PLC_2_DP_Slave 通过CM1242-5做PROFIBUS DP从站。组态设备并创建DP主站网络</p>
+<p><img src="images/2-08.JPG" width="729" height="315" border="1" /></p>
+<p>（2）从站连接到主站，将 PLC_2_DP_Slave 分配给 DP主站 CM1243-5</p>
+<p><img src="images/2-09.JPG" width="528" height="155" border="1" /></p>
+<p>（3）双击PLC_2_DP_Slave，点击DP口通过属性组态数据传输区</p>
+<p><img src="images/2-10.JPG" width="1168" height="490" border="1" /></p>
+<p>传输区_1主站读取从站33个字，传输区_2主站发送10个字节到从站，按长度单位保持数据的一致性。“按长度单位”一致性数据的读取，不需要编写通讯程序。</p>
+<p><img src="images/2-11.JPG" width="545" height="126" border="1" /></p>
+<p>比如传输区_1，主站将从站QW100 开始的33个字，读取到从IW104 开始的地址里。<br />
+  编译，存盘，下载程序到各自的CPU。<br />
+通过监控表可以看到数据的对应关系。<br /><img src="images/2-12.JPG" width="658" height="232" border="1" /></p>
+<p>对于智能从站的I/O模块：<br />
+DP 主站无法直接读写智能从站的I/O模块，要通过智能从站CPU编写程序，将I/O模块和DP传输区进行数据交换来实现。</p>
+<p><img src="images/2-13.JPG" width="376" height="236" border="1" /></p>
+<p>假如主站要读取从站CPU集成输入点IW0，则从站主循环程序OB1需要插入一段MOVE程序，如下图，通过MOVE指令将IW0传送到QW120 。使用上边的组态，从站数据QW120通过传输区_1到达主站的IW124。</p>
+<p><img src="images/2-14.JPG" width="256" height="122" border="1" /></p>
+<p>通过下图的监控表可以看到，主站在IW124读到了从站CPU的集成点IW0。</p>
+<p><img src="images/2-15.JPG" width="893" height="161" border="1" /></p>
+<h4>3、组态基于 GSD 的 DP 从站</h4>
+<p>当DP从站为第三方设备，或在 STEP7 V11 硬件列表中找不到的西门子设备，可通过安装GSD 文件将该设备添加到STEP7 V11 ，这样该设备就被添加到系统中。<br />
+  设备的GSD文件，由设备供应商提供。<br />
+  下面以S7-1200 通过CM1243-5 做主站，S7-200 通过EM277 做从站，介绍组态过程：<br />
+  （1）在STEP7 V11安装EM277 GSD文件<br />
+安装GSD 文件前，要关闭硬件和网络编辑器,在“选项”(Options) 菜单中，选择命令“安装设备描述文件”。</p>
+<p><img src="images/2-16.JPG" width="478" height="166" border="1" /></p>
+<p>从“源路径”选择要安装 GSD 文件的文件夹，从所显示 GSD 文件的列表中选择要安装的文件，单击“安装” (Install) 按钮。</p>
+<p><img src="images/2-17.JPG" width="644" height="228" border="1" /></p>
+<p>重启STEP7后，在硬件目录中“其它现场设备”文件夹下，就可以找到通过 GSD 文件安装的 DP 从站。</p>
+<p><img src="images/2-18.JPG" width="264" height="273" border="1" /></p>
+<p>（2）将EM277 拖放到网络视图，并连接到主站模块CM1243-5</p>
+<p><img src="images/2-19.JPG" width="494" height="133" border="1" /></p>
+<p><span lang="ZH-CN" xml:lang="ZH-CN">（</span>3<span lang="ZH-CN" xml:lang="ZH-CN">）双击</span>EM277 <span lang="ZH-CN" xml:lang="ZH-CN">，在属性中查看</span>PROFIBUS   DP<span lang="ZH-CN" xml:lang="ZH-CN">参数，</span>EM277   DP<span lang="ZH-CN" xml:lang="ZH-CN">地址为</span>4 <span lang="ZH-CN" xml:lang="ZH-CN">，</span>V<span lang="ZH-CN" xml:lang="ZH-CN">区地址偏移量是</span>0</p>
+<p><img src="images/2-20.JPG" width="474" height="441" border="1" /></p>
+<p>（4）组态通信数据<br />
+EM277 设备概览中只有一个可组态的槽位，根据通信数据的要求，可选择固定报文或通用模块，本例选择通用模块，定义了与主站的数据交换为10字节输入，10字节输出，一致性选择“按长度单位”。</p>
+<p><img src="images/2-21.JPG" width="593" height="122" border="1" /></p>
+<p><span lang="ZH-CN" xml:lang="ZH-CN">（</span>5<span lang="ZH-CN" xml:lang="ZH-CN">）编译检查组态，下载到</span> S7-1200 CPU <span lang="ZH-CN" xml:lang="ZH-CN">。</span></p>
+<p><span lang="ZH-CN" xml:lang="ZH-CN">（</span>6<span lang="ZH-CN" xml:lang="ZH-CN">）将</span>EM277 <span lang="ZH-CN" xml:lang="ZH-CN">地址拨码开关拨到</span>4<span lang="ZH-CN" xml:lang="ZH-CN">，启动</span>PLC<span lang="ZH-CN" xml:lang="ZH-CN">。</span></p>
+<p><span lang="ZH-CN" xml:lang="ZH-CN">通过</span> S7-1200 <span lang="ZH-CN" xml:lang="ZH-CN">的监控表和</span>S7-200<span lang="ZH-CN" xml:lang="ZH-CN">的状态表查看通信数据。</span></p>
+<p><img src="images/2-22.JPG" width="896" height="288" border="1" /></p>
+<h4><span lang="PT-BR" xml:lang="PT-BR">4</span><span lang="ZH-CN" xml:lang="ZH-CN">、</span>主站和从站不在一个项目中</h4>
+<p>当DP主站和DP从站不在同一项目时，DP通信组态要在各自的项目中完成。如下例子CPU315-2PN/DP做DP主站，CPU1214C 和CM1242-5 做DP智能从站，CPU315-2PN/DP在STEP7 V5.5完成组态，S7-1200 使用STEP7 V11 SP2 组态。<br />
+  <br />
+  （1）在STEP7 V5.5 组态DP主站<br />
+  <br />
+  a. 在STEP7 V5.5 安装CM1242-5 GSD文件<br />
+</p>
+<p><img src="images/2-28.jpg" width="33" height="33" /><a href="images/si01818e.rar"><strong>CM1242-5 GSD 文件本地下载</strong></a><br />
+  <br />
+STEP7 V5.5 硬件组态，Option/Install GSD File ，将CM1242-5 GSD文件安装到STEP7 V5.5 。</p>
+<p><img src="images/2-23.JPG" width="519" height="291" /></p>
+<p>b. 组态主/从通信<br />
+将地址为3的DP从站模块CM1242-5 连接到CPU315-2PN/DP。槽1插入通用模块，2个字节的输入；槽2插入通用模块，2个字节的输出。</p>
+<p><img src="images/2-24.JPG" width="483" height="267" /></p>
+<p>c. 下载DP主站组态<br />
+如上组态编译检查，若没有错误，存盘并下载到CPU315-2PN/DP。</p>
+<p><br />
+  （2）在STEP7  V11组态DP从站<br />
+  <br />
+  a.在STEP7  V11组态S7-1200 <br />
+  在STEP7  V11项目视图添加PLC站S7-1200，以及CM1242-5模块。CM1242-5模块的DP网口添加新网PROFIBUS_1，DP地址定义为3，与STEP7 V5.5 相同。由于主站不在同一个项目中，S7-1200的主站分配状态为“未分配”。<br />
+  <br />
+  <img src="images/2-25.JPG" width="255" height="131" /></p>
+<p><br />
+  b. 组态通信传输区<br />
+  选择模块CM1242-5上的 DP口属性，添加与主站通信的数据传输区。1槽插入2个字节的输出，2槽插入2个字节的输入，与主站通信组态的槽交叉对应<br />
+</p>
+<p><img src="images/2-26.JPG" width="600" height="249" /></p>
+<p><br />
+  c.下载到 S7-1200 的CPU<br />
+选择 S7-1200 PLC 站，编译，若没有错误，将组态下载到 CPU 1214C。</p>
+<p><br />
+  （3）查看通信状态<br />
+  通过STEP7 V5.5 的变量表，以及STEP7  V11 的监控表， 查看DP通信结果。</p>
+<p><img src="images/2-27.JPG" width="631" height="147" /></p>
+</body>
+</html>

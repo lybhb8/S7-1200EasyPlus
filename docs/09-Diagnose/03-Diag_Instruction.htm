@@ -1,0 +1,1128 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Diag</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3 class="STYLE1">LED、GET_DIAG、RDREC、RALRM、Gen_UsrMsg诊断指令的使用</h3>
+<p>在TIA STEP7 V16版本中，可以通过相应的诊断指令去实现对S7-1200 CPU(固件版本V4.4)和扩展模块的诊断操作。</p>
+<ul>
+  <LI><a href="03-Diag_Instruction.htm#a">读取LED状态的操作。（LED）
+  </a>
+  <LI><a href="03-Diag_Instruction.htm#b">读取诊断信息的操作。（GET_DIAG）
+  </a>
+  <LI><a href="03-Diag_Instruction.htm#c">读取数据记录的操作。（RDREC）
+  </a>
+  <LI><a href="03-Diag_Instruction.htm#d">接收中断的操作。 （RALRM） 
+  </a>
+  <LI><a href="03-Diag_Instruction.htm#e">生成用户诊断报警的操作。 （Gen_UsrMsg）   
+  </a>
+  <LI><a href="03-Diag_Instruction.htm#f">常见问题  </a>  
+</ul>
+<p>本文将详细介绍上述各个指令的使用。</p>
+<h4><a name="a" id="a"></a>读取LED状态</h4>
+<p>1. 读取LED状态指令的调用，如图1所示。</p>
+<p><img src="images/3-01.jpg" alt="" width="420" height="696" /><br />
+图1. 读取LED状态指令</p>
+<p>2. 读取LED状态指令的使用。</p>
+<p><strong>说明：</strong>可以使用&ldquo;LED&rdquo;指令，读取CPU上面LED的状态。</p>
+<ul>
+  <li>
+    <p>通过LADDR参数，可以寻址CPU。</p>
+  </li>
+  <li>
+    <p>通过LED参数，可以选择要通过该指令读取当前状态的模块LED指示灯。</p>
+  </li>
+  <li>
+    <p>调用该指令时，RET_VAL参数将输出所选LED的状态。根据所选的LED，将仅显示指定的状态信息。如表1所示：</p>
+  </li>
+</ul>
+<p>表1 &quot;LED&quot;指令的参数</p>
+<table width="700" height="369" border="1">
+  <tr>
+    <th width="90" height="26" scope="col">参数</th>
+    <th width="66" scope="col">声明</th>
+    <th width="89" scope="col">数据类型</th>
+    <th width="483" scope="col">说明</th>
+  </tr>
+  <tr>
+    <td height="128">LED</td>
+    <td>Input</td>
+    <td>UINT</td>
+    <td><p>LED 的标识号： </p>
+      <ul>
+        <li>1：STOP/RUN </li>
+        <li>2：ERROR </li>
+        <li>3：MAINT（维护） </li>
+        <li>5：Link（绿色） </li>
+        <li>6：Rx/Tx（黄色） </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td height="205">RET_VAL</td>
+    <td>Return</td>
+    <td>INT</td>
+    <td><p>LED 的状态：</p>
+      <ul>
+        <li>0 = LED 不存在或状态信息不可用</li>
+        <li>1 = 永久关闭</li>
+        <li>2 = 颜色 1（例如，对于 LED STOP/RUN：绿色）永久点亮</li>
+        <li>3 = 颜色 2（例如，对于 LED STOP/RUN： 橙色） 永久点亮</li>
+        <li>4 = 颜色 1 将以 2 Hz 的频率闪烁</li>
+        <li>5 = 颜色 2 将以 2 Hz 的频率闪烁</li>
+        <li>6 = 颜色 1 和 2 将以 2 Hz 的频率交替闪烁</li>
+        <li>7 = LED 正在运行，颜色 1</li>
+        <li>8 = LED 正在运行，颜色 2</li>
+        <li>9 = LED 不存在或状态信息不可用</li>
+      </ul></td>
+  </tr>
+</table>
+<p><strong>示例：</strong>下面的示例中，显示了如何读取CPU上面的LED状态。</p>
+<p>在全局DB中创建两个变量，用来保存数据，如图2所示：</p>
+<p><img src="images/3-02.JPG" width="497" height="126" /><br />
+图2. 在全局DB中创建变量</p>
+<p>在OB1中调用&quot;LED&quot;指令，并连接参数，其中参数LADDR指向CPU的硬件标识符(在&quot;PLC变量-&gt;系统常量&quot;中，名称为&quot;Local~Common&quot;)，如图3所示：</p>
+<p><img src="images/3-03.JPG" width="707" height="194" /><br />
+图3. 在OB1中调用&quot;LED&quot;指令</p>
+<p>通过参数LED(&quot;LED&quot;)指向待监视CPU的LED。示例一中参数LED(&quot;LED&quot;=1)表示查询CPU的LED(STOP/RUN)状态。如果CPU的操作模式从STOP转入RUN，则在输出参数RET_VAL(&quot;ReturnValue&quot;)中的值为&quot;6&quot;(绿色和橙色交替闪烁)。如图4所示：</p>
+<p><img src="images/3-04.jpg" width="703" height="217" /><br />
+图4. &quot;LED&quot;指令执行结果(示例一)</p>
+<p>通过参数LED(&quot;LED&quot;)指向待监视CPU的LED。示例二中参数LED(&quot;LED&quot;=2)表示查询CPU的LED(ERROR)状态。如果CPU中发生错误，则在输出参数RET_VAL(&quot;ReturnValue&quot;)中的值为&quot;4&quot;(红色闪烁)。如图5所示：</p>
+<p><img src="images/3-05.JPG" width="708" height="218" /></p>
+<p>图5. &quot;LED&quot;指令执行结果(示例二)</p>
+<h4><a name="b" id="b"></a>读取诊断信息</h4>
+<p>1. 读取诊断信息指令的调用，如图6所示。</p>
+<p><img src="images/3-06.jpg" width="420" height="696" /><br />
+图6. 读取诊断信息指令</p>
+<p>2.读取诊断信息指令的使用。</p>
+<p><strong>说明：</strong>GET_DIAG指令可以用来读取硬件组件的诊断信息。例如：读取S7-1200 CPU的诊断信息。</p>
+<ul>
+  <li>
+    <p>通过LADDR参数，来选择硬件组件。</p>
+  </li>
+  <li>
+    <p>通过MODE参数，可以选择要读取的诊断信息。</p>
+  </li>
+  <li>
+    <p>通过DIAG参数，根据不同的MODE参数，输出不同的诊断信息。如表2所示：</p>
+  </li>
+</ul>
+<p>表2 GET_DIAG指令的MODE参数和DIAG参数对应关系</p>
+<table width="800" border="1">
+  <tr>
+    <th width="70" scope="col"><p>MODE</p></th>
+    <th width="377" scope="col"><p>说明</p></th>
+    <th width="318" scope="col"><p>DIAG</p></th>
+    <th width="104" scope="col"><p>CNT_DIAG</p></th>
+  </tr>
+  <tr>
+    <td><p align="left">0</p></td>
+    <td><p align="left">以 DWORD 格式输出硬件组件所有支持的诊断信息，其中位 X=1   表示支持模式 X。</p></td>
+    <td><p>DWORD 数据类型的位：</p>
+      <ul>
+        <li>位 0 = 1：支持 MODE 0。</li>
+        <li>位 1 = 1：支持 MODE 1。</li>
+        <li>位 2 = 1：支持 MODE 2。</li>
+        <li>位 3 到 31：不相关</li>
+      </ul>
+    <p>MODE=0 时，S7-1200 CPU 将忽略参数 LADDR。</p></td>
+    <td><p align="left">0</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">1</p></td>
+    <td><p align="left">输出所寻址硬件组件的诊断状态。</p></td>
+    <td><p align="left">结构 DIS：</p>
+      <ul>
+        <li>MaintenanceState</li>
+        <li>ComponentStateDetail</li>
+        <li>OwnState</li>
+        <li>IOState</li>
+        <li>OperatingState</li>
+      </ul>      </td>
+    <td><p align="left">0</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">2</p></td>
+    <td><p align="left">输出所寻址硬件对象中所有从属组件的状态。 </p></td>
+    <td><p align="left">结构 DNN：</p>
+      <ul>
+        <li>SubordinateState</li>
+        <li>SubordinateIOState</li>
+        <li>DNNmode</li>
+      </ul>      </td>
+    <td><p align="left">0</p></td>
+  </tr>
+</table>
+<p>当参数MODE=1时，参数DIAG以结构 DIS 输出诊断信息。此时，在变量声明中输入系统数据类型&ldquo;DIS&rdquo;作为数据类型。结构DIS的内容如表3所示：</p>
+<p>表3 结构DIS中各参数的含义</p>
+<table width="984" border="1">
+  <tr>
+    <th width="178" scope="col">参数</th>
+    <th width="81" scope="col">数据类型</th>
+    <th width="84" scope="col">值</th>
+    <th width="291" scope="col">说明</th>
+    <th width="316" scope="col">参数构成规则</th>
+  </tr>
+  <tr>
+    <td rowspan="12" valign="top"><p>MaintenanceState</p></td>
+    <td rowspan="12"><p>DWORD</p></td>
+    <td><p>枚举</p></td>
+    <td>&nbsp;</td>
+    <td><p align="left">MaintenanceState 取决于   ComponentStateDetail。</p></td>
+  </tr>
+  <tr>
+    <td><p>0</p></td>
+    <td align="left">良好</td>
+    <td><ul>
+      <li>ComponentStateDetail 的位 15 始终为 1。</li>
+      <li>ComponentStateDetail 的位 11 到 14 的值可以是 0 或 1。</li>
+      <li>ComponentStateDetail 的位 3 可以是 1。</li>
+      <li>ComponentStateDetail 的所有其它位均为 0。</li>
+    </ul>    </td>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td><p align="left">硬件组件已禁用。</p></td>
+    <td><ul>
+        <li>
+          <p align="left">如果 ComponentStateDetail 的位 16 为 1</p>
+      </li>
+      <li>
+        <p align="left">如果 ComponentStateDetail 的位 17 为 1</p>
+      </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td><p align="left">需要维护</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 4 为 1</p></td>
+  </tr>
+  <tr>
+    <td><p>6</p></td>
+    <td><p align="left">要求维护</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 5 为   1</p></td>
+  </tr>
+  <tr>
+    <td><p>7</p></td>
+    <td><p align="left">错误</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 6 为   1</p></td>
+  </tr>
+  <tr>
+    <td><p>8</p></td>
+    <td><p align="left">上一级硬件组件的状态为&ldquo;未知/错误&rdquo;</p></td>
+    <td><ul>
+      <li>如果 ComponentStateDetail 的位 11 到 14 的值为 3</li>
+      <li>如果 ComponentStateDetail 的位 7 到 10 的值为 3 或 4 </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><p>9</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p>10</p></td>
+    <td><p align="left">输入/输出不可用。</p></td>
+    <td><ul>
+        <li>如果 ComponentStateDetail 的位 11 到 14 的值为 2</li>
+        <li>如果 ComponentStateDetail 的位 7 到 10 的值为 1 或 2</li>
+        <li>如果 ComponentStateDetail 的位 18 为 1</li>
+        <li>如果 ComponentStateDetail 的位 19 为 1</li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td rowspan="10"><p>ComponentStateDetail</p></td>
+    <td rowspan="10"><p>DWORD</p></td>
+    <td><p>位数组</p></td>
+    <td><p align="left">状态：</p>
+      <ul>
+        <li>位 0 到 15：硬件组件的状态
+        </li>
+        <li>
+          位 16 到 31：CPU 的状态
+        </li>
+    </ul></td>
+    <td>-</td>
+  </tr>
+  <tr>
+    <td><p align="left">0 到 2（枚举）</p></td>
+    <td>其它信息：
+      <ul>
+        <li>
+          0：无其它信息
+        </li>
+        <li>
+          1：不允许传送
+        </li>
+      </ul></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">3</p></td>
+    <td><p align="left">位 3 = 1：至少一个合格诊断可用</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">4</p></td>
+    <td><p align="left">位 4 = 1：至少一个通道或组件需要维护</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">5</p></td>
+    <td><p align="left">位 5 = 1：至少一个通道或组件需要维护</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">6</p></td>
+    <td><p align="left">位 6 = 1：至少一个通道或组件错误</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">7 到 10（枚举）</p></td>
+    <td><ul>
+        <li>0：硬件组件可用</li>
+        <li>1：无 I/O 访问</li>
+        <li>2：硬件组件不可访问</li>
+        <li>3：硬件组件不可访问</li>
+        <li>4：硬件组件不可访问        </li>
+    </ul></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">11 到 14（枚举）</p></td>
+    <td><ul>
+        <li>0：元素正确。</li>
+        <li>1：该元素将替代为一个兼容元素。</li>
+        <li>2：该元素将替代为一个非兼容元素（该元素可访问，但尚未就绪无法操作）。</li>
+        <li>3：该元素不存在。        </li>
+    </ul></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">15</p></td>
+    <td><p align="left">预留（始终为&ldquo;1&rdquo;）。</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">16 到 31</p></td>
+    <td><p align="left">CPU 生成的模块状态信息：</p>
+      <ul>
+        <li>第 16 位 = 1：子模块或模块已禁用</li>
+        <li> 第 17 位 = 1：激活 CiR 操作</li>
+        <li> 第 18 位 = 1：输入不可用</li>
+        <li>第 19 位 = 1：输出不可用</li>
+        <li>第 20 位  = 1：诊断缓冲区溢出</li>
+        <li>第 21 位 = 1：诊断不可用</li>
+        <li>第 22 位 = 1： 部分设备故障（带有 PNIO，可用于共享设备）</li>
+        <li>第 23 到 31 位 ：预留（始终为 0）</li>
+      </ul>
+    </td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td rowspan="9"><p>OwnState</p></td>
+    <td rowspan="9"><p>UINT</p></td>
+    <td><p align="left">枚举</p></td>
+    <td><p align="left">维护状态</p></td>
+    <td><p align="left">OwnState 取决于   MaintenanceState。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">0</p></td>
+    <td><p align="left">良好</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   0。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">1</p></td>
+    <td><p align="left">禁用</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   1。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">2</p></td>
+    <td><p align="left">需要维护</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   5。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">3</p></td>
+    <td><p align="left">要求维护</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   6。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">4</p></td>
+    <td><p align="left">错误</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   7。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">5</p></td>
+    <td><p align="left">不可访问</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为   8。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">6</p></td>
+    <td><p align="left">诊断状态未知</p></td>
+    <td><p align="left">未返回诊断事件的组件的默认值。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">7</p></td>
+    <td><p align="left">输入/输出不可用。</p></td>
+    <td><p align="left">如果 MaintenanceState 的值为 10。</p></td>
+  </tr>
+  <tr>
+    <td rowspan="10"><p>IOState</p></td>
+    <td rowspan="10"><p>WORD</p></td>
+    <td><p align="left">位数组</p></td>
+    <td><p align="left">硬件组件的 I/O 状态</p></td>
+    <td><p align="left">可设置一个或多个位。 </p>
+      <p align="left">IOState 取决于   ComponentStateDetail。</p></td>
+  </tr>
+  <tr>
+    <td height="140"><p align="left">位 0 = 1</p></td>
+    <td><p align="left">良好</p></td>
+    <td><ul>
+        <li>ComponentStateDetail 的位 15 始终为 1。</li>
+        <li>ComponentStateDetail 的位 11 到 14 的值可以是 0 或 1。</li>
+        <li>ComponentStateDetail 的位 3 可以是 1。</li>
+        <li>ComponentStateDetail 的所有其它位均为 0。</li>
+    </ul>
+    <p align="left">如果位 0 = 1，则位 1 到 5 和位 7 =   0。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 1 = 1</p></td>
+    <td><p align="left">禁用</p></td>
+    <td><ul>
+        <li>如果 ComponentStateDetail 的位 16 为 1</li>
+        <li>如果 ComponentStateDetail 的位 17 为 1</li>    </ul>
+           <p align="left">如果位 1 = 1，则所有其它位均为 0。</p>
+</td>
+  </tr>
+  <tr>
+    <td><p align="left">位 2 = 1 </p></td>
+    <td><p align="left">需要维护</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 4 为   1</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 3 = 1</p></td>
+    <td><p align="left">要求维护</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 5 为   1</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 4 = 1</p></td>
+    <td><p align="left">错误</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 6 为   1</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 5 = 1</p></td>
+    <td><p align="left">硬件组件无法访问。</p></td>
+    <td><ul>
+        <li>
+          <p align="left">如果 ComponentStateDetail 的位 11 到 14 的值为 3</p>
+      </li>
+      <li>
+        <p align="left">如果 ComponentStateDetail 的位 7 到 10 的值为 3 或 4</p>
+      </li>
+    </ul>
+      <p align="left">如果位 5 = 1，则所有其它位均为 0。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 6 = 1：</p></td>
+    <td><p align="left">至少一个合格诊断可用</p></td>
+    <td><p align="left">如果 ComponentStateDetail 的位 3 为 1。</p>
+      <p align="left">在这种情况下，将位 0、2 或 3 置位。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left"> 位 7 = 1：</p></td>
+    <td><p align="left"> I/O   数据不可用</p></td>
+    <td><ul>
+        <li>如果 ComponentStateDetail 的位 11 到 14 的值为 2</li>
+        <li>如果 ComponentStateDetail 的位 7 到 10 的值为 1 或 2</li>
+        <li>如果 ComponentStateDetail 的位 18 为 1</li>
+        <li>如果 ComponentStateDetail 的位 19 为 1        </li>
+    </ul></td>
+  </tr>
+  <tr>
+    <td><p align="left">位 8 到 15</p></td>
+    <td><p align="left">预留（始终为&ldquo;0&rdquo;）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td rowspan="34"><p>OperatingState</p></td>
+    <td rowspan="34"><p>UINT</p></td>
+    <td><p align="left">枚举</p></td>
+    <td><p align="left">&nbsp;</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">0</p></td>
+    <td><p align="left">不支持 - 对于 I/O   模块，OperatingState 的值始终为&ldquo;0&rdquo;。</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">1</p></td>
+    <td><p align="left">STOP / 固件更新</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">2</p></td>
+    <td><p align="left">STOP / 存储器复位</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">3</p></td>
+    <td><p align="left">STOP / 自启动</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">4</p></td>
+    <td><p align="left">STOP</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">5</p></td>
+    <td><p align="left">存储器复位</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">6</p></td>
+    <td><p align="left">启动</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">7</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">8</p></td>
+    <td><p align="left">RUN</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">9</p></td>
+    <td><p align="left">RUN-Redundant</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">10</p></td>
+    <td><p align="left">HOLD</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">11</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">12</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">13</p></td>
+    <td><p align="left">DEFECT（注：仅在诊断缓冲区条目中可见）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">14</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">15</p></td>
+    <td><p align="left">断电（注：仅在诊断缓冲区条目中可见）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">16</p></td>
+    <td><p align="left">CiR</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">17</p></td>
+    <td><p align="left">STOP，且无 ODIS</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">18</p></td>
+    <td><p align="left">RUN ODIS</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">19</p></td>
+    <td><p align="left">PgmTest</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">20</p></td>
+    <td><p align="left">RunPgmTest（备用 CPU 处于测试模式时主 CPU   的状态）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">21</p></td>
+    <td><p align="left">Run-Syncup（只有主 CPU 处于SYNCUP   系统状态）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">22</p></td>
+    <td><p align="left">SYNCUP（仅备用 CPU 处于 SYNCUP   系统状态）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">31</p></td>
+    <td><p align="left">伙伴 CPU 的状态未知（如，伙伴 CPU 不可用）</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">32</p></td>
+    <td><p align="left">-</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">33</p></td>
+    <td><p align="left">STOP 系统状态</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">34</p></td>
+    <td><p align="left">预留</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">35</p></td>
+    <td><p align="left">STARTUP 系统状态</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">36</p></td>
+    <td><p align="left">预留</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">37</p></td>
+    <td><p align="left">RUN-Solo 系统状态</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">38</p></td>
+    <td><p align="left">SYNCUP 系统状态</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">39</p></td>
+    <td><p align="left">预留</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">40</p></td>
+    <td><p align="left">RUN-Redundant 系统状态</p></td>
+    <td><p align="left">-</p></td>
+  </tr>
+</table>
+<p><strong>示例：</strong>在全局DB中创建三个变量和一个&quot;Diag&quot;结构(数据类型为DIS)，用来保存数据，如图7所示：</p>
+<p><img src="images/3-07.JPG" width="526" height="291" /><br />
+图7. 在全局DB中创建变量</p>
+<p>在OB1中调用GET_DIAG指令，并连接参数，其中参数LADDR指向CPU的硬件标识符(在&quot;PLC变量-&gt;系统常量&quot;中，名称为&quot;Local~Common&quot;)，如图8所示：</p>
+<p><img src="images/3-08.JPG" width="714" height="262" /><br />
+图8. 在OB1中调用GET_DIAG指令</p>
+<p>根据参数MODE(&quot;Mode&quot;)的值&quot;1&quot;，有以下几点说明： </p>
+<ul>
+  <li>
+    <p>指令将读取(CPU的)所寻址硬件对象的状态。 </p>
+  </li>
+  <li>
+    <p>在参数DIAG(&quot;Diag&quot;)中，诊断信息将在结构(DIS数据类型)中输出。 </p>
+  </li>
+</ul>
+<p>要了解诊断信息，必须将十六进制值转换为二进制代码。通过参数DIAG(&quot;Diag&quot;)，指示以下信息：</p>
+<ul>
+  <li>
+    <p>MaintenanceState：根据值&quot;6&quot;，表示CPU要求维护。</p>
+  </li>
+  <li>
+    <p>ComponentStateDetail：根据十六进制值&quot;0000_8020&quot;，位15已激活(预留，始终为&quot;1&quot;)，位5已激活(至少一个通道或组件需要维护)。</p>
+  </li>
+  <li>
+    <p>OwnState：根据值&quot;3&quot;，要求维护。</p>
+  </li>
+  <li>
+    <p>IOState：根据十六进制值&quot;0008&quot;，要求维护。 </p>
+  </li>
+  <li>
+    <p>OperatingState：输出&quot;0&quot;。</p>
+  </li>
+</ul>
+<p>输出参数RET_VAL(&quot;ReturnValue&quot;)用于指示处理无错误。通过输出参数CNT_DIAG(&quot;CNT_DIAG&quot;)，指示参数DETAIL的&quot;0&quot;诊断详情已输出。 如图9所示：</p>
+<p><img src="images/3-09.JPG" width="646" height="291" /><br />
+  图9. GET_DIAG指令执行结果</p>
+<h4><a name="c" id="c"></a>读取数据记录</h4>
+<p>1. 读取数据记录指令的调用，如图10所示。</p>
+<p><img src="images/3-10.jpg" width="421" height="717" /><br />
+图10. 读取数据记录指令</p>
+<p>2. 读取数据记录指令的使用。</p>
+<p><strong>说明：</strong>RDREC读取数据记录指令，可以从使用ID寻址的模块中读取编号为INDEX的数据记录。模块必须是位于分布式模块（PROFIBUS   DP、PROFINET IO、AS-i）。</p>
+<ul>
+  <li>
+    <p>使用参数 ID 选择从中读取数据记录的模块，使用模块的硬件标识符，在&quot;PLC 变量 -&gt; 系统常量&ldquo;中。例如：ET200SP分布式IO 的  DQ模块，将显示为数据类型为&quot;Hw_SubModule&quot;的 IO_device_1~DQ_16x24VDC_0_5A_ST_1。 </p>
+  </li>
+  <li>
+    <p>使用 INDEX 参数，可选择模块待读取的数据记录。例如：&rdquo;16#E00A&ldquo;，表示读取 IO 设备的诊断数据记录。</p>
+  </li>
+  <li>
+    <p>使用 MLEN 指定要读取的最大数据记录字节数。如果参数 MLEN 选择了长度&rdquo;0&ldquo;，则会在参数   RECORD 中写入完整的数据记录。</p>
+  </li>
+  <li>
+    <p>目标区域 RECORD用来保存数据记录，在参数   RECORD 中使用的结构（例如：组态、数据类型和长度）取决于由哪个模块读取哪条数据记录。</p>
+  </li>
+  <li>
+    <p>输出参数 VALID 的值为 TRUE，表示数据记录已成功传送到目标区域 RECORD 中。此时，输出参数 LEN 包含所读取数据的字节长度。</p>
+  </li>
+  <li>
+    <p>如果在数据记录的传送过程中发生错误，输出参数 ERROR 置 &rdquo;1&ldquo;。输出参数 STATUS 中包含错误信息。</p>
+  </li>
+</ul>
+<p><strong>示例：</strong>本例中，IO控制器为S7-1200 CPU1215C，带有 DQ 模块的 IO 设备 (ET 200SP IM 155-6 PN HF) 导致线路断路。使用该 IO 设备前端模块的硬件 ID，使用数据记录16#E00A 进行通道诊断。 </p>
+<p>在全局DB中创建七个变量和一个数组，用来保存数据。 如图11所示：</p>
+<p><img src="images/3-11.JPG" width="512" height="269" /><br />
+图11. 在全局DB中创建变量</p>
+<p>在OB1中调用RDREC指令，连接参数，在&quot;PLC变量-&gt;系统常量&quot;中的 &lt;IO_Device~Head&gt; 条目，读取 IO 设备前端模块的硬件 ID（数据类型为&ldquo;Hw_SubModule&rdquo;），使用数据记录16#E00A 进行通道诊断，</p>
+<p>如图12所示：</p>
+<p><img src="images/3-12.JPG" width="705" height="393" /></p>
+<p>图12. 在OB1中调用RDREC指令</p>
+<p>当RDREC指令出错时要存储错误状态，可连接MW100(&quot;Status&quot;)变量，如图13所示：</p>
+<p><img src="images/3-13.JPG" width="704" height="176" /><br />
+  图13. 在OB1中调用MOVE指令</p>
+<p>诊断数据记录的结构16#E00A，版本号BlockVersion=16#0100，如表4所示：</p>
+<p>表4 数据记录结构一</p>
+<table width="282" border="1">
+  <tr>
+    <th width="172" scope="col"><p>名称</p></th>
+    <th width="94" scope="col"><p>长度</p></th>
+  </tr>
+  <tr>
+    <td>BlockType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>BlockLength</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>BlockVersion</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>SlotNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>SubslotNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>USI</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#8000</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#8002</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ExtChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ExtChannelAddValue</td>
+    <td>4 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#0000-16#7FFF</td>
+  </tr>
+  <tr>
+    <td>vendor-specific</td>
+    <td>X bytes</td>
+  </tr>
+</table>
+<p>诊断数据记录的结构16#E00A，版本号BlockVersion=16#0101，如表5所示：</p>
+<p>表5 数据记录结构二</p>
+<table width="282" border="1">
+  <tr>
+    <th width="172" scope="col"><p>名称</p></th>
+    <th width="94" scope="col"><p>长度</p></th>
+  </tr>
+  <tr>
+    <td>BlockType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>BlockLength</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>BlockVersion</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>API</td>
+    <td>4 bytes</td>
+  </tr>
+  <tr>
+    <td>SlotNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>SubslotNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>USI</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#8000</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#8002</td>
+  </tr>
+  <tr>
+    <td>ChannelNumber</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelProperties</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ExtChannelErrorType</td>
+    <td>2 bytes</td>
+  </tr>
+  <tr>
+    <td>ExtChannelAddValue</td>
+    <td>4 bytes</td>
+  </tr>
+  <tr>
+    <td colspan="2">USI=16#0000-16#7FFF</td>
+  </tr>
+  <tr>
+    <td>vendor-specific</td>
+    <td>X bytes</td>
+  </tr>
+</table>
+<p>输入参数 REQ(&quot;Req&quot;)返回信号状态&quot;TRUE&quot;时，启动指令RDREC。RDREC指令将通过输入参数ID(本例中为&quot;283&quot;，表示 IO 设备前端模块的硬件 ID)，调用该模块。通过输入参数INDEX(本例中为&quot;16#E00A&quot;)，</p>
+<p>系统将使用数据记录16#E00A 进行通道诊断，并通过参数RECORD(&quot;RecordDiag&quot;)进行保存。 </p>
+<p>通过输出参数LEN(&quot;Len&quot;)，可存储所读取数据记录的长度。根据输入参数MLEN(&quot;Mlen&quot;)的值，值为&quot;0&quot;时，待读取的数据记录信息将不受限制。</p>
+<p>在执行过程中，输出参数BUSY(&quot;Busy&quot;)将置位为&quot;TRUE&quot;；VALID(&quot;Valid&quot;)将置位为&quot;FALSE&quot;。在执行完成后，将输出成功读取的结果(&quot;Valid&quot;到&quot;TRUE&quot;)。并在输出参数STATUS(&quot;Status&quot;)处，显示该块的状态，</p>
+<p>如果值为&quot;16#0000_0000&quot;，表示过程成功执行且无任何错误。如图14所示：</p>
+<p><img src="images/3-14.JPG" width="665" height="244" /><br />
+图14. RDREC指令执行结果</p>
+<p>此外，数据记录16#E00A中包含以下信息：</p>
+<ul>
+  <li>
+    <p>BlockType(&quot;RecordDiag[0]&quot;)：16#0010，表示诊断记录；</p>
+  </li>
+  <li>
+    <p>BlockLength(&quot;RecordDiag[1]&quot;)：16#0016，表示包含诊断记录的连续字节数为22个字节；</p>
+  </li>
+  <li>
+    <p>BlockVersion(&quot;RecordDiag[2]&quot;)：16#0101，表示版本号为16#0101；</p>
+  </li>
+  <li>
+    <p>API(&quot;RecordDiag[3]和RecordDiag[4]&quot;)：0，表示应用程序进程标识符，标准API为0；</p>
+  </li>
+  <li>
+    <p>SlotNumber(&quot;RecordDiag[5]&quot;)：16#0002，表示插槽号为2；</p>
+  </li>
+  <li>
+    <p>SubslotNumber(&quot;RecordDiag[6]&quot;)：16#0001，表示子模块为1；</p>
+  </li>
+  <li>
+    <p>ChannelNumber(&quot;RecordDiag[7]&quot;)：16#8000，表示子模块级别上的诊断；</p>
+  </li>
+  <li>
+    <p>ChannelProperties(&quot;RecordDiag[8]&quot;)：16#0800，表示诊断未决； </p>
+  </li>
+  <li>
+    <p>USI(&quot;RecordDiag[9]&quot;)：16#8000，表示用户结构标识符； </p>
+  </li>
+  <li>
+    <p>ChannelNumber(&quot;RecordDiag[10]&quot;)：16#0003，表示通道3发生故障。 </p>
+  </li>
+  <li>
+    <p>ChannelProperties(&quot;RecordDiag[11]&quot;)：16#4801，表示输出位信号诊断未决。 </p>
+  </li>
+  <li>
+    <p>ChannelErrorType(&quot;RecordDiag[12]&quot;)：16#0006，表示断路故障。</p>
+  </li>
+</ul>
+<p>参数RECORD(&quot;RecordDiag&quot;)中显示了数据记录信息，如图15所示： </p>
+<p><img src="images/3-15.JPG" width="663" height="333" /></p>
+<p>图15. RDREC指令执行结果(数据记录信息&quot;RecordDiag&quot;)</p>
+<h4><a name="d" id="d"></a>接收中断</h4>
+<p>1. 接收中断指令的调用，如图16所示。</p>
+<p><img src="images/3-16.jpg" width="421" height="717" /><br />
+图16. 接收中断指令</p>
+<p>2. 接收中断指令的使用。</p>
+<p><strong>说明：</strong>RALRM接收中断指令，可以从I/O模块(集中式组态)或DP从站/PROFINET IO设备的模块中接收带有所有相关信息的中断，并在输出参数中输出该信息。</p>
+<ul>
+  <li>
+    <p>输出参数中的信息包括所调用 OB 的信息。例如：输出信息包含诊断错误中断OB82的启动信息和管理信息。</p>
+  </li>
+  <li>
+    <p>目标范围 AINFO 中的数据结构包含标头信息和附加中断信息。附加中断信息取决于格式标识符，例如：格式标识符16#8000表示通道诊断。</p>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p>RALRM指令可以在三种操作模式中调用（MODE 参数），如表6所示：</p>
+  </li>
+</ul>
+<p>表6 RALRM指令的参数MODE</p>
+<table width="897" border="1">
+  <tr>
+    <th width="70" scope="col"><p>MODE</p></th>
+    <th width="377" scope="col"><p>RALRM</p></th>
+  </tr>
+  <tr>
+    <td><p align="left">0</p></td>
+    <td><p align="left">表示输出参数 ID 中触发中断并将输出参数 NEW 设置为 TRUE 的组件。</p></td>
+  </tr>
+  <tr>
+    <td><p align="left">1</p></td>
+    <td><p align="left">写入所有输出参数，而不考虑触发中断的组件。</p></td>
+  </tr>
+  <tr>
+    <td height="88"><p align="left">2</p></td>
+    <td><p>检查输入参数 F_ID 中指定的组件是否已触发中断。</p>
+      <ul>
+        <li>如果没有触发，则 NEW = FALSE</li>
+        <li>如果已触发，则 NEW = TRUE 且已写入所有其它输出参数。</li>
+      </ul></td>
+  </tr>
+</table>
+<p><strong>示例：</strong>创建一个输入模块，在&quot;PLC变量-&gt;系统常量&quot;中，读取输入模块的硬件标识符。并通过输入参数F_ID(&quot;F_ID&quot;)存储该硬件标识符。 </p>
+<p>为了产生一个中断，该输入通道需选择&quot;断路&quot;选项。该选项位于&quot;模块参数-&gt;通道模板-&gt;输入&quot;中。如图17所示： </p>
+<p><img src="images/3-17.JPG" width="384" height="188" /></p>
+<p>图17 组态输入模块的诊断信息</p>
+<p>在全局DB中创建七个变量，和结构&quot;Tinfo&quot;和&quot;Ainfo&quot;进行数据存储，创建数据类型为&quot;TI_DiagnosticInterrupt&quot;的结构&quot;Tinfo&quot;，如图18所示：</p>
+<p><img src="images/3-18.jpg" width="555" height="690" /><br />
+图18. 在全局DB中创建变量</p>
+<p>创建诊断错误中断OB82，如图19所示：</p>
+<p><img src="images/3-19.JPG" width="864" height="746" /></p>
+<p>图19. 创建OB82</p>
+<p>在OB82中调用RALRM指令，并连接参数，如图20所示：</p>
+<p><img src="images/3-20.JPG" width="705" height="391" /><br />
+图20. 在OB82中调用RALRM指令</p>
+<p>发生断路故障时，输入模块将生成一个中断。之后，将调用诊断错误中断OB82，并启动指令RALRM。 </p>
+<p>RALRM指令将通过输入参数F_ID(&quot;F_ID&quot;)调用该输入模块。指令RALRM将根据输入参数MODE(&quot;Mode&quot;)的值&quot;2&quot;，检查中断是否由该输入模块产生。如果中断来自该输入模块(&quot;F_ID&quot;和&quot;ID&quot;相同)，</p>
+<p>则输出参数NEW(&quot;New&quot;)将置位为&quot;TRUE&quot;，并通过参数TINFO(&quot;Tinfo&quot;)和AINFO(&quot;Ainfo&quot;)保存该中断信息。生成该中断的模块硬件标识符将显示在输出参数ID(&quot;ID&quot;)处。已接收到的中断信息长度</p>
+<p>将记录在输出参数LEN(&quot;Len&quot;)中。根据输入参数MLEN(&quot;Mlen&quot;)的值，值为&quot;0&quot;时，待读取AINFO(&quot;Ainfo&quot;)的信息将不受限制。并在输出参数STATUS(&quot;Status&quot;)处，显示该块的状态，</p>
+<p>如果值为&quot;16#0000_0000&quot;，表示过程成功执行且无任何错误。如图21所示：</p>
+<p><img src="images/3-21.JPG" width="563" height="195" /><br />
+</p>
+<p>图21.RALRM指令执行结果</p>
+<p>OB82的启动信息和管理信息均存储在参数TINFO(&quot;Tinfo&quot;)中。生成的中断包含以下信息：</p>
+<p>OB82启动信息：</p>
+<ul>
+  <li>
+    <p>OB82使用优化启动信息(&quot;SI_Format&quot;和值&quot;254&quot;)。</p>
+  </li>
+</ul>
+<p>OB82管理信息：</p>
+<ul>
+  <li>
+  <p>读取状态为&quot;错误&quot;(参见&quot;IO_State&quot;的值)的输入模块(参见&quot;LADDR&quot;)。 </p>
+  </li>
+  <li>
+    <p>最近记录的通道&quot;0&quot;的中断(参见&quot;Channel&quot;的值)。</p>
+  </li>
+  <li>
+    <p>最近记录的站&quot;1&quot;的中断(参见&quot;address&quot;的值)。</p>
+  </li>
+  <li>从站的配置文件(参见&quot;slv_prfl&quot;的值)。</li>
+</ul>
+<ul>
+  <li>
+    <p>由组态的分布式模块触发的中断(参见&quot;intr_type&quot;的值)。如图22所示：
+  </p></li>
+</ul>
+<p><img src="images/3-22.jpg" width="562" height="303" /></p>
+<p>图22.TINFO参数的详细信息</p>
+<p>有关中断的标头信息和附加信息，均存储在参数AINFO(&quot;Ainfo&quot;)中。生成的中断包含以下信息：</p>
+<ul>
+  <li>
+  <p>所用OB是一个诊断中断OB(&quot;InterruptType&quot;，值为&quot;1&quot;)。</p>
+  </li>
+  <li>
+    <p>系统报告模块在插槽&quot;2&quot;(&quot;SlotNumber&quot;)处和子模块插槽&quot;1&quot;处发生中断(&quot;SubSlotNumber&quot;)。</p>
+  </li>
+  <li>
+    <p>对于子模块(&quot;InterruptSpecifier&quot;，值为&quot;16#A89C&quot;)，为中断指示符。</p>
+  </li>
+  <li>
+    <p>在本示例中，使用通道诊断的结构(&quot;FormatIdentifier&quot;，值为&quot;16#8000&quot;)。 </p>
+  </li>
+  <li>触发该中断的组件通道编号将分配给该子模块(&quot;ChannelNumber&quot;，值为&quot;16#0000&quot;)。 </li>
+</ul>
+<ul>
+  <li>
+    <p>诊断输入通道的一个到达错误(&quot;ChannelErrorType&quot;，值为&quot;16#28&quot;)。 </p>
+  </li>
+  <li>所用的数据格式为一个位(&quot;DataFormat&quot;，值为&quot;16#01&quot;)。</li>
+</ul>
+<ul>
+  <li>
+    <p>诊断一个断路故障(&quot;ErrorCode&quot;，值为&quot;16#0006&quot;)。如图23所示：  </p>
+  </li>
+</ul>
+<p><img src="images/3-23.jpg" width="563" height="343" /></p>
+<p>图23.AINFO参数的详细信息</p>
+<p>注：AINFO变量建议使用非优化数据块，如使用优化块，需要使用BYTE类型的数组，以免数据发生错乱。</p>
+<h4><a name="e" id="e"></a>生成用户诊断报警</h4>
+<p>1. 生成用户诊断报警指令的调用，如图24所示。</p>
+<p><img src="images/3-24.jpg" width="421" height="504" /><br />
+图24. 生成用户诊断报警指令</p>
+<p>2. 生成用户诊断报警指令的使用。</p>
+<p><strong>说明：</strong>Gen_UsrMsg生成用户诊断报警指令，可以生成在诊断缓冲区中输入的报警。</p>
+<ul>
+  <li>
+    <p>可以使用 Mode 参数选择生成到达的报警还是离去的报警。  
+    </p>
+    <ul>
+      <li>        当 Mode = 1 时：创建到达的报警。      </li>
+      <li>        当 Mode = 2 时：创建离去的报警。      </li>
+      <li>        无论生成到达的报警还是离去的报警，报警始终具有&rdquo;仅信息&ldquo;属性。      </li>
+    </ul>
+  </li>
+</ul>
+<ul>
+  <li>
+    <p>条目在诊断缓冲区中同时创建，而报警将进行异步传送。</p>
+  </li>
+  <li>
+    <p>如果指令在执行过程中出错，则将在参数 RET_VAL 处输出错误信息。</p></li>
+</ul>
+<p><strong>示例：</strong>在全局DB中创建五个变量和一个&quot;AssocValues&quot;结构(数据类型为AssocValues)，用来保存数据，如图25所示：</p>
+<p><img src="images/3-25.JPG" width="509" height="436" /><br />
+图25. 在全局DB中创建变量</p>
+<p>在OB1中调用Gen_UsrMsg指令，并连接参数，如图26所示：</p>
+<p><img src="images/3-26.JPG" width="704" height="372" /><br />
+图26. 在OB1中调用Gen_UsrMsg指令</p>
+<p>使用&quot;PLC报警文本列表-&gt;文本列表&quot;条目为报警创建文本列表和文本列表条目。在参数TextListID(&quot;TextListID&quot;)中应用文本列表的ID。在参数TextID(&quot;TextID&quot;)中应用文本列表条目的ID(范围...)。</p>
+<p>分配报警参数，如图27所示： </p>
+<p><img src="images/3-27.JPG" width="786" height="187" /><br />
+图27. 分配报警参数</p>
+<p>如果常开触点(&quot;En&quot;)的信号状态为&quot;TRUE&quot;，则执行&quot;Gen_UsrMsg&quot;指令。根据参数Mode(&quot;Mode&quot;)的值，生成到达的报警。使用参数TextListID(&quot;TextListID&quot;)和TextID(&quot;TextID&quot;)使指令指向待输出的报警。使用参数</p>
+<p>AssocValues(&quot;AssocValues&quot;)传送报警的关联值。 </p>
+<p>生成报警时，将按下列方式解释报警文本中包含的字符串&quot;@7I%5d@&quot;：</p>
+<ul>
+  <li>
+    <p>编号为&quot;7&quot;的关联值以INT数据类型读取。该编号对应于&quot;AssocValues&quot;结构的参数Value[5]。</p>
+  </li>
+  <li>
+    <p>关联值将作为一个十进制数输出。十进制数被限制为五位数。</p>
+  </li>
+</ul>
+<p>通过输出参数 Ret_Val(&quot;ReturnValue&quot;)，值为&quot;0&quot;，指示该指令的处理无错误。如图28所示：  </p>
+<p><img src="images/3-28.JPG" width="582" height="436" /></p>
+<p>图28. Gen_UsrMsg指令执行结果</p>
+<p>要输出报警，对于S7-1200系列的CPU，请打开条目&quot;在线与诊断-&gt;诊断缓冲区&quot;，如图29所示：</p>
+<p><img src="images/3-29.JPG" width="791" height="166" /></p>
+<p>图29. 诊断缓冲区中输入的报警</p>
+<p><strong>注：关于诊断指令的更多信息请参考TIA STEP7 V16软件中的帮助文档。</strong></p>
+<h3><a name="f" id="f"></a>常见问题</h3>
+<p><img src="images/5.gif" width="15" height="15"> <strong>通过&quot;LED&quot;指令读取扩展模块的指示灯状态报错？</strong></p>
+<p>在设备视图中组态S7-1200的扩展模块SM1231 AI4(订货号：6ES7 231-4HD32-0XB0)，硬件标识符为279。通过&quot;LED&quot;指令诊断扩展模块SM1231 AI4的DIAG指示灯的状态，输出参数RET_VAL(&quot;ReturnValue&quot;)</p>
+<p>为-32622，如图30所示。该输出对应16#8092，表示由参数LADDR寻址的硬件组件不会返回所需信息。因此，无法通过&quot;LED&quot;指令诊断扩展模块SM1231 AI4。</p>
+<p><img src="images/3-30.JPG" width="709" height="237" /></p>
+<p>图30. &quot;LED&quot;指令执行结果</p>
+<p><img src="images/5.gif" alt="" width="15" height="15" /> <strong>S7-1200 CPU可以同时激活多少个RDREC/WRREC指令？</strong></p>
+<p>最多可以同时使用四条RDREC指令和四条WRREC指令。</p>
+<p><img src="images/5.gif" alt="" width="15" height="15" /> <strong>RALRM指令必须要在中断OB中调用吗？</strong></p>
+<p>由于要检查的I/O中断，因此仅在CPU操作系统启动的中断OB内调用RALRM指令。如果在启动事件不是I/O中断的OB中调用RALRM指令，则该指令将在其输出中提供相应精简的信息。</p>
+<p>需要确保在不同OB中调用RALRM指令时使用不同的背景数据块。</p>
+<p><img src="images/5.gif" alt="" width="15" height="15" /> <strong>使用Gen_UsrMsg指令如何定义文本列表中的相关值？</strong></p>
+<p>在文本列表条目中，可通过添加以下信息定义相关值：@&lt;关联值的数量&gt;&lt;元素类型&gt;&lt;格式规范&gt;@，如图31所示：</p>
+<p><img src="images/3-31.jpg" width="786" height="187" /></p>
+<p>图31. 文本列表中定义相关值</p>
+<p>相关值中的&lt;元素类型&gt;可以通过下表定义，如图32所示：</p>
+<p><img src="images/3-32.jpg" width="674" height="408" /></p>
+<p>图32. 相关值中的&lt;元素类型&gt;</p>
+<p>相关值中的&lt;格式规范&gt;可以通过下表定义，如图33所示：</p>
+<p><img src="images/3-33.jpg" width="673" height="373" /></p>
+<p>图33. 相关值中的&lt;格式规范&gt; </p>
+
+</body>
+</html>

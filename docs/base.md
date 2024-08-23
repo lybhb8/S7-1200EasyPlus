@@ -1,4 +1,4 @@
-# 基础总汇
+# PLC 基础总汇
 
 ```{toctree}
 :maxdepth: 2

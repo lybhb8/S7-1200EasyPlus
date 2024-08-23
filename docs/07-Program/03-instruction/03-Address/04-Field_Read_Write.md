@@ -23,8 +23,8 @@ FieldWrite
 
 ## FieldRead 指令
 
-INDEX: 要读取的数组的单元号\
-\
+INDEX: 要读取的数组的单元号
+
 MEMBER: 数组单元首地址
 
 VALUE: 存储读出的数据

@@ -1,5 +1,5 @@
 
-### 在STEP 7 (TIA Portal) 中，如何计算物理流量（例如质量流量）测量值的总和？
+# 在STEP 7 (TIA Portal) 中，如何计算物理流量（例如质量流量）测量值的总和？
 
 在STEP 7 (TIA Portal) 的 "STEP7_TIA-Portal_Totalizer" 程序中包含 "Totalizer" 功能块，通过它可以计算测量值在一个时间单位内的总和。
 

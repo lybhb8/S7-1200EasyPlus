@@ -9,7 +9,7 @@
 01-TIMER
 02-COUNTER
 03-compare/index
-04-move/index
+04-Move/index
 05-Program_Control/index
 06-Shift_and_Rotate
 10-Math_functions/index

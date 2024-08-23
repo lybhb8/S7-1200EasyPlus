@@ -160,7 +160,7 @@ ID"指令的输入的信号状态为"1"且显示了错误信息时，才置位�
 
 # 常问问题
 
-![](images/5.gif){width="15" height="15"} **GetError 与GetErrorID
+![](../../../../img/home/FAQ.png)  **GetError 与GetErrorID
 的区别？**
 
 **答**：GetError 与GetErrorID 区别在于 GetError
@@ -169,7 +169,7 @@ ID"指令的输入的信号状态为"1"且显示了错误信息时，才置位�
 
 如果程序比较复杂，建议使用GetError 指令可以更快捷的帮助查找程序错误 。
 
-![](images/5.gif){width="15" height="15"} **是否可以在一个块中（ FC 或
+![](../../../../img/home/FAQ.png)  **是否可以在一个块中（ FC 或
 FB )中不同的网络段中（Network）多次调用 GetError 或 GetError ID 指令？**
 
 **答**：可以。在一个块中不同的网络段中调用多次GetError 指令或 GetErrorID
@@ -182,7 +182,7 @@ FB )中不同的网络段中（Network）多次调用 GetError 或 GetError ID �
 当然也可以在一个块中的最后一个网络只调用一次，如果程序中存在多处错误，发生的第一个错误的详细信息将输出至输出参数Error
 或 ID 处, 当第一个错误消失后，第二个错误的错误信息才被输出至输出参数。
 
-![](images/5.gif){width="15" height="15"} **是否可以在 OB1
+![](../../../../img/home/FAQ.png)  **是否可以在 OB1
 中调用GetError 或 GetError ID 指令？**
 
 答： 可以，使用方法与在FC 或 FB 中调用类似。

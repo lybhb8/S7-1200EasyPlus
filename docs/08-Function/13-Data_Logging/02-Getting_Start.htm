@@ -1,0 +1,227 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>Getting_Start</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>数据日志快速入门</h3>
+<p>数据日志文件按照标准 CSV 格式存储在 S7-1200 CPU 装载存储器或 S7-1200 SIMATIC 存储卡中。分别可通过 PLC Web 服务器或将数据文件传送到 PC 进行管理、查看。</p>
+<h3><strong>测试目的</strong></h3>
+<p>下面以数据日志文件存储在 S7-1200 CPU 装载存储器中，使用PLC Web 服务器进行管理为例，实现下述功能：</p>
+<p>（1）执行“DataLogging”指令将产品型号“Type”，长度“Length”，宽度“Width”三个变量值写入到 &ldquo;Product&rdquo;数据日志文件； </p>
+<p> （2）当写入的条数达到设定的3条日志条数时，自动关闭&ldquo;Product&rdquo;数据日志文件 ；</p>
+<p>（3）当写入的条数达到设定的3条日志条数时，可选择以下两种情况之一再分别写入数据日志：</p>
+<p> 情况一：如果旧的变量值允许被新的变量值覆盖，再打开&ldquo;Product&rdquo;数据日志文件，循环写入1条数据日志；</p>
+<p>情况二：如果想保存之前的变量值，创建一个新的&ldquo;NewProduct&rdquo;数据日志文件，再写入1条新的数据日志。</p>
+<p>（4）数据日志管理，先清空&ldquo;Product&rdquo;数据日志文件内的数据日志，然后直接删除&ldquo;Product&rdquo;数据日志文件。</p>
+<h3><strong>测试环境</strong></h3>
+<p>软件：TIA V16 Professional </p>
+<p>硬件：CPU1215C DC/DC/DC V4.4 订货号:6ES7 215-1AG40-0XB0 </p>
+<h3>实现步骤</h3>
+<p><strong>1. 启用 Web 服务器</strong></p>
+<p>按照以下路径和方法为要连接的 CPU 启用 Web 服务器：“设备视图”-&gt;“鼠标选中CPU”-&gt;“属性”-&gt;“Web服务器”-&gt;“启用模块上的Web服务器&rdquo;前打钩。如下图1所示：</p>
+<p><img src="images/2-01.JPG" width="921" height="749" /></p>
+<p>图1.启用Web服务器</p>
+<p><strong>2. 创建数据日志参数DB</strong></p>
+<p>数据日志名称和日志内所有数据元素的数据类型、列标题参数，分别由 Name、Data 和 Header 分配。因此需先创建数据日志参数DB 块，支持优化或非优化DB块，此处使用的为优化DB块。</p>
+<p>在该 DB 中，创建数据日志名称（如Product）、新名称（如NewProduct），标题（如Type，Length，Width）， Data 结构和DataLogID数组用于存放数据日志的ID，以便多个日志文件的管理。如下图2所示：</p>
+<p><img src="images/2-02.JPG" width="723" height="499" /></p>
+<p>图2.创建数据日志参数DB </p>
+<p><img src="images/4.gif" width="15" height="15"> 注：<br>
+a. 数据日志名称：此变量仅支持 String 数据类型。<br>
+（该名称应符合 Windows 文件名称的限制，不允许使用以下字符：“\”、“/”、“：”、“*”、“?”、“&lt;”、“&gt;”、“|”、“空格”）</p>
+<p> b. 数据日志标题：Header 参数指向数据日志文件中第一行的列标题名称，各列名称需要用逗号分隔；如果未设置该值，则不会在数据日志文件中创建标题行。</p>
+<p>c. 数据日志 Data 结构：指定数据日志的各个数据元素（列）及其数据类型：用户自定义类型 (UDT) 或数组。可以分配的最大数据元素个数为253（带时间戳）或 255（不带时间戳）。</p>
+<p>d.新名称（创建新日志时使用，命名方法同a)</p>
+<p>e.ID：数据日志数字标识符，保存每个生成数据日志的ID值以便与其它数据日志指令配合使用，方便数据日志的管理，比如清空或删除数据日志等。</p>
+<p><strong>3．创建和初始化数据日志文件</strong></p>
+<p>创建数据日志需调用“DataLogCreate”指令。按照上图2所创建数据日志参数DB 为&ldquo;DataLogCreate&rdquo;指令分配输入、输出参数。当触发该指令输入参数 REQ 时，创建数据日志文件。如下图3所示：</p>
+<p><img src="images/2-03.JPG" width="1066" height="614" /></p>
+<p>图3.调用“DataLogCreate”指令</p>
+<p>“DataLogCreate”指令重要参数说明如下表1所示： </p>
+<p>表1.&ldquo;DataLogCreate&rdquo;指令重要参数说明</p>
+<table width="806" border="1">
+  <tr>
+    <td width="116"><div align="left">输入参数</div></td>
+    <td width="120"><div align="left">数据类型</div></td>
+    <td width="548"><div align="left">说明</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">REQ</div></td>
+    <td><div align="left">BOOL</div></td>
+    <td><div align="left">上升沿信号时创建数据日志文件</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RECORDS</div></td>
+    <td><div align="left">UDINT</div></td>
+    <td><div align="left">数据日志可存储的最大数据日志数</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">FORMAT</div></td>
+    <td><div align="left">UINT</div></td>
+    <td><div align="left">数据格式：0：内部格式（不支持） 1：逗号分隔值CSV</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">TIMESTAMP</div></td>
+    <td><div align="left">UINT</div></td>
+    <td><div align="left">
+      <p>时间戳：</p>
+      <p>0：无时间戳        </p>
+      <p>1：系统时间 ，格式：mm/dd/yyyy, hh:mm:ss（月/日/年,时:分:秒）</p>
+      <p>2：本地时间 ，V4.2 开始支持，格式：mm/dd/yyyy, hh:mm:ss（月/日/年,时:分:秒）</p>
+      <p>3：系统时间 ，V4.5 开始支持，格式：mm/dd/yyyy, hh:mm:ss（月/日/年,时:分:秒）</p>
+      <p>4：本地时间 ，V4.5 开始支持，格式：yyyy-mm-dd, hh:mm:ss（年-月-日,时:分:秒）</p>
+      <p>5：系统时间 ，V4.5 开始支持，格式：yyyy-mm-dd, hh:mm:ss（年-月-日,时:分:秒）</p>
+    </div>    </td>
+  </tr>
+  <tr>
+    <td><div align="left">NAME</div></td>
+    <td><div align="left">VARIANT</div></td>
+    <td><div align="left">数据日志的名称（如上图2定义）</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ID</div></td>
+    <td><div align="left">DWORD</div></td>
+    <td><div align="left">数据日志的对象 ID（如上图2定义）</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">HEADER</div></td>
+    <td><div align="left">VARIANT</div></td>
+    <td><div align="left">数据日志文件中第一行列标题（如上图2定义），一般定义为 String 类型，名称用&quot;,&quot;隔开</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DATA</div></td>
+    <td><div align="left">VARIANT</div></td>
+    <td><div align="left">数据日志的数据缓冲区（如上图2定义）</div></td>
+  </tr>
+</table>
+<p>完成数据日志的创建需多个扫描周期，且 DONE 位仅在一个扫描周期内有效，因此可编程捕获“DataLogCreate”指令的 DONE 信号位，同时将新建数据日志文件的ID存储。如下图4所示：</p>
+<p><img src="images/2-04.JPG" width="676" height="297" /></p>
+<p>图4.“DataLogCreate”指令的DONE信号位和ID存储</p>
+<p><strong>4. </strong><strong>写入数据日志</strong></p>
+<p>数据日志创建成功后，使用“DataLogCreate”指令的 Done=1 信号使能“DataLogWrite”指令，并触发该指令 REQ，将产品型号“Type”，长度“Length”，宽度“Width”三个变量值写入到数据日志文件。如下图5所示：<strong> </strong></p>
+<p><img src="images/2-05.JPG" width="1041" height="390" /></p>
+<p>图5.“DataLogWrite”指令</p>
+<p><img src="images/4.gif" alt="" width="15" height="15" /> 注：执行&ldquo;DataLogWrite&rdquo;指令前需确保已经打开数据日志文件。 &ldquo;DataLogCreate&rdquo;指令隐式打开数据日志文件。</p>
+<p><strong>5. 关闭打开的数据日志文件 </strong></p>
+<p>当写入的条数达到设定的3条日志条数时，数据日志已满“DataLogCreate”指令的输出参数 STATUS=1。因此，可编程使用该状态字节自动关闭该数据日志文件。如下图6所示：</p>
+<p><img src="images/2-06.JPG" width="1040" height="371" /></p>
+<p>图6.“DataLogClose”指令</p>
+<p><strong>6. 当写入的条数达到设定的日志条数时，可选择以下两种情况之一再分别写入数据日志</strong></p>
+<p><strong>情况一：打开已有数据日志文件 </strong></p>
+<p>当写入的条数达到设定的3条日志条数时，如果旧的变量值允许被新的变量值覆盖，可再调用“DataLogOpen”指令打开这个数据日志文件，如下图7所示：</p>
+<p>打开该数据日志文件成功后，可按照如上图5所示再写入一条新的数据日志，此时第一条旧的数据日志将被覆盖。</p>
+<p><img src="images/2-07.JPG" width="1042" height="372" /></p>
+<p>图7.“DataLogOpen”指令</p>
+<p>表2.&ldquo;DataLogOpen&rdquo;指令重要参数说明</p>
+<table width="648" border="1">
+  <tr>
+    <td width="85"><div align="left">输入参数</div></td>
+    <td width="98"><div align="left">数据类型</div></td>
+    <td width="397"><div align="left">说明</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">MODE</div></td>
+    <td><div align="left">UINT</div></td>
+    <td><div align="left">打开数据日志的方式：<br />
+      MODE= "0" 保留数据日志的数据日志；<br />
+    MODE= "1" 删除数据日志的数据日志，但保留标题；</div>    </td>
+  </tr>
+</table>
+<p><img src="images/4.gif" width="15" height="15"> 注：如果同时提供 NAME 和 ID 这两个参数，但有效的 ID与NAME 数据日志不对应，则使用ID，而忽略 NAME；NAME 必须是 DataLogCreate 指令创建的数据日志的名称。如果只提供 NAME 且 NAME 指定一个有效数据日志，将返回对应的 ID。</p>
+<p><strong>情况二： 新建数据日志</strong></p>
+<p>当写入的条数达到设定的3条日志条数时，如果想保存之前的变量值，可调用“DataLogNewFile”指令创建一个新的数据日志文件。如下图8所示：</p>
+<p>新建数据日志文件成功后，可按照如上图5所示再写入一条新的数据日志。</p>
+<p><img src="images/2-08.JPG" width="1043" height="383" /></p>
+<p>图8.“DataLogNewFile”指令</p>
+<p>表3. &ldquo;DataLogNewFile&rdquo;指令重要参数说明</p>
+<table width="894" border="1">
+  <tr>
+    <td width="109"><div align="left">输入参数</div></td>
+    <td width="146"><div align="left">数据类型</div></td>
+    <td width="484"><div align="left">说明</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">RECORDS</div></td>
+    <td><div align="left">UDINT</div></td>
+    <td><div align="left">新数据日志中的数据日志数目</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">NAME</div></td>
+    <td><div align="left">VARIANT</div></td>
+    <td><div align="left">新数据日志的文件名称（如上图2定义）</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">ID</div></td>
+    <td><div align="left">VARIANT</div></td>
+    <td><div align="left">执行时，ID 输入标识有效数据日志。将从该数据日志复制新数据日志组态；<br />
+    执行后，ID 参数成为返回新建数据日志文件的 ID 的输出；</div>    </td>
+  </tr>
+</table>
+<p><img src="images/4.gif" alt="" width="15" height="15" /> 注：&ldquo;DataLogNewFile&rdquo;指令，将从原始数据日志复制标题以及原始数据日志属性（DATA 记录缓冲区、数据格式和时间戳设置）。隐式关闭原始数据日志文件并隐式打开新数据日志文件。</p>
+<p>当新建数据日志指令完成后，存储新建数据日志的ID，如图9所示。</p>
+<p><img src="images/2-09.JPG" width="661" height="221" /></p>
+<p>图9.保存新数据日志文件ID</p>
+<p><strong>7. 查看数据日志 </strong></p>
+<p>在&ldquo;WEB服务器内&rdquo;功能内，设置用户名和密码，选择&ldquo;读取文件&rdquo;和&ldquo;写入/删除文件&rdquo;访问权限，如图10所示。</p>
+<p><img src="images/2-10.JPG" width="923" height="787" /></p>
+<p>图10.设置WEB服务器用户密码和权限</p>
+<p>通过PC访问标准 Web 页面，在Web浏览器地址栏中输入 S7-1200 CPU 的 IP 地址（如192.168.0.12）。登录 Web 服务器，如下图11所示：</p>
+<p><img src="images/2-11.JPG" width="1223" height="639" /></p>
+<p>图11.登录WEB服务器</p>
+<p>登录后可在 Web 服务器的 文件浏览器-&gt;DataLogs文件夹内查看到数据日志，并且可下载、删除或重命名数据日志文件。如下图12-13所示：</p>
+<p><img src="images/2-12.JPG" width="903" height="457" /></p>
+<p>图12.打开数据日志</p>
+<p><img src="images/2-13.JPG" width="1041" height="452" /></p>
+<p>图13.查看数据日志</p>
+<p>按上图13所示，下载该数据日志文件（如 Product ），然后通过EXCEL表格打开。写入了预定义的3条记录的数据日志文件，如下图14所示：</p>
+<p><img src="images/2-14.JPG" width="579" height="272" /></p>
+<p>图14. 3条数据日志</p>
+<p><strong>情况一结果：</strong></p>
+<p>如果旧的变量值允许被新的变量值覆盖，写入一条新日志后，再次下载并打开“Product”这个数据日志文件。如上图13将发生变化，第一条旧记录将被覆盖，如下图15所示：</p>
+<p><img src="images/2-15.JPG" width="572" height="272" /></p>
+<p>图15.循环写入的数据日志</p>
+<p><strong>情况二结果：</strong></p>
+<p>如果想保存之前的变量值，创建一个新的数据日志文件，再写入新的数据记录。如下图16所示： </p>
+<p><img src="images/2-16.JPG" width="1045" height="446" /></p>
+<p>图16.查看新数据日志</p>
+<p>这种情况下，将创建一个新的数据日志文件，写入一条新记录，下载并打开“NewProduct”这个新数据日志文件。如上图13不会发生变化，新的数据日志文件及记录如下图17所示：</p>
+<p><img src="images/2-17.JPG" width="580" height="280" /></p>
+<p>图17. 新数据日志文件及记录</p>
+<p><img src="images/4.gif" alt="" width="15" height="15" /> 注：数据日志不再采用 //END 标志对未满的数据日志文件末尾进行标记。在 S7-1200 CPU V4.1之前的版本中，未满的数据日志都包含一个 //END 标志。</p>
+<p><strong>8.清空&ldquo;Product&rdquo;数据日志文件内的数据记录</strong><strong>（S7-1200 V4.2开始支持）</strong></p>
+<p>使用&ldquo;DataLogClear&rdquo;指令清空&ldquo;Product&rdquo;内的数据记录，ID参数关联之前已存好的ID值，并触发该指令 REQ清空数据记录。如下图18所示：</p>
+<p><img src="images/2-18.JPG" width="1050" height="403" /></p>
+<p>图18. &ldquo;DataLogClear&rdquo;指令</p>
+<p><strong>注意：</strong>因&ldquo;DataLogNewFile&rdquo;指令可隐式关闭原始数据日志文件并隐式打开新数据日志文件。所以在使用&ldquo;DataLogClear&rdquo;指令前，确保数据日志为打开状态，若数据日志关闭可使用 &ldquo;DataLogOpne&rdquo;指令重新打开，如图19所示。</p>
+<p><img src="images/2-19.JPG" width="667" height="360" /></p>
+<p>图19.使用 &ldquo;DataLogOpen&rdquo;指令打开数据日志</p>
+<p>清空完数据记录后，通过WEB查看结果，如图20所示。</p>
+<p><img src="images/2-20.JPG" width="578" height="275" /></p>
+<p>图20.&ldquo;Product&rdquo;数据日志文件内数据记录被清空</p>
+<p><strong>9.删除&ldquo;Product&rdquo;数据日志文件（S7-1200 V4.2开始支持）</strong></p>
+<p>使用&ldquo;DataLogDelete&rdquo;指令，DelFile置1，ID参数关联之前已存好的ID值，并触发该指令 REQ删除数据日志并删除数据记录。如图21所示。</p>
+<p><img src="images/2-21.JPG" width="1042" height="395" /></p>
+<p>图21. &ldquo;DataLogDelete&rdquo;指令</p>
+<p>表4. &ldquo;DataLogDelete&rdquo;指令重要参数说明</p>
+<table width="894" border="1">
+  <tr>
+    <td width="109"><div align="left">输入参数</div></td>
+    <td width="146"><div align="left">数据类型</div></td>
+    <td width="484"><div align="left">说明</div></td>
+  </tr>
+  <tr>
+    <td><div align="left">DelFile</div></td>
+    <td><div align="left">BOOL</div></td>
+    <td><div align="left">DelFile= &quot;0&quot; 删除数据日志，但保留数据记录；<br />
+    DelFile= &quot;1&quot; 删除数据日志，并且删除数据记录；</div></td>
+  </tr>
+</table>
+<p>删除完数据日志后，通过WEB查看结果，如图22所示。</p>
+<p><img src="images/2-22.JPG" width="1047" height="448" /></p>
+<p>图22.&ldquo;Product&rdquo;数据日志文件被删除</p>
+</body>
+</html>

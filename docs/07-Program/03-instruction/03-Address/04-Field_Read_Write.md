@@ -53,20 +53,20 @@ MEMBER: 数组单元首地址
 
 ## 常见问题
 
-![](images/5.gif){width="15" height="15"} **为什么软件里无法找到
+![](../../../img/home/FAQ.png)  **为什么软件里无法找到
 FieldRead 和 FieldWrite 指令?**
 
 **答:** 只有 STEP7 Basic V10.5 + SP2 以上的版本才支持 FieldRead 和
 FieldWrite指令,并且指令树里也无法找到,只能通过调用空指令块,并在下拉菜单里选择使用这两个指令。
 
-![](images/5.gif){width="15" height="15"} **FieldRead 和 FieldWrite**
+![](../../../img/home/FAQ.png)  **FieldRead 和 FieldWrite**
 **指令是否可以对其它数据区或数据类型实现间接寻址？**
 
 **答：**FieldRead 和
 FieldWrite指令只能对DB块中的数组单元进行间接寻址访问，DB
 块中的其它数据类型以及其它数据区如M, I，Q 区数据都不支持这个功能。
 
-![](images/5.gif){width="15" height="15"} **为什么FieldRead 和
+![](../../../img/home/FAQ.png)  **为什么FieldRead 和
 FieldWrite** **指令的参数显示红色不正确？**
 
 **答：**必须保证参数 \"MEMBER\" 和 \"VALUE\" 的数据类型一致,

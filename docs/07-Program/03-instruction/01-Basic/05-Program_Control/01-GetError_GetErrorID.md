@@ -1,4 +1,4 @@
-### GetError 与 GetErrorID 指令的使用
+# GetError 与 GetErrorID 指令
 
 在 STEP7 11 中，可以通过GetError （获取本地错误信息）或者GetErrorID
 （获取本地错误ID ）指令查询块内出现的错误。
@@ -13,7 +13,7 @@
 这样可以诊断整个程序块中的错误，如果在程序中间调用该指令，则后面的程序如果有错误，CPU
 也会忽略错误，不会停机，也没有相关报错，将不利于问题的诊断**。
 
-#### 1. GetError 与 GetErrorID 的调用
+## 1. GetError 与 GetErrorID 的调用
 
 在编程界面下， 点击右侧 "指令-\> 基本指令-\> 程序控制操作"
 中可以找到GetError及GetErrorID 两个指令。（见下图1）
@@ -22,7 +22,7 @@
 
 图1.
 
-#### 2. GerError 指令的使用
+## 2. GerError 指令的使用
 
 **GetError** ： 使用"获取本地错误信息"指令，可以查询块内出现的错误。
 如果在块执行期间出现错误，则发生的第一个错误的详细信息将保存在输出 ERROR
@@ -104,7 +104,7 @@ GetError 指令的输出参数Error
 
  
 
-#### 3. GetErrorID 的使用
+## 3. GetErrorID 的使用
 
 **GetErrorID**： 使用"获取本地错误
 ID"指令（见图11），可以查询块内出现的错误。如果在块执行过程中系统信号出错，会将发生的第一个错误的
@@ -158,7 +158,7 @@ ID"指令的输入的信号状态为"1"且显示了错误信息时，才置位�
 | 2942 | 10562 | 读取错误：Input                    |
 | 2943 | 10563 | 写入错误：Output                   |
 
-### 常问问题
+# 常问问题
 
 ![](images/5.gif){width="15" height="15"} **GetError 与GetErrorID
 的区别？**

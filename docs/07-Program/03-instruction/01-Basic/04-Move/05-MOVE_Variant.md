@@ -1,4 +1,4 @@
-# 移动操作 - 变量 指令说明
+# 移动操作 - 变量指令
 
 从TIA V13SP1 开始，S7-1200
 V4.0开始，支持以下处理Variant类型的变量的指令，如图1所示。
@@ -21,29 +21,29 @@ V4.0开始，支持以下处理Variant类型的变量的指令，如图1所示�
 
 表1 VariantGet指令说明
 
-  | 参数 | 声明   | 数据类型                   | 说明         |
-  | ---- | ------ | -------------------------- | ------------ |
-  | SRC  | Input  | Variant                    | 待读取的变量 |
-  | DST  | Output | 基本数据类型、复杂数据类型 | 读取的结果   |
+| 参数 | 声明   | 数据类型                   | 说明         |
+| ---- | ------ | -------------------------- | ------------ |
+| SRC  | Input  | Variant                    | 待读取的变量 |
+| DST  | Output | 基本数据类型、复杂数据类型 | 读取的结果   |
 
 注意：DST不能是复杂数据类型的数组。
 
 :::{note}
 
-    1\.
-    VariantGet的SRC是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
+1\.
+VariantGet的SRC是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
 
-    2\.
-    VariantGet将Variant参数指向的变量读取到DST中，要求Variant参数指向的变量一定要和DST的变量类型相同。
+2\.
+VariantGet将Variant参数指向的变量读取到DST中，要求Variant参数指向的变量一定要和DST的变量类型相同。
 
-    3\.
-    建议读取之前使用IS_NULL判断Variant是否指向NULL。通过Variant判断指令确定指向的变量类型，或者数组类型。
+3\.
+建议读取之前使用IS_NULL判断Variant是否指向NULL。通过Variant判断指令确定指向的变量类型，或者数组类型。
 
-    4\.
-    如果双方是相同元素的数组类型，其长度可以不同，读取时只按照双方中元素少的数量读取。
+4\.
+如果双方是相同元素的数组类型，其长度可以不同，读取时只按照双方中元素少的数量读取。
 
-    5\.
-    如果双方类型不相同，则不会发生读取。如果激活指令的ENO功能，则ENO=False。
+5\.
+如果双方类型不相同，则不会发生读取。如果激活指令的ENO功能，则ENO=False。
 
 :::
 

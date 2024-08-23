@@ -1,6 +1,6 @@
 # MOVE 系列指令
 
-## MOVE
+
 
 LAD为MOVE指令，SCL使用\":=\"表达式可以完成MOVE的功能（":="还可以有其他功能）。
 
@@ -47,11 +47,11 @@ of Byte可以MOVE到Array\[1..2\] of Byte。
 
 :::{note}
 
-    - 1.如果输入 IN 数据类型的位长度超出输出 OUT
-    数据类型的位长度，则源值的高位会丢失。如果输入 IN
-    数据类型的位长度低于输出 OUT 数据类型的位长度，则目标值的高位会被改写为0。
-    - 2.REAL传送至DWORD时是按位传送，不是取整。如果需要取整，可以使用ROUND、CONVERT_REAL_TO_DINT等指令。
-    - 3.（不）进行IEC检查是指，在MOVE指令所在的OB/FC/FB属性中的\"IEC检查\"选项，仅在此块中生效。默认的\"IEC检查\"不激活。设置如图2所示。
+- 1.如果输入 IN 数据类型的位长度超出输出 OUT
+数据类型的位长度，则源值的高位会丢失。如果输入 IN
+数据类型的位长度低于输出 OUT 数据类型的位长度，则目标值的高位会被改写为0。
+- 2.REAL传送至DWORD时是按位传送，不是取整。如果需要取整，可以使用ROUND、CONVERT_REAL_TO_DINT等指令。
+- 3.（不）进行IEC检查是指，在MOVE指令所在的OB/FC/FB属性中的\"IEC检查\"选项，仅在此块中生效。默认的\"IEC检查\"不激活。设置如图2所示。
 :::
 
 ![](images/01-02.jpg){width="641" height="350"}
@@ -104,8 +104,8 @@ of Byte可以MOVE到Array\[1..2\] of Byte。
 
 :::{warning}
 
-    - 1.IN和OUT的DB必须同时为优化DB或者非优化DB
-    - 2.不允许同时输出到多个DB，即图4的形式。
+- 1.IN和OUT的DB必须同时为优化DB或者非优化DB
+- 2.不允许同时输出到多个DB，即图4的形式。
 :::
 
 ![](images/01-10.jpg){width="889" height="120"}
@@ -132,15 +132,15 @@ LAD和SCL均为(U)MOVE_BLK指令。
 
 :::{note}
 
-    1\.IN和OUT必须是数组的一个元素，例如\"DB26\".Static_1\[0\]，不能是常数、常量、普通变量，也不能是数组名。
+1\.IN和OUT必须是数组的一个元素，例如\"DB26\".Static_1\[0\]，不能是常数、常量、普通变量，也不能是数组名。
 
-    2\.IN和OUT类型必须完全相同，并且必须是基本数据类型，不能是UDT、Struct等的数组。
+2\.IN和OUT类型必须完全相同，并且必须是基本数据类型，不能是UDT、Struct等的数组。
 
-    3\.IN是源数组中传送的起始元素，OUT是目的数组中接收的起始元素。
+3\.IN是源数组中传送的起始元素，OUT是目的数组中接收的起始元素。
 
-    4\.COUNT是传输个数，可以是正整数的常数，如果是变量，数据类型支持USINT、UINT、UDINT。
+4\.COUNT是传输个数，可以是正整数的常数，如果是变量，数据类型支持USINT、UINT、UDINT。
 
-    5\.如果目的数组接收区域小于源数组的传送区域，则只传送目的数组可接收的区域的数据。如果激活指令的ENO功能，则ENO=False。
+5\.如果目的数组接收区域小于源数组的传送区域，则只传送目的数组可接收的区域的数据。如果激活指令的ENO功能，则ENO=False。
 
 ## (U)MOVE_BLK的使用
 
@@ -172,15 +172,15 @@ MOVE_BLK_VARIANT的基本功能是数组之间部分元素的传送，并且是�
 
 表2 参数说明
 
-  | 参数                                              | 声明   | 数据类型                                          |
-  | ------------------------------------------------- | ------ | ------------------------------------------------- |
-  | SRC                                               | Input  | Variant、Array、其他（不包括Bool，Array of Bool） |
-  | COUNT                                             | Input  | UDINT                                             |
-  | SRC_INDEX                                         | Input  | DINT                                              |
-  | DEST_INDEX                                        | Input  | DINT                                              |
-  | DEST                                              | Output |
-  | Variant、Array、其他（不包括Bool，Array of Bool） |
-  | RET_VAL                                           | Return | INT                                               |
+| 参数                                              | 声明   | 数据类型                                          |
+| ------------------------------------------------- | ------ | ------------------------------------------------- |
+| SRC                                               | Input  | Variant、Array、其他（不包括Bool，Array of Bool） |
+| COUNT                                             | Input  | UDINT                                             |
+| SRC_INDEX                                         | Input  | DINT                                              |
+| DEST_INDEX                                        | Input  | DINT                                              |
+| DEST                                              | Output |
+| Variant、Array、其他（不包括Bool，Array of Bool） |
+| RET_VAL                                           | Return | INT                                               |
 
 MOVE_BLK_VARIANT指令通常用于将源数组SRC的部分元素传送至目的数组DEST的部分元素中，SRC与DEST数组元素必须完全相同。COUNT是传送的元素个数，SRC_INDEX是待传送的源数组的起始编号，DEST_INDEX是目的数组接收的起始编号，此处用编号不是下标的意思是，SRC_INDEX和DEST_INDEX都从0开始，对应SRC和DEST的第一个元素。
 

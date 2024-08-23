@@ -1,9 +1,9 @@
-### FieldRead 和 FieldWrite 间接寻址指令
+# FieldRead 和 FieldWrite 间接寻址指令
 
 从STEP7 Basic V10.5 + SP2 以上可以使用 FieldRead 和 FieldWrite
 指令对数组单元进行间接寻址.
 
-#### **指令的调用:**
+## **指令的调用:**
 
 STEP7 Basic V10.5 + SP2 版本软件在指令树里无法直接找到 FieldRead 和
 FieldWrite
@@ -15,13 +15,13 @@ FieldWrite
 
 从TIA V11起 FieldRead 和 FieldWrite 指令就可以在指令树里直接找到了。
 
-#### 创建DB块，并建立 Array 数据类型的变量
+## 创建DB块，并建立 Array 数据类型的变量
 
 ![](images/4-02.JPG){width="305" height="153"}
 
 图2. 创建DB块并定义数组
 
-#### FieldRead 指令
+## FieldRead 指令
 
 INDEX: 要读取的数组的单元号\
 \
@@ -35,7 +35,7 @@ VALUE: 存储读出的数据
 
 图3. 读取数组单元中的数据
 
-#### FieldWrite 指令
+## FieldWrite 指令
 
 INDEX: 要写入的数组的单元号
 
@@ -51,7 +51,7 @@ MEMBER: 数组单元首地址
 
  
 
-#### 常见问题
+## 常见问题
 
 ![](images/5.gif){width="15" height="15"} **为什么软件里无法找到
 FieldRead 和 FieldWrite 指令?**

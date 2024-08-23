@@ -62,27 +62,10 @@ html_theme.sidebar_secondary.remove: true
 
 ## 目录
 
-### S7-1200 PLC 基础汇总
-
 ```{toctree}
 :maxdepth: 2
 
-01-resource/source/index
-02-introduction/index
-03-hardware/index
-04-version/index
-
-```
-
-### S7-1200 PLC 组态编程
-
-
-```{toctree}
-:maxdepth: 2
-
-
-07-Program/01-operation/index
-07-Program/02-basic/index
-07-Program/03-instruction/index
+base
+config
 
 ```

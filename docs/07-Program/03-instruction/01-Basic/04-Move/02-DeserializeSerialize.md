@@ -1,4 +1,4 @@
-### Deserialize（反序列化）、Serialize（序列化）
+# Deserialize（反序列化）、Serialize（序列化）
 
 S7-1200将Byte数组（即Byte流）看做是序列，也就是标准数组。与之相反，其他所有格式都是非序列的，通常程序使用的都是非序列的，例如Struct，UDT，或其他格式。序列化和反序列化指令的作用就是在实现标准数组和其他格式的转换。对于某些标准功能块，最方便处理的是Byte数组，但处理对象往往是多样的例如Struct、UDT或者其他格式，这时最好的方法就是先将各类对象统一序列化成Byte数组，然后执行相关功能块，最后在执行反序列化返回初始对象。如图1所示，为这两个指令实现的结果。
 
@@ -25,23 +25,23 @@ Deserialize：参数参见表1
 
 表1 Deserialize参数
 
-  |参数      |      声明   |  数据类型       |                 说明|
-  |----------|--------|------------------------------|-------------|
-  |SRC_ARRAY   |    Input |   Variant或Array of Byte   | 标准Byte数组|
-  |POS        |     InOut  |  DInt      |    见下面注意4  |
-  |Ret_Val     |    Return  | Int        |       错误代码|
-  |DEST_VARIABLE |  Output  | Variant或Struct、UDT、Array等  反序列化后的输出变量|
+|参数      |      声明   |  数据类型       |                 说明|
+|----------|--------|------------------------------|-------------|
+|SRC_ARRAY   |    Input |   Variant或Array of Byte   | 标准Byte数组|
+|POS        |     InOut  |  DInt      |    见下面注意4  |
+|Ret_Val     |    Return  | Int        |       错误代码|
+|DEST_VARIABLE |  Output  | Variant或Struct、UDT、Array等  反序列化后的输出变量|
 
 Serialize：参数参见表2
 
 表2 Serialize参数
 
-  |参数        |   声明   |  数据类型           |             说明|
-  |--------------|------|----------------------|--------------------|
-  |SRC_VARIABLE |  Input   | Variant或Struct、UDT、Array等 |  待序列化的输入变量|
-  |POS        |    InOut   | DInt           |                 见下面注意4|
-  |Ret_Val     |   Return  | Int             |                错误代码|
-  |DEST_ARRAY   |  Output   |Variant或Array of Byte    |      标准Byte数组|
+|参数        |   声明   |  数据类型           |             说明|
+|--------------|------|----------------------|--------------------|
+|SRC_VARIABLE |  Input   | Variant或Struct、UDT、Array等 |  待序列化的输入变量|
+|POS        |    InOut   | DInt           |                 见下面注意4|
+|Ret_Val     |   Return  | Int             |                错误代码|
+|DEST_ARRAY   |  Output   |Variant或Array of Byte    |      标准Byte数组|
 
 注意：
 

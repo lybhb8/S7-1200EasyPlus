@@ -4,7 +4,7 @@ build-backend = "flit_core.buildapi"
 
 # project metadata
 [project]
-name = "S7-1200 PLC"
+name = "Sphinx"
 description = "Python documentation generator"
 readme = "README.rst"
 urls.Changelog = "https://www.sphinx-doc.org/en/master/changes.html"

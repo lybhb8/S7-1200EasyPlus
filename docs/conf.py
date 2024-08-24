@@ -51,12 +51,14 @@ myst_enable_extensions = [
 
 #########################################################################
 project = 'S7-1200 PLC'
-copyright = f'2023-{time.strftime("%Y")}, 宁波双紫信息科技有限公司'
+copyright = f'2020-{time.strftime("%Y")}, 宁波双紫信息科技有限公司'
 release = version = __display_version__
 show_authors = False
 author = 'lybhb8'
-nitpicky = False
+nitpicky = True
 show_warning_types = True
+
+language = "zh_CN"
 
 html_theme = 'sphinx13'
 html_theme_path = ['_themes']

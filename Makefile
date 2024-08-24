@@ -1,4 +1,4 @@
-PYTHON ?= python3
+PYTHON ?= python3.10
 
 .PHONY: all
 all: format style-check type-check doclinter test

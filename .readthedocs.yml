@@ -6,21 +6,32 @@ build:
     python: "3.10"
   apt_packages:
     - graphviz
-  commands:
-    - pip install myst_parser
-  # - build --site-dir $READTHEDOCS_OUTPUT/html
+  jobs:
+    post_create_environment:
+      # Install poetry
+      # https://python-poetry.org/docs/#installing-manually
+      - pip install poetry
+    post_install:
+      # Install dependencies with 'docs' dependency group
+      # https://python-poetry.org/docs/managing-dependencies/#dependency-groups
+      # VIRTUAL_ENV needs to be set manually for now.
+      # See https://github.com/readthedocs/readthedocs.org/pull/11152/
+      - VIRTUAL_ENV=$READTHEDOCS_VIRTUALENV_PATH poetry install --with docs
 
 sphinx:
-  configuration: doc/conf.py
+  configuration: docs/conf.py
   builder: html
 
 formats:
   - pdf
 
-python:
-  install:
-    - requirements: doc/requirements.txt
-    - method: pip
-      path: .
-      # extra_requirements:
-      #   - docs
+# python:
+#   install:
+#     - requirements: docs/requirements.txt
+#     - method: pip
+#       path: .
+#       # extra_requirements:
+#       #   - docs
+
+
+

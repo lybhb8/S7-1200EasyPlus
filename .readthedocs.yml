@@ -25,13 +25,13 @@ sphinx:
 formats:
   - pdf
 
-# python:
-#   install:
-#     - requirements: docs/requirements.txt
-#     - method: pip
-#       path: .
-#       # extra_requirements:
-#       #   - docs
+python:
+  install:
+    - requirements: docs/requirements.txt
+    - method: pip
+      path: .
+      extra_requirements:
+        - docs
 
 
 

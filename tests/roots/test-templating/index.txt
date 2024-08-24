@@ -1,7 +1,0 @@
-Welcome to Sphinx Tests's documentation!
-========================================
-
-.. toctree::
-
-   autosummary_templating
-

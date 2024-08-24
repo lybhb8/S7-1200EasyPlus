@@ -1,4 +1,0 @@
-test-toctree-empty
-==================
-
-.. toctree::

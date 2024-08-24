@@ -1,2 +1,0 @@
-<!-- testing legacy _t static templates -->
-<html><project>{{ project | lower | escape }}</project></html>

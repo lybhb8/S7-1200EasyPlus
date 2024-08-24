@@ -1,8 +1,0 @@
-Qux
-===
-
-.. toctree::
-   :glob:
-   :hidden:
-
-   *

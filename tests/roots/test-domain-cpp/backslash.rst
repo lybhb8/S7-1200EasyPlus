@@ -1,1 +1,0 @@
-.. cpp:var:: char c = '\\'

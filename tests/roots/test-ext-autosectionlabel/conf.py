@@ -1,1 +1,0 @@
-extensions = ['sphinx.ext.autosectionlabel']

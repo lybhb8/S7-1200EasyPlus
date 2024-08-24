@@ -12,7 +12,7 @@ sphinx:
   builder: html
 
 formats:
-  - pdf
+
 
 python:
   install:

@@ -13,15 +13,22 @@
 <div class="pageheader">
   <div class="brand">
     <a href="{{ pathto(root_doc)|e }}">
-      <img src="{{ pathto('_static/sphinx-logo.svg', resource=True) }}" alt="logo" />
-      <span>Sphinx</span>
+      <img src="{{ pathto('_static/sphinx-logo.svg', resource=true) }}" alt="logo" />
+      <span>S7-1200 PLC</span>
     </a>
   </div>
+  <div class="icons">
+    <a href="https://www.ad.siemens.com.cn/download" title="{{ _('西门子下载中心') }}" target="_blank">
+      <svg><use href="#siemens"></use></svg>
+    </a>
+  </div>
+  
   <div class="icons">
     <a href="https://github.com/sphinx-doc/sphinx" title="{{ _('Source Code') }}" target="_blank">
       <svg><use href="#github"></use></svg>
     </a>
   </div>
+
 </div>
 {% endblock %}
 
@@ -29,7 +36,7 @@
 <div class="related" role="navigation" aria-label="Related">
   <h3>{{ _('Navigation') }}</h3>
   <ul>
-    <li><a href="{{ pathto(root_doc)|e }}">Documentation</a> &raquo;</li>
+    <li><a href="{{ pathto(root_doc)|e }}">技术手册 EasyPlus</a> &raquo;</li>
     {%- for parent in parents %}
       <li class="nav-item nav-item-{{ loop.index }}"><a href="{{ parent.link|e }}" {% if loop.last %}{{ accesskey("U") }}{% endif %}>{{ parent.title }}</a>{{ reldelim1 }}</li>
     {%- endfor %}
@@ -124,5 +131,23 @@
       <polyline points="9 18 15 12 9 6"></polyline>
     </svg>
   </symbol>
+
+  <symbol id="siemens" viewBox="0 0 16 16">
+    <title>西门子下载中心</title>
+    <svg
+      stroke="currentColor"
+      fill="currentColor"
+      stroke-width="0"
+      viewBox="0 0 1024 1024"
+    >
+      <path
+        fill-rule="evenodd"
+        d="M11.590266 0v1024h1000.819468V0z m884.916808 908.09734H127.492926V115.90266h769.014148z" fill="#ffffff" p-id="2273"></path><path d="M365.093379 560.968874h300.187889A72.439162 72.439162 0 0 1 728.448217 637.464629a71.859649 71.859649 0 0 1-63.166949 78.234296h-405.65931v98.517261h405.65931A169.797397 169.797397 0 0 0 826.965478 637.464629a169.797397 169.797397 0 0 0-161.68421-173.853989H365.093379A71.859649 71.859649 0 0 1 301.346916 384.217317a72.439162 72.439162 0 0 1 63.746463-78.234295H649.054895a93.301641 93.301641 0 1 0 0-98.517261H365.093379a169.797397 169.797397 0 0 0-161.684211 176.751556A169.797397 169.797397 0 0 0 365.093379 560.968874z"
+      ></path>
+    </svg>
+
 </svg>
 {% endmacro %}
+
+
+<svg t="1724480981633" class="icon" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2272" width="200" height="200"><path d="M11.590266 0v1024h1000.819468V0z m884.916808 908.09734H127.492926V115.90266h769.014148z" fill="#ffffff" p-id="2273"></path><path d="M365.093379 560.968874h300.187889A72.439162 72.439162 0 0 1 728.448217 637.464629a71.859649 71.859649 0 0 1-63.166949 78.234296h-405.65931v98.517261h405.65931A169.797397 169.797397 0 0 0 826.965478 637.464629a169.797397 169.797397 0 0 0-161.68421-173.853989H365.093379A71.859649 71.859649 0 0 1 301.346916 384.217317a72.439162 72.439162 0 0 1 63.746463-78.234295H649.054895a93.301641 93.301641 0 1 0 0-98.517261H365.093379a169.797397 169.797397 0 0 0-161.684211 176.751556A169.797397 169.797397 0 0 0 365.093379 560.968874z" fill="#ffffff" p-id="2274"></path></svg>

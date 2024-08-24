@@ -50,11 +50,12 @@ myst_enable_extensions = [
 ]
 
 #########################################################################
-project = 'Sphinx'
-copyright = f'2007-{time.strftime("%Y")}, the Sphinx developers'
+project = 'S7-1200 PLC'
+copyright = f'2023-{time.strftime("%Y")}, 宁波双紫信息科技有限公司'
 release = version = __display_version__
-show_authors = True
-nitpicky = True
+show_authors = False
+author = 'lybhb8'
+nitpicky = False
 show_warning_types = True
 
 html_theme = 'sphinx13'
@@ -65,17 +66,20 @@ html_css_files = [
 ]
 modindex_common_prefix = ['sphinx.']
 html_static_path = ['_static']
-html_title = 'Sphinx documentation'
+html_title = '技术手册 EasyPlus'
+
+
 html_additional_pages = {'contents': 'contents.html'}
 html_use_opensearch = 'https://www.sphinx-doc.org/en/master'
 html_baseurl = 'https://www.sphinx-doc.org/en/master/'
-html_favicon = '_static/favicon.svg'
+html_favicon = '_static/favicon.ico'
+#html_logo = '_static/SIEMENS-dark.svg'
 
 htmlhelp_basename = 'Sphinxdoc'
 
 epub_theme = 'epub'
-epub_basename = 'sphinx'
-epub_author = 'the Sphinx developers'
+epub_basename = 'S7-1200 PLC'
+epub_author = 'lybhb8'
 epub_publisher = 'https://www.sphinx-doc.org/'
 epub_uid = 'web-site'
 epub_scheme = 'url'
@@ -111,7 +115,7 @@ latex_documents = [
         1,
     )
 ]
-latex_logo = '_static/sphinx.png'
+latex_logo = '_static/SIEMENS-dark.svg'
 latex_elements = {
     'fontenc': r'\usepackage[LGR,X2,T1]{fontenc}',
     'passoptionstopackages': r"""

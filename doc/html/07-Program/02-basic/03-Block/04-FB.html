@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>FB （ Function Block / 功能块） &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="编程指令" href="../../03-instruction/index.html" />
+    <link rel="prev" title="DB 快照功能" href="03-DB_Snapshots.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程基础</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01-Data_Type/index.html">数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-OB/index.html">组织块 OB</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">功能FC 和 功能块FB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="fb-function-block">
+<h1>FB （ Function Block / 功能块）<a class="headerlink" href="#fb-function-block" title="此标题的永久链接">¶</a></h1>
+<p>S7-1200 PLC 编程可以使用的代码块有 OB 块，FC 块和 FB 块。功能块 (FB)
+是从另一个代码块（OB、FB 或 FC）进行调用时执行的子例程。在调用 FB
+块时会生成与之相匹配的背景数据块，在背景数据块中可以存储定义的接口参数及静态变量。</p>
+<section id="fb">
+<h2>FB 块支持的编程语言<a class="headerlink" href="#fb" title="此标题的永久链接">¶</a></h2>
+<p>S7-1200 使用 FB 块编程支持的编程语言有 LAD、FBD、 SCL 以及 CEM ( TIA
+PORTAL V17 开始支持，详见链接 ) ，如图 1 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-011.jpg"><img alt="" src="../../../_images/4-011.jpg" style="width: 685px; height: 597px;" /></a></p>
+<p>图 1. FB 块支持的编程语言</p>
+</section>
+<hr class="docutils" />
+<section id="id1">
+<h2>FB 块的块接口<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>FB 块有一个块接口区，可以用来定义块接口。在 FB
+的块接口区域中可以定义的接口类型：Input（输入）、Output（输出）、InOut（输入输出）、Static（静态变量）、Temp（临时变量）以及
+Constant （常量），如图 2 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-021.jpg"><img alt="" src="../../../_images/4-021.jpg" style="width: 786px; height: 553px;" /></a></p>
+<p>图 2. FB 块接口区</p>
+<p>对于 FB 块的块接口访问如表 1 所示。</p>
+<p>表 1. FB 块块接口访问</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>接口类型</p></th>
+<th class="head"><p>读写访问</p></th>
+<th class="head"><p>描述</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Input</p></td>
+<td><p>只读</p></td>
+<td><p>调用 FB 块时，将数据传送到 FB 块，实参可以为常数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Output</p></td>
+<td><p>读写</p></td>
+<td><p>将 FB 块执行的结果输出，实参不可以为常数</p></td>
+</tr>
+<tr class="row-even"><td><p>Inout</p></td>
+<td><p>读写</p></td>
+<td><p>读取外部实参数值并且将结果返回到实参，实参不可为常数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Static</p></td>
+<td><p>读写</p></td>
+<td><p>静态变量存储在背景 DB 块中，不参与对外的参数传递</p></td>
+</tr>
+<tr class="row-even"><td><p>Temp</p></td>
+<td><p>读写</p></td>
+<td><p>-</p></td>
+</tr>
+<tr class="row-odd"><td><p>Constant</p></td>
+<td><p>只读</p></td>
+<td><p>-</p></td>
+</tr>
+</tbody>
+</table>
+<p>对于带参数的 FB 块，有形参和实参 2 个概念，如图 3 所示。</p>
+<ul class="simple">
+<li><p><strong>形参</strong>：块接口区域定义的 Input，Output，InOut 参数；在调用 FB 块时，会以引脚方式出现在 FB 块上。Input 和 InOut 类型的变量出现在 FB块的左侧；Output 类型的变量出现在 FB 块的右侧。</p></li>
+<li><p><strong>实参</strong>：在调用带参数的 FB 块时，为形参填写的实际变量。</p></li>
+</ul>
+<p><a class="reference internal" href="../../../_images/4-031.jpg"><img alt="" src="../../../_images/4-031.jpg" style="width: 393px; height: 215px;" /></a></p>
+<p>图 3.形参和实参</p>
+</section>
+<hr class="docutils" />
+<section id="id2">
+<h2>FB 块编程<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>FB 块在编程时可以选择是否在块接口区定义变量。可以主要分为有 2 种情况：</p>
+<div class="sd-tab-set docutils">
+<input checked="checked" id="sd-tab-item-0" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-0">
+情况1</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>
+FB 块带参数------定义块接口，FB块中通常不出现任何全局变量（DB、I、Q、M）；
+
+优点：模块化编程，对于相同的功能/逻辑只需要编写一个 FB块，无需重复多次编写相同的代码，进行大量重复性工作；
+
+还可将 FB 块做成项目库或全局库，以便后续其他项目或其他工程师使用。
+
+</pre></div>
+</div>
+</div>
+<input id="sd-tab-item-1" name="sd-tab-set-0" type="radio">
+</input><label class="sd-tab-label" for="sd-tab-item-1">
+情况2</label><div class="sd-tab-content docutils">
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span>
+FB 块不带参数------不定义任何块接口，FB 块编程中，使用全局变量；
+
+此种方式不推荐。
+
+</pre></div>
+</div>
+</div>
+</div>
+<section id="id3">
+<h3>情况1: FB 块带参数<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<p>FB 块编写程序代码，如图 4 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-041.jpg"><img alt="" src="../../../_images/4-041.jpg" style="width: 816px; height: 559px;" /></a></p>
+<p>图 4.带参数的 FB 块编程</p>
+<p>FB 块调用以及实参参数的填写，参考图 3 。</p>
+<p>右键打开图 3 中 FB 块的背景数据块 “motor_DB”，显示内容如图 5 所示。</p>
+<p>在背景数据块中可显示 Input、Output、InOut 及 Static 变量，Temp 和
+Constant 变量不会出现在背景数据块中。</p>
+<p><a class="reference internal" href="../../../_images/4-051.jpg"><img alt="" src="../../../_images/4-051.jpg" style="width: 709px; height: 221px;" /></a></p>
+<p>图 5. FB 块背景数据块显示内容</p>
+<p>编写的带参数的 FB 块，可以多次调用，只需为每次调用的 FB
+块填写不同的实参。同样的功能仅需编写一次即可，无需重复编写相同的代码。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>一般情况下每次调用需要生成不同的背景数据块。对于部分系统 FB 指令，可能有不同要求，详见具体指令说明。</p>
+</div>
+</section>
+<section id="id4">
+<h3>情况2. FB 块不带参数<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<p>如果在 FB 块中编程时不定义任何块接口变量，那么，在 FB 块中编程时只能使用全局变量。FB 块编程如图 6 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-061.jpg"><img alt="" src="../../../_images/4-061.jpg" style="width: 783px; height: 550px;" /></a></p>
+<p>图 6.不带参数 FB 块编程</p>
+<p>不带参数的 FB 块调用及其背景数据块，如图 7 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-071.jpg"><img alt="" src="../../../_images/4-071.jpg" style="width: 605px; height: 199px;" /></a></p>
+<p>图 7.不带参数 FB 块调用及其背景数据块</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id5">
+<h2>FB 块的调用<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p>编写好 FB 块程序后，需要进行调用才可以执行 FB 块中的程序。FB 块可以由 OB
+块、FC 块或其他 FB 块调用。被不同的块调用，出现的调用方式也会不同，如图
+8-10 所示。</p>
+<ul class="simple">
+<li><p>在 OB 中调用 FB 块，仅支持单个实例调用（如图 8 所示）</p></li>
+<li><p>在 FC 块中调用 FB 块，支持单个实例和参数实例调用（如图 9 所示）</p></li>
+<li><p>在 FB 块中调用另外一个 FB 块，支持单个实例，多重背景和参数实例三种方式（如图 10 所示）。</p></li>
+</ul>
+<p><a class="reference internal" href="../../../_images/4-081.jpg"><img alt="" src="../../../_images/4-081.jpg" style="width: 493px; height: 394px;" /></a></p>
+<p>图 8. OB 调用 FB 块</p>
+<p><a class="reference internal" href="../../../_images/4-091.jpg"><img alt="" src="../../../_images/4-091.jpg" style="width: 493px; height: 399px;" /></a></p>
+<p>图 9. FC 调用 FB 块</p>
+<p><a class="reference internal" href="../../../_images/4-101.jpg"><img alt="" src="../../../_images/4-101.jpg" style="width: 493px; height: 396px;" /></a></p>
+<p>图 10. FB 调用 FB 块</p>
+<p><em><strong>下面针对各个调用选项进行详细说明：</strong></em></p>
+<section id="id6">
+<h3>单个实例<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h3>
+<p>选择单个实例后，系统会自动生成该 FB
+块的背景数据块，出现在程序块文件夹下方，并且自动在 FB
+上方填写上该背景数据块，如图 11 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-111.jpg"><img alt="" src="../../../_images/4-111.jpg" style="width: 698px; height: 324px;" /></a></p>
+<p>图 11.单个实例调用</p>
+</section>
+<section id="id7">
+<h3>参数实例<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h3>
+<p>参数实例需要 TIA Portal V14 开始才支持，对 CPU 版本没有限制。</p>
+<p>选择参数实例后，将实例作为调用块的一个 InOut
+参数进行传递，需要生成一个背景数据块作为实参填写在形参上。</p>
+<p>除此以外，参数实例的实参也可以是 DB_ANY
+类型变量，详见<a class="reference internal" href="../01-Data_Type/08-DB_ANY.html#5-用于参数实例的实参"><span class="std std-ref">链接</span></a>。</p>
+<p>如图 12 所示，FC1 中调用 FB2 <strong>motor</strong> ，并且调用选项选择参数实例，此时
+FC1 的块接口中会新增一个 InOut 类型的参数，参数类型为 motor（FB2
+的背景数据块）。</p>
+<p><a class="reference internal" href="../../../_images/4-121.jpg"><img alt="" src="../../../_images/4-121.jpg" style="width: 476px; height: 522px;" /></a></p>
+<p>图 12.FC1 中参数实例调用 FB2</p>
+<p>添加新块，选择 DB 块，类型选择 motor(FB2 的背景数据块)，如图 13 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-131.jpg"><img alt="" src="../../../_images/4-131.jpg" style="width: 454px; height: 526px;" /></a></p>
+<p>图 13.新建 FB2 背景数据块</p>
+<p>如图 14 所示，在 OB1 中调用 FC1 时会出现一个 InOut
+形参参数需要填写，此时将图 13 新建的背景数据块填写到 FC1 的 InOut
+参数上即可。</p>
+<p><a class="reference internal" href="../../../_images/4-141.jpg"><img alt="" src="../../../_images/4-141.jpg" style="width: 650px; height: 234px;" /></a></p>
+<p>图 14.参数实例填写</p>
+</section>
+<section id="id8">
+<h3>多重实例<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h3>
+<p>选择多重实例后，无需为被调用的 FB 块创建单独的背景 DB 块，被调用的 FB 块的背景数据块存储在外层 FB 块的静态变量区域。对于多重实例，还可以以数组形式存在，方便块的多次调用，详见<a class="reference internal" href="../01-Data_Type/04-Array.html#array使用"><span class="std std-ref">链接</span></a>。</p>
+<p>如图 15 所示，FB1 中调用 2 次 FB2，选择多重实例方式。</p>
+<p><a class="reference internal" href="../../../_images/4-151.jpg"><img alt="" src="../../../_images/4-151.jpg" style="width: 600px; height: 724px;" /></a></p>
+<p>图 15.多重实例调用</p>
+</section>
+</section>
+<hr class="docutils" />
+<section id="id9">
+<h2>FB 块的背景数据块属性修改<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
+<p>FB 块的背景数据块伴随着 FB 块调用出现，在背景数据块中可以存储
+Input（输入）、Output（输出）、InOut（输入/输出）以及
+Static（静态变量），下面说明 2 点 FB 块背景数据块属性如何修改。</p>
+<section id="id10">
+<h3>1.背景数据块的断电保持性的设置<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h3>
+<p>背景数据块的断电保持性：取决于 FB 块接口中对变量保持性的设置，如图 16 所示（图中左侧为 FB 块接口，右侧为 FB 块的背景数据块。）。</p>
+<p><a class="reference internal" href="../../../_images/4-161.jpg"><img alt="" src="../../../_images/4-161.jpg" style="width: 653px; height: 278px;" /></a></p>
+<p>图 16. FB 块接口设置保持性</p>
+<ul class="simple">
+<li><p>标注 1：保持性有 3 种选项，非保持、保持以及在 IDB 中设置；</p></li>
+<li><p>标注2：块接口中选择为非保持的变量，背景数据块中为不勾选保持性且不可修改；</p></li>
+<li><p>标注3：块接口中选择为保持的变量，背景数据块中为勾选保持性且不可修改；</p></li>
+<li><p>标注 4：块接口中选择为在 IDB 中设置的变量，背景数据块中会有复选框预留，由用户自行决定是否勾选保持性，可在背景数据块中操作。此外该功能可以用于优化FB 块 的 AT 功能的使用，详见<a class="reference internal" href="../../03-instruction/03-Address/01-AT.html"><span class="std std-doc">链接</span></a>。</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>对于非优化 FB 的保持性无法在 FB 接口处设置，只能在背景数据块中设置，并且所有变量参数的保持性是一致的，无法单独设置某一个变量参数的保持性。</p>
+</div>
+</section>
+<section id="id11">
+<h3>2.背景数据块的优化和非优化如何设置<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h3>
+<p>背景数据块的优化或非优化：由 FB 块属性的 <strong>优化的块访问</strong> 设置决定</p>
+<ul class="simple">
+<li><p>FB 块创建后，默认是优化的 FB 块，其背景数据块也默认是优化的。</p></li>
+<li><p>如果需要修改该属性，可以在 FB 块属性中，将 <strong>优化的块访问</strong> 复选框取消勾选，即修改为非优化，如图 17 所示。</p></li>
+</ul>
+<p><a class="reference internal" href="../../../_images/4-17.jpg"><img alt="" src="../../../_images/4-17.jpg" style="width: 521px; height: 330px;" /></a></p>
+<p>图 17. FB 块属性修改为非优化</p>
+<p>对程序进行编译程序后，查看 FB 的背景数据块的属性也随之修改为非优化，如图18 所示。</p>
+<p><a class="reference internal" href="../../../_images/4-181.jpg"><img alt="" src="../../../_images/4-181.jpg" style="width: 529px; height: 303px;" /></a></p>
+<p>图 18. FB 背景数据块非优化</p>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">FB （ Function Block / 功能块）</a><ul>
+<li><a class="reference internal" href="#fb">FB 块支持的编程语言</a></li>
+<li><a class="reference internal" href="#id1">FB 块的块接口</a></li>
+<li><a class="reference internal" href="#id2">FB 块编程</a><ul>
+<li><a class="reference internal" href="#id3">情况1: FB 块带参数</a></li>
+<li><a class="reference internal" href="#id4">情况2. FB 块不带参数</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">FB 块的调用</a><ul>
+<li><a class="reference internal" href="#id6">单个实例</a></li>
+<li><a class="reference internal" href="#id7">参数实例</a></li>
+<li><a class="reference internal" href="#id8">多重实例</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id9">FB 块的背景数据块属性修改</a><ul>
+<li><a class="reference internal" href="#id10">1.背景数据块的断电保持性的设置</a></li>
+<li><a class="reference internal" href="#id11">2.背景数据块的优化和非优化如何设置</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="03-DB_Snapshots.html">
+                    <span class="icon">&lt;</span><span>DB 快照功能</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../../03-instruction/index.html"><span>编程指令</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

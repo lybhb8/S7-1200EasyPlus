@@ -1,0 +1,172 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>S7-1200 与 S7-1200/S7-1500 Profinet IO 通信</title>
+<link href="mnp.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<h3>智能设备功能概述</h3>
+<p>CPU 的&quot;I-Device&quot;（智能设备）功能简化了与 IO 控制器的数据交换和 CPU 操作过程（如用作子过程的智能预处理单元）。智能设备可作为 IO 设备链接到上位IO 控制器中，预处理过程则由智能设备中的用户程序完成。集中式或分布式（PROFINET IO 或 PROFIBUS DP）I/O 中采集的处理器值由用户程序进行预处理，并提供给 IO 控制器。 </p>
+
+  <p><img src="images/1-01.jpg" width="342" height="489"> <img src="images/1-02.jpg" width="327" height="348"></p>
+图1. 网络架构
+<p><strong>智能设备的应用领域：</strong><br>
+</p>
+<blockquote>
+  <p align="left"><strong>分布式处理</strong></p>
+  <blockquote>
+    <p align="left">    可以将复杂自动化任务划分为较小的单元或子过程，这样简化了子任务的同时也优化了项目管理。 <br>
+    </p>
+  </blockquote>
+  <p align="left"><strong>单独的子过程 </strong><br>
+    </p>
+  <blockquote>
+    <p align="left">通过使用智能设备，可以将分布广泛的大量复杂过程划分为具有可管理的多个子过程。 必要的话，这些子过程可存储在单个的 TIA 项目中，这些项目随后可合并在一起形成一个主项目。 <br>
+    </p>
+  </blockquote>
+  <p align="left"><strong>专有技术保护 </strong><br>
+    </p>
+  <blockquote>
+    <p align="left">智能设备接口描述使用 GSD 文件传输，而不是通过 STEP 7 项目传输，这样用户程序的专有技术得以保护。</p>
+  </blockquote>
+</blockquote>
+<p><strong>智能设备的优势：</strong><br>
+</p>
+<blockquote>
+  <p>简单链接 IO 控制器。</p>
+  <p>    实现IO 控制器之间的实时通信。</p>
+  <p>    通过将计算容量分发到智能设备可减轻 IO 控制器的负荷。 </p>
+  <p>    由于在局部处理过程数据，从而降低了通信负载。 </p>
+  <p>    可以管理单独 TIA 项目中子任务的处理 。</p>
+  <p>智能设备可以作为共享设备。</p>
+</blockquote>
+<h3>S7-1200 与 S7-1200/S7-1500 Profinet IO 通信</h3>
+<p>S7-1200 V4.0及以上版本开始支持智能 IO 设备功能。本示例中介绍1200 CPU之间如何进行智能设备PROFINET通信，分别在相同项目和不同项目下进行组态，实验环境如下所示。</p>
+<p><strong>软件：</strong></p>
+<blockquote>
+  <p>TIA V15.1</p>
+</blockquote>
+<p><strong>硬件：</strong></p>
+<blockquote>
+  <p>CPU 1217C DC/DC/DC V4.3</p>
+
+  <p>CPU 1215C DC/DC/DC V4.3
+  </p>
+</blockquote>
+<p><strong>设备角色及地址：</strong></p>
+<blockquote>
+  <table width="514" border="1">
+    <caption>
+      表1 设备角色及地址
+    </caption>
+    <tr>
+      <th width="81" scope="col">模块</th>
+      <th width="89" scope="col">设备类型</th>
+      <th width="84" scope="col">设备名称</th>
+      <th width="104" scope="col">IP地址</th>
+      <th width="122" scope="col">子网掩码</th>
+    </tr>
+    <tr>
+      <td>S7-1217C</td>
+      <td>IO控制器</td>
+      <td>PLC1</td>
+      <td>192.168.0.1</td>
+      <td>255.255.255.0</td>
+    </tr>
+    <tr>
+      <td>S7-1215C</td>
+      <td>智能IO设备</td>
+      <td>I-Device</td>
+      <td>192.168.0.2</td>
+      <td>255.255.255.0</td>
+    </tr>
+  </table>
+
+
+</blockquote>
+此外本文也可以用于S7-1200与S7-1500之间Profinet IO通信。
+<h3>S7-1200 智能设备在相同项目下组态</h3>
+<p><strong>STEP 1：创建 TIA Portal 项目并进行接口参数配置</strong>  </p>
+<p>使用TIA V15.1创建一个新项目，进入网络视图添加表1列出的所有设备，并进入各个设备以太网地址选项分别设置子网、IP地址以及设备名称。</p>
+<p><img src="images/1-03.jpg" width="719" height="568"></p>
+图2. 以太网地址配置
+<p><strong>STEP 2：操作模式配置</strong>  </p>
+<p>本例1215C作为智能IO设备，需要将其操作模式改为IO设备，并且分配给对应IO控制器，配置所需的传输区。</p>
+  <p>此外，如果不激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，可指定是在上位 IO 控制器的项目中设置智能设备的更新时间、看门狗时间、伙伴端口、拓扑等功能。</p>
+  <p>如果激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，可指定是在上位 IO 控制器的项目中设置介质冗余、优先启动、传输速率等接口和端口的几乎所有功能。</p>
+  <p><strong><u>需要强调的是，一旦激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，则该智能设备将不再可以同时作为IO控制器使用。</u></strong></p>
+<p>智能IO设备还支持优先启动，勾选后加快IO设备的启动速度，详情请了解优先启动相关功能。</p>
+<p><img src="images/1-04.jpg" width="832" height="484">  </p>
+<p>图3. 操作模式 </p>
+<p>进入传输区视图还可以分配地址区所属组织块及过程映像。</p>
+<p><img src="images/1-05.jpg" width="746" height="509"></p>
+<p>图4. 传输区
+  </p>
+  <p><strong>STEP 3：项目编译、下载、测试</strong>  </p>
+  <p>分别编译下载两个PLC，在监控表中添加传输区数据，给Q区赋值，监控发送和接收数据区是否一致。</p>
+<p><img src="images/1-06.jpg" width="444" height="131"></p>
+<p><img src="images/1-07.jpg" width="819" height="238"></p>
+  <p>图5. 测试结果
+  </p>
+  <h3>S7-1200 智能设备在不同项目下组态</h3>
+<p><strong>STEP 1：创建 TIA Portal 项目并进行接口参数配置</strong>
+</p>
+<p>分别创建2个不同项目，一个项目添加1217C，另一个项目添加1215C，进入表1中各个设备以太网地址选项分别设置子网、IP地址以及设备名称。 </p>
+<p><img src="images/1-08.jpg" width="720" height="540"></p>
+图6. 以太网地址配置
+<p><strong>STEP 2：操作模式配置</strong>  </p>
+<p>本例1215C作为智能IO设备，需要将其操作模式改为IO设备，由于控制器未在同一项目，这里选择未分配。</p>
+<p>这里与相同项目下传输区的配置不同的是IO控制器的地址需要在主站项目下才能分配。</p>
+<p>此外，如果不激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，可指定是在上位 IO 控制器的项目中设置智能设备的更新时间、看门狗时间、伙伴端口、拓扑等功能。</p>
+<p>如果激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，可指定是在上位 IO 控制器的项目中设置介质冗余、优先启动、传输速率等接口和端口的几乎所有功能。</p>
+<p><strong><u>需要强调的是，一旦激活&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;复选框，则该智能设备将不再可以同时作为IO控制器使用。</u></strong></p>
+<p>智能IO设备还支持优先启动，不同项目下无法直接选择优先启动功能，需要先选择&ldquo;PN接口的参数由上位IO控制器进行分配&rdquo;，然后在主站项目下为智能设备设置接口选项中的优先启动功能。</p>
+<p><img src="images/1-09.jpg" width="791" height="463"></p>
+图7. 操作模式
+<p><strong>STEP 3：项目编译后导出GSD文件</strong>  </p>
+<p>这里注意导出GSD之前需要正确编译项目的硬件配置，不然导出选项是灰色的，无法选择。导出GSD文件选项可以由用户设置GSD文件名称的标识部分（GSD文件名称的版本、厂商、日期等部分为默认设置），然后选择存储路径并导出文件。注意导出的GSD文件不要修改文件名称，不然会造成无法导入项目中。</p>
+  <p align="left"><img src="images/1-10.jpg" width="644" height="113"></p>
+<p align="left"><img src="images/1-11.jpg" width="640" height="243"></p>
+图8. 导出GSD文件
+<p align="left"><strong>STEP 4：导入GSD文件</strong>  </p>
+<p align="left">进入主站项目管理GSD文件视图，选择存储GSD文件源路径，在路径下选择需要安装的文件进行安装。</p>
+  <p align="left"><img src="images/1-12.jpg" width="544" height="171"></p>
+<p align="left"><img src="images/1-13.jpg" width="645" height="401"></p>
+图9：导入GSD文件
+<p align="left"><strong>STEP 5：添加智能IO设备</strong>  </p>
+<p align="left">进入硬件目录，在其它现场设备列表中找到安装的智能IO设备并添加，添加完成后进入图2以太网地址配置视图，检查智能IO设备的设备名称是否与源项目中名称一致（注意一定要保证名称一致），检查无误后分配给控制器，如设备概览视图，分配给控制器后会自动分配地址，也可以手动设置控制器侧传输区地址。</p>
+<p align="left"><img src="images/1-14.jpg" width="260" height="496"><img src="images/1-15.jpg" width="459" height="131"><img src="images/1-16.jpg" width="623" height="129"></p>
+图10：添加IO设备
+<p align="left"><strong>STEP 6：项目编译、下载、测试</strong>  </p>
+<p align="left">分别编译下载两个项目中PLC，在监控表中添加传输区数据，给Q区赋值，监控发送和接收数据区是否一致。</p>
+  <p align="left"><img src="images/1-17.jpg" width="457" height="130"></p>
+  <p align="left"><img src="images/1-07.jpg" width="819" height="238"></p>
+图11：实验测试
+<h3 align="left">常见问题</h3>
+<p><strong>1. 控制器诊断缓冲区报&ldquo;IO设备故障-找不到IO设备&rdquo;？</strong>  </p>
+<p>这是因为控制器无法与智能IO设备取得通信，可以通过以下方式查找故障原因。</p>
+  <p>（1）确认网络是否是通的，可以使用Ping命令检测网络通断。如果中间经过交换机还要保证交换机支持DCP协议。</p>
+  <p>（2）检查智能IO设备的名称与源项目名称是否一致。</p>
+  <p>（3）确认智能IO设备的硬件和软件是否已经下载。</p>
+  <p><img src="images/1-18.jpg" width="458" height="131"></p>
+<p>图12：网络视图报错</p>
+
+<p><strong>2. 控制器如何控制智能设备上IO数据或是传输DB块中数据？</strong>  </p>
+<p>如下图所示，只需把PLC的IO地址与传输区中IO地址做一个映射关系。</p>
+  <p><img src="images/1-19.jpg" width="685" height="356"></p>
+<p>图13 地址映射</p>
+  <p>这里通过建立PLC数据类型方式把IO区数据与UDT中数据一 一对应，1215CPU中输入输出分别占用6个字节的数据，这样建立如下图所示UDT。</p>
+  <p><img src="images/1-20.jpg" width="836" height="191"></p>
+<p>图14 UDT设置</p>
+  <p>在默认变量表中分别定义输入、输出、传输区1、传输区2所对应的IO数据区，这样就可以使用MOVE指令来整体传输了。</p>
+<p>同样DB块的数据也可以通过这种方式进行传输。</p>
+  <p><img src="images/1-21.jpg" width="551" height="719"><img src="images/1-22.jpg" width="603" height="694"></p>
+<p>图15 程序编写</p>
+  <p>这样1217控制器可以直接控制1215智能IO设备上的Q区数据，同时读取I区数据。测试结果如下：</p>
+  <p><img src="images/1-23.jpg" width="862" height="199"></p>
+  <p>图16 测试结果</p>
+
+</body>
+</html>

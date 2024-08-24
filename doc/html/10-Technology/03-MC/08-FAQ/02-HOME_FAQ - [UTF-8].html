@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S7-1200 运动控制回原点与轴位置相关的常见问题 {#s7-1200-运动控制回原点与轴位置相关的常见问题 .STYLE1} &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">组态编程</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="s7-1200-s7-1200-style1">
+<h1><span id="toc428444757">S7-1200 运动控制回原点与轴位置相关的常见问题</span> {#s7-1200-运动控制回原点与轴位置相关的常见问题 .STYLE1}<a class="headerlink" href="#s7-1200-s7-1200-style1" title="此标题的永久链接">¶</a></h1>
+<p>本页面仅针对回原点、轴位置的常见问题，其余运动控制常见问题参见<a class="reference internal" href="#01-FAQ.html"><span class="xref myst">链接</span></a>。</p>
+<ol class="arabic simple">
+<li><p><a class="reference internal" href="#_Toc"><code class="xref myst docutils literal notranslate"><span class="pre">_Toc</span></code></a><a class="reference internal" href="../10-Resource_Archive.html#toc5"><span class="std std-ref">什么时候需要执行回原点命令？</span></a></p></li>
+<li><p><a class="reference internal" href="#toc2"><span class="std std-ref">回原点已完成信号什么时候会丢失？</span></a></p></li>
+<li><p><a class="reference internal" href="#toc3"><span class="std std-ref">如果实际没有原点开关和限位开关，可以使用绝对定位指令MC_MoveAbsolute吗？</span></a></p></li>
+<li><p><a class="reference internal" href="../10-Resource_Archive.html#toc4"><span class="std std-ref">闭环控制带有绝对值编码器的驱动器（例如：V90
+PN）时，通过&quot;MC_Home&quot;指令是否可以执行Mode=2或3的回原点操作？</span></a></p></li>
+<li><p><a class="reference internal" href="../10-Resource_Archive.html#toc5"><span class="std std-ref">为什么用户在实际执行回原点指令时，轴遇到原点开关没有变化，直到运行到硬件限位开关停止报错？</span></a></p></li>
+<li><p><a class="reference internal" href="../10-Resource_Archive.html#toc6"><span class="std std-ref">为什么轴在执行主动回原点命令时，初始方向没有找到原点，当需要碰到限位开关掉头继续寻找原点开关时并没有掉头，而是直接报错停止轴，报错原因是由于轴碰到了限位开关？</span></a></p></li>
+<li><p><a class="reference internal" href="../10-Resource_Archive.html#toc7"><span class="std std-ref">S7-1200 CPU上电后轴的位置是多少？</span></a></p></li>
+<li><p><a class="reference internal" href="../10-Resource_Archive.html#toc8"><span class="std std-ref">如何保持断电前的绝对位置？</span></a></p></li>
+<li><p><a class="reference internal" href="#toc9"><span class="std std-ref">如何修改轴当前的位置？<br />
+</span></a></p></li>
+</ol>
+<section id="style1">
+<h2><span id="toc"></span>1.什么时候需要执行回原点命令？ {#什么时候需要执行回原点命令 .STYLE1}<a class="headerlink" href="#style1" title="此标题的永久链接">¶</a></h2>
+<p>答：用户需要使用MC_MoveAbsolute指令之前执行回原点指令。</p>
+</section>
+<section id="id1">
+<h2><span id="toc2"></span>2.回原点已完成信号什么时候会丢失？ {#回原点已完成信号什么时候会丢失 .STYLE1}<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>答：请参见表 1 。</p>
+<p>表 1 回原点比较</p>
+<p>PTO轴   闭环轴使用增量编码器   闭环轴使用绝对值编码器</p>
+<hr class="docutils" />
+<p>启动MC_Home命令进行主动回原点*         √       √                      -
+通过&quot;MC_Power&quot;运动控制指令，禁用轴    √                               
+通过调试面板回原点后取消调试功能        √                               
+CPU 断电 -&gt; 上电后                     √       √                       
+CPU 重新启动后 (RUN -&gt; STOP -&gt; RUN)   √                               
+编码器系统出错或编码器故障              -      √                      √
+重新启动工艺对象                        √       √                       
+存储器复位                              √       √                       
+修改编码器组态                          -      √                      √
+更换 CPU                                √       √                      √
+将 CPU 恢复为出厂设置                   √       √                      √
+将其它项目传送到控制器                  √       √                      √</p>
+<p>*：成功完成回原点操作之后，&quot;已回原点&quot;状态将再次置位。</p>
+</section>
+<section id="mc-moveabsolute-mc-moveabsolute-style1">
+<h2><span id="toc3"></span>3.如果实际没有原点开关和限位开关，可以使用绝对定位指令MC_MoveAbsolute吗？ {#如果实际没有原点开关和限位开关可以使用绝对定位指令mc_moveabsolute吗 .STYLE1}<a class="headerlink" href="#mc-moveabsolute-mc-moveabsolute-style1" title="此标题的永久链接">¶</a></h2>
+<p>答： 可以。</p>
+<p>对于PTO轴或使用增量编码器的闭环轴，使用MC_Home指令的Mode=0和Mode=1方式，让轴完成绝对坐标定位。然后就可以调用MC_MoveAbsolute指令进行绝对运动了。</p>
+<p>对于使用绝对值编码器的闭环轴，使用MC_Home指令的Mode=6和Mode=7方式，让轴完成绝对坐标定位。然后就可以调用MC_MoveAbsolute指令进行绝对运动了。</p>
+<p>MC_Home指令的Mode
+0、1、6、7参见<a class="reference internal" href="#../06-Instruction/04-MC_Home.html"><span class="xref myst">链接</span></a>。</p>
+</section>
+<section id="v90-pn-mc-home-mode-23-v90-pnmc-homemode23-style1">
+<h2><span id="toc4"></span>4.闭环控制带有绝对值编码器的驱动器（例如：V90 PN）时，通过&quot;MC_Home&quot;指令是否可以执行Mode=2或3的回原点操作？ {#闭环控制带有绝对值编码器的驱动器例如v90-pn时通过mc_home指令是否可以执行mode2或3的回原点操作 .STYLE1}<a class="headerlink" href="#v90-pn-mc-home-mode-23-v90-pnmc-homemode23-style1" title="此标题的永久链接">¶</a></h2>
+<p>答：
+不可以，&quot;MC_Home&quot;指令会报错:ErrorID=“16#8404”，ErrorInfo=“16#0055”（增量编码器的模式无效）。可通过&quot;MC_Home&quot;指令Mode=6或7进行绝对值编码器的调节。</p>
+</section>
+<section id="id2">
+<h2><span id="toc5"></span>5.为什么用户在实际执行回原点指令时，轴遇到原点开关没有变化，直到运行到硬件限位开关停止报错？ {#为什么用户在实际执行回原点指令时轴遇到原点开关没有变化直到运行到硬件限位开关停止报错 .STYLE1}<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>答：首先要测试原点开关是否起作用，也就是说当轴碰到原点开关时，原点开关的DI点的指示灯是否点亮。</p>
+<blockquote>
+<div><p>可能的原因如下：</p>
+<p>①寻找原点开关的速度过快，可以减小&quot;逼近速度&quot;和&quot;参考速度&quot;，如图 1 所示。</p>
+<blockquote>
+<div><p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-01.jpg"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-01.jpg" style="width: 812px; height: 756px;" /></a></p>
+<p>图 1 速度设置</p>
+</div></blockquote>
+<p>②原点开关有效时间过短，可以设置DI点滤波时间，例如图 1
+原点开关是I0.4，则在&quot;设备视图&quot;中减小I0.4的滤波时间，默认情况下DI的滤波时间是6.4millisec，用户根据DI点有效时间选择合适的滤波时间。如图
+2 所示。</p>
+<blockquote>
+<div><p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-02.jpg"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-02.jpg" style="width: 815px; height: 758px;" /></a></p>
+<p>图 2 滤波时间</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="id3">
+<h2><span id="toc6"></span>6.为什么轴在执行主动回原点命令时，初始方向没有找到原点，当需要碰到限位开关掉头继续寻找原点开关时并没有掉头，而是直接报错停止轴，报错原因是由于轴碰到了限位开关？ {#为什么轴在执行主动回原点命令时初始方向没有找到原点当需要碰到限位开关掉头继续寻找原点开关时并没有掉头而是直接报错停止轴报错原因是由于轴碰到了限位开关 .STYLE1}<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p>答：有几种可能：</p>
+<blockquote>
+<div><p>①用户没有使能&quot;<strong>允许硬件限位开关处自动反转</strong>&quot;的选项。 如图 3 所示。</p>
+<blockquote>
+<div><p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-03.jpg"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-03.jpg" style="width: 812px; height: 752px;" /></a></p>
+<p>图 3 允许反转</p>
+</div></blockquote>
+<p>②工艺对象组态的硬件开关上/下限位输入点与实际的输入点不符。例：上限位组态为I0.0，下限位组态为I0.1，但实际I0.1为上限位，I0.0为下限位。</p>
+<p>③轴在主动回原点期间到达硬件限位开关，轴将以组态的减速度减速，减速到启动/停止速度后反向运行寻找原点开关。如果限位开关行程过短，减速到启动/停止速度时轴运行超出了限位行程，在反向过程中会再次碰到限位开关，如下图所示，轴此时直接停止。如图
+4 所示。</p>
+<p>这种情况可以通过增加限位开关行程、增大组态的加速度/减速度或降低寻找原点时的逼近速度解决。</p>
+<blockquote>
+<div><p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-04.png"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-04.png" style="width: 561px; height: 296px;" /></a></p>
+<p>图 4 流程</p>
+</div></blockquote>
+</div></blockquote>
+</section>
+<section id="s7-1200-cpu-s7-1200-cpu-style1">
+<h2><span id="toc7"></span>7.S7-1200 CPU上电后轴的位置是多少？ {#s7-1200-cpu上电后轴的位置是多少 .STYLE1}<a class="headerlink" href="#s7-1200-cpu-s7-1200-cpu-style1" title="此标题的永久链接">¶</a></h2>
+<p>答：对于PTO轴或使用增量编码器的闭环轴，S7-1200
+CPU每次上电后轴的位置都是0，不会保留断电前的位置值。</p>
+<p>如何保持断电前的位置，请参考<a class="reference internal" href="../10-Resource_Archive.html#toc8"><span class="std std-ref">常见问题 8</span></a>。</p>
+<p>对于使用绝对值编码器的闭环轴，如果使用 Mode 6 或 7
+进行了设置原点操作，那么 CPU 上电后将保持断电前的位置。</p>
+</section>
+<section id="id4">
+<h2><span id="toc8"></span>8.如何保持断电前的绝对位置？ {#如何保持断电前的绝对位置 .STYLE1}<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<p>答：使用绝对位置编码器的闭环轴使用MC_HOME指令的模式6，7可以实现位置的断电保持；<br />
+对于PTO或者使用增量型编码器的闭环轴是不能断电保持的，CPU断电重新上电后，轴的绝对位置会重新变成0，要实现位置保持，可按照下面的步骤操作。</p>
+<p>1.
+在全局DB块里分别建立一个Bool和Real类型变量，勾选Real变量的保持性，如图5
+所示：</p>
+<p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-05.png"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-05.png" style="width: 776px; height: 99px;" /></a></p>
+<p>图 5 设置变量</p>
+<p>2.进入设备组态界面，在&quot;系统和时钟存储器&quot;页面启用系统存储器字节，分配系统存储器参数时，需要指定用作系统存储器字节的
+CPU 存储器字节。 首次循环对应的位启动后的第一个程序循环中为 1 ，否则为
+0。如图 6 所示</p>
+<p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-06.png"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-06.png" style="width: 861px; height: 247px;" /></a></p>
+<p>图 6 激活系统和时钟存储器</p>
+<p>3.在 Main
+[OB1]中，先使用M1.0置位标志位，然后使用&quot;MC_Power&quot;指令启动轴后调用&quot;MC_Home&quot;指令的
+Mode 0
+，重新装载断电前绝对位置，然后复位标志位，最后当前位置&quot;ActualPosition&quot;传送到第一步建立的变量中。如图
+7、 图 8 所示。</p>
+<p>注：如果存在多个运动控制指令，如&quot;MC_Home&quot;指令，每个指令的背景 DB
+块需要单独创建，以免产生冲突。可以根据实际工艺情况，在合适的时间点执行&quot;MC_Power&quot;指令和&quot;MC_Home&quot;指令装载新的断电前的绝对位置。</p>
+<p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-07.png"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-07.png" style="width: 591px; height: 766px;" /></a></p>
+<p>图 7 程序 1</p>
+<p><a class="reference internal" href="10-Technology/03-MC/08-FAQ/images/2-08.png"><img alt="" src="10-Technology/03-MC/08-FAQ/images/2-08.png" style="width: 569px; height: 455px;" /></a></p>
+<p>图 8 程序 2</p>
+</section>
+<section id="id5">
+<h2><span id="toc9"></span>9.如何修改轴当前的位置？ {#如何修改轴当前的位置 .STYLE1}<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p>对于 PTO 轴或使用增量编码器的闭环轴，使用 MC_Home 指令的 Mode=0
+方式，修改当前轴的位置。</p>
+<p>对于使用绝对值编码器的闭环轴，使用 MC_Home 指令的 Mode=7
+方式，修改当前轴的位置。</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#"><span id="toc428444757">S7-1200 运动控制回原点与轴位置相关的常见问题</span> {#s7-1200-运动控制回原点与轴位置相关的常见问题 .STYLE1}</a><ul>
+<li><a class="reference internal" href="#style1"><span id="toc"></span>1.什么时候需要执行回原点命令？ {#什么时候需要执行回原点命令 .STYLE1}</a></li>
+<li><a class="reference internal" href="#id1"><span id="toc2"></span>2.回原点已完成信号什么时候会丢失？ {#回原点已完成信号什么时候会丢失 .STYLE1}</a></li>
+<li><a class="reference internal" href="#mc-moveabsolute-mc-moveabsolute-style1"><span id="toc3"></span>3.如果实际没有原点开关和限位开关，可以使用绝对定位指令MC_MoveAbsolute吗？ {#如果实际没有原点开关和限位开关可以使用绝对定位指令mc_moveabsolute吗 .STYLE1}</a></li>
+<li><a class="reference internal" href="#v90-pn-mc-home-mode-23-v90-pnmc-homemode23-style1"><span id="toc4"></span>4.闭环控制带有绝对值编码器的驱动器（例如：V90 PN）时，通过&quot;MC_Home&quot;指令是否可以执行Mode=2或3的回原点操作？ {#闭环控制带有绝对值编码器的驱动器例如v90-pn时通过mc_home指令是否可以执行mode2或3的回原点操作 .STYLE1}</a></li>
+<li><a class="reference internal" href="#id2"><span id="toc5"></span>5.为什么用户在实际执行回原点指令时，轴遇到原点开关没有变化，直到运行到硬件限位开关停止报错？ {#为什么用户在实际执行回原点指令时轴遇到原点开关没有变化直到运行到硬件限位开关停止报错 .STYLE1}</a></li>
+<li><a class="reference internal" href="#id3"><span id="toc6"></span>6.为什么轴在执行主动回原点命令时，初始方向没有找到原点，当需要碰到限位开关掉头继续寻找原点开关时并没有掉头，而是直接报错停止轴，报错原因是由于轴碰到了限位开关？ {#为什么轴在执行主动回原点命令时初始方向没有找到原点当需要碰到限位开关掉头继续寻找原点开关时并没有掉头而是直接报错停止轴报错原因是由于轴碰到了限位开关 .STYLE1}</a></li>
+<li><a class="reference internal" href="#s7-1200-cpu-s7-1200-cpu-style1"><span id="toc7"></span>7.S7-1200 CPU上电后轴的位置是多少？ {#s7-1200-cpu上电后轴的位置是多少 .STYLE1}</a></li>
+<li><a class="reference internal" href="#id4"><span id="toc8"></span>8.如何保持断电前的绝对位置？ {#如何保持断电前的绝对位置 .STYLE1}</a></li>
+<li><a class="reference internal" href="#id5"><span id="toc9"></span>9.如何修改轴当前的位置？ {#如何修改轴当前的位置 .STYLE1}</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

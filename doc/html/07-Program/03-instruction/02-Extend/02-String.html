@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>字符串指令的使用 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="S7-1200 读取序列号" href="03-Others/01-Get_IM_Data.html" />
+    <link rel="prev" title="时钟功能指令的使用" href="01-Time.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程指令</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01-Basic/index.html">基本指令</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">扩展指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03-Address/index.html">间接寻址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04-Example/index.html">指令例程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05-SCL/index.html">SCL 编程语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html">CEM 编程语言简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html#id2">CEM编程示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="id1">
+<h1>字符串指令的使用<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<p>在TIA STEP7 V16版本中，可以通过相应的字符串指令去实现对S7-1200 CPU(固件版本V4.4)字符串数据类型的操作。</p>
+<ul class="simple">
+<li><p><a class="reference internal" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="xref myst">字符串指令的使用</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#%E7%A7%BB%E5%8A%A8%E5%92%8C%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="xref myst">移动和转换字符串</span></a></p>
+<ul>
+<li><p><a class="reference internal" href="#%E7%A7%BB%E5%8A%A8%E5%92%8C%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8C%87%E4%BB%A4%E7%9A%84%E8%B0%83%E7%94%A8"><span class="xref myst">移动和转换字符串指令的调用，</span></a></p></li>
+<li><p><a class="reference internal" href="#%E7%A7%BB%E5%8A%A8%E5%92%8C%E8%BD%AC%E6%8D%A2%E5%AD%97%E7%AC%A6%E4%B8%B2%E6%8C%87%E4%BB%A4%E7%9A%84%E4%BD%BF%E7%94%A8"><span class="xref myst">移动和转换字符串指令的使用。</span></a></p></li>
+</ul>
+</li>
+<li><p><a class="reference internal" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E6%95%B0%E5%80%BC%E7%9B%B8%E4%BA%92%E8%BF%9B%E8%A1%8C%E8%BD%AC%E6%8D%A2"><span class="xref myst">字符串和数值相互进行转换</span></a></p></li>
+<li><p><a class="reference internal" href="#%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%AD%97%E7%AC%A6%E7%9B%B8%E4%BA%92%E8%BF%9B%E8%A1%8C%E8%BD%AC%E6%8D%A2"><span class="xref myst">字符串和字符相互进行转换</span></a></p></li>
+<li><p><a class="reference internal" href="#%E5%B0%86ascii%E5%AD%97%E7%AC%A6%E4%B8%B2%E5%92%8C%E5%8D%81%E5%85%AD%E8%BF%9B%E5%88%B6%E6%95%B0%E5%80%BC%E7%9B%B8%E4%BA%92%E8%BF%9B%E8%A1%8C%E8%BD%AC%E6%8D%A2"><span class="xref myst">将ASCII字符串和十六进制数值相互进行转换</span></a></p></li>
+<li><p><a class="reference internal" href="#%E5%90%88%E5%B9%B6%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="xref myst">合并字符串</span></a></p></li>
+<li><p><a class="reference internal" href="#%E6%AF%94%E8%BE%83%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="xref myst">比较字符串</span></a></p></li>
+<li><p><a class="reference internal" href="#%E8%8E%B7%E5%8F%96%E5%AD%97%E7%AC%A6%E4%B8%B2%E9%95%BF%E5%BA%A6"><span class="xref myst">获取字符串长度</span></a></p></li>
+<li><p><a class="reference internal" href="#%E8%AF%BB%E5%8F%96%E5%88%A0%E9%99%A4%E6%8F%92%E5%85%A5%E6%9B%BF%E6%8D%A2%E5%92%8C%E6%9F%A5%E6%89%BE%E5%AD%97%E7%AC%A6%E4%B8%B2"><span class="xref myst">读取、删除、插入、替换和查找字符串</span></a></p></li>
+<li><p><a class="reference internal" href="#%E5%B8%B8%E8%A7%81%E9%97%AE%E9%A2%98"><span class="xref myst">常见问题</span></a></p></li>
+</ul>
+</li>
+</ul>
+<p>本文将详细介绍上述各个指令的使用。</p>
+<section id="id2">
+<h2>移动和转换字符串<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<section id="id3">
+<h3>移动和转换字符串指令的调用，<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h3>
+<p>如图1所示。</p>
+<p><img alt="" src="../../../_images/2-012.jpg" /><br />
+图1. 移动和转换字符串指令</p>
+</section>
+<section id="id4">
+<h3>移动和转换字符串指令的使用。<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<p>1.移动字符串指令S_MOVE。</p>
+<p>S_MOVE指令可以将参数IN中的字符串写入到参数OUT中的指定数据区域。</p>
+<p>在全局DB中创建两个String类型变量，用来保存数据，如图2所示：</p>
+<p><img alt="" src="../../../_images/2-022.jpg" /><br />
+图2. 在全局DB中创建变量</p>
+<p>在OB1中调用S_MOVE指令，并连接参数，如图3所示：</p>
+<p><img alt="" src="../../../_images/2-032.jpg" /><br />
+图3. 在OB1中调用S_MOVE指令</p>
+<p>将需要复制的字符串(“StringInput”)通过输出参数OUT(“StringOutput”)输出，如图4所示：</p>
+<p><img alt="" src="../../../_images/2-042.jpg" /><br />
+图4. S_MOVE指令执行结果</p>
+<p>2.转换字符串指令S_CONV。</p>
+<p>S_CONV指令可以将参数IN中的数值转换为OUT输出中指定的数据格式，下面列出了可能进行数值转换的数据类型：</p>
+<ul class="simple">
+<li><p>将字符串转换为数字值</p></li>
+</ul>
+<p>参数IN中的数值数据类型为STRING，WSTRING；参数OUT中数值的数据类型为CHAR，WCHAR，USINT，UINT，UDINT，SINT，INT，DINT，REAL，LREAL。</p>
+<ul class="simple">
+<li><p>将字符串转换为字符串</p></li>
+</ul>
+<p>参数IN中的数值数据类型为STRING，WSTRING；参数OUT中数值的数据类型为STRING，WSTRING。</p>
+<ul class="simple">
+<li><p>将数字值或字符转换为字符串</p></li>
+</ul>
+<p>参数IN中的数值数据类型为CHAR，WCHAR，USINT，UINT，UDINT，SINT，INT，DINT，REAL，LREAL；参数OUT中数值的数据类型为STRING，WSTRING。</p>
+<ul class="simple">
+<li><p>将字符转换为字符</p></li>
+</ul>
+<p>参数IN中的数值数据类型为CHAR，WCHAR；参数OUT中数值的数据类型为CHAR，WCHAR。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图5所示：</p>
+<p><img alt="" src="../../../_images/2-49.JPG" /><br />
+图5. 在全局DB中创建变量</p>
+<p>在OB1中调用S_CONV指令，并连接参数，选择数据类型。在第一个选项中选择待转换的数据类型(“ValueInput”)，本例中为Int类型；在第二个选项中选择待生成字符串的数据类型(“StringOutput”)，本例中为String类型，如图6所示：</p>
+<p><img alt="" src="../../../_images/2-061.jpg" /><br />
+图6. 在OB1中调用S_CONV指令</p>
+<p>将需要转换的数值(“ValueInput”)转换为输出格式，在字符串开头处的空白区域写入空格，转换结果以字符串形式通过输出参数OUT(“StringOutput”)输出，如图7所示：</p>
+<p><img alt="" src="../../../_images/2-072.jpg" /><br />
+图7. S_CONV指令执行结果(LAD语言)</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>如果使用SCL语言调用S_CONV指令，当数字值转换为字符串时，字符串的第一个字符不会使用空格进行填充，如图8所示：</p>
+<p><img alt="" src="../../../_images/2-50.JPG" />
+图8. S_CONV指令执行结果(SCL语言)</p>
+</div>
+</section>
+</section>
+<section id="id5">
+<h2>字符串和数值相互进行转换<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p>1. 字符串和数值相互进行转换指令的调用，如图9所示。</p>
+<p><img alt="" src="../../../_images/2-081.jpg" /><br />
+图9. 字符串和数值相互进行转换指令</p>
+<p>2. 字符串和数值相互进行转换指令的使用。</p>
+<ul class="simple">
+<li><p>将字符串转换为数值指令STRG_VAL。</p></li>
+</ul>
+<p>STRG_VAL指令可以将字符串转换为整数或浮点数，下面介绍指令的参数：</p>
+<p>1)IN表示要转换的数字字符串。</p>
+<p>2)FORMAT表示字符的输入格式，指定解释字符串字符的方式。</p>
+<p>3)P表示要转换的第一个字符的引用，转换从P参数中的指定位置处的字符开始。</p>
+<p>4)OUT表示转换的结果。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图10所示：</p>
+<p><img alt="" src="../../../_images/2-09.jpg" /><br />
+图10. 在全局DB中创建变量</p>
+<p>在OB1中调用STRG_VAL指令，并连接参数，使用左侧的选项，选择字符串的数据类型；使用右侧的选项，选择浮点数的数据类型，如图11所示：</p>
+<p><img alt="" src="../../../_images/2-101.jpg" /><br />
+图11. 在OB1中调用STRG_VAL指令</p>
+<p>根据参数P(“Pointer”)的值&quot;3&quot;，从第三个字符开始转换；参数FORMAT(“Format”)的值为&quot;16#0000&quot;，则字符串中的点是小数点分隔符。将需要转换的字符串(“StringInput”)在输出参数OUT(“ValueOutput”)中作为浮点数输出，如图12所示：</p>
+<p><img alt="" src="../../../_images/2-11.jpg" /><br />
+图12. STRG_VAL指令执行结果</p>
+<ul class="simple">
+<li><p>将数值转换为字符串指令VAL_STRG。</p></li>
+</ul>
+<p>VAL_STRG指令可以将数字值转换为字符串，下面介绍指令的参数：</p>
+<p>1)IN表示要转换的值。</p>
+<p>2)SIZE表示字符位数，指定待写入字符串的字符数。</p>
+<p>3)PREC表示小数位数，定义转换浮点数时保留的小数位数；如果要转换的值为整数，可使用该参数指定放置小数点的位置。</p>
+<p>4)FORMAT表示字符的输出格式，指定转换期间如何解释数字值以及如何将其写入字符串。</p>
+<p>5)P表示写入结果的字符，指定从字符串中的哪个字符开始写入结果。</p>
+<p>6)OUT表示转换的结果。</p>
+<p>在全局DB中创建六个变量，用来保存数据，如图13所示：</p>
+<p><img alt="" src="../../../_images/2-12.jpg" /><br />
+图13. 在全局DB中创建变量</p>
+<p>在OB1中调用VAL_STRG指令，并连接参数，选择数据类型。在第一个选项中选择待转换的数据类型(“ValueInput”)，本例中为Real类型；在第二个选项中选择待生成字符串的数据类型(“StringOutput”)，本例中为String类型，如图14所示：</p>
+<p><img alt="" src="../../../_images/2-13.jpg" /><br />
+图14. 在OB1中调用VAL_STRG指令</p>
+<p>根据参数P(“Pointer”)的值&quot;8&quot;，从第8个字符处开始写入该字符串。根据参数SIZE(“Size”)的值10，从该位置处开始写入该字符串10个字符长度。参数FORMAT(“Format”)的值为&quot;16#0005&quot;，则待转换数值(“ValueInput”)中的点将解释为千位分隔符。参数PREC(“Prec”)的值为&quot;4&quot;，表示向字符串写入四个小数位。待转换值的符号作为字符存储在字符串中，作为数字的前缀。字符串中剩余的字符作为符号前的空格写入，转换结果以字符串形式通过输出参数OUT(“StringOutput”)输出，如图15所示：</p>
+<p><img alt="" src="../../../_images/2-14.jpg" /><br />
+图15. VAL_STRG指令执行结果</p>
+</section>
+<section id="id6">
+<h2>字符串和字符相互进行转换<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p>1. 字符串和字符相互进行转换指令的调用，如图16所示。</p>
+<p><img alt="" src="../../../_images/2-15.jpg" /><br />
+图16. 字符串和字符相互进行转换指令</p>
+<p>2. 字符串和字符相互进行转换指令的使用。</p>
+<p>(1)将字符串转换为字符指令Strg_TO_Chars。</p>
+<p>Strg_TO_Chars指令可以将数据类型为String的字符串复制到Array of Char或Array of Byte中，或将数据类型为WString的字符串复制到Array of WChar或Array of Word中。下面介绍指令的参数：</p>
+<p>1)STRG表示复制操作的源。</p>
+<p>2)PCHARS表示Array of (W)CHAR / BYTE / WORD 结构中的位置，从该位置处开始写入字符串的相应字符。</p>
+<p>3)CHARS表示复制操作的目标，将字符复制到 Array of (W)CHAR/ BYTE/ WORD 数据类型的结构中。</p>
+<p>4)CNT表示移动的字符数量。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图17所示：</p>
+<p><img alt="" src="../../../_images/2-16.jpg" /><br />
+图17. 在全局DB中创建变量</p>
+<p>在OB1中调用Strg_TO_Chars指令，并连接参数，选择字符串的数据类型，如图18所示：</p>
+<p><img alt="" src="../../../_images/2-17.jpg" /><br />
+图18. 在OB1中调用Strg_TO_Chars指令</p>
+<p>将根据Array of Char数据类型创建一个包含各个字符的结构。CHARS结构(“Chars”)的长度为20个字符(Array…[0…19])。根据参数PCHARS(“Pchars”)的值&quot;5&quot;，从该结构的第五个字符开始写入(“0”-&quot;4&quot;为空，&quot;5&quot;包含字符串(“StringInput”)的第一个字符)。在字符串(“StringInput”)的字符写入到结构(“Chars”)后，待创建结构的后面字符将写入为空。字符串中移动的字符数通过输出参数CNT(“Count”)输出，如图19所示：</p>
+<p><img alt="" src="../../../_images/2-18.jpg" /><br />
+图19. Strg_TO_Chars指令执行结果</p>
+<p>(2)将字符转换为字符串指令Chars_TO_Strg。</p>
+<p>Chars_TO_Strg指令可以将字符串从Array of Char或Array of Byte复制到数据类型为String的字符串中，或将字符串从Array of WChar或Array of Word复制到数据类型为WString的字符串中。下面介绍指令的参数：</p>
+<p>1)CHARS表示复制操作的源，从 Array of (W)CHAR / BYTE / WORD 处开始复制字符。</p>
+<p>2)PCHARS表示Array of (W)CHAR / BYTE / WORD 中的位置，从该位置处开始复制字符。</p>
+<p>3)CNT表示要复制的字符数，使用值“0”将复制所有字符。</p>
+<p>4)STRG表示复制操作的目标。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图20所示：</p>
+<p><img alt="" src="../../../_images/2-19.jpg" /><br />
+图20. 在全局DB中创建变量</p>
+<p>在OB1中调用Chars_TO_Strg指令，并连接参数，选择字符串的数据类型，如图21所示：</p>
+<p><img alt="" src="../../../_images/2-20.jpg" /><br />
+图21. 在OB1中调用Chars_TO_Strg指令</p>
+<p>CHARS结构(“Chars”)的长度为20个字符(Array…[0…19])。根据参数PCHARS(“Pchars”)的值&quot;3&quot;，从该结构的第三个位置处开始将字符复制到字符串(“StringOutput”)中。从位置&quot;3&quot;开始，结构中的10个字符(“Chars”)将复制到字符串(“StringOutput”)中，因为参数CNT(“Count”)的值为&quot;10&quot;，如图22所示：</p>
+<p><img alt="" src="../../../_images/2-21.jpg" /><br />
+图22. Chars_TO_Strg指令执行结果</p>
+</section>
+<section id="ascii">
+<h2>将ASCII字符串和十六进制数值相互进行转换<a class="headerlink" href="#ascii" title="此标题的永久链接">¶</a></h2>
+<p>1. ASCII字符串和十六进制数值相互进行转换指令的调用，如图23所示。</p>
+<p><img alt="" src="../../../_images/2-22.jpg" /><br />
+图23. ASCII字符串和十六进制数值相互进行转换指令</p>
+<p>2. ASCII字符串和十六进制数值相互进行转换指令的使用。</p>
+<ul class="simple">
+<li><p>将ASCII字符串转换为十六进制值指令ATH。</p></li>
+</ul>
+<p>ATH指令可以将输入参数中指定的ASCII字符串转换为十六进制数，转换结果输出到输出参数中。下面介绍指令的参数：</p>
+<p>1)IN表示指向 ASCII 字符串的指针。</p>
+<p>2)N表示待转换的 ASCII 字符数。</p>
+<p>3)RET_VAL表示指令的状态。</p>
+<p>4)OUT表示十六进制数。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图24所示：</p>
+<p><img alt="" src="../../../_images/2-23.jpg" /><br />
+图24. 在全局DB中创建变量</p>
+<p>在OB1中调用ATH指令，并连接参数，如图25所示：</p>
+<p><img alt="" src="../../../_images/2-24.jpg" /><br />
+图25. 在OB1中调用ATH指令</p>
+<p>将输入的ASCII字符串(“StringInput”)根据待转换的ASCII字符数N(“N”)，共五个字符(N的值为&quot;5&quot;)，转换为十六进制数并输出到输出参数(“Output”)中，指令的状态(“RetVal”)为16#0000，表示无错误，如图26所示：</p>
+<p><img alt="" src="../../../_images/2-25.jpg" /><br />
+图26. ATH指令执行结果</p>
+<ul class="simple">
+<li><p>将十六进制数转换为ASCII字符串指令HTA。</p></li>
+</ul>
+<p>HTA指令可以将输入中指定的十六进制数转换为ASCII字符串。下面介绍指令的参数：</p>
+<p>1)IN表示十六进制数的起始地址。</p>
+<p>2)N表示待转换的十六进制字节数 。</p>
+<p>3)RET_VAL表示错误消息。</p>
+<p>4)OUT表示结果的存储地址。</p>
+<p>在全局DB中创建四个变量，用来保存数据，如图27所示：</p>
+<p><img alt="" src="../../../_images/2-26.jpg" /><br />
+图27. 在全局DB中创建变量</p>
+<p>在OB1中调用HTA指令，并连接参数，如图28所示：</p>
+<p><img alt="" src="../../../_images/2-27.jpg" /><br />
+图28. 在OB1中调用HTA指令</p>
+<p>将输入的十六进制数(“Input”)根据待转换的十六进制字节数N(“N”)，共五个字节(N的值为&quot;5&quot;)，转换为字符串并输出到输出参数(“StringOutput”)中，指令的状态(“RetVal”)为16#0000，表示无错误，如图29所示：</p>
+<p><img alt="" src="../../../_images/2-28.jpg" /><br />
+图29. HTA指令执行结果</p>
+</section>
+<section id="id7">
+<h2>合并字符串<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<p>1. 合并字符串指令的调用，如图30所示。</p>
+<p><img alt="" src="../../../_images/2-29.jpg" /><br />
+图30. 合并字符串指令</p>
+<p>2. 合并字符串指令的使用。</p>
+<p>合并字符串指令CONCAT。</p>
+<p>CONCAT指令可以将输入参数IN1中的字符串和IN2中的字符串合并在一起，结果以String或WString格式输出到输出参数中。</p>
+<p>在全局DB中创建三个变量，用来保存数据，如图31所示：</p>
+<p><img alt="" src="../../../_images/2-30.jpg" /><br />
+图31. 在全局DB中创建变量</p>
+<p>在OB1中调用CONCAT指令，并连接参数，选择字符串的数据类型，如图32所示：</p>
+<p><img alt="" src="../../../_images/2-31.jpg" /><br />
+图32. 在OB1中调用CONCAT指令</p>
+<p>第二个字符串(“StringInput2”)中的字符附加到第一个字符串(“StringInput1”)，并通过输出参数OUT(“StringOutput”)输出结果，如图33所示：</p>
+<p><img alt="" src="../../../_images/2-32.jpg" /><br />
+图33. CONCAT指令执行结果</p>
+</section>
+<section id="id8">
+<h2>比较字符串<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<p>1. 比较字符串指令的调用，如图34所示。</p>
+<p><img alt="" src="../../../_images/2-33.jpg" /><br />
+图34. 比较字符串指令</p>
+<p>2. 比较字符串指令的使用。</p>
+<p>比较字符串指令CMP==，CMP&lt;&gt;，CMP&gt;=，CMP&lt;=，CMP&gt;，CMP&lt;。</p>
+<p>这些指令可以比较两个字符串数据类型的&lt;操作数1&gt;和&lt;操作数2&gt;是否相等，不相等，大于或等于，小于或等于，大于，小于；如果满足比较条件，则指令返回逻辑运算结果(RLO)“1”。如果不满足比较条件，则该指令返回逻辑运算结果(RLO)“0”。</p>
+<p>在全局DB中创建六个变量，用来保存数据，如图35所示：</p>
+<p><img alt="" src="../../../_images/2-34.jpg" /><br />
+图35. 在全局DB中创建变量</p>
+<p>在OB1中调用CMP==指令，&lt;操作数1&gt;(“StringInput1”)和&lt;操作数2&gt;(“StringInput2”)是字符串类型，CMP==指令中选择String数据类型，因为两个操作数相同，满足比较条件，因此输出(“Out1”)为TRUE，如图36所示：</p>
+<p><img alt="" src="../../../_images/2-35.jpg" /><br />
+图36. CMP==指令执行结果</p>
+<p>在OB1中调用CMP&gt;指令，&lt;操作数1&gt;(“StringInput3”)和&lt;操作数2&gt;(“StringInput4”)是字符串类型，CMP&gt;指令中选择String数据类型，因为&lt;操作数1&gt;(“StringInput3”)大于&lt;操作数2&gt;(“StringInput4”)，(根据字符的ASCII码从左侧开始比较字符(例如：“a&quot;大于&quot;A”)，第一个不同的字符决定比较结果)，满足比较条件，因此输出(“Out2”)为TRUE，如图37所示：</p>
+<p><img alt="" src="../../../_images/2-36.jpg" /><br />
+图37. CMP&gt;指令执行结果</p>
+</section>
+<section id="id9">
+<h2>获取字符串长度<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
+<p>1. 获取字符串长度指令的调用，如图38所示。</p>
+<p><img alt="" src="../../../_images/2-37.jpg" /><br />
+图38. 获取字符串长度指令</p>
+<p>2. 获取字符串长度指令的使用。</p>
+<ul class="simple">
+<li><p>获取字符串长度指令MAX_LEN。</p></li>
+</ul>
+<p>String和WString数据类型的变量包含两个长度：最大长度和当前长度(即当前有效字符的数量)。使用指令MAX_LEN，可以确定IN(“StringInput_1”，数据类型为String)输入参数中指定字符串的最大长度，并将其作为数字值输出到OUT(“MaxLen”)输出参数中，如图39所示：</p>
+<p><img alt="" src="../../../_images/2-47.JPG" /><br />
+图39. 在OB1中调用MAX_LEN指令</p>
+<ul class="simple">
+<li><p>获取字符串长度指令LEN。</p></li>
+</ul>
+<p>使用指令LEN，可以查询IN(“StringInput_1”)输入参数中指定字符串的当前长度，并将其作为数字值输出到OUT(“Len”)输出参数中，如图40所示：</p>
+<p><img alt="" src="../../../_images/2-48.JPG" /><br />
+图40. 在OB1中调用LEN指令</p>
+</section>
+<section id="id10">
+<h2>读取、删除、插入、替换和查找字符串<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h2>
+<p>1. 读取、删除、插入、替换和查找字符串指令的调用，如图41所示。</p>
+<p><img alt="" src="../../../_images/2-38.jpg" /><br />
+图41. 读取、删除、插入、替换和查找字符串指令</p>
+<p>2. 读取、删除、插入、替换和查找字符串指令的使用。</p>
+<ul class="simple">
+<li><p>读取字符串中的左侧字符指令LEFT。</p></li>
+</ul>
+<p>使用指令LEFT提取以IN(“StringInput”)输入参数中字符串的第一个字符开头的部分字符串，在L(“L”)参数中指定要提取的字符数，提取的字符以String或WString格式通过OUT(“StringOutput”)输出参数输出，如图42所示：</p>
+<p><img alt="" src="../../../_images/2-40.JPG" /><br />
+图42. 在OB1中调用LEFT指令</p>
+<ul class="simple">
+<li><p>读取字符串中的右侧字符指令RIGHT。</p></li>
+</ul>
+<p>使用指令RIGHT提取IN(“StringInput2”)输入参数中字符串的最后几个字符，在L(“L2”)参数中指定要提取的字符数，提取的字符以String或WString格式通过OUT(“StringOutput2”)输出参数输出，如图43所示：</p>
+<p><img alt="" src="../../../_images/2-41.JPG" /><br />
+图43. 在OB1中调用RIGHT指令</p>
+<ul class="simple">
+<li><p>读取字符串中间的几个字符指令MID。</p></li>
+</ul>
+<p>使用指令MID提取IN(“StringInput3”)输入参数中字符串的一部分，使用P(“P3”)参数指定要提取的第一个字符的位置，使用L(“L3”)参数定义要提取的字符串的长度，OUT(“StringOutput3”)输出参数中输出提取的部分字符串，如图44所示：</p>
+<p><img alt="" src="../../../_images/2-42.JPG" /><br />
+图44. 在OB1中调用MID指令</p>
+<ul class="simple">
+<li><p>删除字符串中的字符指令DELETE。</p></li>
+</ul>
+<p>使用指令DELETE删除IN(“StringInput4”)输入参数中字符串的一部分，使用P(“P4”)参数指定要删除的第一个字符的位置，在L(“L4”)参数中指定要删除的字符数，剩余的部分字符串以String或WString格式通过OUT(“StringOutput4”)输出参数输出，如图45所示：</p>
+<p><img alt="" src="../../../_images/2-43.JPG" /><br />
+图45. 在OB1中调用DELETE指令</p>
+<ul class="simple">
+<li><p>在字符串中插入字符指令INSERT。</p></li>
+</ul>
+<p>使用指令INSERT将IN2(“StringInput5_2”)输入参数中的字符串插入到IN1(“StringInput5_1”)输入参数中的字符串中，使用P(“P5”)参数指定开始插入字符的位置，结果以String或WString格式通过OUT(“StringOutput5”)输出参数输出，如图46所示：</p>
+<p><img alt="" src="../../../_images/2-44.JPG" /><br />
+图46. 在OB1中调用INSERT指令</p>
+<ul class="simple">
+<li><p>替换字符串中的字符指令REPLACE。</p></li>
+</ul>
+<p>使用指令REPLACE，可将IN1(“StringInput6_1”)输入中字符串的一部分替换为IN2(“StringInput6_2”)输入参数中的字符串，使用P(“P6”)参数指定要替换的第一个字符的位置，使用L(“L6”)参数指定要替换的字符数，结果以String或WString格式通过OUT(“StringOutput6”)输出参数输出，如图47所示：</p>
+<p><img alt="" src="../../../_images/2-45.JPG" /><br />
+图47. 在OB1中调用REPLACE指令</p>
+<ul class="simple">
+<li><p>在字符串中查找字符指令FIND。</p></li>
+</ul>
+<p>使用指令FIND，可在IN1(“StringInput7_1”)输入参数中的字符串内搜索IN2(“StringInput7_2”)输入参数中的字符串，开始搜索字符串的字符位置通过OUT(“Return”)输出参数输出，如图48所示：</p>
+<p><img alt="" src="../../../_images/2-46.JPG" /><br />
+图48. 在OB1中调用FIND指令</p>
+<p>!!! note “关于字符串指令的更多信息请参考TIA STEP7 V16软件中的帮助文档。”</p>
+</section>
+<section id="id11">
+<h2>常见问题<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h2>
+<p>String和WString数据类型的区别?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>S7-1200系列的CPU支持使用 String数据类型存储一串单字节字符。String数据类型包含总字符数(1个字节)，当前字符数(1个字节)和最大254个字节。String数据类型中的每个字节都可以是从16#00-16#FF的任意值。可以使用方括号定义String数据类型的最大长度(例如：String\[10\])，如果不定义最大长度，则默认最大长度为254个字符。
+
+WString数据类型支持单字(双字节)值的较长字符串。第一个字包含最大总字符数，下一个字包含总字符数，WString数据类型中的每个字可以是16#0000-16#FFFF之间的任意值。可以使用方括号定义WString数据类型的长度(例如：WString\[10\])，如果不定义最大长度，则在默认情况下，将WString的长度设为254个字符。可以定义最多16382个字符的长度(例如：WString\[16382\])。
+</pre></div>
+</div>
+<p>ASCII控制字符如何实现?</p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>ASCII控制字符可以使用在String和WString数据类型中，控制字符语法如图49所示：
+</pre></div>
+</div>
+<p><img alt="" src="../../../_images/2-39.jpg" /><br />
+图49. 控制字符语法示例</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">字符串指令的使用</a><ul>
+<li><a class="reference internal" href="#id2">移动和转换字符串</a><ul>
+<li><a class="reference internal" href="#id3">移动和转换字符串指令的调用，</a></li>
+<li><a class="reference internal" href="#id4">移动和转换字符串指令的使用。</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id5">字符串和数值相互进行转换</a></li>
+<li><a class="reference internal" href="#id6">字符串和字符相互进行转换</a></li>
+<li><a class="reference internal" href="#ascii">将ASCII字符串和十六进制数值相互进行转换</a></li>
+<li><a class="reference internal" href="#id7">合并字符串</a></li>
+<li><a class="reference internal" href="#id8">比较字符串</a></li>
+<li><a class="reference internal" href="#id9">获取字符串长度</a></li>
+<li><a class="reference internal" href="#id10">读取、删除、插入、替换和查找字符串</a></li>
+<li><a class="reference internal" href="#id11">常见问题</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="01-Time.html">
+                    <span class="icon">&lt;</span><span>时钟功能指令的使用</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="03-Others/01-Get_IM_Data.html"><span>S7-1200 读取序列号</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>TIA Portal 组态软件操作 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="TIA Portal STEP 7 V18 安装" href="../install.html" />
+    <link rel="prev" title="组态编程" href="../../config.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage"><img src="../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">TIA Portal 组态软件操作</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="../install.html">TIA Portal STEP 7 V18 安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-New_Project.html">项目的新建</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-CPU_Properties.html">CPU 参数属性配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-ConfigFAQ.html">基本组态常见问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-Download.html">项目的下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-Download.html#id2">下载常见问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html">S7-1200 下载但不重新初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id5">设置块扩展的预留存储器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id9">激活存储器预留区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id14">扩展块接口或数据块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id18">禁用存储器预留区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id24">重置预留存储器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-detect_hardware.html">硬件检测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-upload_program.html">CPU程序的上载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08-upload_station.html">站点的上载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09-upload_compatibility.html">TIA Portal 版本和 CPU 中程序版本在上传时的兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-update.html">项目升级</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11-Program_Update.html">更新程序</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="tia-portal">
+<h1>TIA Portal 组态软件操作<a class="headerlink" href="#tia-portal" title="此标题的永久链接">¶</a></h1>
+<p><img alt="alt text" src="../../_images/image-2.png" /></p>
+<p>TIA 博途 (TIA Portal)是西门子新推出的，面向工业自动化领域的新一代工程软件平台，
+主要包括三个部分：SIMATIC STEP 7、SIMATIC WinCC 和 SIMATIC StartDrive。TIA 博途的
+软件体系结构如图 3-1 所示。</p>
+<section id="simatic-step-7-tia-portal">
+<h2>SIMATIC STEP 7 (TIA Portal)<a class="headerlink" href="#simatic-step-7-tia-portal" title="此标题的永久链接">¶</a></h2>
+<p>STEP 7 (TIA Portal) 是用于组态 SIMATIC S7-1200、S7-1500、S7-300/400 和 WinAC 控
+制器系列的工程组态软件。STEP 7 (TIA Portal)有 2 种版本，具体使用取决于可组态的控制器
+系列，分别介绍如下。</p>
+<p><img alt="alt text" src="../../_images/image-3.png" /></p>
+<ul class="simple">
+<li><p>STEP 7 Basic 主要用于组态 S7-1200，并且自带 WinCC Basic，用于 Basic 面板的组态。</p></li>
+<li><p>STEP 7 Professional 用于组态 S7-1200、S7-1500、S7-300/400 和 WinAC，且也自带 WinCC Basic，用于 Basic 面板的组态。</p></li>
+</ul>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../install.html">TIA Portal STEP 7 V18 安装</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#id1">安装条件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../install.html#id9">TIA Portal STEP 7 V18 安装</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="01-New_Project.html">项目的新建</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="01-New_Project.html#id2">快速创建新项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-New_Project.html#id3">硬件组态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-New_Project.html#id4">网络组态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-New_Project.html#id5">添加程序块</a></li>
+<li class="toctree-l2"><a class="reference internal" href="01-New_Project.html#step-7-tia-portal-v14-sp1">STEP 7 (TIA Portal) V14 SP1 项目创建</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="02-CPU_Properties.html">CPU 参数属性配置</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id1">常规</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#profinet">PROFINET 接口</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id2">数字量输入输出</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id3">模拟量</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id4">高速计数器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id5">脉冲发生器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id6">启动</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id7">循环</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id8">通信负载</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id9">系统和时钟存储器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#simatic-memory-card">SIMATIC Memory Card</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#web">Web服务器</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id10">支持多语言</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id11">时间</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id12">防护与安全</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#opc-ua">OPC UA</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id13">高级组态</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id14">连接资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id15">地址总览</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#id16">运行系统许可证</a></li>
+<li class="toctree-l2"><a class="reference internal" href="02-CPU_Properties.html#i-o">中央机架 I/O 扩展模块参数配置</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="03-ConfigFAQ.html">基本组态常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Download.html">项目的下载</a></li>
+<li class="toctree-l1"><a class="reference internal" href="04-Download.html#id2">下载常见问题</a></li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html">S7-1200 下载但不重新初始化</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id1">说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id2">工作原理</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id3">要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id4">基本步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html#id5">设置块扩展的预留存储器</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id6">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id7">设置新块中预留存储器的大小</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id8">设置现有块中预留存储器的大小</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html#id9">激活存储器预留区域</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id10">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id11">要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id12">步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id13">结果</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html#id14">扩展块接口或数据块</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id15">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id16">要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id17">步骤</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html#id18">禁用存储器预留区域</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id19">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id20">说明</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id21">要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id22">步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id23">结果</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="05-download_run.html#id24">重置预留存储器</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id25">简介</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id26">要求</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id27">步骤</a></li>
+<li class="toctree-l2"><a class="reference internal" href="05-download_run.html#id28">结果</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="06-detect_hardware.html">硬件检测</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="06-detect_hardware.html#cpu">自动检测CPU主机架硬件信息</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="07-upload_program.html">CPU程序的上载</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="07-upload_program.html#step7-v12">一、上载程序块--STEP7 V12 及其以上版本软件</a></li>
+<li class="toctree-l2"><a class="reference internal" href="07-upload_program.html#step7-v11-v10-5">二、上载程序块--STEP7 V11/V10.5版本软件</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="08-upload_station.html">站点的上载</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="08-upload_station.html#step7-v13">STEP7 V13 及以上版本功能：将设备作为新站上传（硬件和软件）</a></li>
+<li class="toctree-l2"><a class="reference internal" href="08-upload_station.html#id2"><strong>上传要点</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="09-upload_compatibility.html">TIA Portal 版本和 CPU 中程序版本在上传时的兼容性</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="09-upload_compatibility.html#tia-portal-v14-sp1-tia-portal-v14-v14-sp1">1. 在 TIA Portal V14 SP1 软件中，上传 TIA Portal V14 或 V14 SP1的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-upload_compatibility.html#tia-portal-v14-tia-portal-v14-sp1">2. 在 TIA Portal V14 软件中，上传 TIA Portal V14 SP1的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-upload_compatibility.html#tia-portal-v13-sp1-sp2-tia-portal-v13">3. 在 TIA Portal V13 SP1 / SP2 软件中,上传TIA Portal V13 的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-upload_compatibility.html#tia-portal-v13-v13-sp1-v13-sp2-tia-portal-v12-v12sp1">4. 在 TIA Portal V13 / V13 SP1/ V13 SP2 软件中，上传 TIA Portal V12/V12SP1 的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="09-upload_compatibility.html#tia-portal-v12-v12-sp1-tia-portal-v11">5. 在 TIA Portal V12 / V12 SP1 软件中，上传 TIA Portal V11的项目</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="10-update.html">项目升级</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="10-update.html#tia-portal-v14-sp1-tia-portal-v14">1. 在 TIA Portal V14 SP1 软件中，打开 TIA Portal V14 的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-update.html#tia-portal-v14-tia-portal-v14">2. 在 TIA Portal V14 软件中，打开 TIA Portal V14 的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-update.html#tia-portal-v13sp1-v13sp2-tia-portal-v13-v12sp1">3. 在TIA Portal V13SP1/V13SP2 软件中，打开 TIA Portal V13/V12SP1的项目</a></li>
+<li class="toctree-l2"><a class="reference internal" href="10-update.html#tia-portal-v13sp1-v13sp2-tia-portal-v12">4. 在 TIA Portal V13SP1/V13SP2 软件中，打开 TIA Portal V12 的项目</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="11-Program_Update.html">更新程序</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#tiastep7-v13sp1s7-1200">1.TIA博图STEP7 V13SP1中组态S7-1200</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#tiastep7-v14sp1-v14">2.使用TIA博图STEP7 V14SP1版本打开该项目，项目文件升级至V14版本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#v14sp1">3.将该项目文件升级为V14SP1版本</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#cputiastep7-v14sp1v4-2">4.在设备视图中将CPU版本变更为TIA博图STEP7 V14SP1版本时的最高版本为V4.2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#s7-1200">5 更新硬件后，并重新编译后，在项目树中右键点击S7-1200站点，在弹出菜单中按下按钮 <em><strong>更新程序</strong></em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#id2">6.更新完毕后，发生变化的程序变为红色，在项目树中右键点击S7-1200站点，在弹出菜单中按下按钮 <em><strong>编译&gt;软件（全部重建）</strong></em></a></li>
+<li class="toctree-l2"><a class="reference internal" href="11-Program_Update.html#v6-0">7. 编译后工艺对象升级为V6.0</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<!-- ## STEP 7 (TIA Portal) V18 软件安装
+
+<div class="grid cards" markdown>
+
+- ![alt text](<./icon/安装 (3).png>)__[TIA Portal STEP 7 V18 安装]__ <br> 最新版本的 STEP 7 (TIA Portal) V18 可以从产品代理商处订购。
+
+</div>
+
+## 新建项目
+
+<div class="grid cards" markdown>
+
+- ![](../../01-resource/source/Blue%20grey/26x22/New.png) __[新建]__ <br> TIA Portal STEP7软件向用户提供了非常简便、灵活的项目创建、编辑和下载方式。
+- ![](../../01-resource/source/Blue%20grey/26x22/PLC_code.png)__[CPU参数]__ <br> 通过参数分配可以设置所有组件的属性，这些参数将装载到 CPU 中，并在 CPU 启动时传送给相应的模块。
+- ![alt text](./icon/反馈faqs.png) __[常见问题FAQ]__  <br>   回答基本组态常见问题。
+  
+</div>
+
+
+## 项目下载
+
+<div class="grid cards" markdown>
+
+ - ![alt text](./icon/下载.png) __[下载]__ <br> STEP 7 TIA Portal 软件向用户提供了简便、灵活的下载方式。
+
+ - ![](./icon/下载%20(3).png) __[运行时下载]__ <br> S7-1200 下载但不重新初始化，这一加载过程不会对所控制的过程造成负面影响。
+
+ - ![alt text](./icon/tab_硬件检测_EN.png) __[硬件检测]__   <br> S7-1200CPU，且CPU的扩展模板都已经被插接完毕，可以使用自动检测这种更为简便的方式完成设备的硬件配置。
+
+</div>
+
+## 上载
+
+<div class="grid cards" markdown>
+
+- ![alt text](./icon/上载.png) __[上载程序]__ <br> S7-1200 CPU程序的上载操作。
+- ![alt text](./icon/站点.png) __[上载站点]__ <br> STEP7 V13 及以上版本功能：将设备作为新站上传（硬件和软件）。
+- ![alt text](./icon/兼容性.png) __[上传时版本的兼容性]__ <br> TIA Portal 版本和 CPU 中程序版本在上传时的兼容性。
+
+</div>
+
+## 升级
+
+<div class="grid cards" markdown>
+
+- ![alt text](./icon/upgrade.png) __[项目升级]__ <br> TIA Portal 的项目可以使用相同版本或者更高版本 TIA Portal版本打开。
+- ![alt text](./icon/程序升级.png) __[程序升级]__ <br> TIA博图STEP7从V14SP1版本增加新功能：**更新程序** ，可以将当前CPU中的程序版本更新至能够使用的最高版本。
+
+</div>
+
+ [TIA Portal STEP 7 V18 安装]: ../install.md
+ [新建]: ./01-New_Project.md
+ [CPU参数]: ./02-CPU_Properties.md
+ [常见问题FAQ]: ./03-ConfigFAQ.md
+ [下载]: ./04-Download.md
+ [运行时下载]: ./05-download_run.md
+ [硬件检测]: ./06-detect_hardware.md
+ [上载程序]: ./07-upload_program.md
+ [上载站点]: ./08-upload_station.md
+ [上传时版本的兼容性]: ./09-upload_compatibility.md
+ [项目升级]: ./10-update.md
+ [程序升级]: ./11-Program_Update.md -->
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">TIA Portal 组态软件操作</a><ul>
+<li><a class="reference internal" href="#simatic-step-7-tia-portal">SIMATIC STEP 7 (TIA Portal)</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="../../config.html">
+                    <span class="icon">&lt;</span><span>组态编程</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="../install.html"><span>TIA Portal STEP 7 V18 安装</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

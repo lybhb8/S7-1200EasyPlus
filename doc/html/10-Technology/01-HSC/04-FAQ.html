@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>高速计数器常见问题 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage"><img src="../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../base.html">基础总汇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../config.html">组态编程</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1>高速计数器常见问题<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>如何在高速计数器断电或停机后实现数据保持?</p>
+<p>答： 有两种方法，分别使用 CTRL_HSC 指令和 CTRL_HSC_EXT 指令。</p>
+<p>首先配置高速计数器：</p>
+<p>±----------------------------------±----------------------------------+
+| 1                                 | 在设备视图&gt;HSC_                  |
+|                                   | 1&gt;属性&gt;常规，启用该高速计数器。 |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-011.png" />{width=“850” |
+|                                   | height=“330”}                     |
+|                                   |                                   |
+|                                   | 图 01                             |
+±----------------------------------±----------------------------------+
+| 2                                 | 在设备视图&gt;HSC_1\                |
+|                                   | &gt;属性&gt;功能，定义计数类型为计数。 |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-021.png" />{width=“850” |
+|                                   | height=“330”}                     |
+|                                   |                                   |
+|                                   | 图 02                             |
+±----------------------------------±----------------------------------+
+| 3                                 | 在设备视图&gt;HSC_1&gt;属性&gt;I/O      |
+|                                   | 地址，使用缺省地址 1000           |
+|                                   | 作为高速计数器地址。              |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-03.png" />{width=“850” |
+|                                   | height=“330”}                     |
+|                                   |                                   |
+|                                   | 图 03                             |
+±----------------------------------±----------------------------------+</p>
+<p>方法1：使用 CTRL_HSC 指令</p>
+<p>±----------------------------------±----------------------------------+
+| 1                                 | 添加一个新的 DB 命名为 DB HSC     |
+|                                   | retain，并且创建一个 DInt         |
+|                                   | 数据元素，命名为 HSC_1            |
+|                                   | 用于保存高速计                    |
+|                                   | 数器的值。为了实现这个功能，HSC_1 |
+|                                   | 通过勾选保持项实现数据保持。      |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-041.png" />{width=“524” |
+|                                   | height=“161”}                     |
+|                                   |                                   |
+|                                   | 图 04                             |
+±----------------------------------±----------------------------------+
+| 2                                 | 插入 Cyclic interrupt             |
+|                                   | （循环中断），设置中断时间为 10   |
+|                                   | ms                                |
+|                                   | (也可以根据需要改变这个时间）。   |
+|                                   | 然后在循环中断中将高速计数器的值  |
+|                                   | ID1000:P 送到 &quot;DB HSC            |
+|                                   | retain&quot;.HSC_1                    |
+|                                   | 中。这样，高速计数器的值每 10ms   |
+|                                   | 送到 DB 中保存。                  |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-051.png" />{width=“556” |
+|                                   | height=“144”}                     |
+|                                   |                                   |
+|                                   | 图 05                             |
+±----------------------------------±----------------------------------+
+| 3                                 | 创建                              |
+|                                   | Startu                            |
+|                                   | p（启动OB），并且编程将保存的数值 |
+|                                   | &quot;DB HSC retain&quot;.HSC_1 送到      |
+|                                   | NEW_CV，并且置位 CV 位。使得在    |
+|                                   | CPU                               |
+|                                   | 启动时，保存的值被设置成当前值。  |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-061.png" />{width=“555” |
+|                                   | height=“167”}                     |
+|                                   |                                   |
+|                                   | 图 06                             |
+±----------------------------------±----------------------------------+
+| 4                                 | 在 OB1 中编程 CTRL_HSC            |
+|                                   | ，再将保存的值设为当前值后，复位  |
+|                                   | CV 位。                           |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-071.png" />{width=“556” |
+|                                   | height=“564”}                     |
+|                                   |                                   |
+|                                   | 图07                              |
+±----------------------------------±----------------------------------+</p>
+<p>方法2：使用 CTRL_HSC_EXT 指令</p>
+<p>±----------------------------------±----------------------------------+
+| 1                                 | 添加一个新的 DB 命名为 DB HSC     |
+|                                   | retain，并且创建一个 DInt         |
+|                                   | 数据元素，命名为 HSC_1            |
+|                                   | 用于保存高速计                    |
+|                                   | 数器的值。为了实现这个功能，HSC_1 |
+|                                   | 通过勾选保持项实                  |
+|                                   | 现数据保持。此外创建系统数据类型  |
+|                                   | HSC_Count 的变量 Static_1 用于    |
+|                                   | CTRL_HSC_EXT 指令。               |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-081.png" />{width=“523” |
+|                                   | height=“178”}                     |
+|                                   |                                   |
+|                                   | 图 08                             |
+±----------------------------------±----------------------------------+
+| 2                                 | 插入 Cyclic interrupt             |
+|                                   | （循环中断），设置中断时间为 10   |
+|                                   | ms                                |
+|                                   | (也可以根据需要改变这个时间）。   |
+|                                   | 然后在循环中断中将高速计数器的值  |
+|                                   | ID1000:P 送到 &quot;DB HSC            |
+|                                   | retain&quot;.HSC_1                    |
+|                                   | 中。这样，高速计数器的值每 10ms   |
+|                                   | 送到 DB 中保存。                  |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-051.png" />{width=“556” |
+|                                   | height=“144”}                     |
+|                                   |                                   |
+|                                   | 图 09                             |
+±----------------------------------±----------------------------------+
+| 3                                 | 创建                              |
+|                                   | Startu                            |
+|                                   | p（启动OB），并且编程将保存的数值 |
+|                                   | &quot;DB HSC retain&quot;.HSC_1           |
+|                                   | 送到新当前值且置位触发            |
+|                                   | 条件和高速计数器的软件门，使得在  |
+|                                   | CPU                               |
+|                                   | 启动时，保存的值被设置成当前值。  |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-091.png" />{width=“556” |
+|                                   | height=“255”}                     |
+|                                   |                                   |
+|                                   | 图 10                             |
+±----------------------------------±----------------------------------+
+| 4                                 | 在 OB1 中编程 CTRL_HSC_EXT        |
+|                                   | ，将保                            |
+|                                   | 存的值设为当前值后，复位触发位。  |
+|                                   |                                   |
+|                                   | <img alt="" src="../../_images/04-101.png" />{width=“556” |
+|                                   | height=“454”}                     |
+|                                   |                                   |
+|                                   | 图 11                             |
+±----------------------------------±----------------------------------+</p>
+<p><span id="a"></span><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>为什么 S7-1200
+高速计数器只能检测到低频率的脉冲信号？</p>
+<p>答： 在 S7-1200 CPU 和 SB
+信号板的属性中，数字量输入通道的输入滤波器默认设置值为 6.4
+millisec，该输入滤波时间对应的高速计数器能检测到的最大频率为 78Hz。</p>
+<p>因此如果使用该默认值，且 S7-1200 CPU 或 SB 信号板接入的高速输入脉冲超过
+78Hz，则 S7-1200 CPU 或 SB 信号板过滤掉该频率的输入脉冲。</p>
+<p>要正确使用 S7-1200 CPU 和 SB
+信号板高速计数功能，需要根据实际接入的高速输入脉冲最大频率，在&quot;属性—常规—数字量输入通道设置&quot;输入滤波器时间。</p>
+<p>V4.0 或更高版本的 S7-1200 CPU 和 SB
+信号板，每个数字量输入点都可设置输入滤波器时间， 如下图 12、13 所示：</p>
+<p><a class="reference internal" href="../../_images/04-11.jpg"><img alt="" src="../../_images/04-11.jpg" style="width: 867px; height: 694px;" /></a></p>
+<p>图 12. 设置 S7-1200 CPU 输入滤波器时间</p>
+<p><a class="reference internal" href="../../_images/04-12.jpg"><img alt="" src="../../_images/04-12.jpg" style="width: 882px; height: 755px;" /></a></p>
+<p>图 13. 设置 SB 信号板输入滤波器时间</p>
+<p>下表 1 显示了输入滤波器时间和可检测到的最大输入频率：</p>
+<hr class="docutils" />
+<p>输入滤波器时间   可检测到的最大输入频率
+0.1 microsec     1MHz
+0.2 microsec     1MHz
+0.4 microsec     1MHz
+0.8 microsec     625kHz
+1.6 microsec     312kHz
+3.2 microsec     156kHz
+6.4 microsec     78kHz
+10 microsec      50kHz
+12.8 microsec    39kHz
+20 microsec      25kHz
+0.05 millisec    10kHz
+0.1 millisec     5kHz
+0.2 millisec     2.5kHz
+0.4 millisec     1.25kHz
+0.8 millisec     625Hz
+1.6 millisec     312Hz
+3.2 millisec     156Hz
+6.4 millisec     78Hz
+10 millisec      50Hz
+12.8 millisec    39Hz
+20 millisec      25Hz</p>
+<hr class="docutils" />
+<p>表 1 输入滤波器时间和可检测到的最大输入频率</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>高速计数器的计数范围是什么?</p>
+<p>答： 高速计数器的默认计数范围是 -2^31^~2^31^-1。当向上计数到最大值
+2^31^-1 时，会跳回到 -2^31^；当向下计数到最小值 -2^31^ 时，会跳回
+2^31^-1。</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>断电停机或复位后，高速计数器的值会复位到什么值？</p>
+<p>答： CPU
+断电或重启后，高速计数器的值会复位到硬件组态的初始值；如果执行了外部复位，高速计数器的值默认会复位为
+0，如果在程序中修改了起始值，将会复位为修改的起始值。</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>不编写
+CTRL_HSC，高速计数器是否可以计数？</p>
+<p>答： 只要在硬件配置里使能并组态了高速计数器，不编写
+CTRL_HSC，高速计数器就可以正常计数。CTRL_HSC 只是完成参数写入的功能。</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>为什么高速计数器的数值不增加，总是停在一个固定的值？</p>
+<p>答： 如果编程了 CTRL_HSC，当置位 CV 将 NEW_CV 写入当前值后，CV
+位不会自动复位为 0，这时程序会一直将 NEW_CV
+写入当前值，导致高速计数器不继续计数而保持在固定的 NEW_CV
+值。因此必须编程复位 CV，才能避免该错误的发生。 同理，如果编程了
+CTRL_HSC_EXT ，然后 HSC_Count 中的元素 EnCV 始终置位，这时程序会一直将
+NewCurrentCount 写入当前值，导致高速计数器不继续计数而保持在固定的
+NewCurrentCount
+值。所以控制位通常使用沿触发，或者指令调用发生在硬件中断中。</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>为什么 CTRL_HSC 的 &quot;STATUS&quot;
+会返回 &quot;80C0&quot; 多次访问高速计数器错误？</p>
+<p>答： 如果高速计数器用做内部的运动控制的计数，则CTRL_HSC 的 &quot;STATUS&quot;
+就会返回 &quot;80C0&quot; 多次访问高速计数器错误。</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>S7-1200
+的高速计数器输入通道是否固定？</p>
+<p>答： 早期固件版本的高速计数器输入通道是固定的。</p>
+<p>V4.0 或更高版本的 S7-1200 的高速计数器输入通道可以在其属性中更改。如图
+14 所示：</p>
+<p><a class="reference internal" href="../../_images/04-131.jpg"><img alt="" src="../../_images/04-131.jpg" style="width: 1021px; height: 435px;" /></a></p>
+<p>图 14. 更改高速计数器输入通道</p>
+<p><a class="reference internal" href="../../_images/57.gif"><img alt="" src="../../_images/57.gif" style="width: 15px; height: 15px;" /></a>S7-1200 CPU
+最多支持多少个高速计数器？</p>
+<p>答： 早期固件版本的 S7-1200 CPU 中，CPU1211C 最多支持 3
+个单相的高速计数器，CPU1212C 最多支持 4 个单相的高速计数器，CPU1214C 和
+CPU1215C 最 多支持 6 个单相的高速计数器。</p>
+<p>V4.0 或更高版本的所有型号的 S7-1200 CPU 都支持最多 6 个单相高速计数器。</p>
+<p>需要注意的是 V4.0 或更高版本的 S7-1200 CPU
+有默认的高速计数器通道地址，而 CPU 1211C 数字量输入地址仅有 6 个，为
+I0.0-I0.5，CPU 1212C 数字量输入地址仅有 8 个，为 I0.0-I0.7。</p>
+<p>因此如果需要使用 CPU1211C 的 HSC4，HSC5， HSC6 或 CPU1212C 的
+HSC5，HSC6，则需要更改其硬件输入地址到有效的范围才能正常使用。以
+CPU1211C 举例，如图 15、16、17 所示：</p>
+<p><a class="reference internal" href="../../_images/04-141.jpg"><img alt="" src="../../_images/04-141.jpg" style="width: 865px; height: 677px;" /></a></p>
+<p>图 15. 更改 HSC4 的硬件输入地址</p>
+<p><a class="reference internal" href="../../_images/04-151.jpg"><img alt="" src="../../_images/04-151.jpg" style="width: 866px; height: 694px;" /></a></p>
+<p>图 16. 更改 HSC5 的硬件输入地址</p>
+<p><a class="reference internal" href="../../_images/04-16.jpg"><img alt="" src="../../_images/04-16.jpg" style="width: 867px; height: 694px;" /></a></p>
+<p>图 17. 更改 HSC6 的硬件输入地址</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

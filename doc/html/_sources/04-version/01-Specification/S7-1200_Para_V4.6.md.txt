@@ -1,0 +1,196 @@
+### SIMATIC S7-1200 PLC V4.6 及其以上存储器性能
+
+S7-1200 固件 V4.6 版本较 V4.5
+版本在工作存储器上有很大提升，其各型号工作存储器、装载存储器、保持性存储器比较见下表所示：
+
+<table style="width:100%;" width="1594" data-border="1">
+<colgroup>
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+<col style="width: 6%" />
+</colgroup>
+<thead>
+<tr>
+<th colspan="2" scope="col">CPU</th>
+<th colspan="3" scope="col">CPU 1211C</th>
+<th colspan="3" scope="col">CPU 1212C</th>
+<th colspan="3" scope="col">CPU 1214C</th>
+<th colspan="3" scope="col">CPU 1215C</th>
+<th scope="col">CPU 1217C</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td rowspan="3" width="100">工作存储器</td>
+<td width="100"> </td>
+<td width="100"><div data-align="center">
+AC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/DC
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+AC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/DC
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+AC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/DC
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+AC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/DC
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/RLY
+</div></td>
+<td width="100"><div data-align="center">
+DC/DC/DC
+</div></td>
+</tr>
+<tr>
+<td><div data-align="center">
+标准型
+</div></td>
+<td colspan="3"><div data-align="center">
+75kB
+</div></td>
+<td colspan="3"><div data-align="center">
+100kB
+</div></td>
+<td colspan="3"><div data-align="center">
+150kB
+</div></td>
+<td colspan="3"><div data-align="center">
+200kB
+</div></td>
+<td width="100"><div data-align="center">
+250kB
+</div></td>
+</tr>
+<tr>
+<td><div data-align="center">
+<strong>故障安全型</strong>
+</div></td>
+<td colspan="3"><div data-align="center">
+无
+</div>
+<div data-align="center">
+&#10;</div>
+<div data-align="center">
+&#10;</div></td>
+<td><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+150kB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+200kB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+250kB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td><div data-align="center">
+无
+</div></td>
+</tr>
+<tr>
+<td rowspan="2" width="100">装载存储器</td>
+<td><div data-align="center">
+标准型
+</div></td>
+<td colspan="3">1MB</td>
+<td colspan="3">2MB</td>
+<td colspan="3">4MB</td>
+<td colspan="3">4MB</td>
+<td>4MB</td>
+</tr>
+<tr>
+<td width="100"><div data-align="center">
+<strong>故障安全型</strong>
+</div></td>
+<td colspan="3"><div data-align="center">
+无
+</div>
+<div data-align="center">
+&#10;</div>
+<div data-align="center">
+&#10;</div></td>
+<td width="100"><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+2MB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td width="100"><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+4MB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td width="100"><div data-align="center">
+无
+</div></td>
+<td colspan="2"><div data-align="center">
+4MB
+</div>
+<div data-align="center">
+&#10;</div></td>
+<td width="100"><div data-align="center">
+无
+</div></td>
+</tr>
+<tr>
+<td width="100">保持性存储器</td>
+<td><div data-align="center">
+&#10;</div></td>
+<td colspan="13">14kB</td>
+</tr>
+</tbody>
+</table>
+
+其他技术参数可参见"[S7-1200 参数汇总](./S7-1200_New_Para.md)"。

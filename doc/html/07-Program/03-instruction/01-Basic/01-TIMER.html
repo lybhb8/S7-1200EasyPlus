@@ -1,0 +1,478 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S7-1200 定时器 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="S7-1200 计数器" href="02-COUNTER.html" />
+    <link rel="prev" title="沿指令" href="07-Edge.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程指令</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">基本指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-Extend/index.html">扩展指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03-Address/index.html">间接寻址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04-Example/index.html">指令例程</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../05-SCL/index.html">SCL 编程语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html">CEM 编程语言简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html#id2">CEM编程示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="s7-1200">
+<h1>S7-1200 定时器<a class="headerlink" href="#s7-1200" title="此标题的永久链接">¶</a></h1>
+<p>S7-1200的定时器为IEC定时器，用户程序中可以使用的定时器数量仅仅受CPU的存储器容量限制。<br />
+使用定时器需要使用定时器相关的背景数据块或者数据类型为IEC_TIMER（或TP_TIME、TON_TIME、TOF_TIME、TONR_TIME）的DB块变量，不同的上述变量代表着不同的定时器。</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>S7-1200的IEC定时器没有定时器号（即没有T0、T37这种带定时器号的定时器）。</p>
+</div>
+<p>S7-1200包含四种定时器：</p>
+<ul class="simple">
+<li><p>生成脉冲定时器（TP）</p></li>
+<li><p>接通延时定时器（TON）</p></li>
+<li><p>关断延时定时器（TOF）</p></li>
+<li><p>时间累加器（TONR）</p></li>
+</ul>
+<p>此外还包含复位定时器（RT）和加载持续时间（PT）这两个指令。</p>
+<p>指令位置参见图1，定时器引脚参考表1，定时器使用及时序图参考表2。
+这四种定时器又都有功能框和线圈型两种，区别参见常见问题3。</p>
+<p><a class="reference internal" href="../../../_images/01-01.png"><img alt="" src="../../../_images/01-01.png" style="width: 411px; height: 387px;" /></a></p>
+<p>图1 指令位置</p>
+<p>表1定时器引脚汇总</p>
+<p>输入变量：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>名称</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>数据类型</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>IN</p></td>
+<td><p>输入位</p></td>
+<td><p>BOOL</p></td>
+<td><p>TP、TON、TONR：0=禁用定时器，1=启用定时器  <br> TOF：0=启用定时器，1=禁用定时器</p></td>
+</tr>
+<tr class="row-odd"><td><p>PT</p></td>
+<td><p>设定的时间输入</p></td>
+<td><p>TIME</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>R</p></td>
+<td><p>复位</p></td>
+<td><p>BOOL</p></td>
+<td><p>仅出现在TONR指令</p></td>
+</tr>
+</tbody>
+</table>
+<p>输出的变量：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>名称</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>数据类型</p></th>
+<th class="head"><p>备注</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>Q</p></td>
+<td><p>输出位</p></td>
+<td><p>BOOL</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>ET</p></td>
+<td><p>已计时的时间</p></td>
+<td><p>TIME</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>表2定时器使用及时序图</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>指令</p></th>
+<th class="head"><p>说明</p></th>
+<th class="head"><p>时序图</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>生成脉冲 <br> LAD： <br> <a class="reference internal" href="../../../_images/01-011.png"><img alt="" src="../../../_images/01-011.png" style="width: 118px; height: 139px;" /></a> <br> 或-( TP )-<br>SCL：TP</p></td>
+<td><p><br>   IN从“0”变为“1”，定时器启动，Q立即输出“1”；<br>   <br>    当ET&lt;PT时，IN的改变不影响Q的输出和ET的计时； <br>  <br>   当ET=PT时，ET立即停止计时，Q立即输出“0”；此时如果IN为“0”，则ET回到0；如果IN为“1”，则ET保持；<br></p></td>
+<td><p><br>  <a class="reference internal" href="../../../_images/01-02.png"><img alt="" src="../../../_images/01-02.png" style="width: 275px; height: 148px;" /></a>  <br></p></td>
+</tr>
+<tr class="row-odd"><td><p>接通延时 <br>LAD： <br> <a class="reference internal" href="../../../_images/01-03.png"><img alt="" src="../../../_images/01-03.png" style="width: 118px; height: 139px;" /></a>  <br>或-( TON )-<br>SCL：TON</p></td>
+<td><p><br>     IN从“0”变为“1”，定时器启动； <br>    <br>   当ET=PT时，Q立即输出“1”，ET立即停止计时并保持； <br>  <br>    在任意时刻，只要IN变为“0”，ET立即停止计时并回到0，Q输出“0”；<br></p></td>
+<td><p><br> <a class="reference internal" href="../../../_images/01-04.png"><img alt="" src="../../../_images/01-04.png" style="width: 261px; height: 158px;" /></a>  <br></p></td>
+</tr>
+<tr class="row-even"><td><p>关断延时 <br>LAD： <br>  <a class="reference internal" href="../../../_images/01-05.png"><img alt="" src="../../../_images/01-05.png" style="width: 118px; height: 139px;" /></a>   <br>或-( TOF )-<br>SCL：TOF</p></td>
+<td><p><br>      <br>        只要IN为“1”时，Q即输出为“1”。 <br>     <br>        IN从“1”变为“0”，定时器启动； <br>   <br>        当ET=PT时，Q立即输出“0”，ET立即停止计时并保持。 <br>        <br>        在任意时刻，只要IN变为“1”，ET立即停止计时并回到0。 <br></p></td>
+<td><p><br>  <a class="reference internal" href="../../../_images/01-06.png"><img alt="" src="../../../_images/01-06.png" style="width: 261px; height: 160px;" /></a>   <br></p></td>
+</tr>
+<tr class="row-odd"><td><p>时间累加器 <br>LAD： <br> <a class="reference internal" href="../../../_images/01-07.png"><img alt="" src="../../../_images/01-07.png" style="width: 118px; height: 139px;" /></a> <br>或-( TONR )-<br>SCL：TONR</p></td>
+<td><p><br>      <br>        只要IN为“0”时，Q即输出为“0”；<br>   <br>        IN从“0”变为“1”，定时器启动； <br>    <br>    当ET&lt;PT时，IN为“1”时，则ET保持计时，IN为“0”时，ET立即停止计时并保持； <br>       <br>        当ET=PT时，Q立即输出“1”，ET立即停止计时并保持，直到IN变为“0”，ET回到0。<br>       <br>        在任意时刻，只要R为“1”时，Q输出“0”，ET立即停止计时并回到0。<br>    <br>        R从“1”变为“0”时，如果此时IN为“1”，定时器启动。 <br></p></td>
+<td><p><br> <a class="reference internal" href="../../../_images/01-08.png"><img alt="" src="../../../_images/01-08.png" style="width: 250px; height: 195px;" /></a>   <br></p></td>
+</tr>
+<tr class="row-even"><td><p>复位定时器 <br>LAD：-(RT)-<br>SCL：RESET_TIMER</p></td>
+<td><p><br>    指令前的运算结果为&quot;1&quot;时使得指定定时器的ET立即停止计时并回到0。<br>    <br>        TP指令：激活RT至取消激活RT过程中，Q和IN保持一致。取消激活RT时，如果IN为&quot;1&quot;， ET则立即开始计时。<br>      <br>        TON指令：当ET=PT时激活RT，Q立即输出&quot;0&quot;。取消激活RT时，如果IN为&quot;1&quot;， ET则立即开始计时。<br>      <br>        TOF指令：激活RT至取消激活RT过程中，Q和IN保持一致。<br>       <br>        TONR指令：R与RT或的结果取代之前的R。<br></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>加载持续时间 <br> LAD：-(PT)-<br>SCL：PRESET_TIMER</p></td>
+<td><p><br>    指令前的运算结果为&quot;1&quot;时使得指定定时器的新设定值立即生效。（在定时器计时过程中，实时修改方框定时器的PT引脚的值在此次计时中不能生效）<br>   <br></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<section id="id1">
+<h2>S7-1200 定时器创建<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>S7-1200定时器创建有以下几种方法：</p>
+<section id="id2">
+<h3>1.功能框指令直接拖入块中，自动生成定时器的背景数据块，该块位于&quot;系统块&gt;程序资源&quot;中<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h3>
+<p>参见图2</p>
+<p><a class="reference internal" href="../../../_images/01-021.png"><img alt="" src="../../../_images/01-021.png" style="width: 717px; height: 403px;" /></a></p>
+<p>图2 自动生成定时器的背景数据块</p>
+</section>
+<section id="fb">
+<h3>2. 功能框指令直接拖入FB块中，生成多重背景<a class="headerlink" href="#fb" title="此标题的永久链接">¶</a></h3>
+<p>参见图3</p>
+<p><a class="reference internal" href="../../../_images/01-031.png"><img alt="" src="../../../_images/01-031.png" style="width: 962px; height: 517px;" /></a></p>
+<p>图3 多重背景</p>
+</section>
+<section id="fbfc-tiav14">
+<h3>3.功能框指令直接拖入FB、FC块中，生成参数实例，从TIA博途V14开始<a class="headerlink" href="#fbfc-tiav14" title="此标题的永久链接">¶</a></h3>
+<p>参见图4</p>
+<p><a class="reference internal" href="../../../_images/01-041.png"><img alt="" src="../../../_images/01-041.png" style="width: 805px; height: 498px;" /></a></p>
+<p>图4 参数实例</p>
+</section>
+<section id="dbfbfcfbinoutiec-timertp-timeton-timetof-timetonr-time-tiav11">
+<h3>4.在DB块、FB的静态变量、FC和FB的INOUT变量中新建IEC_TIMER、TP_TIME、TON_TIME、TOF_TIME、TONR_TIME（后面四个从TIA博途V11开始）类型变量，<a class="headerlink" href="#dbfbfcfbinoutiec-timertp-timeton-timetof-timetonr-time-tiav11" title="此标题的永久链接">¶</a></h3>
+<p>在程序中将功能框定时器指令拖入块中时，在弹出的&quot;调用选项&quot;页面点击&quot;取消&quot;按钮，之后将该建好的变量填入指定位置。对于线圈型指令，这是首选方法。</p>
+<p>（1）
+DB块中新建IEC_TIMER等类型变量（LAD/FBD），如果是IEC_TIMER等类型变量的数组，S7-1200从V2.0版本开始支持，参见图5～图7。</p>
+<p><a class="reference internal" href="../../../_images/01-051.png"><img alt="" src="../../../_images/01-051.png" style="width: 525px; height: 134px;" /></a></p>
+<p>图5 DB块中的定义</p>
+<p><a class="reference internal" href="../../../_images/01-061.png"><img alt="" src="../../../_images/01-061.png" style="width: 564px; height: 171px;" /></a></p>
+<p>图6 功能框定时器使用</p>
+<p><a class="reference internal" href="../../../_images/01-071.png"><img alt="" src="../../../_images/01-071.png" style="width: 570px; height: 235px;" /></a></p>
+<p>图7 线圈型定时器使用</p>
+<p>（2）
+FB的静态变量中新建IEC_TIMER等类型变量（LAD/FBD），如果是IEC_TIMER等类型变量的数组，S7-1200从V2.0版本开始支持，参见图8。</p>
+<p><a class="reference internal" href="../../../_images/01-081.png"><img alt="" src="../../../_images/01-081.png" style="width: 560px; height: 359px;" /></a></p>
+<p>图8 静态变量中定义</p>
+<p>（3）
+FC和FB的INOUT变量中新建IEC_TIMER等类型变量（LAD/FBD），如果是IEC_TIMER等类型变量的数组，S7-1200从V2.0版本开始支持，从TIA博途V14开始支持IEC_TIMER等类型变量的变长数组（ARRAY[#]），参见图9。</p>
+<p><a class="reference internal" href="../../../_images/01-09.png"><img alt="" src="../../../_images/01-09.png" style="width: 559px; height: 361px;" /></a></p>
+<p>图9 INOUT中定义</p>
+<p>（4） 以上三种方法的SCL版本，从TIA博途V14开始支持，参见图10。</p>
+<p><a class="reference internal" href="../../../_images/01-10.png"><img alt="" src="../../../_images/01-10.png" style="width: 763px; height: 223px;" /></a></p>
+<p>图10 SCL中使用</p>
+<p>从以上4个示例可以看出，IEC_TIMER、TP_TIME、TON_TIME、TOF_TIME、TONR_TIME五种数据类型没有本质的区别，可以互换使用，为使得程序明确，建议只使用定时器对应名字的数据类型。</p>
+</section>
+<section id="db-iec-timer">
+<h3>5.在插入DB时，选择IEC_TIMER类型的数据块，将该数据块填在指令上方<a class="headerlink" href="#db-iec-timer" title="此标题的永久链接">¶</a></h3>
+<p>此种方法生成的数据块等同于第一种的背景数据块，位于&quot;系统块&gt;程序资源&quot;中，从TIA博途V11开始，线圈型指令同样适用，参见图11。</p>
+<p><a class="reference internal" href="../../../_images/01-11.png"><img alt="" src="../../../_images/01-11.png" style="width: 689px; height: 600px;" /></a></p>
+<p>图11 新建IEC_TIMER类型DB</p>
+</section>
+</section>
+<section id="id3">
+<h2>定时器常见问题<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p><img alt="" src="../../../_images/FAQ.png" /> 1.为什么定时器不计时?</p>
+</div>
+<p>答：可能原因如下：</p>
+<ul class="simple">
+<li><p>1）定时器的输入位需要有电平信号的跳变，定时器才会开始计时。如果保持不变的信号作为输入位是不会开始计时的。TP、TON、TONR需要IN从&quot;0&quot;变为&quot;1&quot;启动，TOF需要IN从&quot;1&quot;变为&quot;0&quot;启动。</p></li>
+<li><p>（2）定时器的背景数据块重复使用。</p></li>
+<li><p>（3）只有在定时器功能框的Q点或ET连接变量，或者在程序中使用背景DB（或IEC_TIMER类型的变量）中的Q点或者ET，定时器才会开始计时，并且更新定时时间。参考表3。</p></li>
+</ul>
+<p>表3 定时器的使用</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>示例</p></th>
+<th class="head"><p>计时与否</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-091.png"><img alt="" src="../../../_images/01-091.png" style="width: 556px; height: 125px;" /></a></p></td>
+<td><p><strong>不计时</strong> <br> <br> 原因:   定时器功能框的Q或ET既没有连接变量，也没有使用背景数据块的Q或者ET</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/01-101.png"><img alt="" src="../../../_images/01-101.png" style="width: 556px; height: 90px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因： 定时器功能框的Q连接变量</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-111.png"><img alt="" src="../../../_images/01-111.png" style="width: 556px; height: 125px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因：定时器功能框的ET连接变量</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/01-12.png"><img alt="" src="../../../_images/01-12.png" style="width: 556px; height: 144px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因：使用背景数据块的Q</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-13.png"><img alt="" src="../../../_images/01-13.png" style="width: 556px; height: 200px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因：使用背景数据块的Q</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/01-14.png"><img alt="" src="../../../_images/01-14.png" style="width: 556px; height: 239px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因：使用背景数据块的ET</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-15.png"><img alt="" src="../../../_images/01-15.png" style="width: 556px; height: 185px;" /></a></p></td>
+<td><p><strong>计时</strong> <br> <br> 原因：使用背景数据块的ET</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p><img alt="" src="../../../_images/FAQ.png" />  2. 如何编程自复位定时器并产生脉冲?</p>
+</div>
+<p>答：正确答案参考表4，同时附上2种常见错误编程方式。
+原因：<u> <strong>S7-1200的定时器的时间更新发生在定时器功能框的Q点或ET连接变量时，或者在程序中使用背景DB（或IEC_TIMER类型的变量）中的Q点或者ET时。</strong> </u> 即如果程序中多次使用同一背景DB的Q点，或者既使用定时器功能框的Q点或ET连接变量，又使用背景DB的Q点，以上两种情况都会造成定时器在一个扫描周期内的多次更新，可能造成定时器不能正常使用的情况。</p>
+<p>表4 自复位定时器示例</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>示例</p></th>
+<th class="head"><p>正确与否</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-17.png"><img alt="" src="../../../_images/01-17.png" style="width: 556px; height: 108px;" /></a></p></td>
+<td><p>正确</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/01-18.png"><img alt="" src="../../../_images/01-18.png" style="width: 556px; height: 183px;" /></a></p></td>
+<td><p>错误  <br> <br> 多次使用同一背景DB的Q点</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/01-19.png"><img alt="" src="../../../_images/01-19.png" style="width: 556px; height: 106px;" /></a></p></td>
+<td><p>错误  <br> <br>     同时使用背景DB的Q点以及定时器功能框的Q点连接变量</p></td>
+</tr>
+</tbody>
+</table>
+<p>正确方法的流程，将程序根据指令分为两部分，如图12所示：</p>
+<p><a class="reference internal" href="../../../_images/01-121.png"><img alt="" src="../../../_images/01-121.png" style="width: 563px; height: 227px;" /></a></p>
+<p>图12 分解正确指令</p>
+<p>阶段1.初始&quot;DB2&quot;.脉冲=False，于是&quot;DB2&quot;.脉冲取反为True，触发计时器开始计时，输出的&quot;DB2&quot;.脉冲=False，状态不变；定时时间不到，则始终在阶段1；</p>
+<p>阶段2.当定时时间到发生在①所处的位置，在TON处定时器更新，Q输出True，因此输出的&quot;DB2&quot;.脉冲=True，等到下周期时&quot;DB2&quot;.脉冲取反为False，导致输出的&quot;DB2&quot;.脉冲=False，等再到下周期时就回到了阶段1；</p>
+<p>阶段3.当定时时间到发生在②所处的位置，不影响定时器的更新，需要到下一周期才会改变输出，就回到了阶段2。</p>
+<p>从上可知，定时器实现了自复位，并且&quot;DB2&quot;.脉冲=True只保持一个周期，形成了脉冲。</p>
+<p>以第一个错误方法解释一下为什么这种方法不能实现自复位定时器并产生脉冲，如图13所示，将程序根据指令分为三部分：</p>
+<p><a class="reference internal" href="../../../_images/01-131.png"><img alt="" src="../../../_images/01-131.png" style="width: 571px; height: 319px;" /></a></p>
+<p>图13 分解错误指令</p>
+<p>阶段1.初始第一行&quot;IEC_Timer_0_DB&quot;.Q=False，触发计时器开始计时，第二行，当定时时间不到，“IEC_Timer_0_DB”.Q=False保持不变，输出的&quot;DB2&quot;.脉冲=False；定时时间不到，则始终在阶段1；</p>
+<p>阶段2.当定时时间到发生在①所处的位置，在第一行的&quot;IEC_Timer_0_DB&quot;.Q处定时器更新，更新后，“IEC_Timer_0_DB”.Q=True，取反为False，此时作为TON的输入，使得定时器复位，第二行的&quot;IEC_Timer_0_DB&quot;.Q=False，输出的&quot;DB2&quot;.脉冲=False，到下周期时就回到了阶段1；</p>
+<p>阶段3.当定时时间到发生在②所处的位置，在第二行的&quot;IEC_Timer_0_DB&quot;.Q处定时器更新，更新后，“IEC_Timer_0_DB”.Q=True，输出的&quot;DB2&quot;.脉冲=True，等到下周期时，“IEC_Timer_0_DB”.Q=True，取反为False，此时作为TON的输入，使得定时器复位，第二行的&quot;IEC_Timer_0_DB&quot;.Q=False，输出的&quot;DB2&quot;.脉冲=False，等再到下周期时就回到了阶段1；</p>
+<p>阶段4.当定时时间到发生在③所处的位置，不影响定时器的更新，需要到下一周期才会改变输出，就回到了阶段2。</p>
+<p>从上可知无论定时器时间到发生在哪个点，定时器都可以实现自复位，但是只有当定时时间到发生在②所处的位置时，“DB2”.脉冲=True只保持一个周期，形成了脉冲，而在①和③时&quot;DB2&quot;.脉冲始终为False无法形成脉冲。在正常程序中②的执行时间在整个扫描周期中占比很小，因此只有很低的概率可以实现脉冲。所以不能使用此种方法，第二个错误方法与之类似。</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p><img alt="" src="../../../_images/FAQ.png" /> 3. 如何使用定时器实现精确定时?</p>
+</div>
+<p>答：不能做到。</p>
+<p>举例来说，定时1s的接通延时定时器，当程序扫描到 <u> <strong>定时器功能框的Q点或ET时</strong> </u> 或者扫描到 <u> <strong>背景DB（或IEC_TIMER类型的变量）中的Q点或者ET时</strong> </u>，如果时间为997ms，只会继续定时等下一次扫描，而下一次扫描到可能就是1003ms，此时定时器接通。也就是说几乎不可能正好1s接通，如果再配合计数器实现更长时间的定时，误差只会越来越大。</p>
+<p>所以精确定时还是推荐使用循环中断（OB30）配合计数器来实现。</p>
+<div class="admonition hint">
+<p class="admonition-title">提示</p>
+<p><img alt="" src="../../../_images/FAQ.png" /> 4. 定时器指令中，功能框和线圈型的区别?</p>
+</div>
+<p>答：原理上是完全一样的，细微区别：</p>
+<p>（1）功能框定时器上可以定义Q点或ET，在程序中可以不必出现背景DB（或IEC_TIMER类型的变量）中的Q点或者ET；而线圈型定时器必须使用背景DB（或IEC_TIMER类型的变量）中的Q点或者ET；</p>
+<p>（2）功能框定时器在使用时可以自动提示生成背景块，或者选择不生成；而线圈型定时器只能通过手动方式建立背景块；</p>
+<p>（3）线圈型定时器如果出现在网络段中间时不影响RLO的变化，如图14所示，“DB46”.Static_1和I1.0同步变化。</p>
+<p><a class="reference internal" href="../../../_images/01-141.png"><img alt="" src="../../../_images/01-141.png" style="width: 556px; height: 185px;" /></a></p>
+<p>图14 线圈型定时器示例</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">S7-1200 定时器</a><ul>
+<li><a class="reference internal" href="#id1">S7-1200 定时器创建</a><ul>
+<li><a class="reference internal" href="#id2">1.功能框指令直接拖入块中，自动生成定时器的背景数据块，该块位于&quot;系统块&gt;程序资源&quot;中</a></li>
+<li><a class="reference internal" href="#fb">2. 功能框指令直接拖入FB块中，生成多重背景</a></li>
+<li><a class="reference internal" href="#fbfc-tiav14">3.功能框指令直接拖入FB、FC块中，生成参数实例，从TIA博途V14开始</a></li>
+<li><a class="reference internal" href="#dbfbfcfbinoutiec-timertp-timeton-timetof-timetonr-time-tiav11">4.在DB块、FB的静态变量、FC和FB的INOUT变量中新建IEC_TIMER、TP_TIME、TON_TIME、TOF_TIME、TONR_TIME（后面四个从TIA博途V11开始）类型变量，</a></li>
+<li><a class="reference internal" href="#db-iec-timer">5.在插入DB时，选择IEC_TIMER类型的数据块，将该数据块填在指令上方</a></li>
+</ul>
+</li>
+<li><a class="reference internal" href="#id3">定时器常见问题</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="07-Edge.html">
+                    <span class="icon">&lt;</span><span>沿指令</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="02-COUNTER.html"><span>S7-1200 计数器</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

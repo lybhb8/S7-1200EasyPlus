@@ -1,0 +1,17 @@
+{
+  "name": "sphinx",
+  "scripts": {
+    "test": "npx jasmine-browser-runner runSpecs --config=tests/js/jasmine-browser.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sphinx-doc/sphinx.git"
+  },
+  "bugs": {
+    "url": "https://github.com/sphinx-doc/sphinx/issues"
+  },
+  "devDependencies": {
+    "jasmine-browser-runner": "^2.5.0",
+    "jasmine-core": "^5.2.0"
+  }
+}

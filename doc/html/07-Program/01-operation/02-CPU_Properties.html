@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>CPU 参数属性配置 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="基本组态常见问题" href="03-ConfigFAQ.html" />
+    <link rel="prev" title="项目的新建" href="01-New_Project.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage"><img src="../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2 current"><a class="reference internal" href="index.html">TIA Portal 组态软件操作</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../install.html">TIA Portal STEP 7 V18 安装</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-New_Project.html">项目的新建</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">CPU 参数属性配置</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-ConfigFAQ.html">基本组态常见问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-Download.html">项目的下载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-Download.html#id2">下载常见问题</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html">S7-1200 下载但不重新初始化</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id5">设置块扩展的预留存储器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id9">激活存储器预留区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id14">扩展块接口或数据块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id18">禁用存储器预留区域</a></li>
+<li class="toctree-l3"><a class="reference internal" href="05-download_run.html#id24">重置预留存储器</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-detect_hardware.html">硬件检测</a></li>
+<li class="toctree-l3"><a class="reference internal" href="07-upload_program.html">CPU程序的上载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="08-upload_station.html">站点的上载</a></li>
+<li class="toctree-l3"><a class="reference internal" href="09-upload_compatibility.html">TIA Portal 版本和 CPU 中程序版本在上传时的兼容性</a></li>
+<li class="toctree-l3"><a class="reference internal" href="10-update.html">项目升级</a></li>
+<li class="toctree-l3"><a class="reference internal" href="11-Program_Update.html">更新程序</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="cpu">
+<h1>CPU 参数属性配置<a class="headerlink" href="#cpu" title="此标题的永久链接">¶</a></h1>
+<p>通过参数分配可以设置所有组件的属性，这些参数将装载到 CPU 中，并在 CPU
+启动时传送给相应的模块。</p>
+<p>在项目中添加 CPU 后，通过打开设备视图，选中机架上的
+CPU，下方的巡视窗口的 CPU 属性中可以配置 CPU 的各种参数，CPU
+的通信接口，本体的输入输出，启动特性，保护等设置。下面以 CPU 1215C V4.6
+为例介绍 CPU 的参数设置。如图 1 所示。</p>
+<p><img alt="" src="../../_images/2-1.png" /></p>
+<p>图 1 CPU 属性</p>
+<ul class="simple">
+<li><p>①左键双击 <strong>设备视图</strong>，打开项目视图</p></li>
+<li><p>②左键单击 CPU</p></li>
+<li><p>③左键单击 <strong>属性</strong> 标签</p></li>
+<li><p>④左键单击 <strong>常规</strong> 标签，下方会显示出 CPU 的所有可以设置的参数</p></li>
+</ul>
+<section id="id1">
+<h2>常规<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>单击属性视图中的 <strong>常规</strong> 选项，进行下列参数设置：</p>
+<ul class="simple">
+<li><p><strong>项目信息</strong>：可以编辑名称，作者及注释等信息。</p></li>
+<li><p><strong>目录信息</strong>：查看 CPU 的订货号，组态的固件版本及特性描述。</p></li>
+<li><p><strong>标识与维护</strong>：V4.0开始支持。用于标识设备的名称，位置等信息， 可以使用 <strong>Get_IM_Data</strong> 指令读取信息进行识别。</p></li>
+<li><p><strong>校验和</strong>：V4.2 开始支持。在编译过程中，系统将通过唯一的校验和来自动识别PLC 程序。基于该校验和，可快速识别用户程序并判断离线在线 PLC程序是否相同。通过指令 <strong>GetChecksum</strong> 可以读取在线程序校验和，<strong>详细介绍请参见<a class="reference internal" href="../03-instruction/02-Extend/03-Others/02-GetChecksum.html"><span class="std std-doc">链接</span></a></strong> ，如图2 所示：</p></li>
+</ul>
+<p><img alt="" src="../../_images/2-2.png" /></p>
+<p>图 2 标识与维护及校验和</p>
+</section>
+<section id="profinet">
+<h2>PROFINET 接口<a class="headerlink" href="#profinet" title="此标题的永久链接">¶</a></h2>
+<p>单击 <strong>PROFINET 接口 [X1]</strong>，配置以下参数：</p>
+<p><strong>常规</strong>：标识 PROFINET 接口 的名称，作者和注释</p>
+<p><strong>以太网地址</strong>：如图 3 所示。</p>
+<p><img alt="" src="../../_images/2-3.png" /></p>
+<p>图 3 配置以太网地址</p>
+<ul class="simple">
+<li><p>① <strong>接口连接到</strong>：可以从下拉菜单中选择本接口连接到的子网，也可以添加新的网络；</p></li>
+<li><p>② <strong>IP 协议</strong>：默认为 <strong>在项目中设置 IP 地址</strong>，此时在项目组态中设置 IP地址，子网掩码等。如果使用路由器，则激活 <strong>使用路由器</strong>，并设置路由器地址。也可以选择 <strong>在设备中直接设定IP 地址</strong>，则可以在程序中使用指令 <strong>T_CONFIG</strong>或者通过在线访问、Automation
+Tool、HMI 等方式分配地址，T_CONFIG 修改 IP，<strong>详细介绍请参见</strong><a class="reference internal" href="../../08-Function/11-T_Config.html"><span class="std std-doc"><strong>使用T-CONFIG 指令修改 S7-1200 的 IP地址和设备名称</strong></span></a>。</p></li>
+<li><p>③ <strong>PROFINET</strong>：</p>
+<ul>
+<li><p>激活 <strong>在设备中直接设定PROFINET设备名称</strong> ，则表示不在硬件组态中组态设备名称，而是在程序中使用指 <strong>T_CONFIG</strong> 或者通过在线访问、Automation Tool、HMI 等方式分配设备名。</p></li>
+<li><p>激活 <strong>自动生成 PROFINET 设备名称</strong>，TIA Portal 根据接口名称自动生成PROFINET 设备名称。</p></li>
+<li><p><strong>转换的名称</strong>，是指此 PROFINET 设备名称转换为符合 DNS惯例的名称，用户不能修改。</p></li>
+<li><p><strong>设备编号</strong>，是指 PROFINET IO设备的编号。在发生故障时可以通过编程读取该编号。对于 IO 控制器默认为 0，无法修改。</p></li>
+<li><p><strong>时间同步</strong>：可以激活 <strong>通过 NTP 服务器启动同步时间</strong>。NTP（Network Time Protocol）即网络时间协议，可用于同步网络中系统时钟的一种通用机制。可以实现跨子网的时间同步，精度则取决于所使用的NTP 服务器和网络路径等特性。在 NTP 时间同步模式下，CPU的接口按设定的 <strong>更新间隔</strong>时间（单位为秒）从 NTP服务器定时获取时钟同步，时间间隔的取值范围在 10秒到一天之间，这里最多可以添加 4 个 NTP 服务器。</p></li>
+<li><p><strong>CPU 与该设备中的模块进行数据同步</strong>：是指同步 CM/CP 的时间和 CPU 的时间。</p></li>
+</ul>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>建议在 CM/CP 和 CPU中，只对一个模块进行时间同步，以便使站内的时间保持一致。详细介绍请参见 <a class="reference internal" href="../../08-Function/24-TimeSync/01-NTP_PLC.html"><span class="std std-doc">S7-1200时间同步</span></a>。</p>
+</div>
+<p><strong>操作模式</strong>：V4.0 开始可以设置是否是 <strong>IO 设备</strong>。如果该 CPU 作为智能设备，则激活 <strong>IO设备</strong>，并在 <strong>已分配的 IO 控制器中</strong>， 选择该 IO 设备的 IO 控制器（如果 IO控制器不在同一项目中，则选择 <strong>未分配</strong>）。并根据需要选择是否激活 <strong>PN接口的参数由上位 IO控制器进行分配</strong> 和 <strong>优先启用</strong> 等参数，以及设置智能设备的通信传输区等。</p>
+<p><strong>详细介绍请参见</strong><a class="reference download internal" download="" href="../../_downloads/e69beaa11c7677a162dc1bfb701d357f/01-S7-1200.htm"><span class="xref download myst"><strong>S7-1200 与 S7-1200/S7-1500 Profinet IO通信</strong></span></a>。</p>
+<p><strong>高级选项</strong>：可以对 <strong>接口选项</strong>，<strong>介质冗余</strong>，<strong>实时设定</strong> 和 <strong>端口</strong> 进行设置。用于设置 Profinet IO的一些设置，例如发送时钟，不带可更换介质时支持设备更换，MRP环网，端口的设置等。</p>
+<p><strong>Web 服务器访问</strong>：激活 <strong>启用使用该接口访问 Web 服务器</strong>，则可以通过该接口访问集成在 CPU内部的 Web 服务器。</p>
+</section>
+<section id="id2">
+<h2>数字量输入输出<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p><strong>常规</strong>：单击数字量输入/输出的 <strong>常规</strong> 选项可以输入项目信息：</p>
+<ul class="simple">
+<li><p><strong>名称</strong>：定义更改组件的名称</p></li>
+<li><p><strong>注释</strong>：说明模块或设备的用途</p></li>
+</ul>
+<p><strong>数字量输入</strong>：以通道 0 的组态为例进行说明，如图 4 所示。</p>
+<p><img alt="" src="../../_images/2-4.png" /></p>
+<p>图 4 配置数字量输入通道</p>
+<ul class="simple">
+<li><p>① <strong>通道地址</strong>：输入通道的地址，首地址在 <strong>I/O 地址</strong> 项中设置；</p></li>
+<li><p>② <strong>输入滤波器</strong>：为了抑制寄生干扰，可以设置一个延迟时间，即在这个时间之内的干扰信号都可以得到有效抑制，被系统自动滤除掉，默认的输入滤波时间为6.4 ms；</p></li>
+<li><p>③ <strong>启用上升沿或下降沿检测</strong>：可为每个数字量输入启用上升沿和下降沿检测，在检测到上升沿或下降沿时触发过程事件。</p>
+<ul>
+<li><p><strong>事件名称</strong>：定义该事件名称</p></li>
+<li><p><strong>硬件中断</strong>：当该事件到来时，系统会自动调用所组态的硬件中断组织块一次。如果没有已定义好的硬件中断组织块，可以点击后面的省略按钮并新增硬件中断组织块连接该事件。</p></li>
+</ul>
+</li>
+<li><p>④ <strong>启用脉冲捕捉</strong>：根据 CPU的不同，可激活各个输入的脉冲捕捉。激活脉冲捕捉后，即使脉冲沿比程序扫描循环时间短，也能将其检测出来。</p></li>
+</ul>
+<p><strong>数字量输出</strong>：设置如图 5 所示：</p>
+<p><img alt="" src="../../_images/2-5.png" /></p>
+<p>图 5 配置数字量输出通道</p>
+<ul class="simple">
+<li><p>① <strong>对 CPU STOP 模式的响应</strong>：设置数字量输出对 CPU 从运行状态切换到 STOP状态的响应，可以设置为保留最后的有效值或者使用替代值；</p></li>
+<li><p>② <strong>通道地址</strong>：输出通道的地址，首地址在 <strong>I/O 地址</strong> 项中设置；</p></li>
+<li><p>③ <strong>从 RUN 模式切换到 STOP 模式时，替代值1</strong> ：如果在数字量输出设置中，选择 <strong>使用替代值</strong>，则此处可以勾选，表示从运行切换到停止状态后，输出使用 <strong>替代值1</strong> ，如果不勾选表示输出使用 <strong>替代值0</strong> 。如果选择了 <strong>保持上一个值</strong> 则此处为灰色不能勾选。</p></li>
+</ul>
+<p><strong>I/O 地址</strong> ：数字量地址设置如图 6 所示。</p>
+<p><img alt="" src="../../_images/2-6.png" /></p>
+<p>图 6 数字量输入输出地址设置</p>
+<ul class="simple">
+<li><p><strong>输入地址</strong>：</p>
+<ul>
+<li><p>① <strong>起始地址</strong>：模块输入的起始地址；</p></li>
+<li><p>② <strong>结束地址</strong>：系统根据起始地址和模块的 IO数量自动计算并生成结束地址；</p></li>
+<li><p>③ <strong>组织块</strong>：可将过程映像区关联到一个组织块，当启用该组织块时，系统将自动更新所分配的过程映像分区；</p></li>
+<li><p>④ <strong>过程映像</strong>：选择过程映像分区。</p></li>
+<li><p><strong>自动更新</strong> ：在每个程序循环内自动更新I/O过程映像（默认）。</p></li>
+<li><p><strong>无</strong>：无过程映像，只能通过立即指令对此I/O进行读写。</p></li>
+<li><p><strong>PIPx</strong>：可以关联到③中所选的组织块。同一个映像分区只能关联一个组织块，一个组织块只能更新一个映像分区。系统在执行分配的OB时更新此  PIP。如果未分配 OB，则不更新 PIP。</p></li>
+<li><p><strong>PIP OB 伺服</strong>：为了对控制进行优化，将运动控制使用的所有 I/O模块（如，工艺模块，硬限位开关）均指定给过程映像分区 <strong>PIP OB伺服</strong>。这样 I/O 模块即可与工艺对象同时处理。</p></li>
+</ul>
+</li>
+<li><p><strong>输出地址</strong>：设置与输入类似。</p></li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>所有输入输出的地址都在过程映像区之内，如果没有选择组织块和分区，默认情况下过程映像区是自动更新。</p>
+</div>
+</section>
+<section id="id3">
+<h2>模拟量<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p><strong>常规</strong>：单击模拟量输入/输出的 <strong>常规</strong> 选项可以输入项目信息：</p>
+<ul class="simple">
+<li><p><strong>名称</strong>：定义更改组件的名称</p></li>
+<li><p><strong>注释</strong>：说明模块或设备的用途</p></li>
+</ul>
+<p><strong>模拟量输入</strong>:组态如图 7 所示。</p>
+<p><img alt="" src="../../_images/2-7.png" /></p>
+<p>图 7 模拟量输入组态</p>
+<ul class="simple">
+<li><p>① <strong>积分时间</strong>：通过设置积分时间可以抑制指定频率的干扰；</p></li>
+<li><p>② <strong>通道地址</strong>：首地址在模拟量的 <strong>I/O 地址</strong> 中设置；</p></li>
+<li><p>③ <strong>测量类型</strong>：本体上的模拟量输入只能测量电压信号，所以选项为灰，不可设置；</p></li>
+<li><p>④ <strong>电压范围</strong>：测量的电压信号范围为固定的 0～10V；</p></li>
+<li><p>⑤ <strong>滤波</strong>：模拟值滤波可用于减缓测量值变化，提供稳定的模拟信号。模块通过设置滤波等级（无、弱、中、强）计算模拟量平均值来实现平滑化。</p></li>
+<li><p>⑥ <strong>启用溢出诊断</strong>：如果激活 <strong>启用溢出诊断</strong> ，则发生溢出时会生成诊断事件。</p></li>
+</ul>
+<p><strong>模拟量输出</strong> :组态如图 8 所示。</p>
+<p><img alt="" src="../../_images/2-8.png" /></p>
+<p>图 8 模拟量输出组态</p>
+<ul class="simple">
+<li><p>① <strong>对 CPU STOP 模式的响应</strong>：设置模拟量输出对 CPU 从 RUN 模式切换到 STOP模式的响应，可以设置为保留最后的有效值或者使用替代值；</p></li>
+<li><p>② <strong>通道地址</strong>：模拟量输出首地址在模拟量的  <strong>I/O 地址</strong> 中设置；</p></li>
+<li><p>③ <strong>模拟量输出的类型</strong>：本体上的模拟量输出只支持电流信号，所以选项为灰，不可设置；</p></li>
+<li><p>④ <strong>电流范围</strong>：输出的电流信号范围为固定的 0～20mA；</p></li>
+<li><p>⑤ <strong>从 RUN 模式切换到 STOP模式时，通道的替代值</strong>：如果在模拟量输出设置中，选择 <strong>使用替代值</strong>，则此处可以设置替代的输出值，设置值的范围为0.0～20.0mA，表示从运行切换到停止状态后，输出使用设置的替代值。如果选择了 <strong>保持上一个值</strong> 则此处为灰色不能设置；</p></li>
+<li><p>⑥ <strong>启用溢出（上溢）/下溢诊断</strong>：激活溢出诊断，则发生溢出时会生成诊断事件。集成模拟量都是激活的，而扩展模块上的则可以选择是否激活。</p></li>
+</ul>
+<p><strong>I/O 地址</strong>：模拟量 I/O 地址设置与数字量 I/O 地址设置相似。</p>
+</section>
+<section id="id4">
+<h2>高速计数器<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<p>如果要使用高速计数器，则在此处设置中激活 <strong>启用该高速计数器</strong> 以及设置计数类型，工作模式，输入通道等。<strong>详细介绍请参见</strong><a class="reference internal" href="../../10-Technology/01-HSC/01-HSC.html"><span class="std std-doc"><strong>高速计数器</strong></span></a>。</p>
+</section>
+<section id="id5">
+<h2>脉冲发生器<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p>如果要使用高速脉冲输出 PTO/PWM
+功能，则在此处激活 <strong>启用该脉冲发生器</strong>，并设置脉冲参数等。 <strong>详细介绍请参见<a class="reference internal" href="../../10-Technology/03-MC/03-Basic_Config.html"><span class="std std-doc">运动控制功能基本组态</span></a></strong>、<a class="reference internal" href="../../10-Technology/04-PWM/02-Config.html"><span class="std std-doc"><strong>PWM配置</strong></span></a>。</p>
+</section>
+<section id="id6">
+<h2>启动<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p><strong>启动</strong>: 设置如图 9 所示。</p>
+<p><img alt="" src="../../_images/2-9.png" /></p>
+<p>图 9 CPU 启动选项设置</p>
+<p><strong>详细介绍请参见</strong> <a class="reference internal" href="../../08-Function/Startup.html"><span class="std std-doc"><strong>S7-1200启动模式</strong></span></a>。</p>
+</section>
+<section id="id7">
+<h2>循环<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<p><strong>循环</strong> 的设置如图 10 所示。</p>
+<p><img alt="" src="../../_images/2-10.png" /></p>
+<p>图 10 CPU循环时间设置</p>
+<ul class="simple">
+<li><p>① <strong>循环周期监视时间</strong> ：设置程序最大的循环周期时间，范围为 1～6000ms，默认值为 150 ms。超过这个设置时间，CPU 会报故障。超过 2倍的最大循环周期检测时间，无论是否编程时间错误中断 OB80，CPU都会停机。在编程了时间错误中断 OB80 后，当发生循环超时时 CPU将响应触发执行 OB80 的用户程序，程序中可使用指令 <strong>RE_TRIGR</strong> 来重新触发CPU 的循环时间监控，最长可延长到已组态 <strong>循环周期监视时间</strong>  10 倍；</p></li>
+<li><p>② <strong>最小循环时间</strong> ：如果激活了 <strong>启用循环 OB的最小循环时间</strong> ，当实际程序循环时间小于这个时间，操作系统会延时新循环的启动，直到达到了最小循环时间。在此等待时间内，将处理新的事件和操作系统服务。</p></li>
+</ul>
+</section>
+<section id="id8">
+<h2>通信负载<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<p><strong>通信负载</strong> 用于设置 CPU 总处理能力中可用于通信过程的百分比，如图 11所示。 这部分CPU处理能力将始终用于通信，当通信不需要这部分处理能力时，它可用于程序执行。可设置的范围为15～50%，默认值为 20%。占用 <strong>通信负载</strong> 的通信包括：博途软件监控，HMI连接及 PLC 间的 S7 通信等。</p>
+<p><img alt="" src="../../_images/2-11.png" /></p>
+<p>图 11 CPU 通信负载设置</p>
+<div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>如果由通信引起的循环负荷设置百分比过大，则会显著延长 CPU扫描时间，所以要慎重增加该通信负载百分比。</p>
+</div>
+</section>
+<section id="id9">
+<h2>系统和时钟存储器<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
+<ul class="simple">
+<li><p><strong>系统和时钟存储器</strong> :页面可以设置 M存储器的字节给系统和时钟存储器，然后程序逻辑可以引用他们的各个位用于逻辑编程。</p></li>
+<li><p><strong>时钟存储器位</strong>：组态的时钟存储器的每一个位都是不同频率的时钟方波。</p></li>
+</ul>
+<p><strong>详细介绍请参见<a class="reference internal" href="../../08-Function/03-System_Clock_Memory.html"><span class="std std-doc">系统和时钟存储器</span></a></strong>。</p>
+</section>
+<section id="simatic-memory-card">
+<h2>SIMATIC Memory Card<a class="headerlink" href="#simatic-memory-card" title="此标题的永久链接">¶</a></h2>
+<p>V4.5开始支持。可组态存储卡使用寿命的百分比值，超出所组态的使用寿命百分比值时，CPU将生成一个诊断中断和一条诊断缓冲区条目（维护事件）。这样，在 SIMATIC存储卡因到达最大访问次数而不可用之前，用户有充足时间更换存储卡。 如图 12所示。</p>
+<p>如果不使用存储卡则无需修改该参数。</p>
+<p><img alt="" src="../../_images/2-12.png" /></p>
+<p>图 12 存储卡时效性</p>
+</section>
+<section id="web">
+<h2>Web服务器<a class="headerlink" href="#web" title="此标题的永久链接">¶</a></h2>
+<p>如果要使用 Web 服务器，在此界面激活 <strong>在此设备上的所有模块上激活Web服务器</strong>。<strong>详细介绍请参见</strong> <a class="reference download internal" download="" href="../../_downloads/49f4e96e157fc643be974be8999086b2/01-intro.html"><span class="xref download myst"><strong>Web服务器快速入门</strong></span></a>。</p>
+</section>
+<section id="id10">
+<h2>支持多语言<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h2>
+<p>V4.0 开始支持。用于在 Web 服务器或 HMI上显示消息和诊断的文本语言，S7-1200 PLC 最多支持 2种语言，在下拉列表中选择所使用的语言，如图 13
+所示。选择的语言是在项目树的 <strong>语言与资源 &gt; 项目语言</strong> 中启用。 <strong>详细介绍请参见<a class="reference internal" href="../../08-Function/20-Language.html"><span class="std std-doc">多语言项目</span></a></strong> 。</p>
+<p><img alt="" src="../../_images/2-13.png" /></p>
+<p>图 13 支持多语言设置</p>
+</section>
+<section id="id11">
+<h2>时间<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h2>
+<p>为 CPU 设置时区，如图 14 所示。</p>
+<p><img alt="" src="../../_images/2-14.png" /></p>
+<p>图 14 时间设置</p>
+<ul class="simple">
+<li><p>① <strong>本地时间</strong>：为 CPU 设置本地时间的 <strong>时区</strong>，国内项目一般选择 <strong>(UTC+08:00)北京，重庆，中国香港特别行政区，乌鲁木齐</strong>。</p></li>
+<li><p>② <strong>夏令时</strong>：如果需要使用夏令时，则可以选择 <strong>激活夏令时</strong>，并进行相关设置，中国目前不支持夏令时。</p></li>
+</ul>
+</section>
+<section id="id12">
+<h2>防护与安全<a class="headerlink" href="#id12" title="此标题的永久链接">¶</a></h2>
+<p><strong>启动安全向导</strong>：V4.5开始支持。此按钮可以启动安全向导，设置防护与安全相关参数，如图 15所示，<strong>详细介绍请参见 <a class="reference internal" href="../../08-Function/22-Security_Wizard.html"><span class="std std-doc">PLC安全向导设置</span></a></strong>。</p>
+<p><img alt="" src="../../_images/2-15.png" /></p>
+<p>图 15 安全设置</p>
+<ul class="simple">
+<li><p><strong>保护机密的 PLC 组态数据</strong>：V4.5 开始支持。用于设置保护机密的 PLC组态数据的密码，如图 15 所示，<strong>详细介绍请参见 <a class="reference internal" href="../../08-Function/23-Confidential.html"><span class="std std-doc">PLC机密数据保护</span></a></strong>。</p></li>
+<li><p><strong>访问级别</strong>：此界面可以设置该 PLC 的访问等级，共可设置 4个访问等级，如图 16 所示，<strong>详细介绍请参见</strong> <a class="reference internal" href="../../08-Function/05-Protect.html"><span class="std std-doc"><strong>S7-1200 CPU保护</strong></span></a>。</p></li>
+</ul>
+<p><img alt="" src="../../_images/2-16.png" /></p>
+<p>图 16 访问级别</p>
+<p><strong>连接机制</strong>：V4.0 开始支持。当用于被其他 SIMATIC CPU S7通讯访问，或者连接非集成项目的 WinCC、HMI、SIMATIC NET等，需要激活该设置，如图 17 所示。</p>
+<p><img alt="" src="../../_images/2-17.png" /></p>
+<p>图 17 连接机制</p>
+<p><strong>与 TIA Portal 和 HMI 的通信模式</strong>：V4.5 开始支持。当需要 S7-1200 与 HMI实现安全通信时需要激活并生成 TLS 证书。目前只有 V17 及其以上版本的WinCC、HMI，以及经典 WinCC V7.5 SP2 Upd4才支持该安全通信，对于其他版本请不要激活该设置，如图 18 所示。</p>
+<p><img alt="" src="../../_images/2-18.png" /></p>
+<p>图 18 和 HMI 安全通信</p>
+<p><strong>证书管理器</strong>：V4.3 开始支持。用于 S7-1200 安全 OUC 通信、Web 通信、OPC
+UA 通信，如图 19 所示。</p>
+<p><img alt="" src="../../_images/2-19.png" /></p>
+<p>图 19 证书管理器</p>
+<p><strong>安全事件</strong>：V4.2
+开始支持。控制诊断缓冲区内容，避免大量重复事件到来影响查看有价值的诊断事件，如图
+20 所示。</p>
+<p><img alt="" src="../../_images/2-20.png" /></p>
+<p>图 20 安全事件</p>
+<p><strong>外部装载存储器</strong>：V4.2 开始支持。激活该功能将禁止在 CPU
+中插入空存储卡时，将程序从 CPU 移动到存储卡，如图 21 所示。</p>
+<p><img alt="" src="../../_images/2-21.png" /></p>
+<p>图 21 外部装载存储器</p>
+</section>
+<section id="opc-ua">
+<h2>OPC UA<a class="headerlink" href="#opc-ua" title="此标题的永久链接">¶</a></h2>
+<p>V4.4 开始支持。如果要使用 OPC UA 服务器功能，在此界面激活<strong>激活 OPC UA服务器服务器</strong>。<strong>详细介绍请参见</strong> <a class="reference internal" href="../../11-Comm/05-OPC/05-OPC_UA/02-UA_Server.html"><span class="std std-doc"><strong>OPC UA快速入门</strong></span></a>。</p>
+</section>
+<section id="id13">
+<h2>高级组态<a class="headerlink" href="#id13" title="此标题的永久链接">¶</a></h2>
+<p><strong>DNS组态</strong>：V4.4 开始支持，输入 DNS 服务器地址，可以用于通过域名访问的通信。如图 22所示。</p>
+<p><img alt="" src="../../_images/2-22.png" /></p>
+<p>图 22 DNS组态</p>
+<p><strong>组态控制</strong>：V4.1开始支持。组态控制可用于组态控制系统的结构，将一系列相似设备单元或设备所需的所有模块都在具有最大组态的主项目（全站组态方式）中进行组态，操作员可通过人机界面等方式根据现场特定的控制系统轻松选择某种站组态方式。他们无需修改项目，因此也无需下载修改后的组态。节约了重新开发的很多工作量。要想使用组态控制，首先要激活 <strong>允许通过用户程序重新组态设备</strong>（如图 23所示），然后创建规定格式的数据块，通过指令 WRREC 指令将数据记录 196的值写入到 CPU 中，然后通过写数据记录来实现组态控制。</p>
+<p><img alt="" src="../../_images/2-23.png" /></p>
+<p>图 23 组态控制配置</p>
+<p><strong>详细介绍请参见</strong><a class="reference internal" href="../../08-Function/15-Configure_Control/02-Configuration.html"><span class="std std-doc"><strong>组态控制功能组态步骤</strong></span></a>。</p>
+<p><strong>SNMP</strong>：
+V4.6 开始支持。
+CPU S7-1200 V4.1 到 V4.5 版本，SNMP功能默认激活，如果需要禁止需要通过用户程序写数据记录的方式实现。
+从 V4.6 版本开始，增加此 SNMP 设置，默认不激活，如图 24 所示。</p>
+<p><img alt="" src="../../_images/2-24.png" /></p>
+<p>图 24 SNMP 配置</p>
+</section>
+<section id="id14">
+<h2>连接资源<a class="headerlink" href="#id14" title="此标题的永久链接">¶</a></h2>
+<p><strong>连接资源</strong>：显示了 CPU连接中的预留资源与动态资源概览。详细介绍请参见<a class="reference download internal" download="" href="../../_downloads/1273f342079c96661339e47aefd32976/01-Intro.htm"><span class="xref download myst"><strong>资源</strong></span></a>。</p>
+</section>
+<section id="id15">
+<h2>地址总览<a class="headerlink" href="#id15" title="此标题的永久链接">¶</a></h2>
+<p><strong>地址总览</strong>：可以以表格形式显示已经配置使用的所有输入和输出地址，通过选中不同的复选框，可以设置要在地址总览中显示的对象：输入，输出，地址间隙，插槽。地址总览表格中可以显示地址类型，起始地址，结束地址，字节大小，模块信息，机架，插槽，设备名称，设备编号，归属总线系统（PN，DP），过程映像分区，组织块等信息，如图25 所示。</p>
+<p><img alt="" src="../../_images/2-25.png" /></p>
+<p>图 25 地址总览</p>
+</section>
+<section id="id16">
+<h2>运行系统许可证<a class="headerlink" href="#id16" title="此标题的永久链接">¶</a></h2>
+<p>V4.4 开始支持。显示了 S7-1200 可以支持的运行系统所需的许可证。目前S7-1200 只支持 OPC UA这个运行系统许可证，如果需要使用再购买相关授权以后，还需要在这里激活，才能使用OPC UA 功能，如图 26 所示。<strong>详细介绍请参见</strong> <a class="reference internal" href="../../11-Comm/05-OPC/05-OPC_UA/02-UA_Server.html"><span class="std std-doc"><strong>OPC UA快速入门</strong></span></a>。</p>
+<p><img alt="" src="../../_images/2-26.png" /></p>
+<p>图 26 运行系统许可证</p>
+</section>
+<section id="i-o">
+<h2>中央机架 I/O 扩展模块参数配置<a class="headerlink" href="#i-o" title="此标题的永久链接">¶</a></h2>
+<p>在 TIA Portal的 <strong>设备视图</strong> 下点击要配置参数的模板，在模板属性视图中可设置模板的参数，I/O扩展模块参数配置与本体上的输入输出配置基本相似。详细介绍请参见<a class="reference internal" href="#./02-CPU_Properties.(#)%E6%95%B0%E5%AD%97%E9%87%8F%E8%BE%93%E5%85%A5%E8%BE%93%E5%87%BA"><span class="xref myst">数字量输入输出</span></a>、<a class="reference internal" href="#02-CPU_Properties.#AIAQ"><span class="xref myst">模拟量</span></a>。</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">CPU 参数属性配置</a><ul>
+<li><a class="reference internal" href="#id1">常规</a></li>
+<li><a class="reference internal" href="#profinet">PROFINET 接口</a></li>
+<li><a class="reference internal" href="#id2">数字量输入输出</a></li>
+<li><a class="reference internal" href="#id3">模拟量</a></li>
+<li><a class="reference internal" href="#id4">高速计数器</a></li>
+<li><a class="reference internal" href="#id5">脉冲发生器</a></li>
+<li><a class="reference internal" href="#id6">启动</a></li>
+<li><a class="reference internal" href="#id7">循环</a></li>
+<li><a class="reference internal" href="#id8">通信负载</a></li>
+<li><a class="reference internal" href="#id9">系统和时钟存储器</a></li>
+<li><a class="reference internal" href="#simatic-memory-card">SIMATIC Memory Card</a></li>
+<li><a class="reference internal" href="#web">Web服务器</a></li>
+<li><a class="reference internal" href="#id10">支持多语言</a></li>
+<li><a class="reference internal" href="#id11">时间</a></li>
+<li><a class="reference internal" href="#id12">防护与安全</a></li>
+<li><a class="reference internal" href="#opc-ua">OPC UA</a></li>
+<li><a class="reference internal" href="#id13">高级组态</a></li>
+<li><a class="reference internal" href="#id14">连接资源</a></li>
+<li><a class="reference internal" href="#id15">地址总览</a></li>
+<li><a class="reference internal" href="#id16">运行系统许可证</a></li>
+<li><a class="reference internal" href="#i-o">中央机架 I/O 扩展模块参数配置</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="01-New_Project.html">
+                    <span class="icon">&lt;</span><span>项目的新建</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="03-ConfigFAQ.html"><span>基本组态常见问题</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

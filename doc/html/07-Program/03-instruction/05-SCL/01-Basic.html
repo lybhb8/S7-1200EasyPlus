@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>SCL介绍 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="SCL 指令" href="02-Program.html" />
+    <link rel="prev" title="SCL 编程语言" href="index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程指令</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01-Basic/index.html">基本指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-Extend/index.html">扩展指令</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03-Address/index.html">间接寻址</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../04-Example/index.html">指令例程</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">SCL 编程语言</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html">CEM 编程语言简介</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../06-CEM.html#id2">CEM编程示例</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="scl">
+<h1>SCL介绍<a class="headerlink" href="#scl" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>SCL 编程语言<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>SCL（Structured Control Language，结构化控制语言）是一种基于 PASCAL 的高级编程语言。 这种语言基于标准 DIN EN 61131-3（国际标准为 IEC 1131-3）。</p>
+<p>根据该标准，可对用于可编程逻辑控制器的编程语言进行标准化。 SCL 编程语言实现了该标准中定义的 ST 语言 (结构化文本) 的 PLCopen 初级水平。</p>
+<p>S7-1200从V2.2版本开始支持SCL语言。</p>
+<p><strong>语言元素</strong></p>
+<p>SCL 除了包含 PLC 的典型元素（例如，输入、输出、定时器或存储器位）外，还包含高级编程语言。</p>
+<ul class="simple">
+<li><p>表达式</p></li>
+<li><p>赋值运算</p></li>
+<li><p>运算符</p></li>
+</ul>
+<p><strong>程序控制语句</strong></p>
+<p>SCL 提供了简便的指令进行程序控制。例如，创建程序分支、循环或跳转。</p>
+<p><strong>应用</strong></p>
+<p>因此，SCL 尤其适用于下列应用领域：</p>
+<ul class="simple">
+<li><p>数据管理</p></li>
+<li><p>过程优化</p></li>
+<li><p>配方管理</p></li>
+<li><p>数学计算 / 统计任务</p></li>
+</ul>
+</section>
+<section id="id2">
+<h2>表达式<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>说明：表达式将在程序运行期间进行运算，然后返回一个值。一个表达式由操作数（如常数、变量或函数调用）和与之搭配的操作符（如 *、/、+ 或 -）组成。通过运算符可以将表达式连接在一起或相互嵌套。</p>
+<p><strong>运算顺序</strong></p>
+<p>表达式将按照下面因素定义的特定顺序进行运算：</p>
+<ul class="simple">
+<li><p>相关运算符的优先级，优先级数越小越优先</p></li>
+<li><p>同等优先级运算符的运算顺序按照从左到右的顺序</p></li>
+<li><p>赋值运算的计算按照从右到左的顺序进行</p></li>
+<li><p>括号优先级最高</p></li>
+</ul>
+<p><strong>表达式类型</strong></p>
+<p>不同的运算符，分别可使用以下不同类型的表达式：</p>
+<ul class="simple">
+<li><p>算术表达式</p></li>
+<li><p>关系表达式</p></li>
+<li><p>逻辑表达式</p></li>
+</ul>
+</section>
+<section id="id3">
+<h2>算数表达式<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p><strong>说明：算术表达式既可以是一个数字值，也可以是由带有算术运算符的两个值或表达式组合而成。</strong></p>
+<p>算术运算符可以处理当前 CPU 所支持的各种数据类型。如果在该运算中有 2 个操作数，那么可根据以下条件来确定结果的数据类型：</p>
+<ul class="simple">
+<li><p>如果这 2 个操作数均为有符号的整数，但长度不同，那么结果将采用长度较长的那个整数数据类型（例如，Int + DInt = DInt）。</p></li>
+<li><p>如果这 2 个操作数均为无符号整数，但长度不同，那么结果将采用长度较长的那个整数数据类型（例如，USInt + UDInt = UDInt）。</p></li>
+<li><p>如果一个操作数为有符号整数，另一个为无符号整数，那么结果将采用另一个长度较大的有符号数据类型（其包含此无符号整数）（例如，SInt + USInt = Int）</p></li>
+<li><p>如果一个操作数为整数，另一个为浮点数，那么结果将采用浮点数的数据类型（例如，Int + Real = Real）。</p></li>
+<li><p>如果 2 个操作数均为浮点数，但长度不同，结果将采用长度较长的那个浮点数的数据类型（例如，Real + LReal = LReal）。</p></li>
+<li><p>对于操作数为&quot;Time&quot;和&quot;日期和时间&quot;数据类型组，运算结果的数据类型请参见表1。</p></li>
+</ul>
+<p><strong>算术表达式的数据类型</strong></p>
+<p>表1列出了在算术表达式中可使用的数据类型：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>运算</p></th>
+<th class="head"><p>运算符</p></th>
+<th class="head"><p>优先级</p></th>
+<th class="head"><p>第一个操作数</p></th>
+<th class="head"><p>第二个操作数</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>乘方</p></td>
+<td><p>**</p></td>
+<td><p>2</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>浮点数</p></td>
+</tr>
+<tr class="row-odd"><td><p>正号</p></td>
+<td><p>+</p></td>
+<td><p>3</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>-</p></td>
+<td><p>整数/浮点数</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>负号</p></td>
+<td><p>-</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>-</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>乘法</p></td>
+<td><p>*</p></td>
+<td><p>4</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>整数</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>除法</p></td>
+<td><p>/</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数（≠0）</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>整数</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>取模</p></td>
+<td><p>MOD</p></td>
+<td><p>整数</p></td>
+<td><p>整数</p></td>
+<td><p>整数</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>加法</p></td>
+<td><p>+</p></td>
+<td><p>5</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+</tr>
+<tr class="row-odd"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>DInt</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>TOD</p></td>
+<td><p>Time</p></td>
+<td><p>TOD</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>TOD</p></td>
+<td><p>DInt</p></td>
+<td><p>TOD</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Date</p></td>
+<td><p>TOD</p></td>
+<td><p>DTL</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>DTL</p></td>
+<td><p>Time</p></td>
+<td><p>DTL</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>减法</p></td>
+<td><p>-</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Time</p></td>
+<td><p>DInt</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>TOD</p></td>
+<td><p>Time</p></td>
+<td><p>TOD</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>TOD</p></td>
+<td><p>DInt</p></td>
+<td><p>TOD</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>TOD</p></td>
+<td><p>TOD</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Date</p></td>
+<td><p>Date</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>DTL</p></td>
+<td><p>Time</p></td>
+<td><p>DTL</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>DTL</p></td>
+<td><p>DTL</p></td>
+<td><p>Time</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong></p>
+<p>以下为一些算术表达式的示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="s">&quot;MyTag1&quot;</span><span class="o">:=</span><span class="w"> </span><span class="s">&quot;MyTag2&quot;</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="s">&quot;MyTag3&quot;</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h2>关系表达式<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<p><strong>说明：关系表达式将两个操作数的值或数据类型进行比较，然后得到一个布尔值。如果比较结果为真，则结果为 TRUE，否则为 FALSE。</strong></p>
+<p>关系运算符可以处理当前 CPU 所支持的各种数据类型。结果的数据类型始终为 Bool。</p>
+<p>编写关系表达式时，请注意以下规则：</p>
+<ul class="simple">
+<li><p>以下数据类型组中的所有变量都可以进行比较：</p>
+<ul>
+<li><p>整数/浮点数</p></li>
+<li><p>位、位序列</p></li>
+<li><p>字符串</p></li>
+</ul>
+</li>
+<li><p>对于以下数据类型，只能比较相同类型的变量：</p>
+<ul>
+<li><p>TIME</p></li>
+<li><p>日期和时间</p></li>
+<li><p>UDT</p></li>
+<li><p>Array</p></li>
+<li><p>Struct</p></li>
+<li><p>Variant</p></li>
+</ul>
+</li>
+<li><p>String 比较是对以 Windows 字符集编码的字符进行比较；而 WSting比较则是对 UTF-16 编码的字符进行比较。在比较过程中，将比较变量的长度及各字符对应的数值。</p></li>
+<li><p>Array 比较需要数组维度、数组元素数据类型与数量完全相同</p></li>
+<li><p>UDT、Array、Struct、Variant等进行的比较只能使用S7-1200 V4.2及其以上的版本。</p></li>
+</ul>
+<p><strong>关系表达式的数据类型</strong></p>
+<p>表2列出了在关系表达式中可使用的数据类型/数据类型组：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>运算</p></th>
+<th class="head"><p>运算符</p></th>
+<th class="head"><p>优先级</p></th>
+<th class="head"><p>第一个操作数</p></th>
+<th class="head"><p>第二个操作数</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>小于、小于等于、大于、大于等于</p></td>
+<td><p>&lt;、&lt;=、&gt;、&gt;=</p></td>
+<td><p>6</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>字符串</p></td>
+<td><p>字符串</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>日期和时间</p></td>
+<td><p>日期和时间</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>等于、不等于</p></td>
+<td><p>=、&lt;&gt;</p></td>
+<td><p>7</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>整数/浮点数</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-even"><td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>字符串</p></td>
+<td><p>字符串</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Time</p></td>
+<td><p>Time</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>日期和时间</p></td>
+<td><p>日期和时间</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Variant</p></td>
+<td><p>任意数据类型</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>UDT</p></td>
+<td><p>UDT</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>Array</p></td>
+<td><p>Array</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>Struct</p></td>
+<td><p>Struct</p></td>
+<td><p>Bool</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong></p>
+<p>以下举例说明了一个关系表达式：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">IF</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="n">THEN</span><span class="w"> </span><span class="n">c</span><span class="o">:=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span>
+<span class="n">IF</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="n">AND</span><span class="w"> </span><span class="n">B</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">20</span><span class="w"> </span><span class="n">THEN</span><span class="w"> </span><span class="n">C</span><span class="o">:=</span><span class="w"> </span><span class="n">TRUE</span><span class="p">;</span><span class="w">  </span>
+<span class="n">IF</span><span class="w"> </span><span class="n">A</span><span class="o">&lt;&gt;</span><span class="p">(</span><span class="n">B</span><span class="w"> </span><span class="n">AND</span><span class="w"> </span><span class="n">C</span><span class="p">)</span><span class="w"> </span><span class="n">THEN</span><span class="w"> </span><span class="n">C</span><span class="o">:=</span><span class="w"> </span><span class="n">FALSE</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id5">
+<h2>逻辑表达式<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p><strong>说明：逻辑表达式由两个操作数和逻辑运算符（AND、OR 或 XOR）或取反操作数 (NOT) 组成。</strong></p>
+<p>逻辑运算符可以处理当前 CPU 所支持的各种数据类型。如果两个操作数都是 Bool 数据类型，则逻辑表达式的结果也为 Bool数据类型。如果两个操作数中至少有一个是位序列，则结果也为位序列而且结果是由最高操作数的类型决定。例如，当逻辑表达式的两个操作数分别是 Byte 类型和 Word 类型时，结果为 Word类型。</p>
+<p>逻辑表达式中一个操作数为 Bool类型而另一个为位序列时，必须先将 Bool类型的操作数显式转换为位序列类型。</p>
+<p><strong>逻辑表达式的数据类型</strong></p>
+<p>下表列出了逻辑表达式中可使用的数据类型：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>运算</p></th>
+<th class="head"><p>运算符</p></th>
+<th class="head"><p>优先级</p></th>
+<th class="head"><p>第一个操作数</p></th>
+<th class="head"><p>第二个操作数</p></th>
+<th class="head"><p>结果</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>取反</p></td>
+<td><p>NOT</p></td>
+<td><p>3</p></td>
+<td><p>Bool</p></td>
+<td><p>-</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>求反码</p></td>
+<td><p>位序列</p></td>
+<td><p>-</p></td>
+<td><p>位序列</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>与</p></td>
+<td><p>AND、&amp;</p></td>
+<td><p>8</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>异或</p></td>
+<td><p>XOR</p></td>
+<td><p>9</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>或</p></td>
+<td><p>OR</p></td>
+<td><p>10</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+<td><p>Bool</p></td>
+</tr>
+<tr class="row-odd"><td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p>位序列</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p><strong>示例</strong></p>
+<p>以下为一个逻辑表达式的示例：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">IF</span><span class="w"> </span><span class="s">&quot;MyTag1&quot;</span><span class="w"> </span><span class="n">AND</span><span class="w"> </span><span class="n">NOT</span><span class="w"> </span><span class="s">&quot;MyTag2&quot;</span><span class="w"> </span><span class="n">THEN</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">a</span><span class="p">;</span><span class="w">  </span>
+<span class="nl">MyTag</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">A</span><span class="w"> </span><span class="n">OR</span><span class="w"> </span><span class="n">B</span><span class="p">;</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h2>赋值运算<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p><strong>定义：通过赋值运算，可以将一个表达式的值分配给一个变量。赋值表达式的左侧为变量，右侧为表达式的值。</strong></p>
+<p>函数名称也可以作为表达式。赋值运算将调用该函数，并返回其函数值，赋给左侧的变量。</p>
+<p>赋值运算的数据类型取决于左边变量的数据类型。右边表达式的数据类型必须与该数据类型一致。</p>
+<p>赋值运算的计算按照从右到左的顺序进行。</p>
+<p>可通过以下方式编程赋值运算：</p>
+<ul class="simple">
+<li><p>**单赋值运算：**执行单赋值运算时，仅将一个表达式或变量分配给单个变量：</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//示例：</span>
+<span class="nl">a</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>**多赋值运算：**执行多赋值运算时，一个指令中可执行多个赋值运算。</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//示例：</span>
+<span class="nl">a</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+
+</pre></div>
+</div>
+<p>此时，将执行以下操作：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">b</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+
+<span class="nl">a</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li><p>**组合赋值运算：**执行组合赋值运算时，可在赋值运算中组合使用操作符&quot;+“、”-“、”*“和”/&quot;：</p></li>
+</ul>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="c1">//示例：</span>
+<span class="n">a</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>此时，将执行以下操作：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">a</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>也可多次组合赋值运算：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">*=</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+</pre></div>
+</div>
+<p>此时，将按以下顺序执行赋值运算：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="nl">c</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">d</span><span class="p">;</span>
+
+<span class="nl">b</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="p">;</span>
+
+<span class="nl">a</span><span class="w"> </span><span class="p">:</span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">b</span><span class="p">;</span>
+</pre></div>
+</div>
+<p><strong>示例</strong></p>
+<p>下表举例说明了单赋值运算的操作：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“MyTag1” := “MyTag2”;</p></td>
+<td><p>(* 变量赋值 *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyTag1” := “MyTag2” * “MyTag3”;</p></td>
+<td><p>(* 表达式赋值 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>“MyTag” := “MyFC”();</p></td>
+<td><p>(* 调用一个函数，并将函数值赋给 “MyTag” 变量 *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>#MyStruct.MyStructElement := “MyTag”;</p></td>
+<td><p>(* 将一个变量赋值给一个结构元素 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>#MyArray[2] := “MyTag”;</p></td>
+<td><p>(* 将一个变量赋值给一个 ARRAY 元素 *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyTag” := #MyArray[1,4];</p></td>
+<td><p>(* 将一个 ARRAY 元素赋值给一个变量 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>#MyString[2] := #MyOtherString[5];</p></td>
+<td><p>(* 将一个 STRING 元素赋给另一个 STRING 元素 *)</p></td>
+</tr>
+</tbody>
+</table>
+<p>下表举例说明了多赋值运算的操作：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“MyTag1” := “MyTag2” := “MyTag3”;</p></td>
+<td><p>(* 变量赋值 *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyTag1” := “MyTag2” := “MyTag3” * “MyTag4”;</p></td>
+<td><p>(* 表达式赋值 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>“MyTag1” := “MyTag2” := &quot;MyTag3 := “MyFC”();</p></td>
+<td><p>(* 调用一个函数，并将函数值赋值给变量 “MyTag1”、“MyTag1” 和 “MyTag1” *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>#MyStruct.MyStructElement1 := #MyStruct.MyStructElement2 := “MyTag”;</p></td>
+<td><p>(* 将一个变量赋值给两个结构元素 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>#MyArray[2] := #MyArray[32] := “MyTag”;</p></td>
+<td><p>(* 将一个变量赋值给两个数组元素 *)</p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyTag1” := “MyTag2” := #MyArray[1,4];</p></td>
+<td><p>(* 将一个数组元素赋值给两个变量 *)</p></td>
+</tr>
+<tr class="row-even"><td><p>#MyString[2] := #MyString[3]:= #MyOtherString[5];</p></td>
+<td><p>(* 将一个 STRING 元素赋值给两个 STRING 元素 *)</p></td>
+</tr>
+</tbody>
+</table>
+<p>下表举例说明了组合赋值运算的操作：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>“MyTag1” += “MyTag2”;</p></td>
+<td><p>(* “MyTag1” 和 “MyTag2” 相加，并将相加的结果赋值给 “MyTag1”。*)</p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyTag1” -= “MyTag2” += “MyTag3”;</p></td>
+<td><p>(* “MyTag2” 和 “MyTag3” 相加。将相加的结果赋值给操作数&quot;MyTag2&quot;，再从 “MyTag1” 中减去&quot;MyTag2&quot;，计算结果将赋值给 “MyTag1”。*)</p></td>
+</tr>
+<tr class="row-even"><td><p>#MyArray[2] += #MyArray[32] += “MyTag”;</p></td>
+<td><p>(* 数组元素 “MyArray[32]” 加上 “MyTag”。计算结果将赋值给 “MyArray[32]”。之后这个数组元素 “MyArray[32]” 与数组中另一个元素&quot;MyArray[2]&quot;相加，然后将结果分配给数组元素 “MyArray[2]”。在该运算中，相应的数据类型必需兼容。*)</p></td>
+</tr>
+<tr class="row-odd"><td><p>#MyStruct.MyStructElement1 /= #MyStruct.MyStructElement2 *= “MyTag”;</p></td>
+<td><p>(* 结构化元素 “MyStructElement2” 乘以 “MyTag”。计算结果将赋值给 “MyStructElement2”。之后，将结构化元素 “MyStructElement1” 除以 “MyStructElement2”，并将计算结果赋值给 “MyStructElement1”。在该运算中，相应的数据类型必需兼容。*)</p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id7">
+<h2>寻址与调用<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+</section>
+<section id="id8">
+<h2>寻址<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h2>
+<p>SCL寻址分为符号寻址与地址寻址。</p>
+<ul class="simple">
+<li><p>符号寻址</p>
+<ul>
+<li><p>DB块变量：“DB块名称”（.“变量名称”）</p></li>
+<li><p>PLC变量：变量名称</p></li>
+<li><p>局部变量：#变量名称</p></li>
+</ul>
+</li>
+<li><p>地址寻址</p>
+<ul>
+<li><p>DB块变量：%DB块号（.变量地址），TIA PORTAL软件会判断该地址有没有对应符号名称，如果有则立即转换为符号名称，没有则保留绝对地址</p></li>
+<li><p>PLC变量：%变量地址，TIA PORTAL软件会判断该地址有没有对应符号名称，如果有则立即转换为符号名称，没有则新建符号名称</p></li>
+<li><p>Temp变量：SCL<strong>不</strong>支持非优化FC/FB的Temp变量的地址寻址</p></li>
+</ul>
+</li>
+</ul>
+<p>举例：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p>符号名</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>符号寻址</p></td>
+<td><p>DB块变量</p></td>
+<td><p>“MyDB”.Variable.Static1</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>“MyDB”.Array[0]</p></td>
+<td><p>访问数组元素</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>“MyDB”</p></td>
+<td><p>DB块名作为参数</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>PLC变量</p></td>
+<td><p>“Start”</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>局部变量</p></td>
+<td><p>#Input1</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>#Temp1.x0</p></td>
+<td><p>变量名片段访问</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>地址寻址</p></td>
+<td><p>DB块变量</p></td>
+<td><p>%DB2.DBB1</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>%DB2</p></td>
+<td><p>DB块名作为参数，会立刻转换为DB块名</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>PLC变量</p></td>
+<td><p>%M100.0</p></td>
+<td><p>会立刻转换为&quot;符号名&quot;</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>%Q1.0:P</p></td>
+<td><p>会立刻转换为&quot;符号名&quot;:P</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="id9">
+<h2>调用<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h2>
+<p>程序调用分为以下几类：</p>
+<ul class="simple">
+<li><p>FC调用</p></li>
+<li><p>FB调用</p></li>
+<li><p>FB多重背景调用</p></li>
+</ul>
+<p>调用可以从指令列表或者项目树程序块中拖拽入程序编辑区域，也可以直接输入。</p>
+<p><strong>FC调用</strong></p>
+<p>FC调用的格式是</p>
+<ul class="simple">
+<li><p>“FC块名称”(输入形参:=实参,输出形参=&gt;实参,输入输出形参:=实参…)</p></li>
+<li><p>返回值:=“FC块名称”(输入形参:=实参,输出形参=&gt;实参,输入输出形参:=实参…)</p></li>
+</ul>
+<p>FC调用需要确保所有形参都有对应实参。如果没有参数的FC也需要有括号。</p>
+<p>如图所示的例子；</p>
+<p><img alt="" src="../../../_images/01-013.png" /></p>
+<p>图1 FC调用</p>
+<p><strong>FB调用</strong></p>
+<p>FB调用的格式是</p>
+<p>“背景数据块名称”(输入形参:=实参,输出形参=&gt;实参,输入输出形参:=实参…)</p>
+<p>一般情况下，FB的简单数据类型形参可以没有对应实参，复杂数据类型的输入、输出也可以没有对应实参，所以FB可以隐藏或不隐藏不出现的形参。如果没有参数的FB也需要有括号。</p>
+<p>如图2所示，显示了一些FB调用的例子。</p>
+<p><img alt="" src="../../../_images/01-022.png" /></p>
+<p>图2 FB调用</p>
+<p>如图3所示，当FB的参数全部显示，在背景数据块右键可以激活&quot;仅显示分配的参数&quot;；当FB的参数只显示了分配的参数时，在背景数据块右键可以激活&quot;显示所有参数&quot;。</p>
+<p><img alt="" src="../../../_images/01-032.png" /></p>
+<p>图3 显示分配/所有参数</p>
+<p><strong>FB多重背景调用</strong></p>
+<p>FB多重背景调用的格式是</p>
+<ul class="simple">
+<li><p>#多重背景(输入形参:=实参,输出形参=&gt;实参,输入输出形参:=实参…)</p></li>
+<li><p>#多重背景[索引](输入形参:=实参,输出形参=&gt;实参,输入输出形参:=实参…)</p></li>
+</ul>
+<p>一般情况下，FB的简单数据类型形参可以没有对应实参，复杂数据类型的输入、输出也可以没有对应实参，所以FB可以隐藏或不隐藏不出现的形参。如果只有Static的FB也需要有括号。</p>
+<p>如图4所示，显示了一些FB多重背景调用的例子。</p>
+<p><img alt="" src="../../../_images/01-042.png" /></p>
+<p>图4 FB多重背景调用</p>
+<p>注意：</p>
+<p>对于定时器和计数器的SCL调用，有特殊的格式，请参考链接：定时器、计数器。</p>
+</section>
+<section id="id10">
+<h2>新建SCL<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h2>
+<p>有两种方式新建SCL：</p>
+<p>第一种是在新建块，选择OB/FC/FB后，设置语言为SCL，如图5所示。</p>
+<p>第二种是在LAD、FBD中直接插入SCL语言段，这需要TIA PORTAL V14及其以上的版本，如图6所示。</p>
+<p><img alt="" src="../../../_images/01-052.png" /></p>
+<p>图5 新建SCL块</p>
+<p>①在项目树中，找到PLC，然后展开程序块，点击&quot;添加新块&quot;</p>
+<p>②在弹出对话框中，选择块类型，可以是OB/FB/FC，</p>
+<p>③选择语言为SCL</p>
+<p><img alt="" src="../../../_images/01-062.png" /></p>
+<p>图6 在LAD中插入SCL段</p>
+</section>
+<section id="id11">
+<h2>区域与注释<a class="headerlink" href="#id11" title="此标题的永久链接">¶</a></h2>
+<p>和LAD/FBD不同，LAD/FBD在程序编辑器是一段一段的，编辑器可以插入新的网络段，每一个网络段可以有各自的注释。而SCL是文本语言，不分网络段（LAD/FBD语言内增加SCL除外），需要用其他的方法来解决。</p>
+</section>
+<section id="id12">
+<h2>区间<a class="headerlink" href="#id12" title="此标题的永久链接">¶</a></h2>
+<p>从TIA PORTAL V14以后，增加区间功能，使用指令：</p>
+<p>REGION 区间名称</p>
+<p>程序文本</p>
+<p>ENDREGION</p>
+<p>可以在指令中间增加需要编写的程序还不影响程序逻辑，并且支持嵌套。此外还可以像网络段一样收折叠来，如图7所示。</p>
+<p><img alt="" src="../../../_images/01-072.png" /></p>
+<p>图7 区域</p>
+<p>其中左边为区间总览，可以看出整体的结构</p>
+<p>①使得程序或总览全部展开</p>
+<p>②使得程序或总览全部折叠</p>
+<p>③全部展开/折叠是针对总览与程序还是只针对总览，图中为针对总览与程序</p>
+<p>④独立展开/折叠程序</p>
+</section>
+<section id="id13">
+<h2>注释<a class="headerlink" href="#id13" title="此标题的永久链接">¶</a></h2>
+<p>编辑器的空行，或者调用块的右侧均可以增加注释，如图8所示有两种方式注释：</p>
+<p>第一种是： //注释内容</p>
+<p>第二种是：(/<em>注释内容</em>/)</p>
+<p>可以在工具栏中利用按钮整段注释或取消注释。此外从TIA PORTAL V16开始支持多语言注释，使用指令(<em>多语言注释内容</em>)，具体参考多<a class="reference internal" href="../../../08-Function/20-Language.html"><span class="std std-doc">语言文档。</span></a></p>
+<p><img alt="" src="../../../_images/01-082.png" /></p>
+<p>图8 注释</p>
+<p>①注释掉选中段落</p>
+<p>②对注释掉的段落取消注释</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">SCL介绍</a><ul>
+<li><a class="reference internal" href="#id1">SCL 编程语言</a></li>
+<li><a class="reference internal" href="#id2">表达式</a></li>
+<li><a class="reference internal" href="#id3">算数表达式</a></li>
+<li><a class="reference internal" href="#id4">关系表达式</a></li>
+<li><a class="reference internal" href="#id5">逻辑表达式</a></li>
+<li><a class="reference internal" href="#id6">赋值运算</a></li>
+<li><a class="reference internal" href="#id7">寻址与调用</a></li>
+<li><a class="reference internal" href="#id8">寻址</a></li>
+<li><a class="reference internal" href="#id9">调用</a></li>
+<li><a class="reference internal" href="#id10">新建SCL</a></li>
+<li><a class="reference internal" href="#id11">区域与注释</a></li>
+<li><a class="reference internal" href="#id12">区间</a></li>
+<li><a class="reference internal" href="#id13">注释</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="index.html">
+                    <span class="icon">&lt;</span><span>SCL 编程语言</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="02-Program.html"><span>SCL 指令</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

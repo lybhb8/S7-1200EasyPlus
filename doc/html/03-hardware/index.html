@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S7-1200 硬件 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../_static/doctools.js?v=888ff710"></script>
+    <script src="../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=f281be69"></script>
+    <script src="../_static/tabs.js?v=3ee01567"></script>
+    <script src="../_static/design-tabs.js?v=36754332"></script>
+    <script src="../_static/js/theme.js"></script>
+    <script src="../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../genindex.html" />
+    <link rel="search" title="搜索" href="../search.html" />
+    <link rel="next" title="主要性能参数 V4.0" href="specifications/feature.html" />
+    <link rel="prev" title="S7-1200简介" href="../02-introduction/index.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../index.html" title="Go to homepage"><img src="../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="../base.html">基础总汇</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../01-resource/source/index.html">网络资源</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../02-introduction/index.html">S7-1200简介</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">S7-1200 硬件</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="specifications/feature.html">主要性能参数 V4.0</a></li>
+<li class="toctree-l3"><a class="reference internal" href="specifications/parameters.html">S7-1200 参数汇总</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../04-version/index.html">S7-1200版本</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="../config.html">组态编程</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="s7-1200">
+<h1>S7-1200 硬件<a class="headerlink" href="#s7-1200" title="此标题的永久链接">¶</a></h1>
+<p>SIMATIC S7-1200 是 SIMATIC S7 可编程控制器系列中的新型模块化微型 PLC，其组成为：</p>
+<ul class="simple">
+<li><p>控制器: 带有集成 PROFINET 接口，用于编程设备、HMI 或其它 SIMATIC 控制器之间通信</p></li>
+<li><p>信号板: 可直接插入到控制器</p></li>
+<li><p>信号模块: 用于扩展控制器输入和输出通道</p></li>
+<li><p>通信模块: 用于扩展控制器通信接口</p></li>
+<li><p>附件: 如电源、开关模块、电池板或 SIMATIC 存储卡</p></li>
+</ul>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-f32238d95edc7884126f6cea486eafe1_1440w.webp" /></p>
+<section id="cpu">
+<h2>CPU扩展<a class="headerlink" href="#cpu" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-b2d0282c128b0e3a69183c0f8ffe5393_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-1b66318bd0246b0bb1443c0bac0f6542_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-354b84f28ae0c373edf7388c1cd41841_1440w.webp" /></p>
+</section>
+<section id="id1">
+<h2>CPU性能<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-c33a94b9ee3fe2ba3b33e02e3a88dade_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-3591b0e04f69232daf4f7eb6f6b23f3d_1440w.webp" /></p>
+</section>
+<section id="sb">
+<h2>SB信号板<a class="headerlink" href="#sb" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-6941b7fc3377ed7f0f2f5c0cd055dc3c_1440w.webp" /></p>
+</section>
+<section id="sm">
+<h2>SM数字量模块<a class="headerlink" href="#sm" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-a13a7a53d1fadd52d81c9ecd47b1a6a2_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-0c00261903b2f5d8678091780435d316_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-6332dc9e570283e8e99322b7199b9465_1440w.webp" /></p>
+</section>
+<section id="id2">
+<h2>SM模拟量模块<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-48282367b89bc688bcec5329d5af893b_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-d66684c6b88433b96768ea9bf5b5bcc1_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-b12ae4849c1e849691db338580eb4aaf_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-87114ba7ddd2f8bb1c654b2d337d61e3_1440w.webp" /></p>
+</section>
+<section id="id3">
+<h2>S7-1200 通讯<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-c1aa430e6e4d7b89e0954115bed35e16_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-7e4d9768edfbaa3eb2a43ea1a2c914db_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-8d7752cd80ede75a51929eb29fda1d42_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-356435ef65cbd96f97352c8b758701d9_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-396e186159a3bebe6904aeadbd0106cd_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-edc750b717e110426aa271a468fd14e6_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-483114c6552831c2204cc95bb64ad6cb_1440w.webp" /></p>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-49d6e95fcb4061dbc1ba34b88d13c2c4_1440w.webp" /></p>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-bbd2888fa9c824dbc2ef7ea97491f030_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-77055992a911277c2c6e25f63ef9f215_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-0b9c017f07e451cffa5ac7d93432a765_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-206f3972af928bf683e334a9d932cc35_1440w.webp" /></p>
+</section>
+<section id="id4">
+<h2>S7-1200 附件<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-9abe56a81a9b9a0e1a95f34d1922f445_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-c1983e6a9703190d9332144db06a757e_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-c8e12b7f3e2bef87a16979aef4b1ba1f_1440w.webp" /></p>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-e36cab841b38e1399179f59faaaaa8cc_1440w.webp" /></p>
+</section>
+<section id="id5">
+<h2>其余功能<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-faae2af548a9e65eeab4cc520572bd2a_1440w.webp" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-f531f450569008879ac742c7ee1f4591_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-bb41a43c5eab115d4e9b771550b807ae_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-34ae8ace63785a495839753958e0074a_1440w.webp" /></p>
+</section>
+<section id="id6">
+<h2>信息安全<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h2>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-5c84bdcde367ba2e5c3e0eb3db2a1329_1440w.webp" /></p>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-d167273fff5c2bd6e7d5a6d40684f1e8_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-a49c6c2fe7a36d7cb5b15f469c751742_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-24a587e427148bf997ef27d1cbd9b817_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-f5dee5db50d9e232aa6575ed3bcbd4ce_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-3f86afaa431ea9e6b9261d2dd901e8ff_1440w.webp" /></p>
+</section>
+<section id="id7">
+<h2>订货<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h2>
+<section id="id8">
+<h3>CPU 订货号<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h3>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-5b2eca92e657596cc98c320b6c05d3c4_1440w.webp" /></p>
+</section>
+<section id="id9">
+<h3>信号模块、通信模块和信号板订货号<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h3>
+<p><img alt="" src="https://pic1.zhimg.com/80/v2-37013ae4de601802c41c690eb6a6d3b4_1440w.webp" /></p>
+<p><img alt="" src="https://pic3.zhimg.com/80/v2-2a006242b44b83f916ac91683d7c1d56_1440w.webp" /></p>
+</section>
+<section id="id10">
+<h3>软件、存储卡、电池板及其它附件订货号<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h3>
+<p><img alt="" src="https://pic2.zhimg.com/v2-3509f09ca430d855cc70594117caa915_r.jpg" /></p>
+<p><img alt="" src="https://pic2.zhimg.com/80/v2-6fa33f9c2607d9c8913a1b48c36d7f55_1440w.webp" /></p>
+<p><img alt="" src="https://pic4.zhimg.com/80/v2-984750f17e53909da2897a286b07b38f_1440w.webp" /></p>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="specifications/feature.html">主要性能参数 V4.0</a></li>
+<li class="toctree-l1"><a class="reference internal" href="specifications/parameters.html">S7-1200 参数汇总</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="specifications/parameters.html#id1">基本功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="specifications/parameters.html#id6">PLC 通信功能</a></li>
+<li class="toctree-l2"><a class="reference internal" href="specifications/parameters.html#id10">PLC 工艺功能</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">S7-1200 硬件</a><ul>
+<li><a class="reference internal" href="#cpu">CPU扩展</a></li>
+<li><a class="reference internal" href="#id1">CPU性能</a></li>
+<li><a class="reference internal" href="#sb">SB信号板</a></li>
+<li><a class="reference internal" href="#sm">SM数字量模块</a></li>
+<li><a class="reference internal" href="#id2">SM模拟量模块</a></li>
+<li><a class="reference internal" href="#id3">S7-1200 通讯</a></li>
+<li><a class="reference internal" href="#id4">S7-1200 附件</a></li>
+<li><a class="reference internal" href="#id5">其余功能</a></li>
+<li><a class="reference internal" href="#id6">信息安全</a></li>
+<li><a class="reference internal" href="#id7">订货</a><ul>
+<li><a class="reference internal" href="#id8">CPU 订货号</a></li>
+<li><a class="reference internal" href="#id9">信号模块、通信模块和信号板订货号</a></li>
+<li><a class="reference internal" href="#id10">软件、存储卡、电池板及其它附件订货号</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="../02-introduction/index.html">
+                    <span class="icon">&lt;</span><span>S7-1200简介</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="specifications/feature.html"><span>主要性能参数 V4.0</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

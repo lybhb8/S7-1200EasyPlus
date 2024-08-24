@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>常见问题 FAQ &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <script src="../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../genindex.html" />
+    <link rel="search" title="搜索" href="../../search.html" />
+    <link rel="next" title="不稳定性的值" href="06-unstable.html" />
+    <link rel="prev" title="模拟量转换应用例程" href="04-ApplicationExample.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../index.html" title="Go to homepage"><img src="../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../07-Program/01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../07-Program/02-basic/index.html">编程基础</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../07-Program/03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">IO 配线</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01-CPU/01-wiring.html">CPU 接线图</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01-CPU/02-power.html">电能消耗</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../01-CPU/03-extend_wire.html">扩展电缆</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-DIDO/01-wiring.html">数字量信号模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-DIDO/02-filter_time.html">数字量输入/输出（DI/DO）响应速度</a></li>
+<li class="toctree-l3"><a class="reference internal" href="01-wiring.html">模拟量模块</a></li>
+<li class="toctree-l3"><a class="reference internal" href="02-response_time.html">响应时间</a></li>
+<li class="toctree-l3"><a class="reference internal" href="03-signal.html">信号板</a></li>
+<li class="toctree-l3"><a class="reference internal" href="04-ApplicationExample.html">模拟量转换应用例程</a></li>
+<li class="toctree-l3 current"><a class="current reference internal" href="#">常见问题 FAQ</a></li>
+<li class="toctree-l3"><a class="reference internal" href="06-unstable.html">不稳定性的值</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="faq">
+<h1>常见问题 FAQ<a class="headerlink" href="#faq" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>模拟量输入输出模块常见问题<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 模拟量模块的输入/输出阻抗指标是多少？</strong></p>
+<p>**答：**详情可见《 S7-1200 系统手册 》的附录A 。</p>
+<p>CPU 模拟量输入阻抗：</p>
+<ul class="simple">
+<li><p>电压型信号：≥ 100 KΩ</p></li>
+</ul>
+<p>信号模板模拟量输入阻抗：</p>
+<ul class="simple">
+<li><p>电压型信号：≥ 9 MΩ</p></li>
+<li><p>电流型信号：250Ω</p></li>
+</ul>
+<p>信号模板及信号板模拟量输出阻抗：</p>
+<ul class="simple">
+<li><p>电压型信号：≥ 1000 Ω</p></li>
+<li><p>电流型信号：≤ 600 Ω</p></li>
+</ul>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 模拟量模块的输入/输出信号传输距离？</strong></p>
+<p>**答：**模拟量模块的输入/输出信号传输距离，从接线方面考虑，使用双绞屏蔽电缆最大可以连接 100 m 的长度， 还要考虑现场电磁干扰等现实状况。一般电压信号易受现场干扰且长距离传输也会造成信号的衰减，建议尽量近距离传输；电流信号相比电压信号抗干扰能力好些， 相对电压信号传输距离可适当加长。</p>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 模拟量模块的输入过冲及溢出数值分别是多少？</strong></p>
+<p>对于电压测量范围，S7-1200 模拟量模块的电压输入值与模块通道显示数值对应关系如下表 1 所示：</p>
+<p>过冲范围为 27649至32511；下冲范围为-27649至-32512</p>
+<p>上溢范围为 32512至32767，下溢范围为 -32513至-32768</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>系统</p></td>
+<td><p></p></td>
+<td><p>电压测量范围</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>十进制</p></td>
+<td><p>十六进制</p></td>
+<td><p>±10V</p></td>
+<td><p>±5V</p></td>
+<td><p>±2.5V</p></td>
+<td><p>±1.25V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>32767</p></td>
+<td><p>7FFF</p></td>
+<td><p>11.851V</p></td>
+<td><p>5.926V</p></td>
+<td><p>2.963V</p></td>
+<td><p>1.481V</p></td>
+<td><p>上溢</p></td>
+</tr>
+<tr class="row-odd"><td><p>32512</p></td>
+<td><p>7F00</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>32511</p></td>
+<td><p>7EFF</p></td>
+<td><p>11.759V</p></td>
+<td><p>5.879V</p></td>
+<td><p>2.940V</p></td>
+<td><p>1.470V</p></td>
+<td><p>过冲范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>27649</p></td>
+<td><p>6C01</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>27648</p></td>
+<td><p>6C00</p></td>
+<td><p>10V</p></td>
+<td><p>5V</p></td>
+<td><p>2.5V</p></td>
+<td><p>1.250V</p></td>
+<td><p>额定范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>20736</p></td>
+<td><p>5100</p></td>
+<td><p>7.5V</p></td>
+<td><p>3.75V</p></td>
+<td><p>1.875V</p></td>
+<td><p>0.938V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>361.7μV</p></td>
+<td><p>180.8μV</p></td>
+<td><p>90.4μV</p></td>
+<td><p>45.2μV</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0V</p></td>
+<td><p>0V</p></td>
+<td><p>0V</p></td>
+<td><p>0V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>-1</p></td>
+<td><p>FFFF</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>-20736</p></td>
+<td><p>AF00</p></td>
+<td><p>-7.5V</p></td>
+<td><p>-3.75V</p></td>
+<td><p>-1.875V</p></td>
+<td><p>-0.938V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>-27648</p></td>
+<td><p>9400</p></td>
+<td><p>-10V</p></td>
+<td><p>-5V</p></td>
+<td><p>-2.5V</p></td>
+<td><p>-1.250V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>-27649</p></td>
+<td><p>93FF</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>下冲范围</p></td>
+</tr>
+<tr class="row-even"><td><p>-32512</p></td>
+<td><p>8100</p></td>
+<td><p>-11.759V</p></td>
+<td><p>-5.879V</p></td>
+<td><p>-2.940V</p></td>
+<td><p>-1.470V</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>-32513</p></td>
+<td><p>80FF</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>下溢</p></td>
+</tr>
+<tr class="row-even"><td><p>-32768</p></td>
+<td><p>8000</p></td>
+<td><p>-11.851V</p></td>
+<td><p>-5.926V</p></td>
+<td><p>-2.963V</p></td>
+<td><p>-1.481V</p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>表 1 .SM1231 电压测量范围数值</p>
+<p>对于电流测量范围，S7-1200 模拟量模块的电流输入值与模块通道显示数值对应关系如下表 2 所示：</p>
+<p>过冲范围为 27649至32511；下冲范围为-1至-4864</p>
+<p>上溢范围为 32512至32767，下溢范围为 -4865至-32768</p>
+<p><strong><img alt="" src="../../_images/42.gif" /> 注意：当开路时，模拟量模块通道显示数值是32767。</strong></p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>系统</p></td>
+<td><p></p></td>
+<td><p>电流测量范围</p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>十进制</p></td>
+<td><p>十六进制</p></td>
+<td><p>0mA到20mA</p></td>
+<td><p>4mA到20mA</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>32767</p></td>
+<td><p>7FFF</p></td>
+<td><p>23.70mA</p></td>
+<td><p>22.96mA</p></td>
+<td><p>上溢</p></td>
+</tr>
+<tr class="row-odd"><td><p>32512</p></td>
+<td><p>7F00</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>32511</p></td>
+<td><p>7EFF</p></td>
+<td><p>23.52mA</p></td>
+<td><p>22.81mA</p></td>
+<td><p>过冲范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>27649</p></td>
+<td><p>6C01</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>27648</p></td>
+<td><p>6C00</p></td>
+<td><p>20mA</p></td>
+<td><p>20mA</p></td>
+<td><p>额定范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>20736</p></td>
+<td><p>5100</p></td>
+<td><p>15mA</p></td>
+<td><p>16mA</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>1</p></td>
+<td><p>1</p></td>
+<td><p>723.4nA</p></td>
+<td><p>4mA+578.7nA</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-odd"><td><p>0</p></td>
+<td><p>0</p></td>
+<td><p>0mA</p></td>
+<td><p>4mA</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>-1</p></td>
+<td><p>FFFF</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>下冲范围</p></td>
+</tr>
+<tr class="row-odd"><td><p>-4864</p></td>
+<td><p>8100</p></td>
+<td><p>-3.52mA</p></td>
+<td><p>1.185mA</p></td>
+<td><p></p></td>
+</tr>
+<tr class="row-even"><td><p>-4865</p></td>
+<td><p>80FF</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p>下溢</p></td>
+</tr>
+<tr class="row-odd"><td><p>-32768</p></td>
+<td><p>8000</p></td>
+<td><p></p></td>
+<td><p></p></td>
+<td><p></p></td>
+</tr>
+</tbody>
+</table>
+<p>表 2 .SM1231 电流测量范围数值</p>
+<p><strong><img alt="" src="../../_images/52.gif" /> SM1231 模拟量输入模块未使用通道如何处理？</strong></p>
+<p>答：应将未使用的电压输入通道短路。使用导线短接通道的正负两个端子，例如短接 0 通道的 0+ 和 0- 端子；</p>
+<p>应将未使用的电流输入通道设置在 0 至 20 mA 范围。</p>
+</section>
+<section id="id2">
+<h2>热电偶模块常见问题<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 TC 信号阻抗指标是多少？</strong></p>
+<p>**答：**SM1231 TC 和 SB1231 TC 阻抗参数一样。</p>
+<ul class="simple">
+<li><p>TC 信号：≥ 10 MΩ</p></li>
+</ul>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 TC 信号传输距离？</strong></p>
+<p>**答：**SM1231 TC 和 SB1231 TC 信号传输距离参数一样。</p>
+<ul class="simple">
+<li><p>TC 信号：≤ 100 m；要求线路阻抗 ≤ 100 Ω</p></li>
+</ul>
+<p><strong><img alt="" src="../../_images/52.gif" />SM1231 TC 模块未使用通道如何处理？</strong></p>
+<p>答：对于 SM1231 TC 模块未使用通道， 可以采用以下方法做处理：</p>
+<p>方法一：对该通道短路。使用导线短接通道的正负两个端子，例如短接 0 通道的 0+ 和 0- 端子；</p>
+<p>方法二：对该通道禁用。在模块的“属性-常规”，对测量类型选择“已禁用”。 如下图 1 所示组态：</p>
+<p><img alt="" src="../../_images/05-01.png" /></p>
+<p>图 1. SM1231 TC 模块禁用未使用通道</p>
+<p><img alt="" src="../../_images/42.gif" /> <strong>注意：不能将所有通道都选择“已禁用</strong>”。</p>
+<p><img alt="" src="../../_images/52.gif" /> <strong>SM1231 TC 模块在通道测量类型选择“已禁用”或“热电偶”时，通道指示灯和数值分别是什么状态？</strong></p>
+<p>（1）通道测量类型“已禁用”：该通道的指示灯不亮，通道读数为最大值 32767；</p>
+<p>（2）通道测量类型“热电偶”，未使能“启用断路诊断”，如下图 2 所示：当通道接线存在开路，通道读数为随机值；</p>
+<p><img alt="" src="../../_images/05-02.jpg" /></p>
+<p>图 2.未使能“启用断路诊断”</p>
+<p>（3）通道测量类型“热电偶”，使能“启用断路诊断”：当通道接线存在开路，此时模板 DIAG 指示灯红色闪烁，对应的通道的灯也红色闪烁， CPU ERROR 灯也红色闪烁； 同时诊断缓冲区报错“断路”，通道读数为最大值 32767；如下图 3， 图 4 所示：</p>
+<p><img alt="" src="../../_images/05-03.jpg" /></p>
+<p>图 3.使能“启用断路诊断”</p>
+<p><img alt="" src="../../_images/05-04.jpg" /></p>
+<p>图 4.诊断缓冲区事件“断路”</p>
+<p>（4）通道测量类型“热电偶”，通道短接，设为“内部参考”，则读到的数值/10为模板的内部温度值（例如：模块内部温度值为30.1℃， 读到数值为301）；如下图 5，图 6 所示：</p>
+<p><img alt="" src="../../_images/05-05.png" /></p>
+<p>图 5.内部参考</p>
+<p><img alt="" src="../../_images/05-06.png" /></p>
+<p>图 6. SM 1231 模块内部温度值</p>
+<p>（5）通道测量类型“热电偶”，通道短接，设为“参数设置”，则读数为设定的温度值*10 （例如：50℃，读到数值为 500） ；如下图 7， 图 8 所示：</p>
+<p><img alt="" src="../../_images/05-07.png" /></p>
+<p>图 7. 参数设置和参考温度</p>
+<p><img alt="" src="../../_images/05-08.png" /></p>
+<p>图 8. 温度值读数</p>
+<p>以上 5 种情况， 总结表格如下表 3 所示：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>测量类型</p></td>
+<td><p>源参考温度</p></td>
+<td><p>启用断路诊断</p></td>
+<td><p>通道接线</p></td>
+<td><p>模块 DIAG 灯</p></td>
+<td><p>通道指示灯</p></td>
+<td><p>通道数值</p></td>
+</tr>
+<tr class="row-odd"><td><p>已禁用</p></td>
+<td><p>-</p></td>
+<td><p>-</p></td>
+<td><p>开路或短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>不亮</p></td>
+<td><p>32767</p></td>
+</tr>
+<tr class="row-even"><td><p>热电偶</p></td>
+<td><p>内部参考或参数设置</p></td>
+<td><p>未使能</p></td>
+<td><p>开路</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>随机值</p></td>
+</tr>
+<tr class="row-odd"><td><p>热电偶</p></td>
+<td><p>内部参考或参数设置</p></td>
+<td><p>使能</p></td>
+<td><p>开路</p></td>
+<td><p>红色闪烁</p></td>
+<td><p>红色闪烁</p></td>
+<td><p>32767</p></td>
+</tr>
+<tr class="row-even"><td><p>热电偶</p></td>
+<td><p>内部参考</p></td>
+<td><p>未使能或使能</p></td>
+<td><p>短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>通道读数值/10为模板的内部温度值</p></td>
+</tr>
+<tr class="row-odd"><td><p>热电偶</p></td>
+<td><p>参数设置</p></td>
+<td><p>未使能或使能</p></td>
+<td><p>短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>读数为设定的温度值*10</p></td>
+</tr>
+</tbody>
+</table>
+<p>表 3. SM1231 TC 模块通道“已禁用”或“热电偶”，通道指示灯和数值状态</p>
+</section>
+<section id="id3">
+<h2>热电阻模块常见问题<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 RTD 信号阻抗指标是多少？</strong></p>
+<p>**答：**SM1231 RTD 和 SB1231 RTD 阻抗参数一样。</p>
+<ul class="simple">
+<li><p>RTD 信号：≥ 10 MΩ</p></li>
+</ul>
+<p><strong><img alt="" src="../../_images/52.gif" /> S7-1200 RTD 信号传输距离？</strong></p>
+<p>答：SM1231 RTD 和 SB1231 RTD 信号传输距离参数一样。</p>
+<ul class="simple">
+<li><p>RTD 信号：≤ 100 m；要求线路阻抗 ≤ 20 Ω，对于10 Ω 的RTD则要求线路阻抗 ≤ 2.7Ω</p></li>
+</ul>
+<p><img alt="" src="../../_images/52.gif" /> <strong>SM1231 RTD 模块未使用通道如何处理？</strong></p>
+<p>对于 SM1231 RTD 模块未使用通道， 可以采用以下方法做处理：</p>
+<p>方法一：对该通道短路（短接方法详见 <a class="reference internal" href="#01-wiring.html#RTD"><span class="xref myst"><strong>RTD 信号模块接线</strong></span></a>）；</p>
+<p>方法二：对该通道禁用。在模块的“属性-常规”，对测量类型选择“已禁用”。 如下图 9 所示组态：</p>
+<p><img alt="" src="../../_images/05-09.png" /></p>
+<p>图 9.禁用 SM1231 RTD 模块未使用通道</p>
+<p><img alt="" src="../../_images/42.gif" /> <strong>注意：不能将所有通道都选择“已禁用</strong>”。</p>
+<p>方法三：RTD 模块连接一个电阻（如 2 线制 RTD 连接，方法详见 <strong><a class="reference internal" href="#01-wiring.html#RTD"><span class="xref myst">RTD 信号模块接线</span></a></strong>）。</p>
+<p><img alt="" src="../../_images/52.gif" /> <strong>SM1231 RTD 模块在通道测量类型选择“已禁用”或“热敏电阻”时，通道指示灯和数值分别是什么状态？</strong></p>
+<p>同 SM1231 RTC 模块，SM1231 RTD 模块在通道测量类型选择“已禁用”或“热敏电阻”时，通道指示灯和数值分别是以下状态。如下表 4 所示：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+<th class="head"><p></p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>测量类型</p></td>
+<td><p>启用断路诊断</p></td>
+<td><p>通道接线</p></td>
+<td><p>模块 DIAG 灯</p></td>
+<td><p>通道指示灯</p></td>
+<td><p>通道数值</p></td>
+</tr>
+<tr class="row-odd"><td><p>已禁用</p></td>
+<td><p>-</p></td>
+<td><p>开路或短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>不亮</p></td>
+<td><p>32767</p></td>
+</tr>
+<tr class="row-even"><td><p>热敏电阻</p></td>
+<td><p>未使能</p></td>
+<td><p>开路</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>随机值</p></td>
+</tr>
+<tr class="row-odd"><td><p>热敏电阻</p></td>
+<td><p>使能</p></td>
+<td><p>开路</p></td>
+<td><p>红色闪烁</p></td>
+<td><p>红色闪烁</p></td>
+<td><p>32767</p></td>
+</tr>
+<tr class="row-even"><td><p>热敏电阻</p></td>
+<td><p>未使能或使能</p></td>
+<td><p>短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>通道读数值/10为模板的内部温度值</p></td>
+</tr>
+<tr class="row-odd"><td><p>电阻</p></td>
+<td><p>未使能或使能</p></td>
+<td><p>短接</p></td>
+<td><p>绿色亮</p></td>
+<td><p>绿色亮</p></td>
+<td><p>0</p></td>
+</tr>
+</tbody>
+</table>
+<p>表 4. SM1231 RTD 模块通道“已禁用”或“热敏电阻”，通道指示灯和数值状态</p>
+<p><img alt="" src="../../_images/52.gif" /> <strong>SM1231 RTD 模块在通道测量类型选择“电阻”时，能测量哪些阻值的电阻？</strong></p>
+<p>能测量150/300/600欧。此时，额定上限数值为 27648。如下表 5 所示：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>范围</p></th>
+<th class="head"><p>低于范围最小值</p></th>
+<th class="head"><p>额定范围下限</p></th>
+<th class="head"><p>稳定范围上限</p></th>
+<th class="head"><p>超出范围最大值</p></th>
+<th class="head"><p>25℃时的额定范围精度</p></th>
+<th class="head"><p>-20℃到60℃时的额定范围精度</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p>150Ω</p></td>
+<td><p>不适用</p></td>
+<td><p>0（0Ω）</p></td>
+<td><p>27648（150Ω）</p></td>
+<td><p>176.383Ω</p></td>
+<td><p>±0.05%</p></td>
+<td><p>±0.1%</p></td>
+</tr>
+<tr class="row-odd"><td><p>300Ω</p></td>
+<td><p>不适用</p></td>
+<td><p>0（0Ω）</p></td>
+<td><p>27648（300Ω）</p></td>
+<td><p>352.767Ω</p></td>
+<td><p>±0.05%</p></td>
+<td><p>±0.1%</p></td>
+</tr>
+<tr class="row-even"><td><p>600Ω</p></td>
+<td><p>不适用</p></td>
+<td><p>0（0Ω）</p></td>
+<td><p>27648（600Ω）</p></td>
+<td><p>705.534Ω</p></td>
+<td><p>±0.05%</p></td>
+<td><p>±0.1%</p></td>
+</tr>
+</tbody>
+</table>
+<p>表 5. SM1231 RTD 模块测量的电阻范围</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">常见问题 FAQ</a><ul>
+<li><a class="reference internal" href="#id1">模拟量输入输出模块常见问题</a></li>
+<li><a class="reference internal" href="#id2">热电偶模块常见问题</a></li>
+<li><a class="reference internal" href="#id3">热电阻模块常见问题</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="04-ApplicationExample.html">
+                    <span class="icon">&lt;</span><span>模拟量转换应用例程</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="06-unstable.html"><span>不稳定性的值</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

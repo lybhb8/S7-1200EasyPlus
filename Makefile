@@ -1,20 +1,82 @@
-# Minimal makefile for Sphinx documentation
-#
+PYTHON ?= python3
 
-# You can set these variables from the command line, and also
-# from the environment for the first two.
-SPHINXOPTS    ?=
-SPHINXBUILD   ?= sphinx-build
-SOURCEDIR     = source
-BUILDDIR      = build
+.PHONY: all
+all: format style-check type-check doclinter test
 
-# Put it first so that "make" without argument is like "make help".
-help:
-	@$(SPHINXBUILD) -M help "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+.PHONY: check
+check: style-check type-check doclinter
 
-.PHONY: help Makefile
+.PHONY: clean
+clean: clean
+	# clean Python cache files:
+	find . -name '*.pyc' -exec rm -f {} +
+	find . -name '*.pyo' -exec rm -f {} +
+	find . -name __pycache__ -exec rm -rf {} +
 
-# Catch-all target: route all unknown targets to Sphinx using the new
-# "make mode" option.  $(O) is meant as a shortcut for $(SPHINXOPTS).
-%: Makefile
-	@$(SPHINXBUILD) -M $@ "$(SOURCEDIR)" "$(BUILDDIR)" $(SPHINXOPTS) $(O)
+	# clean backup files:
+	find . -name '*~' -exec rm -f {} +
+	find . -name '*.bak' -exec rm -f {} +
+	find . -name '*.swp' -exec rm -f {} +
+	find . -name '*.swo' -exec rm -f {} +
+
+	# clean generated:
+	find . -name '.DS_Store' -exec rm -f {} +
+
+	# clean rendered documentation:
+	rm -rf doc/build/
+	rm -rf doc/_build/
+	rm -rf build/sphinx/
+
+	# clean caches:
+	find . -name '.mypy_cache' -exec rm -rf {} +
+	find . -name '.ruff_cache' -exec rm -rf {} +
+
+	# clean test files:
+	rm -rf tests/.coverage
+	rm -rf tests/build
+	rm -rf .tox/
+	rm -rf .cache/
+	find . -name '.pytest_cache' -exec rm -rf {} +
+	rm -f tests/test-server.lock
+
+	# clean build files:
+	rm -rf dist/
+	rm -rf build/
+
+.PHONY: style-check
+style-check:
+	@echo '[+] running flake8' ; flake8 .
+	@echo '[+] running ruff' ; ruff check .
+
+.PHONY: format
+format:
+	@ruff format .
+
+.PHONY: type-check
+type-check:
+	@mypy
+
+.PHONY: doclinter
+doclinter:
+	@sphinx-lint --enable all --disable triple-backticks --max-line-length 85 --sort-by filename,line \
+			     $(addprefix -i doc/, _build _static _templates _themes) \
+	             AUTHORS.rst CHANGES.rst CODE_OF_CONDUCT.rst CONTRIBUTING.rst README.rst doc/
+
+.PHONY: test
+test:
+	@$(PYTHON) -X dev -X warn_default_encoding -m pytest -v $(TEST)
+
+.PHONY: covertest
+covertest:
+	@$(PYTHON) -X dev -X warn_default_encoding -m pytest -v --cov=sphinx --junitxml=.junit.xml $(TEST)
+
+.PHONY: build
+build:
+	@$(PYTHON) -m build .
+
+.PHONY: docs
+docs:
+ifndef target
+	$(info You need to provide a target variable, e.g. `make docs target=html`.)
+endif
+	$(MAKE) -C doc $(target)

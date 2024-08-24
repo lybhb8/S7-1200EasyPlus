@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>功能图--扩展参数-回原点 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../../" id="documentation_options" src="../../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../../_static/js/theme.js"></script>
+    <script src="../../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../../search.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../../index.html" title="Go to homepage"><img src="../../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../../base.html">基础总汇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../../config.html">组态编程</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="id1">
+<h1><span id="toc428444734">功能图--扩展参数</span>-回原点<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<p>“原点&quot;也可以叫做&quot;参考点”，“回原点&quot;或是&quot;寻找参考点&quot;的作用是：把轴实际的机械位置和S7-1200程序中轴的位置坐标统一，以进行绝对位置定位。<br />
+一般情况下，西门子PLC的运动控制在使能绝对位置定位之前必须执行&quot;回原点&quot;或是&quot;寻找参考点”。<br />
+&quot;扩展参数-回原点&quot;分成&quot;主动&quot;和&quot;被动&quot;两部分参数。</p>
+<section id="id2">
+<h2><strong>主动</strong><a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>在这里的&quot;扩展参数-回原点-主动&quot;中&quot;主动&quot;就是传统意义上的回原点或是寻找参考点。当轴触发了主动回参考点操作，则轴就会按照组态的速度去寻找原点开关信号，并完成回原点命令。</p>
+<p><a class="reference internal" href="../../../../_images/6-1.jpg"><img alt="" src="../../../../_images/6-1.jpg" style="width: 824px; height: 755px;" /></a></p>
+<p><strong>①输入原点开关</strong>：设置原点开关的DI输入点。<br />
+<strong>②选择电平</strong>：选择原点开关的有效电平，也就是当轴碰到原点开关时，该原点开关对应的DI点是高电平还是低电平。<br />
+<strong>③允许硬件限位开关处自动反转</strong>：如果轴在回原点的一个方向上没有碰到原点，则需要使能该选项，这样轴可以自动调头，向反方向寻找原点。<br />
+<strong>④逼近/回原点方向</strong>：寻找原点的起始方向。也就是说触发了寻找原点功能后，轴是向&quot;正方向&quot;或是&quot;负方向&quot;开始寻找原点。</p>
+<blockquote>
+<div><p><a class="reference internal" href="../../../../_images/6-2.jpg"><img alt="" src="../../../../_images/6-2.jpg" style="width: 801px; height: 208px;" /></a></p>
+<p>如果知道轴和参考点的相对位置，可以合理设置&quot;逼近/回原点方向&quot;来缩短回原点的路径。例如，以上图中的负方向为例，触发回原点命令后，轴需要先运行到左边的限位开关，掉头后继续向正方向寻找原点开关。</p>
+<p><a class="reference internal" href="../../../../_images/6-3.jpg"><img alt="" src="../../../../_images/6-3.jpg" style="width: 801px; height: 209px;" /></a></p>
+<p>&quot;上侧&quot;指的是：轴完成回原点指令后，以轴的<strong>左</strong>边沿停在参考点开关<strong>右</strong>侧边沿。<br />
+&quot;下侧&quot;指的是：轴完成回原点指令后，以轴的<strong>右</strong>边沿停在参考点开关<strong>左</strong>侧边沿。<br />
+无论用户设置寻找原点的起始方向为正方向还是负方向，轴最终停止的位置取决于
+“上侧&quot;或&quot;下侧”。</p>
+</div></blockquote>
+<p><strong>⑥逼近速度</strong>：寻找原点开关的起始速度，当程序中触发了MC_Home指令后，轴立即以&quot;逼近速度&quot;运行来寻找原点开关。<br />
+<strong>⑦参考速度</strong>：最终接近原点开关的速度，当轴第一次碰到原点开关有效边沿儿后运行的速度，也就是触发了MC_Home指令后，轴立即以&quot;逼近速度&quot;运行来寻找原点开关，当轴碰到原点开关的有效边沿后轴从&quot;逼近速度&quot;切换到&quot;参考速度&quot;来最终完成原点定位。“参考速度&quot;要小于&quot;逼近速度”，&quot;参考速度&quot;和&quot;逼近速度&quot;都不宜设置的过快。在可接受的范围内，设置较慢的速度值。<br />
+<strong>⑧起始位置偏移量</strong>：该值不为零时，轴会在距离原点开关一段距离（该距离值就是偏移量）停下来，把该位置标记为原点位置值。该值为零时，轴会停在原点开关边沿儿处。<br />
+<strong>⑨参考点位置</strong>：该值就是⑧中的原点位置值。</p>
+<p>---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------</p>
+<p>如下图所示，用例子来说明轴主动回原点的执行过程。根据轴与原点开关的相对位置，分成4种情况：轴在原点开关负方向侧，轴在原点开关的正方向侧，轴刚执行过回原点指令，轴在原点开关的正下方。</p>
+<p><a class="reference internal" href="../../../../_images/6-4.jpg"><img alt="" src="../../../../_images/6-4.jpg" style="width: 998px; height: 293px;" /></a></p>
+<p>①当程序以Mode=3触发MC_Home指令时，轴立即以&quot;逼近速度
+10.0mm/s&quot;向右（正方向）运行寻找原点开关；<br />
+②当轴碰到参考点的有效边沿，切换运行速度为&quot;参考速度2.0mm/s&quot;继续运行；<br />
+③当轴的左边沿与原点开关有效边沿重合时，轴完成回原点动作。</p>
+<p><a class="reference internal" href="../../../../_images/6-5.jpg"><img alt="" src="../../../../_images/6-5.jpg" style="width: 999px; height: 284px;" /></a></p>
+<p>①当轴在原点开关的正方向（右侧）时，触发主动回原点指令，轴会以&quot;逼近速度&quot;运行直到碰到右限位开关，如果在这种情况下，用户没有使能&quot;<strong>允许硬件限位开关处自动反转</strong>&quot;选项，则轴因错误取消回原点动作并按<strong>急停</strong>速度使轴制动；如果用户使能了该选项，则轴将以组态的<strong>减速度</strong>减速（不是以紧急减速度）运行，然后反向运行，反向继续寻找原点开关；<br />
+②当轴掉头后继续以&quot;逼近速度&quot;向负方向寻找原点开关的有效边沿；<br />
+③原点开关的有效边沿是右侧边沿，当轴碰到原点开关的有效边沿后，将速度切换成&quot;参考速度&quot;最终完成定位。</p>
+<p><a class="reference internal" href="../../../../_images/6-6.jpg"><img alt="" src="../../../../_images/6-6.jpg" style="width: 1000px; height: 654px;" /></a></p>
+<p>上图中的3和4说明了两种特殊情况下轴的回原点的过程。</p>
+<p>下图以4种情况来说明轴以&quot;负方向&quot;和&quot;下侧&quot;的方式主动回原点的过程。</p>
+<p><a class="reference internal" href="../../../../_images/6-7.jpg"><img alt="" src="../../../../_images/6-7.jpg" style="width: 997px; height: 588px;" /></a></p>
+<p><a class="reference internal" href="../../../../_images/6-8.jpg"><img alt="" src="../../../../_images/6-8.jpg" style="width: 997px; height: 610px;" /></a></p>
+</section>
+<section id="id3">
+<h2><strong>被动</strong><a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<p>被动回原点指的是：轴在运行过程中碰到原点开关，轴的当前位置将设置为回原点位置值。</p>
+<p><a class="reference internal" href="../../../../_images/6-9.jpg"><img alt="" src="../../../../_images/6-9.jpg" style="width: 978px; height: 867px;" /></a></p>
+<p><strong>①输入原点开关</strong>：参考主动会原点中该项的说明。<br />
+<strong>②选择电平</strong>：参考主动回原点中该项的说明。<br />
+<strong>③参考点开关一侧</strong>：参考主动回原点中第5项的说明。<br />
+<strong>④参考点位置</strong>： 该值是MC_Home指令中&quot;Position&quot;管脚的数值。</p>
+<p>用例子说明如何实现一个被动回原点的功能：</p>
+<blockquote>
+<div><p>步骤一：在上图中选则&quot;参考点开关一侧&quot;为&quot;上侧&quot;；<br />
+步骤二：先让轴执行一个相对运动指令，该指令设定的路径能让轴经过原点开关；<br />
+步骤三：在该指令指令的过程中，触发MC_Home指令，设置模式为Mode=2.<br />
+步骤四：这时再触发MC_MoveRelative指令，要保证触发该指令的方向能够经过原点开关。</p>
+<p>**『结果』**当轴以MC_MoveRelative指令指定的速度运行的过程中碰到原点开关的有效边沿时，轴立即更新坐标位置为MC_Home指令上的&quot;Position&quot;值，如下图所示。在这个过程中轴并不停止运行，也不会更改运行速度。直到达到MC_MoveRelative指令的距离值，轴停止运行。</p>
+<h6 class="rubric" id="id4"><a class="reference internal" href="../../../../_images/6-10.jpg"><img alt="" src="../../../../_images/6-10.jpg" style="width: 977px; height: 761px;" /></a></h6>
+<p><strong>『结论』</strong> <br />
+1.
+被动回原点功能的实现需要MC_Home指令与MC_MoveRelative指令，或MC_MoveAbsolute指令，或是MC_MoveVelocity指令，或是MC_MoveJog指令联合使用。<br />
+2. 被动回原点需要原点开关。<br />
+3.
+被动回原点不需要轴不执行其他指令而专门执行主动回原点功能，而是轴在执行其他运动的过程中完成回原点的功能。</p>
+</div></blockquote>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#"><span id="toc428444734">功能图--扩展参数</span>-回原点</a><ul>
+<li><a class="reference internal" href="#id2"><strong>主动</strong></a></li>
+<li><a class="reference internal" href="#id3"><strong>被动</strong></a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

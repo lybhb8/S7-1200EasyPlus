@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S7-1200 数据块的使用 &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="DB 快照功能" href="03-DB_Snapshots.html" />
+    <link rel="prev" title="FC 功能" href="01-FC.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程基础</a><ul class="current">
+<li class="toctree-l3"><a class="reference internal" href="../01-Data_Type/index.html">数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-OB/index.html">组织块 OB</a></li>
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">功能FC 和 功能块FB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="s7-1200">
+<h1>S7-1200 数据块的使用<a class="headerlink" href="#s7-1200" title="此标题的永久链接">¶</a></h1>
+<section id="id1">
+<h2>硬件环境<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h2>
+<p>S7-1200 CPU V4.4(6ES7 214-1AG40-0XB0)</p>
+</section>
+<section id="id2">
+<h2>软件环境<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h2>
+<p>（1）Windows 10 Enterprise 64位</p>
+<p>（2）STEP7 Professional V16</p>
+</section>
+<section id="id3">
+<h2>步骤<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h2>
+<section id="db">
+<h3>1. 创建DB块<a class="headerlink" href="#db" title="此标题的永久链接">¶</a></h3>
+<p>在项目中添加了S7-1200设备之后,在项目树中此PLC的&quot;程序块&quot;下即可以添加新的数据块。</p>
+<p><a class="reference internal" href="../../../_images/2-011.jpg"><img alt="" src="../../../_images/2-011.jpg" style="width: 920px; height: 649px;" /></a></p>
+<p>图1 DB块的创建</p>
+<p>在打开的 <strong>添加新块</strong> 窗口下选择数据块。 以下是对此窗口下各项配置的说明：</p>
+<p>名称：此处可以键入DB块的符号名。如果不做更改，那么将保留系统分配的默认符号名。例如此处为DB块分配的符号名为 <strong>数据块_1</strong> ；</p>
+<p>类型：此处可以通过下拉菜单选择所要创建的数据块类型-全局数据块、背景数据块，或是基于UDT以及SDT的全局数据块（参见链接<a class="reference internal" href="../01-Data_Type/03-UDT.html"><span class="std std-doc">UDT</span></a>、<a class="reference internal" href="../01-Data_Type/05-SDT.html"><span class="std std-doc">SDT</span></a>）。如果要创建背景数据块，下拉菜单中列出了此项目中已有的FB供用户选择。</p>
+<p>语言：对于创建数据块，此处不可更改。</p>
+<p>编号：默认配置为 <strong>自动</strong> ，即系统自动为所生成的数据块配分块号。当然也可以选择 <strong>手动</strong> ，则 <strong>编号</strong> 处的下拉菜单变为高亮状态,以便用户自行分配DB块编号。</p>
+<p>当以上的数据块属性全部定义完成，点击 <strong>确定</strong> 按钮即创建完成一个数据块。用户可以在项目树中看到刚刚创建的数据块，如图2所示：</p>
+<p><a class="reference internal" href="../../../_images/2-021.jpg"><img alt="" src="../../../_images/2-021.jpg" style="width: 223px; height: 598px;" /></a></p>
+<p>图2 项目树中的DB块</p>
+</section>
+<section id="id4">
+<h3>2. 为数据块定义变量：双击打开数据块即可逐行添加变量<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h3>
+<p>如图3 所示。</p>
+<p><a class="reference internal" href="../../../_images/2-031.jpg"><img alt="" src="../../../_images/2-031.jpg" style="width: 936px; height: 221px;" /></a></p>
+<p>图3 DB块的编辑</p>
+<p>如果取消勾选数据块的属性对话框中的 <strong>优化的块访问</strong> 的复选框，参考图10，则在数据块中可以看到 <strong>偏移量</strong> 列，并且系统在编译之后在该列生成每个变量的地址偏移量。设置成优化访问的数据块则无此列。</p>
+<p>默认情况下会有一些变量属性列未被显示出来，可以通过右键单击任意列标题，可在出现的菜单中选择显示被隐藏的列，见图4：</p>
+<p><a class="reference internal" href="../../../_images/2-041.jpg"><img alt="" src="../../../_images/2-041.jpg" style="width: 873px; height: 349px;" /></a></p>
+<p>图4 显示隐藏列</p>
+<p>表1是对数据块变量定义的所有列的说明：</p>
+<p>下表列出了各列的含义。可根据需要显示或隐藏各列。显示的列数取决于 CPU
+类型。</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>列</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><img alt="" src="../../../_images/2-11.JPG" /> {width=“27” height=“23”}</p></td>
+<td><p>单击符号以移动或复制变量。例如，可以将变量拖动到程序中作为操作数</p></td>
+</tr>
+<tr class="row-odd"><td><p>名称</p></td>
+<td><p>变量名称。</p></td>
+</tr>
+<tr class="row-even"><td><p>数据类型</p></td>
+<td><p>变量的数据类型。</p></td>
+</tr>
+<tr class="row-odd"><td><p>偏移量</p></td>
+<td><p>在非优化的数据块中，显示变量的地址。</p></td>
+</tr>
+<tr class="row-even"><td><p>默认值</p></td>
+<td><p>更高级别代码块接口中或 PLC 数据类型中变量的默认值。</p></td>
+</tr>
+<tr class="row-odd"><td><p>起始值</p></td>
+<td><p>在启动时变量采用的值。创建数据块时，代码块中定义的默认值将用作起始值。之后，即可使用实例特定的起始值替换所用的默认值</p></td>
+</tr>
+<tr class="row-even"><td><p>监视值</p></td>
+<td><p>CPU 中的当前数据值。只有当在线连接可用并单击“监视”按钮时，此列才会出现</p></td>
+</tr>
+<tr class="row-odd"><td><p>快照</p></td>
+<td><p>显示从设备加载的值。快照功能参见链接： <a class="reference internal" href="03-DB_Snapshots.html"><span class="std std-doc">DB 快照</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p>保持性</p></td>
+<td><p>将变量标记为具有保持性。即使在关断电源后，保持性变量的值也将保留不变。</p></td>
+</tr>
+<tr class="row-odd"><td><p>在 HMI 工程组态中可见</p></td>
+<td><p>显示默认情况下，该变量在 HMI 选择列表中是否显示。</p></td>
+</tr>
+<tr class="row-even"><td><p>从 HMI/OPC UA 可访问</p></td>
+<td><p>指示在运行过程中，HMI/OPC UA 是否可访问该变量。</p></td>
+</tr>
+<tr class="row-odd"><td><p>从 HMI/OPC UA 可写</p></td>
+<td><p>指示在运行过程中，是否可从 HMI/OPC UA 写入变量。</p></td>
+</tr>
+<tr class="row-even"><td><p>设定值</p></td>
+<td><p>设定值是指在调试过程中可能需要微调的值。经过调试之后，这些变量的值可作为起始值传输到离线程序中并进行保存。</p></td>
+</tr>
+<tr class="row-odd"><td><p>监控</p></td>
+<td><p>指示是否已为该变量的过程诊断创建有监视。</p></td>
+</tr>
+<tr class="row-even"><td><p>注释</p></td>
+<td><p>用于说明变量的注释信息。</p></td>
+</tr>
+</tbody>
+</table>
+<p>表1 DB块中的列属性</p>
+<p>定义变量的数据类型：可以为变量定义基本数据类型，复杂数据类型（时间与日期，字符串，结构体，数组等），PLC数据类型（如用户自定义数据类型），系统数据类型和硬件数据类型。可以直接键入数据类型标识符（例如：使用高速计数器功能时，调用指令CTRL_HSC_EXT指令，其中CTRL引脚填写的数据类型为 <strong>HSC_Count</strong> ，需要手动直接输入。），或者通过该列中的选择按钮选择。如下图所示：</p>
+<p><a class="reference internal" href="../../../_images/2-051.jpg"><img alt="" src="../../../_images/2-051.jpg" style="width: 496px; height: 324px;" /></a></p>
+<p>图5 定义数据类型</p>
+<p>DB块在线的状态如图6所示，其中红色方框中是DB块中的按钮功能，具体介绍详见表2：</p>
+<p><a class="reference internal" href="../../../_images/2-06.JPG"><img alt="" src="../../../_images/2-06.JPG" style="width: 875px; height: 216px;" /></a></p>
+<p>图6 DB块的按钮</p>
+<p>表2中介绍了DB块中各个按钮的功能：</p>
+<table class="docutils align-default">
+<thead>
+<tr class="row-odd"><th class="head"><p>按钮</p></th>
+<th class="head"><p>功能</p></th>
+<th class="head"><p>说明</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-17.JPG"><img alt="" src="../../../_images/2-17.JPG" style="width: 28px; height: 26px;" /></a></p></td>
+<td><p>插入行</p></td>
+<td><p>在当前变量的前面插入一行。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/2-18.JPG"><img alt="" src="../../../_images/2-18.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>添加行</p></td>
+<td><p>在当前变量的后面添加一行。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-19.JPG"><img alt="" src="../../../_images/2-19.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>复位启动值</p></td>
+<td><p>将为实例特定的起始值指定的所有值复位到其默认值。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/2-20.JPG"><img alt="" src="../../../_images/2-20.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>更新接口</p></td>
+<td><p>除去数据块的不一致性，不一致可能是由于更改了所使用的函数块或PLC数据类型所引起。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-21.JPG"><img alt="" src="../../../_images/2-21.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>扩展模式</p></td>
+<td><p>显示结构化数据类型的所有元素。</p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/2-12.JPG"><img alt="" src="../../../_images/2-12.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>在线监视变量</p></td>
+<td><p>显示变量当前在 CPU 中的实际值。</p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-22.JPG"><img alt="" src="../../../_images/2-22.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>激活存储区预留</p></td>
+<td><p>在CPU中，加载对当前数据块的更改而不会丢失当前值。详细用法可以参考 <a class="reference internal" href="../../01-operation/05-download_run.html"><span class="std std-doc">下载但不重新初始化</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/2-13.JPG"><img alt="" src="../../../_images/2-13.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>创建实际值的快照</p></td>
+<td><p>在离线项目中，将当前的实际值保存为快照。该快照通常会捕获数据块中所有变量的实际值。 快照功能参见链接： <a class="reference internal" href="03-DB_Snapshots.html"><span class="std std-doc">DB 快照</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-14.JPG"><img alt="" src="../../../_images/2-14.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>使用快照重新初始化实际值</p></td>
+<td><p>将快照作为实际值加载到 CPU 中。之后，CPU   将这些值用作在线程序中的实际值。 快照功能参见链接： <a class="reference internal" href="03-DB_Snapshots.html"><span class="std std-doc">DB 快照</span></a></p></td>
+</tr>
+<tr class="row-odd"><td><p><a class="reference internal" href="../../../_images/2-15.JPG"><img alt="" src="../../../_images/2-15.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>将快照值用作起始值</p></td>
+<td><p>在离线程序中，将快照复制到起始值中。下次从 STOP 切换为 RUN   时，程序将以新的起始值运行。    可以复制所有起始值，也可仅复制标识为“设定值”变量的起始值。快照功能参见链接：<a class="reference internal" href="03-DB_Snapshots.html"><span class="std std-doc">DB 快照</span></a></p></td>
+</tr>
+<tr class="row-even"><td><p><a class="reference internal" href="../../../_images/2-16.JPG"><img alt="" src="../../../_images/2-16.JPG" style="width: 26px; height: 27px;" /></a></p></td>
+<td><p>使用起始值重新初始化实际值</p></td>
+<td><p>重新初始化变量的实际值。起始值将直接写入 CPU 工作存储器中。    可以复制所有实际值，也可仅复制标识为“设定值”变量的实际值。</p></td>
+</tr>
+</tbody>
+</table>
+<p>表2 DB块中的按钮功能</p>
+<p>DB块数据的保持性：对于可优化访问的数据块，其中的每个变量可以分别设置其保持与否；而标准数据块仅可设置其中所有的变量保持或不保持，不能对每个变量单独设置。如图7和图8所示：</p>
+<p><a class="reference internal" href="../../../_images/2-071.jpg"><img alt="" src="../../../_images/2-071.jpg" style="width: 891px; height: 223px;" /></a></p>
+<p>图7 标准数据块中仅可设置所有的变量保持或不保持</p>
+<p><a class="reference internal" href="../../../_images/2-08.jpg"><img alt="" src="../../../_images/2-08.jpg" style="width: 822px; height: 172px;" /></a></p>
+<p>图8 可优化访问的数据块中可以分别设置每个变量的保持性</p>
+<p>在程序中添加DB块中的变量，可以采用拖拽的方式，鼠标左键单击DB块，在 <strong>详细视图</strong> 中显示DB块中的所有变量，选中相应的变量（例如：变量D），按住鼠标左键，将变量D直接拖动到MOVE指令的OUT1引脚即可，如图9所示：</p>
+<p><a class="reference internal" href="../../../_images/2-09.JPG"><img alt="" src="../../../_images/2-09.JPG" style="width: 854px; height: 626px;" /></a></p>
+<p>图9 在程序中添加DB块中的变量</p>
+</section>
+<section id="id5">
+<h3>3. 数据块的访问<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h3>
+<p>符号访问：&lt;DB块名&gt;.&lt;变量名&gt;；例如：<strong>Data_Block_1</strong>.A；</p>
+<p>绝对地址访问：&lt;DB块号&gt;.&lt;变量长度及偏移量&gt;：DB1.DBX0.0；DB1.DBB0；DB1.DBW0；DB1.DBD0。</p>
+<div class="admonition warning">
+<p class="admonition-title">警告</p>
+<p>复杂数据类型只能符号寻址。</p>
+</div>
+</section>
+<section id="id6">
+<h3>4. 数据块的属性<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h3>
+<section id="id7">
+<h4>(1)双击打开数据块，可以看到起始值列，点击&quot;全部监视&quot;按钮，可以看到监视值列<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h4>
+<ul class="simple">
+<li><p>起始值：在启动时变量采用的值。创建数据块时，代码块中中定义的默认值将用作起始值。之后，即可使用实例特定的起始值替换所用的默认值。可选择是否指定起始值。如果未指定任何值，则在启动时变量将采用默认值。如果也没有定义默认值，将使用相应数据类型的有效默认值。例如，将
+BOOL 的默认值指定为 <strong>FALSE</strong> 。当CPU下载程序时，下载的是数据块的起始值。</p></li>
+<li><p>监视值：CPU中的当前数据值。只有当在线连接可用并单击 <strong>全部监视</strong> 按钮时，此列才会出现。当CPU上传程序时，上传的是数据块的监视值。当执行下载并复位PLC程序时，下载的是数据块的起始值，并将监视值复制为起始值。</p></li>
+</ul>
+</section>
+<section id="id8">
+<h4>(2)右键点击数据块，在 “属性-&gt;属性” 中，可以看到数据块的如下属性<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h4>
+<p>如图10所示</p>
+<p>仅存储在装载内存中：激活时，数据块仅存储在装载存储器中，不占用工作存储器的空间，且不链接到程序。处理数据块的指令位于 <strong>扩展指令-&gt; 数据块控制</strong> 中。</p>
+<p>在设备中写保护数据块：指示数据块在目标系统中是否为只读，且在程序运行期间是否无法将其覆盖。</p>
+<p>优化的块访问：在带有优化访问功能的块变量声明中，仅包含数据元素的符号名称。系统将自动优化并管理地址。这将提高 CPU 的性能并同时有效防止来自诸如 SIMATIC HMI 的访问错误。</p>
+<p>数据块从OPC UA可访问：如果选中该复选框，则该数据块可作为完整的对象从 OPC UA 进行访问。之后，可为 OPC UA 分别发布或锁定该数据块的各个变量。</p>
+<p>数据块可通过 Web服务器访问：如果选中该复选框，则数据块可作为一个完整的对象从 Web服务器进行访问。之后，可对该数据块的各变量进行分别发布或锁定。</p>
+<p><a class="reference internal" href="../../../_images/2-10.jpg"><img alt="" src="../../../_images/2-10.jpg" style="width: 877px; height: 715px;" /></a></p>
+<p>图10 DB属性</p>
+</section>
+</section>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">S7-1200 数据块的使用</a><ul>
+<li><a class="reference internal" href="#id1">硬件环境</a></li>
+<li><a class="reference internal" href="#id2">软件环境</a></li>
+<li><a class="reference internal" href="#id3">步骤</a><ul>
+<li><a class="reference internal" href="#db">1. 创建DB块</a></li>
+<li><a class="reference internal" href="#id4">2. 为数据块定义变量：双击打开数据块即可逐行添加变量</a></li>
+<li><a class="reference internal" href="#id5">3. 数据块的访问</a></li>
+<li><a class="reference internal" href="#id6">4. 数据块的属性</a><ul>
+<li><a class="reference internal" href="#id7">(1)双击打开数据块，可以看到起始值列，点击&quot;全部监视&quot;按钮，可以看到监视值列</a></li>
+<li><a class="reference internal" href="#id8">(2)右键点击数据块，在 “属性-&gt;属性” 中，可以看到数据块的如下属性</a></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="01-FC.html">
+                    <span class="icon">&lt;</span><span>FC 功能</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="03-DB_Snapshots.html"><span>DB 快照功能</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

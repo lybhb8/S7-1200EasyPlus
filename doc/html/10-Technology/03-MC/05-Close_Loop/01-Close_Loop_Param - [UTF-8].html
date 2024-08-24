@@ -1,0 +1,401 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>闭环运动控制参数介绍 {#闭环运动控制参数介绍 .STYLE3} &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../config.html">组态编程</a></li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section id="style3">
+<h1>闭环运动控制参数介绍 {#闭环运动控制参数介绍 .STYLE3}<a class="headerlink" href="#style3" title="此标题的永久链接">¶</a></h1>
+<p>S7-1200 支持通过 PROFIdrive
+或者模拟量输出（AQ）方式控制伺服驱动器实现闭环控制。与开环运动控制相比以下新元素将添加到组态导航中：编码器、模数、位置监控（定位监控、跟随误差和静止信号）、控制回路等。</p>
+<p>下面介绍闭环控制新增的组态选项。</p>
+<p>其余部分可参考开环组态，<a class="reference internal" href="#../03-Basic_Config.html#a"><span class="xref myst">链接</span></a>。</p>
+</section>
+<section id="id1">
+<h1>基本参数-常规 {#基本参数-常规 .STYLE3}<a class="headerlink" href="#id1" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../../_images/1-012.png"><img alt="" src="../../../_images/1-012.png" style="width: 991px; height: 590px;" /></a></p>
+<p>图 1 基本参数</p>
+<p>①&quot;驱动器&quot;</p>
+<p>“模拟驱动装置接口”：通过模拟量输出连接驱动装置；例如通过 CPU 本体 AQ
+通道控制驱动器。</p>
+<p>“PROFIdrive”：通过 PROFINET/PROFIBUS
+连接驱动装置。控制器和驱动器之间通过 PROFIdrive 报文进行通信。例如，通过
+PROFINET 连接 V90，或者通过 PROFINET 连接 ET200SP 接口模块，使用该站点的
+PTO 2 模块发脉冲控制驱动器。</p>
+<p>图 1 中示例选择 “PROFIdrive” 连接驱动装置。</p>
+<p>②&quot;仿真&quot;：在下拉列表中，选择是否仿真驱动器和编码器。模拟量驱动接口或
+PROFIdrive
+驱动装置均可仿真。在仿真模式下，不需要对驱动装置和编码器进行硬件配置。在仿真模式下，设定值不会输出到驱动器，也不从驱动器/编码器读取实际值。硬件限位开关和原点开关不产生任何影响。</p>
+<p>注意：该仿真模式是用在装载到真实 CPU 的，而并非装载到 PLCSIM 的，PLCSIM
+不支持仿真 S7-1200 运动控制。</p>
+</section>
+<section id="id2">
+<h1>基本参数-驱动器 {#基本参数-驱动器 .STYLE3}<a class="headerlink" href="#id2" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../../_images/1-022.png"><img alt="" src="../../../_images/1-022.png" style="width: 927px; height: 535px;" /></a></p>
+<p>图 2 驱动器</p>
+<p>①选择 PROFIdrive 驱动装置：</p>
+<p>“数据连接”：在下拉列表中，选择连接接口为&quot;驱动器&quot;；</p>
+<p>“驱动器”：在&quot;驱动器&quot;域中，选择一个已经组态的 PROFIdrive 驱动器。</p>
+<p>注意：
+如果为&quot;数据连接&quot;选择了&quot;数据块&quot;，“驱动器&quot;选项将变为&quot;数据块”，选择一个之前创建的数据块，数据块包含数据类型为&quot;PD_TELx&quot;的变量结构（&quot;x&quot;为所用的报文编号）。具体可参考<a class="reference internal" href="#../08-FAQ/01-FAQ.html#_Toc6"><span class="xref myst">链接</span></a>。</p>
+<p>②&quot;与驱动装置进行数据交换&quot;
+“驱动器报文”：在下拉列表中，选择该驱动器的报文，必须与驱动器的设备组态相一致。图
+2 中示例选择标准报文 3；</p>
+<p>“输入/输出地址”：显示报文的符号名称及输入/输出地址；</p>
+<p>“反转驱动器方向”：如果要反向驱动器的旋转方向，则可选择该复选框；</p>
+<p>“自动传送设备中的驱动装置参数”：如果要将驱动器参数&quot;参考速度&quot;和&quot;最大速度&quot;以数值形式从驱动器组态自动传送到
+CPU 中，可选择该复选框。工艺对象进行初始化并启动驱动器和 CPU
+后，将通过总线传送驱动器参数。图 2
+中示例选择&quot;自动传送设备中的驱动装置参数&quot;，也可以选择手动同步以下参数：</p>
+<p>“参考速度”：组态参考速度，与驱动器组态中的值相匹配。</p>
+<p>“最大速度”：在该域中，将组态驱动装置的最大速度。从驱动装置的组态中获取最大速度。通过总线可传送的参考速度范围为
+-200% 到 +200% ，最大速度最多为参考速度的两倍。</p>
+</section>
+<section id="id3">
+<h1>基本参数-编码器 {#基本参数-编码器 .STYLE3}<a class="headerlink" href="#id3" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../../_images/1-031.png"><img alt="" src="../../../_images/1-031.png" style="width: 710px; height: 691px;" /></a></p>
+<p>图 3 编码器</p>
+<p>①&quot;编码器连接&quot;</p>
+<p>“PROFINET/PROFIBUS上的编码器”：选择 PROFINET 上的 PROFIdrive 编码器；</p>
+<p>“高速计数器(HSC)上的编码器”：选择 S7-1200
+本体上的高速计数器，编码器的实际值将传输至高速计数器。检查高速计数器数字量输入的滤波时间。滤波时间应足够短，以确保可靠记录脉冲；</p>
+<p>②&quot;编码器选择&quot;</p>
+<p>“数据连接”：选择&quot;编码器&quot;；</p>
+<p>“PROFIdrive 编码器”：选择一个事先组态的 PROFIdrive 编码器。图中示例选择
+V90 PN 驱动器上的编码器；</p>
+<p>注意： 如果为&quot;数据连接&quot;选择了&quot;数据块&quot;，“PROFIdrive
+编码器&quot;选项将变为&quot;数据块”，选择一个之前用户创建的数据块，数据块包含数据类型为&quot;PD_TELx&quot;的变量结构（&quot;x&quot;为所用的报文编号）。具体可参考<a class="reference internal" href="#../08-FAQ.html#_Toc13"><span class="xref myst">链接</span></a>。</p>
+<p>③&quot;与编码器之间的数据交换&quot;</p>
+<p>“编码器报文”：在下拉列表中，选择编码器的报文。其技术数据必须与设备组态相一致。图
+3 中示例选择标准报文3；</p>
+<p>“输入/输出地址”：显示报文的符号名称及绝对输入/输出地址；</p>
+<p>“反转编码器方向”：要反转编码器的实际值，选中此复选框；</p>
+<p>“自动传送设备中的编码器参数”：如果要从编码器组态传输编码器参数到 CPU
+，则选中该复选框。初始化工艺对象、启动 CPU
+后，将从总线传送编码器参数。编码器的类型必须与轴组态以及驱动器组态中的类型相同。</p>
+<p>④&quot;编码器类型&quot;：在&quot;编码器类型&quot;对话框中选择使用的编码器类型。可选择以下编码器类型：线性增量、线性绝对值、旋转增量、旋转绝对值。图
+3
+中示例选择&quot;旋转增量&quot;。如果未选中&quot;自动传送设备中的编码器参数&quot;复选框，需根据所选编码器类型，手动组态参数，组态参考表
+1 。</p>
+<p>表 1 编码器类型与说明</p>
+<hr class="docutils" />
+<p><span class="STYLE3">编码器类型</span>   <span class="STYLE3">参数</span>                 <span class="STYLE3">说明</span></p>
+<p><span class="STYLE3">线性增量</span>     <span class="STYLE3">两个增量之间的距离</span>   <span class="STYLE3">组态编码器两步之间的距离</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                      [高精度-增量实际值中的位        [组态增量实际值高精度的位数]{.STYLE3}
+                      (GN_XIST1) ]{.STYLE3}           
+</pre></div>
+</div>
+<p><span class="STYLE3">\                      <span class="STYLE3">两个增量之间的距离</span>   <span class="STYLE3">组态编码器两步之间的距离</span>
+线性绝对值</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                      [高精度-增量实际值中的位        [组态增量实际值高精度的位数]{.STYLE3}
+                      (GN_XIST1) ]{.STYLE3}           
+
+                      [高精度-递增实际值中的位        [组态高精度绝对值倍增系数的预留位数]{.STYLE3}
+                      (Gn_XIST2) ]{.STYLE3}           
+</pre></div>
+</div>
+<p><span class="STYLE3">旋转增量</span>     <span class="STYLE3">每转步数</span>             <span class="STYLE3">组态编码器每一转可以解析出的步数</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                      [高精度-增量实际值中的位        [组态增量实际值高精度的位数]{.STYLE3}
+                      (GN_XIST1) ]{.STYLE3}           
+</pre></div>
+</div>
+<p><span class="STYLE3">旋转绝对值</span>   <span class="STYLE3">每转步数</span>             <span class="STYLE3">组态编码器每一转可以解析出的步数</span></p>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>                      [转数]{.STYLE3}                 [组态绝对值编码器可以检测出的转数]{.STYLE3}
+
+                      [高精度-增量实际值中的位        [组态增量实际值高精度的位数]{.STYLE3}
+                      (GN_XIST1) ]{.STYLE3}           
+
+                      [高精度-递增实际值中的位        [组态高精度绝对值倍增系数的预留位数]{.STYLE3}
+                      (Gn_XIST2)]{.STYLE3}            
+</pre></div>
+</div>
+<hr class="docutils" />
+<p>注意：</p>
+<p>1.
+如果使用编码器为绝对值编码器，并且组态为绝对值编码器，则无法使用主动回原点和被动回原点功能。</p>
+<p>2.
+如果使用编码器为<span class="STYLE3">绝对值编码器</span>，但是组态为增量编码器，此时可以使用<span class="STYLE3">主动回原点和被动回原点，但是无法使用
+MC_HOME 指令的模式 6 和模式
+7，也就是无法实现位置值的断电保持。</span></p>
+</section>
+<section id="id4">
+<h1>扩展参数-机械 {#扩展参数-机械 .STYLE3}<a class="headerlink" href="#id4" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../../_images/1-041.png"><img alt="" src="../../../_images/1-041.png" style="width: 804px; height: 467px;" /></a></p>
+<p>图 4 机械参数</p>
+<p>①&quot;编码器安装类型&quot;：在下拉列表中，选择如何将编码器安装在机械机构上。支持下列编码器安装类型：在电机轴上；外部测量系统。图
+4 中示例选择&quot;在电机轴上&quot;；</p>
+<p>②&quot;位置参数&quot;：参考表 2，根据所选编码器安装类型，组态以下位置参数。</p>
+<p>表 2 编码器位置参数</p>
+<p>±----------------------±----------------------±----------------------+
+| ::: {align=“center”}  | <span class="STYLE3">位置参数</span>   | <span class="STYLE3">说明</span>       |
+| <span class="STYLE3">编码                 |                       |                       |
+| 器安装类型</span>  |                       |                       |
+| :::                   |                       |                       |
+±----------------------±----------------------±----------------------+
+| <span class="STYLE3">在电机轴上\          | <span class="STYLE3">电机每转             | <span class="STYLE3">组态电机每转         |
+| </span>            | 的负载位移</span>  | 的负载距离</span>  |
+±----------------------±----------------------±----------------------+
+| <span class="STYLE3">外                   | <span class="STYLE3">电机每转的负载位移   | <span class="STYLE3">组态电机每转         |
+| 部测量系统</span>  | </span>            | 的负载距离</span>  |
+±----------------------±----------------------±----------------------+
+|                       | <span class="STYLE3">编码器               | <span class="STYLE3">组态编码器每旋       |
+|                       | 每转的距离</span>  | 转一圈外部测量系统所  |
+|                       |                       | 记录的距离</span>  |
+±----------------------±----------------------±----------------------+</p>
+</section>
+<section id="id5">
+<h1>扩展参数-模数 {#扩展参数-模数 .STYLE3}<a class="headerlink" href="#id5" title="此标题的永久链接">¶</a></h1>
+<p><a class="reference internal" href="../../../_images/1-051.png"><img alt="" src="../../../_images/1-051.png" style="width: 803px; height: 381px;" /></a></p>
+<p>图 5 模数</p>
+<p>①&quot;启用模数&quot;：激活&quot;模数&quot;设置时，会将工艺对象的位置值映射到由&quot;模数起始值&quot;和&quot;模数长度&quot;定义的递归数值区间内；</p>
+<p>②&quot;模数长度&quot;：定义模数范围的长度；</p>
+<p>③&quot;模数起始值&quot;：定义模数运算范围的起始位置；</p>
+<p>例如，为将旋转轴的位置值限制为一整圈，将&quot;模数起始值&quot;定义为
+0°、&quot;模数长度&quot;定义为 360°。这时，位置值将映射到 0° 到 359.999°
+模数范围内，如果轴目标位置为 400°，则到达的实际位置为 40°。图 5
+中示例中，不启用模数，此时如果轴只沿一个方向移动，则位置值将持续增大。</p>
+</section>
+<section id="id6">
+<h1>回原点-主动 {#回原点-主动 .STYLE3}<a class="headerlink" href="#id6" title="此标题的永久链接">¶</a></h1>
+<p>与开环运动控制相比，增加了&quot;选择归位模式&quot;设置。</p>
+<p><a class="reference internal" href="../../../_images/1-061.png"><img alt="" src="../../../_images/1-061.png" style="width: 653px; height: 641px;" /></a></p>
+<p>图 6 主动回原点</p>
+<p>可选择的归位模式如下：</p>
+<p>①&quot;通过PROFIdrive报文和接近开关使用零位标记&quot;：主动回原点开始后，在指定的回原点方向上轴加速到组态的&quot;逼近速度&quot;并以该速度搜索原点开关。检测到原点开关后，轴以组态的&quot;参考速度&quot;逼近零位标记。到达零位标记后，轴将以&quot;逼近速度&quot;移动到&quot;起始位置偏移量&quot;位置，将当前的轴位置设置为起始位置。起始位置由运动控制指令&quot;MC_Home&quot;的
+Position 参数指定；</p>
+<p>②
+“通过PROFIdrive报文使用零位标记”：在指定的回原点方向上以组态的&quot;参考速度&quot;到达零位标记后，轴将以&quot;逼近速度&quot;移动到&quot;起始位置偏移量&quot;位置，将当前的轴位置设置为起始位置。起始位置由运动控制指令&quot;MC_Home&quot;的
+Position 参数指定；</p>
+<p>③&quot;通过数字量输入使用原点开关&quot;：在指定的回原点方向上轴加速到组态的&quot;逼近速度&quot;并以该速度搜索原点开关。检测到原点开关后，轴以组态的&quot;参考速度&quot;逼近组态的参考点开关侧。到达组态的参考点开关侧后，轴以&quot;逼近速度&quot;移动到起始位置偏移量指定的位置，并将当前的轴位置设置为起始位置。起始位置由运动控制指令&quot;MC_Home&quot;的
+Position 参数中指定。其他参数设置参考开环运动控制设置。</p>
+<p>注意：对于闭环控制，原点开关数字量输入可以使用本体及信号板以外的 DI 点。</p>
+</section>
+<section id="id7">
+<h1>位置监视-定位监视 {#位置监视-定位监视 .STYLE3}<a class="headerlink" href="#id7" title="此标题的永久链接">¶</a></h1>
+<p>用于在设定值计算结束时对实际位置的状态进行监控。当实际位置在容差时间内到达定位窗口，且在最短停留时间内停留在该窗口，则置位状态位
+&lt;轴名称&gt;.StatusBits.Done，这样就完成了一个运动命令。</p>
+<p><a class="reference internal" href="../../../_images/1-071.png"><img alt="" src="../../../_images/1-071.png" style="width: 788px; height: 627px;" /></a></p>
+<p>图 7 定位监视</p>
+<p>①、④&quot;定位窗口&quot;：组态定位窗口的大小；</p>
+<p>②&quot;容差时间&quot;：组态容差时间。一旦速度设定值达到零值，则实际位置值必须在&quot;容差时间&quot;范围内到达&quot;定位窗口&quot;；</p>
+<p>③&quot;在定位窗口中的最短停留时间&quot;：组态最短停留时间。实际位置值在&quot;定位窗口&quot;范围内的持续时间必须大于&quot;在定位窗口中的最短停留时间&quot;。</p>
+</section>
+<section id="id8">
+<h1>位置监视-随动误差 {#位置监视-随动误差 .STYLE3}<a class="headerlink" href="#id8" title="此标题的永久链接">¶</a></h1>
+<p>组态轴的实际位置与位置设定值之间的容许偏差。</p>
+<p><a class="reference internal" href="../../../_images/1-081.png"><img alt="" src="../../../_images/1-081.png" style="width: 930px; height: 609px;" /></a></p>
+<p>图 8 随动误差</p>
+<p>①&quot;启用随动误差监控&quot;：勾选此选项时，轴在错误范围内停止；</p>
+<p>②&quot;最大随动误差&quot;：组态最大速度时容许的随动误差；</p>
+<p>③&quot;随动误差&quot;： 小于&quot;启动动态调整&quot;速度时的容许随动误差（无动态调整）；</p>
+<p>④&quot;启动动态调整&quot;：超过该组态速度时，将会动态调整随动误差。</p>
+<p>随动误差是轴的位置设定值与实际位置值之间的差值。计算随动误差时，会将设定值到驱动器的传输时间、实际位置值到控制器的传输时间计算在内。允许随动误差取决于速度设定值。当速度设定值小于&quot;启动动态调整&quot;时，随动误差的容许范围为常数；而当速度设定值高于&quot;启动动态调整&quot;时，随动误差则随速度设定值按比例增长。当设定位置值与实际位置值之间超出允许随动误差容许偏差范围时，轴将停止运行。在运动轴调试初期，可以将&quot;随动误差&quot;设置为较大值以避免运动轴频繁出现随动误差错误。</p>
+</section>
+<section id="id9">
+<h1>位置监视-停止信号 {#位置监视-停止信号 .STYLE3}<a class="headerlink" href="#id9" title="此标题的永久链接">¶</a></h1>
+<p>组态停止检测标准。</p>
+<p><a class="reference internal" href="../../../_images/1-09.png"><img alt="" src="../../../_images/1-09.png" style="width: 932px; height: 490px;" /></a></p>
+<p>图 9 停止信号</p>
+<p>①&quot;停止窗口&quot;：组态停止窗口的大小；</p>
+<p>②&quot;停止窗口停留的最短时间&quot;：组态停止窗口中的最短停留时间。轴的实际速度必须在&quot;停止窗口&quot;内保持&quot;停止窗口停留的最短时间&quot;，轴显示停止。</p>
+</section>
+<section id="id10">
+<h1>控制回路 {#控制回路 .STYLE3}<a class="headerlink" href="#id10" title="此标题的永久链接">¶</a></h1>
+<p>用于组态位置控制回路的&quot;预控制&quot;和&quot;增益&quot;。</p>
+<p><a class="reference internal" href="../../../_images/1-10.png"><img alt="" src="../../../_images/1-10.png" style="width: 928px; height: 478px;" /></a></p>
+<p>图 10 控制回路</p>
+<p>①&quot;预控制&quot;：修改控制回路的速度预控制百分比；</p>
+<p>②&quot;增益&quot;：组态控制回路的增益系数。</p>
+<p>&quot;预控制&quot;可提高系统的动态响应特性，但过大的设置值会使位置控制系统超调。</p>
+<p>轴的机械硬度越高，设置的&quot;增益&quot;就越大；较大的&quot;增益&quot;可以减少随动误差，实现更快的动态响应，但过大的&quot;增益&quot;将会使位置控制系统振荡。</p>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">闭环运动控制参数介绍 {#闭环运动控制参数介绍 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id1">基本参数-常规 {#基本参数-常规 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id2">基本参数-驱动器 {#基本参数-驱动器 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id3">基本参数-编码器 {#基本参数-编码器 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id4">扩展参数-机械 {#扩展参数-机械 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id5">扩展参数-模数 {#扩展参数-模数 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id6">回原点-主动 {#回原点-主动 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id7">位置监视-定位监视 {#位置监视-定位监视 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id8">位置监视-随动误差 {#位置监视-随动误差 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id9">位置监视-停止信号 {#位置监视-停止信号 .STYLE3}</a></li>
+<li><a class="reference internal" href="#id10">控制回路 {#控制回路 .STYLE3}</a></li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+            </div>
+
+            <div class="right">
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

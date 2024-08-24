@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+
+<html lang="zh">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <title>S7-1200 数组数据类型（ARRAY） &#8212; S7-1200 PLC 技术手册 EasyPlus4.3</title>
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=fa44fd50" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/basic_mod.css?v=59943e95" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/tabs.css?v=4c969af8" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.1e8bd061cd6da7fc9cf755528e8ffc24.min.css?v=0a3b3ea7" />
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js?v=1a73f00c"></script>
+    <script src="../../../_static/doctools.js?v=888ff710"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=4825356b"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/tabs.js?v=3ee01567"></script>
+    <script src="../../../_static/design-tabs.js?v=36754332"></script>
+    <script src="../../../_static/js/theme.js"></script>
+    <script src="../../../_static/js/petite-vue.js"></script>
+    <link rel="icon" href="../../../_static/favicon.ico"/>
+    <link rel="index" title="索引" href="../../../genindex.html" />
+    <link rel="search" title="搜索" href="../../../search.html" />
+    <link rel="next" title="系统数据类型（SDT）" href="05-SDT.html" />
+    <link rel="prev" title="PLC数据类型（UDT）" href="03-UDT.html" /> 
+  </head><body data-dark_mode_code_blocks="true">
+
+<div id="top_nav">
+    
+
+    <nav>
+        
+            
+        
+
+        <p id="toggle_sidebar">
+            <a href="#" title="Toggle sidebar">|||</a>
+        </p>
+        <h1><a href="../../../index.html" title="Go to homepage"><img src="../../../_static/SIEMENS.svg"/></a></h1>
+
+        <a id="mode_toggle" href="#" @click.prevent="handleClick" :title="mode">
+    <template v-if="mode == 'light'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_light"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M67.48,18.073c1.913,-1.912 1.913,-5.018 0,-6.931c-1.912,-1.912 -5.018,-1.912 -6.931,0l-6.798,6.799c-1.912,1.912 -1.912,5.018 0,6.931c1.913,1.912 5.018,1.912 6.931,-0l6.798,-6.799Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.728,61.108c1.912,-1.913 1.912,-5.018 -0,-6.931c-1.913,-1.913 -5.019,-1.913 -6.931,-0l-6.799,6.798c-1.912,1.913 -1.912,5.019 0,6.931c1.913,1.913 5.019,1.913 6.931,0l6.799,-6.798Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.682,54.177c-1.913,-1.913 -5.018,-1.913 -6.931,-0c-1.912,1.913 -1.912,5.018 0,6.931l6.798,6.798c1.913,1.913 5.019,1.913 6.931,0c1.913,-1.912 1.913,-5.018 0,-6.931l-6.798,-6.798Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M4.901,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901l-0,9.614c-0,2.705 2.196,4.901 4.9,4.901c2.705,-0 4.901,-2.196 4.901,-4.901l0,-9.614Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M18.929,11.142c-1.912,-1.912 -5.018,-1.912 -6.931,0c-1.912,1.913 -1.912,5.019 0,6.931l6.799,6.799c1.912,1.912 5.018,1.912 6.931,-0c1.912,-1.913 1.912,-5.019 -0,-6.931l-6.799,-6.799Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.108,34.623c-2.705,0 -4.901,2.196 -4.901,4.901c-0,2.705 2.196,4.901 4.901,4.901l9.614,0c2.705,0 4.901,-2.196 4.901,-4.901c-0,-2.705 -2.196,-4.901 -4.901,-4.901l-9.614,0Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'dark'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_dark"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><circle cx="39.311" cy="39.524" r="15.734" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.212,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.901,2.196 -4.901,4.901c0,2.705 2.197,4.901 4.901,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.662,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.989,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.732,61.103c1.91,-1.91 1.91,-5.011 0,-6.921l-0.009,-0.01c-1.91,-1.91 -5.012,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.909,1.91 5.011,1.91 6.92,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.672,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.52,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l-0,-0.01c-0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.212,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.901,2.196 -4.901,4.901c0,2.704 2.197,4.9 4.901,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.73,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 -0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.098,34.623c-2.699,0 -4.891,2.192 -4.891,4.892l-0,0.019c-0,2.699 2.192,4.891 4.891,4.891c2.7,0 4.892,-2.192 4.892,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.892,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+
+    <template v-if="mode == 'darkest'">
+        <svg width="100%" height="100%" viewBox="0 0 79 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linejoin:round;stroke-miterlimit:2;"><g id="mode_darkest"><rect id="Bounds" x="0" y="-0" width="78.623" height="79.049" style="fill:none;"/><path d="M39.315,23.791c8.684,-0 15.734,7.05 15.734,15.733c0,8.684 -7.05,15.734 -15.734,15.734c-8.683,0 -15.733,-7.05 -15.733,-15.734c-0,-8.683 7.05,-15.733 15.733,-15.733Zm0,4.737c6.069,0 10.997,4.927 10.997,10.996c-0,6.069 -4.928,10.996 -10.997,10.996c-6.068,0 -10.996,-4.927 -10.996,-10.996c0,-6.069 4.928,-10.996 10.996,-10.996Z" style="fill:#fff;"/><g id="beams"><g id="beam"><path id="beam1" serif:id="beam" d="M44.216,14.515c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,0 -4.9,2.196 -4.9,4.901c-0,2.705 2.196,4.901 4.9,4.901c2.705,0 4.901,-2.196 4.901,-4.901Z" style="fill:#fff;"/></g><g id="beam2" serif:id="beam"><path id="beam3" serif:id="beam" d="M60.666,24.892c1.902,-1.902 1.902,-4.99 0,-6.892l-0.04,-0.039c-1.901,-1.902 -4.989,-1.902 -6.891,-0c-1.901,1.901 -1.901,4.989 0,6.891l0.04,0.04c1.902,1.901 4.99,1.901 6.891,-0Z" style="fill:#fff;"/></g><g id="beam4" serif:id="beam"><path id="beam5" serif:id="beam" d="M25.737,61.103c1.909,-1.91 1.909,-5.011 -0,-6.921l-0.01,-0.01c-1.91,-1.91 -5.011,-1.91 -6.921,-0c-1.91,1.91 -1.91,5.011 -0,6.921l0.01,0.01c1.91,1.91 5.011,1.91 6.921,-0Z" style="fill:#fff;"/></g><g id="beam6" serif:id="beam"><path id="beam7" serif:id="beam" d="M60.676,54.167c-1.907,-1.907 -5.004,-1.907 -6.911,0l-0.02,0.02c-1.907,1.907 -1.907,5.004 0,6.911c1.907,1.907 5.004,1.907 6.911,-0l0.02,-0.02c1.907,-1.907 1.907,-5.004 0,-6.911Z" style="fill:#fff;"/></g><g id="beam8" serif:id="beam"><path id="beam9" serif:id="beam" d="M14.524,34.623c-2.702,0 -4.896,2.194 -4.896,4.896l0,0.01c0,2.702 2.194,4.896 4.896,4.896c2.702,0 4.896,-2.194 4.896,-4.896l0,-0.01c0,-2.702 -2.194,-4.896 -4.896,-4.896Z" style="fill:#fff;"/></g><g id="beam10" serif:id="beam"><path id="beam11" serif:id="beam" d="M44.216,64.534c0,-2.705 -2.196,-4.901 -4.901,-4.901c-2.704,-0 -4.9,2.196 -4.9,4.901c-0,2.704 2.196,4.9 4.9,4.9c2.705,0 4.901,-2.196 4.901,-4.9Z" style="fill:#fff;"/></g><g id="beam12" serif:id="beam"><path id="beam13" serif:id="beam" d="M25.734,17.943c-1.911,-1.911 -5.015,-1.911 -6.926,0l-0.005,0.005c-1.911,1.911 -1.911,5.015 0,6.926c1.911,1.911 5.015,1.911 6.926,0l0.005,-0.005c1.911,-1.911 1.911,-5.014 0,-6.926Z" style="fill:#fff;"/></g><g id="beam14" serif:id="beam"><path id="beam15" serif:id="beam" d="M64.103,34.623c-2.7,0 -4.892,2.192 -4.892,4.892l-0,0.019c-0,2.699 2.192,4.891 4.892,4.891c2.699,0 4.891,-2.192 4.891,-4.891l0,-0.019c0,-2.7 -2.192,-4.892 -4.891,-4.892Z" style="fill:#fff;"/></g></g></g></svg>
+    </template>
+</a>
+
+<script>
+(function() {
+    const LOCAL_STORAGE_KEY = 'piccoloThemeMode'
+
+    var initialMode = localStorage.getItem(LOCAL_STORAGE_KEY)
+
+    if (initialMode) {
+        // Make sure the value in local storage is valid
+        if (['light', 'dark', 'darkest'].indexOf(initialMode) == -1) {
+            initialMode = 'light'
+            localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+        }
+    } else {
+        // Check if the client prefers dark mode
+        if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+            initialMode = 'dark'
+        } else {
+            initialMode = 'light'
+        }
+        localStorage.setItem(LOCAL_STORAGE_KEY, initialMode)
+    }
+
+    document.documentElement.dataset.mode = initialMode
+
+    PetiteVue.createApp({
+        'mode': initialMode,
+        handleClick() {
+            let currentMode = this.mode
+
+            if (currentMode == 'light') {
+                this.mode = 'dark'
+            } else if (currentMode == 'dark') {
+                this.mode = 'darkest'
+            } else if (currentMode == 'darkest') {
+                this.mode = 'light'
+            }
+
+            document.documentElement.dataset.mode = this.mode
+            localStorage.setItem(LOCAL_STORAGE_KEY, this.mode)
+
+            console.log(this.mode)
+        }
+    }).mount('#mode_toggle')
+})()
+</script>
+            <p class="mobile_search_link">
+                <a href="../../../search.html" title="Search">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65 64" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2">
+                        <path d="M14.873 40.009c-2.315-3.943-3.642-8.532-3.642-13.429C11.231 11.91 23.141 0 37.811 0s26.58 11.91 26.58 26.58-11.91 26.58-26.58 26.58a26.44 26.44 0 0 1-14.277-4.161L9.739 62.794a3.12 3.12 0 0 1-4.413 0L.913 58.382c-1.217-1.218-1.217-3.196 0-4.413l13.96-13.96zM37.811 8.054c10.225 0 18.526 8.301 18.526 18.526s-8.301 18.526-18.526 18.526-18.526-8.301-18.526-18.526S27.586 8.054 37.811 8.054z" fill="#fff" />
+                    </svg>
+                </a>
+            </p>
+        
+
+        <div class="searchbox_wrapper">
+            
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">快速搜索</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false"/>
+      <input type="submit" value="提交" />
+    </form>
+    </div>
+</div>
+<script>document.getElementById('searchbox').style.display = "block"</script>
+        </div>
+    </nav>
+</div>
+
+    
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="../../../base.html">基础总汇</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="../../../config.html">组态编程</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../../01-operation/index.html">TIA Portal 组态软件操作</a></li>
+<li class="toctree-l2 current"><a class="reference internal" href="../index.html">编程基础</a><ul class="current">
+<li class="toctree-l3 current"><a class="reference internal" href="index.html">数据类型</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../02-OB/index.html">组织块 OB</a></li>
+<li class="toctree-l3"><a class="reference internal" href="../03-Block/index.html">功能FC 和 功能块FB</a></li>
+</ul>
+</li>
+<li class="toctree-l2"><a class="reference internal" href="../../03-instruction/index.html">编程指令</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../../06-IO/index.html">IO 配线</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <section class="tex2jax_ignore mathjax_ignore" id="s7-1200-array">
+<h1>S7-1200 数组数据类型（ARRAY）<a class="headerlink" href="#s7-1200-array" title="此标题的永久链接">¶</a></h1>
+<p>ARRAY类型是由数目固定且数据类型相同的元素组成的数据结构。
+ARRAY类型的定义和使用需要注意以下几点：</p>
+<ul>
+<li><p>ARRAY类型可以在DB、OB/FC/FB接口区、PLC数据类型处定义；无法在PLC变量表中直接定义。</p></li>
+<li><p>数组定义：Array[维度1下限…维度1上限,维度2下限…维度2上限, …] of &lt;数据类型&gt;，最多可包含 6 个维度；</p></li>
+<li><p>数组元素的数据类型包括：除数组类型、Variant类型以外的所有类型；</p></li>
+<li><p>数组下标的数据类型为整数，下限值必须小于或等于上限值，上下限的限值在S7-1200 V3.0及其以前为Int范围（-32768～+32767），在S7-1200
+V4.0及其以后前为DInt范围（-2147483648～+21474836487），可以使用局部常量或全局常量定义上下限值，数组的元素个数受DB块剩余空间大小以及单个元素大小的限制；</p></li>
+<li><p>从S7-1200 V2.0开始，下标可以不仅仅是常数、常量，也可以是变量，还可以是混合使用（多维数组），如果编程语言是SCL的话，下标还可以是表达式。使用数组的变量下标，可以在程序中很容易地实现间接寻址。注意，下标变量必须是符号名，不能是DB1.DBW0这种没有对应符号名的绝对地址。</p></li>
+<li><p>从S7-1200 V4.2开始，FC的Input/Output/InOut以及FB的InOut可以定义形如Array[*]这种变长数组，要求必须是优化FC/FB块，在调用FC/FB的实参中可以填写任意数据类型相同的数组变量；当然，也可以多维变长的数组，例如Array[*,*]of Int。</p></li>
+<li><p>数组可以使用单个数组元素例如 “DB1”.Static_1[1]，也可以使用整个数组例如&quot;DB1&quot;.Static_1。多维数组可以降维使用，例如三维数组：3D[0…2,0…3,0…4]of Int是一个3×4×5大小的Int数组，3D[0]是一个4×5大小的二维Int数组，3D[0,1]是一个5个元素的一维Int数组，当然多维数组下标也可以换成变量，例如3D[Tag_1,1]这种；</p></li>
+<li><p>S7-1200 V4.2开始，多重背景支持数组形式，即Array of FB，这样可以在FB中使用循环指令更方便的编写程序。不支持Array[*] of FB。</p></li>
+<li><div class="admonition note">
+<p class="admonition-title">备注</p>
+<p>在TIA 博途 V10.5 SP2，S7-1200 V1.0的时候，曾经引入FieldRead 和 FieldWrite 指令，用于数组下标的变址寻址，这种方法在TIA 博途 V11之后可以由下标变量完全取代，并且更为简化，所以该指令也只是位于&quot;移动操作&gt;原有&quot;中，用于早期版本向上移植时使用，它的使用方法参见<a class="reference internal" href="#../../03-instruction/03-Address/04-Field_Read_Write%20-%20%5BUTF-8%5D.md"><span class="xref myst">FieldRead和 FieldWrite 间接寻址</span></a></p>
+</div>
+</li>
+</ul>
+<section id="s7-1200">
+<h2>S7-1200 数组的基本使用<a class="headerlink" href="#s7-1200" title="此标题的永久链接">¶</a></h2>
+<p>1. DB中创建</p>
+<p><a class="reference internal" href="../../../_images/4-01.jpg"><img alt="" src="../../../_images/4-01.jpg" style="width: 295px; height: 81px;" /></a></p>
+<p>图1 Array在DB中的创建</p>
+<p>2. FC的InOut中创建</p>
+<p><a class="reference internal" href="../../../_images/4-02.jpg"><img alt="" src="../../../_images/4-02.jpg" style="width: 330px; height: 116px;" /></a></p>
+<p>图2 Array在FC形参中的创建</p>
+<p>3. 数组作为实参</p>
+<p><a class="reference internal" href="../../../_images/4-03.jpg"><img alt="" src="../../../_images/4-03.jpg" style="width: 556px; height: 106px;" /></a></p>
+<p>图3 Array作为FC的实参</p>
+<p>4. FC程序中使用数组元素，使用形参</p>
+<p><a class="reference internal" href="../../../_images/4-04.jpg"><img alt="" src="../../../_images/4-04.jpg" style="width: 556px; height: 126px;" /></a></p>
+<p>图4 FC程序中使用形参</p>
+<p>5. FC程序中使用数组元素，下标为变址寻址，使用形参</p>
+<p>实现以下功能，将0-7这8个数，送入数组下标为0-7的8个元素，如图5-7所示。</p>
+<p><a class="reference internal" href="../../../_images/4-05.jpg"><img alt="" src="../../../_images/4-05.jpg" style="width: 558px; height: 156px;" /></a></p>
+<p>图5 FC形参设置</p>
+<p><a class="reference internal" href="../../../_images/4-06.jpg"><img alt="" src="../../../_images/4-06.jpg" style="width: 558px; height: 591px;" /></a></p>
+<p>图6 程序详情</p>
+<p>SCL的版本如图7所示。</p>
+<p><a class="reference internal" href="../../../_images/4-07.jpg"><img alt="" src="../../../_images/4-07.jpg" style="width: 261px; height: 52px;" /></a></p>
+<p>图7 SCL版本的程序</p>
+<p>6. 在程序中直接使用数组元素</p>
+<p><a class="reference internal" href="../../../_images/4-08.jpg"><img alt="" src="../../../_images/4-08.jpg" style="width: 556px; height: 124px;" /></a></p>
+<p>图8 程序中直接使用数组元素</p>
+<p>7. 在程序中直接使用数组元素，下标为变址寻址</p>
+<p>实现以下功能，将0-7这8个数，送入数组下标为0-7的8个元素，如图9-11所示。</p>
+<p><a class="reference internal" href="../../../_images/4-09.jpg"><img alt="" src="../../../_images/4-09.jpg" style="width: 295px; height: 98px;" /></a></p>
+<p>图9 DB1的定义</p>
+<p><a class="reference internal" href="../../../_images/4-10.jpg"><img alt="" src="../../../_images/4-10.jpg" style="width: 556px; height: 570px;" /></a></p>
+<p>图10 程序详情</p>
+<p>SCL的版本如图11所示。</p>
+<p><a class="reference internal" href="../../../_images/4-11.jpg"><img alt="" src="../../../_images/4-11.jpg" style="width: 392px; height: 52px;" /></a></p>
+<p>图11 SCL版本程序</p>
+</section>
+<section id="array">
+<h2>Array[*]使用<a class="headerlink" href="#array" title="此标题的永久链接">¶</a></h2>
+<p>实现以下功能，使用FC的Input定义数组Array[*] of
+Int，求变长数组元素的总和</p>
+<p>1. 使用Array[*]
+，必须使用如图12所示的指令，计算数组元素的上下限，从而得出元素个数：</p>
+<p><a class="reference internal" href="../../../_images/4-12.jpg"><img alt="" src="../../../_images/4-12.jpg" style="width: 331px; height: 516px;" /></a></p>
+<p>图12 指令位置</p>
+<p>2. 定义变量，如图13所示。赋初始值，计算上下限，如图14所示。</p>
+<p><a class="reference internal" href="../../../_images/4-13.jpg"><img alt="" src="../../../_images/4-13.jpg" style="width: 556px; height: 230px;" /></a></p>
+<p>图13 定义形参</p>
+<p><a class="reference internal" href="../../../_images/4-14.jpg"><img alt="" src="../../../_images/4-14.jpg" style="width: 556px; height: 418px;" /></a></p>
+<p>图14 计算上下限</p>
+<p>（1）输入Array[*]类型的变量</p>
+<p>（2）所求上下限的维数，从1开始，例如一维数组只能是1，二维数组可以是1也可以是2</p>
+<p>（3）该维数下的下限/上限，DINT类型</p>
+<p>3. 求和，如图15所示</p>
+<p><a class="reference internal" href="../../../_images/4-15.jpg"><img alt="" src="../../../_images/4-15.jpg" style="width: 556px; height: 777px;" /></a></p>
+<p>图15 求和的程序</p>
+<p>4. SCL的版本如图16所示</p>
+<p><a class="reference internal" href="../../../_images/4-16.jpg"><img alt="" src="../../../_images/4-16.jpg" style="width: 670px; height: 117px;" /></a></p>
+<p>图16 SCL版本程序</p>
+<p>5. OB1中调用实参为不同数组元素个数的数组，如图17所示。</p>
+<p><a class="reference internal" href="../../../_images/4-18.jpg"><img alt="" src="../../../_images/4-18.jpg" style="width: 556px; height: 240px;" /></a></p>
+<p>图17 OB1调用程序</p>
+</section>
+<section id="array-of-fb">
+<h2>Array of FB的使用<a class="headerlink" href="#array-of-fb" title="此标题的永久链接">¶</a></h2>
+<p>实现：FB3多次调用FB4，在FB3内部循环调用，减少程序量。</p>
+<p>FB4的两个Input：Start，Stop，一个InOut：Run，建立Array[0…7] of
+FB4。同时建立变量 Array[0…7] of
+Struct，作为对应FB4的输入和输出，如图17所示。</p>
+<p><a class="reference internal" href="../../../_images/4-19.jpg"><img alt="" src="../../../_images/4-19.jpg" style="width: 540px; height: 337px;" /></a></p>
+<p>图17 程序详情</p>
+</section>
+</section>
+
+
+            <div class="clearer"></div>
+          </div>
+        </div>
+      </div>
+    
+        <div id="show_right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&lt;</span><span>Page contents</span></a></p>
+        </div>
+
+        <div id="right_sidebar">
+            <p><a class="toggle_right_sidebar" href="#"><span class="icon">&gt;</span><span>Page contents:</span></a></p>
+            <div class="page_toc">
+                <ul>
+<li><a class="reference internal" href="#">S7-1200 数组数据类型（ARRAY）</a><ul>
+<li><a class="reference internal" href="#s7-1200">S7-1200 数组的基本使用</a></li>
+<li><a class="reference internal" href="#array">Array[*]使用</a></li>
+<li><a class="reference internal" href="#array-of-fb">Array of FB的使用</a></li>
+</ul>
+</li>
+</ul>
+
+            </div>
+        </div>
+    
+
+      <div class="clearer"></div>
+    </div>
+    <div class="button_nav_wrapper">
+        <div class="button_nav">
+            <div class="left">
+                
+                <a href="03-UDT.html">
+                    <span class="icon">&lt;</span><span>PLC数据类型（UDT）</span></a>
+                
+            </div>
+
+            <div class="right">
+                
+                    <a href="05-SDT.html"><span>系统数据类型（SDT）</span><span class="icon">&gt;</span></a>
+                
+            </div>
+        </div>
+    </div>
+
+
+    <div class="footer" role="contentinfo">
+    &#169; 版权所有 2024, 宁波双紫信息科技有限公司.
+      最后更新于 8月 24, 2024.
+      由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 7.1.2创建。
+    </div>
+
+<p id="theme_credit">Styled using the <a href="https://github.com/piccolo-orm/piccolo_theme">Piccolo Theme</a></p>
+  </body>
+</html>

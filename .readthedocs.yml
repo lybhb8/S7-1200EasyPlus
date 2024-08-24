@@ -6,6 +6,9 @@ build:
     python: "3.10"
   apt_packages:
     - graphviz
+  commands:
+    - pip install myst_parser
+  # - build --site-dir $READTHEDOCS_OUTPUT/html
 
 sphinx:
   configuration: doc/conf.py

@@ -214,7 +214,7 @@ e.ID：数据日志数字标识符，保存每个生成数据日志的ID值以�
 
 图18\. “DataLogClear”指令
 
-![](images/4.gif) **注意：** 因“DataLogNewFile”指令可隐式关闭原始数据日志文件并隐式打开新数据日志文件。所以在使用“DataLogClear”指令前，确保数据日志为打开状态，若数据日志关闭可使用 “DataLogOpne”指令重新打开，如图19所示。
+![](images/4.gif)  **注意** : 因“DataLogNewFile”指令可隐式关闭原始数据日志文件并隐式打开新数据日志文件。所以在使用“DataLogClear”指令前，确保数据日志为打开状态，若数据日志关闭可使用 “DataLogOpne”指令重新打开，如图19所示。
 
 ![](images/2-19.JPG)
 

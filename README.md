@@ -48,9 +48,3 @@ V4.3 ... ... 2022.02.01
 * 修正所有链接，并且更新到最新
 * 修正细小错误
 
-## Mkdocs-material Commands
-
-* `mkdocs new [dir-name]` * Create a new project.
-* `mkdocs serve` * Start the live-reloading docs server.
-* `mkdocs build` * Build the documentation site.
-* `mkdocs -h` * Print help message and exit.

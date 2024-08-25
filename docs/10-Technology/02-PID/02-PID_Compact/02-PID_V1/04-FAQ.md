@@ -1,4 +1,4 @@
-### S7-1200 PID Compact V1 常见问题
+# PID Compact V1 常见问题
 
 ![](../../../../img/home/FAQ.png)  为什么PID控制器没有运行？
 

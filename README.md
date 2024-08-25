@@ -8,10 +8,16 @@
 - S7-1200 Easy Plus 原版是HTML Help格式的文档，版本号为 **Version4.3**,本项目以其为摹版，诸章逐条归纳转换。
 - 虽然作者已经尽力保证其正确性，但疏漏难免。读者如欲采纳，请注意风险。
 - 如果您认为本项目对您有所帮助，请您[加星+关注](https://github.com/lybhb8/S7-1200EasyPlus/tree/main "本项目github仓库")，也可以给朋友分享本文档：
-    - 基于[pydata_sphinx_theme主题](https://github.com/lybhb8/S7-1200EasyPlus/tree/pydata)部署在[readthedocs](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/pydata/index.html)上.
-    - 基于[sphinx-doc主题](https://github.com/lybhb8/S7-1200EasyPlus/tree/sphinx-doc)部署在[readthedocs](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/sphinx-doc/index.html)上.
+    - 基于[pydata_sphinx_theme主题](https://github.com/lybhb8/S7-1200EasyPlus/tree/pydata)部署在[readthedocs](#相关)上.
+    - 基于[sphinx-doc主题](https://github.com/lybhb8/S7-1200EasyPlus/tree/sphinx-doc)部署在[readthedocs](#相关)上.
 - 感谢大家的支持和帮助。
 - 本项目依照[GPL-3.0 license](https://github.com/lybhb8/S7-1200EasyPlus?tab=GPL-3.0-1-ov-file#)发布,如果用于商业用途，请遵守协议中的约定。
+
+## 阅读文档
+
+- [地址1](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/pydata/index.html "pydata_sphinx_theme主题")
+- [地址2](https://s7-1200plc-easyplus.readthedocs.io/zh-cn/sphinx-doc/index.html "sphinx-doc主题")
+
 
 ## What's New?
 
@@ -47,4 +53,9 @@ V4.3 ... ... 2022.02.01
 * 有关 V4.6 V18 涉及的地方
 * 修正所有链接，并且更新到最新
 * 修正细小错误
+
+## 相关
+- [readthedocs](https://about.readthedocs.com/)
+- [sphinx-doc](https://www.sphinx-doc.org/zh-cn/master/)
+
 

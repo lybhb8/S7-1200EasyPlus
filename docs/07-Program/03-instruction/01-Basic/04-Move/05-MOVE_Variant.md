@@ -51,29 +51,29 @@ VariantGet将Variant参数指向的变量读取到DST中，要求Variant参数�
 
 表2 VariantPut指令说明
 
-  | 参数 | 声明  | 数据类型                   | 说明         |
-  | ---- | ----- | -------------------------- | ------------ |
-  | SRC  | Input | 基本数据类型、复杂数据类型 | 待读取的变量 |
-  | DST  | Input | Variant                    | 读取的结果   |
+| 参数 | 声明  | 数据类型                   | 说明         |
+| ---- | ----- | -------------------------- | ------------ |
+| SRC  | Input | 基本数据类型、复杂数据类型 | 待读取的变量 |
+| DST  | Input | Variant                    | 读取的结果   |
 
 注意：SRC不能是复杂数据类型的数组。
 
 :::{note}
 
-    1\.
-    VariantPut的DST是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
+1\.
+VariantPut的DST是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义为Variant类型的参数。
 
-    2\.
-    VariantPut将SRC的变量写入到Variant参数指向的变量中，要求Variant参数指向的变量一定要和SRC的变量类型相同。
+2\.
+VariantPut将SRC的变量写入到Variant参数指向的变量中，要求Variant参数指向的变量一定要和SRC的变量类型相同。
 
-    3\.
-    VariantPut无法初始化一个Variant类型变量。所以建议写入之前使用IS_NULL判断Variant是否指向NULL。通过Variant判断指令确定指向的变量类型，或者数组类型。
+3\.
+VariantPut无法初始化一个Variant类型变量。所以建议写入之前使用IS_NULL判断Variant是否指向NULL。通过Variant判断指令确定指向的变量类型，或者数组类型。
 
-    4\.
-    如果双方是相同元素的数组类型，其长度可以不同，读取时只按照双方中元素少的数量读取。
+4\.
+如果双方是相同元素的数组类型，其长度可以不同，读取时只按照双方中元素少的数量读取。
 
-    5\.
-    如果双方类型不相同，则不会发生读取。如果激活指令的ENO功能，则ENO=False。
+5\.
+如果双方类型不相同，则不会发生读取。如果激活指令的ENO功能，则ENO=False。
 :::
 
 使用场合：
@@ -96,18 +96,18 @@ VariantGet将Variant参数指向的变量读取到DST中，要求Variant参数�
 
 ## CountOfElements
 
-  | LAD                                            | 操作数  | 说明                                                                                                                                                                             |
-  | ---------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-  | ![](images/05-06.jpg){width="344" height="55"} | Variant | 如果操作数对应的实参为数组或者P#指针格式，该指令返回元素总个数，否则返回0。返回值RET_VAL为UDInt类型。操作数是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义Variant类型的参数。 |
+| LAD                                            | 操作数  | 说明                                                                                                                                                                             |
+| ---------------------------------------------- | ------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| ![](images/05-06.jpg){width="344" height="55"} | Variant | 如果操作数对应的实参为数组或者P#指针格式，该指令返回元素总个数，否则返回0。返回值RET_VAL为UDInt类型。操作数是FC/FB的Input/Output/InOut/Temp以及OB的Temp中定义Variant类型的参数。 |
 
 CountOfElements(操作数)，操作数是FC/FB的Input/Output/InOut/Temp中定义为Variant类型的参数，如果操作数对应的实参为数组或者P#指针格式，CountOfElements(操作数)为元素总个数。
 
 :::{note}
 
-    1\. 如果Variant指向单个变量，则返回0。
+1\. 如果Variant指向单个变量，则返回0。
 
-    2\. 如果Variant 指向 Array of
-    Bool，则填充元素包含在计数中。（例如，Array\[0..1\] of Bool 将返回 8）。
+2\. 如果Variant 指向 Array of
+Bool，则填充元素包含在计数中。（例如，Array\[0..1\] of Bool 将返回 8）。
 :::
 
 使用方法：

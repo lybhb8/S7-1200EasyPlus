@@ -3,7 +3,7 @@
 ## CPU模块
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 01-CPU/01-wiring
 01-CPU/02-power

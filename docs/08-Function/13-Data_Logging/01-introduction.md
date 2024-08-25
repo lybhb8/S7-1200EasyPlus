@@ -24,7 +24,7 @@ S7-1200 CPU 为固件版本 V2.0 以上及编程软件版本在 STEP 7 V11 以�
 # 13 数据日志
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 02-Getting_Start
 03-use

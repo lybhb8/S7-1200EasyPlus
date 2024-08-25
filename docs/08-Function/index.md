@@ -1,7 +1,7 @@
 # 08-功能详解
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 01-Icon
 02-Startup

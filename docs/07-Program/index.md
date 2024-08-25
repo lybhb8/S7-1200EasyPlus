@@ -3,7 +3,7 @@
 ![alt text](image-2.png)
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 3
 
 install
 01-operation/index

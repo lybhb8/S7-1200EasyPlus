@@ -37,7 +37,7 @@ S7-1200 CPU 装载存储器中。
 
 
 ```{toctree}
-:maxdepth: 2
+:maxdepth: 1
 
 02-Getting_start
 03-Use

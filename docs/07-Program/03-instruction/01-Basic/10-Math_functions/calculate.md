@@ -42,23 +42,26 @@ Calculate 指令 (页 240)可以根据定义的等式生成作用于多个输入
 
 
 
-![](s71200_system_manual_zh-CHS_zh-CHS Image[44].jpg){align=left } 
+![](./s44.jpg){align=left } 
 
 未组态的 Calculate 指令提供了两个输入参数和一个输出参数。
+<br><br><br><br><br><br>
+<div>
 
-
-
-
-![](./s71200_system_manual_zh-CHS_zh-CHS Image[44]-1.jpg)
+![](./s441.jpg){align=left }
 
 单击“???”并为输入参数和输出参数选择数据类型。 （所有输入参数和输出参数的数据类型必须相同。）对于本示例，请选择“Real”数据类型。
+<br><br><br><br><br><br>
+</div>
 
+<div>
 
-
-![alt text](image-1.png)
+![alt text](image-12.png){width="452" height="185" align=left} 
 
 对于本示例，请输入以下等式来标定原有模拟值。 （“In”和“Out”标识对应于 Calculate 指令
 的参数。） 
+<br>
+</div>
 
 ``` yaml
 
@@ -76,14 +79,28 @@ OUT = ((in4 - in5) / (in2 - in3)) * (in1 - in3) + in5
 
 ```
 
-![](./s71200_system_manual_zh-CHS_zh-CHS%20Image[45].jpg)
 
+<div>
 
+![](./s45.jpg){width="452" height="185" align=left}
+
+<br><br>
 
 单击“确定”(OK) 后，Calculate 指令就会生成指令所需的输入。
 
-![](./s71200_system_manual_zh-CHS_zh-CHS%20Image[46].jpg){ align=right}
+<br><br><br>
+
+</div>
+
+![](./s46.jpg){ width="376" height="133" align=right}
+
+<br><br><br>
+<div>
 
 输入与参数对应的值的变量名称。
 
-![](./s71200_system_manual_zh-CHS_zh-CHS%20Image[47].jpg){ align=right}
+![](./s47.jpg){ width="374" height="212" align=right}
+<br><br><br><br><br><br><br>
+</div>
+
+

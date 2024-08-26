@@ -135,8 +135,8 @@ div.sphinxsidebar {
     top: 4.6rem;
     align-self: flex-start;
     height: calc(100vh - 4.6rem);
-    width: 250px;
-    min-width: 150px;
+    width: 200px;
+    min-width: 120px;
     overflow-y: auto;
     overflow-wrap: break-word;
     margin: 0;

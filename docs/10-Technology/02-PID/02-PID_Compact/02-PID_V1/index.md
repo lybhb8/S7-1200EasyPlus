@@ -1,4 +1,4 @@
-# PID Compact V1 指令
+# PID Compact V1 版本
 
 
 ```{toctree}

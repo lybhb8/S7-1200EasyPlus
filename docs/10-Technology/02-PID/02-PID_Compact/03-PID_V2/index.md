@@ -1,4 +1,4 @@
-# PID Compact V2 指令
+# PID Compact V2 版本
 
 ```{toctree}
 :maxdepth: 2

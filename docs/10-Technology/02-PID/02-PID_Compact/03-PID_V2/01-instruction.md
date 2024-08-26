@@ -1,5 +1,5 @@
 
-# PID Compact V2 指令介绍
+# PID Compact V2 参数
 
 PID 指令块的参数分为两部分，输入参数与输出参数。其指令块的视图分为扩展视图与集成视图，在不同的视图下所能看见的参数是不一样的，在集成视图中可看到的参数为最基本的默认参数，如给定值，反馈值，输出值等。定义这些参数可实现控制器最基本的控制功能，而在扩展视图中，可看到更多的相关参数，如手自动切换，模式切换等，使用这些参数可使控制器具有更丰富的功能。如图 1 所示：  
 ![](images/01-1.PNG)  
@@ -45,8 +45,10 @@ PID_Compact V2 的输出参数包括 PID 的输出值（REAL、模拟量、PWM�
 | Error | BOOL | 如果 Error = TRUE，则此周期内至少有一条错误消息处于未决状态。 |
 | ErrorBits | DWORD | ErrorBits 参数显示了处于未决状态的错误消息。通过 Reset 或 ErrorAck 的上升沿来保持并复位 ErrorBits。 |
 
-![](images/4.gif) **注意：**  
-**1.若 PID 控制器未正常工作，请先检查 PID 的输出状态 State 来判断 PID 的当前工作模式，并检查错误信息。**  
+![](images/4.gif) **注意：**
+
+**1.若 PID 控制器未正常工作，请先检查 PID 的输出状态 State 来判断 PID 的当前工作模式，并检查错误信息。** 
+ 
 **2.当错误出现时 Error=1，错误离开后 Error=0，ErrorBits 会保留错误信息。可通过编程清除错误离开后 ErrorBits 保留的错误信息。**
 
 PID\_Compact V2 的输入输出参数 Mode 指定了 PID\_Compact 将转换到的工作模式，具有断电保持特性，由沿激活切换工作模式，如表 3 所示：
@@ -58,7 +60,7 @@ PID\_Compact V2 的输入输出参数 Mode 指定了 PID\_Compact 将转换到�
 | **参数** | **数据类型** | **说明** |
 | Mode | INT | 在 Mode 上，指定 PID_Compact 将转换到的工作模式:  <br>State = 0：未激活  <br>State = 1：预调节  <br>State = 2：精确调节  <br>State = 3：自动模式  <br>State = 4：手动模式  <br>工作模式由以下沿激活：  <br>ModeActivate 的上升沿  <br>Reset 的下降沿  <br>ManualEnable 的下降沿  <br>如果 RunModeByStartup = TRUE，则冷启动 CPU |
 
-**![](images/4.gif)注意：****当 ManualEnable = TRUE，无法通过 ModeActivate 的上升沿或使用调试对话框来更改工作模式。**
+![](images/4.gif) **注意：当 ManualEnable = TRUE，无法通过 ModeActivate 的上升沿或使用调试对话框来更改工作模式。**
 
 当PID出现错误时，通过捕捉 Error 的上升沿，将 ErrorBits 传送至全局地址，从而获得 PID 的错误信息，如表 4 所示。
 
@@ -84,4 +86,4 @@ PID\_Compact V2 的输入输出参数 Mode 指定了 PID\_Compact 将转换到�
 | 20000 | 变量 SubstituteOutput 的值无效，值的数字格式无效。这时，PID_Compact 使用输出值下限作为输出值。 |
 | 40000 | Disturbance 参数的值无效，值的数字格式无效。 |
 
-**![](images/4.gif)注意：如果多个错误同时处于待决状态，将通过二进制加法显示 ErrorBits 的值。 例如，显示 ErrorBits = 0003h 表示错误 0001h 和 0002h 同时处于待决状态。**
+![](images/4.gif) **注意：如果多个错误同时处于待决状态，将通过二进制加法显示 ErrorBits 的值。 例如，显示 ErrorBits = 0003h 表示错误 0001h 和 0002h 同时处于待决状态。**

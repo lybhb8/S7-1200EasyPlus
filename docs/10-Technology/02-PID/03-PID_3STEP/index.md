@@ -1,4 +1,4 @@
-# PID_3Step V2 指令
+# PID_3Step V2
 
 ```{toctree}
 :maxdepth: 2

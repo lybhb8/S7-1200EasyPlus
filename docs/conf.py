@@ -24,7 +24,7 @@ sys.path.append(str(Path(".").resolve()))
 # author = "PyData Community"
 
 project = 'S7-1200 PLC 技术手册 EasyPlus'
-copyright = '2024, 宁波双紫信息科技有限公司'
+copyright = '2020-2024, 宁波双紫信息科技有限公司'
 author = 'lybhb8'
 release = '4'
 

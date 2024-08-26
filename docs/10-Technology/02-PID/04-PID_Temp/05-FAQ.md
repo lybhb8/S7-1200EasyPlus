@@ -1,6 +1,6 @@
-### PID_Temp 常见问题 {#pid_temp-常见问题 .STYLE1}
+# PID_Temp 常见问题
 
-### []{#a}如何修改 PID 参数的实际值？
+## ![](../images/FAQ.png) 如何修改 PID 参数的实际值？
 
 通过组态界面离线方式修改参数需要重新下载并重启
 PLC。建议在线方式进行操作，方法如下：
@@ -35,7 +35,7 @@ PLC。建议在线方式进行操作，方法如下：
 
 图 4. 工艺对象在线离线不一致
 
-### 如何设置模拟量输出 OutputHeat_PER / OutputCool_PER 的限制值？
+## ![](../images/FAQ.png) 如何设置模拟量输出 OutputHeat_PER / OutputCool_PER 的限制值？
 
 下面以 OutputHeat_PER 为例，假设输出标定如图 5 所示，现需要限制
 OutputHeat_PER 输出在原来的 0-50% 之间。

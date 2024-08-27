@@ -6,8 +6,9 @@
 
 **使用技巧**：使用该指令的前提是用户已经组态了命令表工艺对象TO_CommandTable。
 
-**『注意』**部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
-
+:::{attention}
+部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
+:::
 ![](images/6-1.jpg){width="620" height="476"}
 
 **①CommandTable**：命令表工艺对象。
@@ -20,7 +21,9 @@
 
 **③EndStep**：输入终止步号码数值，该值表示用户选择命令表中的某个步作为停止步。
 
-> **『注意』**起始步号和停止步号不能超过TO_CommandTable中组态的命令条目数。
+:::{attention}
+起始步号和停止步号不能超过TO_CommandTable中组态的命令条目数。
+:::
 >
 > 1 ≤ StartStep ≤ EndStep\
 > StartStep ≤ EndStep ≤ 32

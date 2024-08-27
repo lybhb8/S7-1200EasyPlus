@@ -4,8 +4,9 @@
 
 **功能**：使轴以预设的速度运行
 
-**『注意』**部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
-
+:::{attention}
+部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
+:::
 ![](images/08-1.jpg){width="611" height="447"}
 
 **指令输入端：** \
@@ -26,12 +27,14 @@
 -   PositionControlled= 0：非位置控制即运行在速度控制模式
 -   PositionControlled= 1： 位置控制操作即运行在位置控制模式
 
-> **『注意』** 只要执行指令 MC_MoveVelocity 即应用该参数。之后，MC_Power
-> 的设置再次适用。使用 PTO 轴时忽略该参数。
-
+:::{attention}
+只要执行指令 MC_MoveVelocity 即应用该参数。之后，MC_Powe的设置再次适用。使用 PTO 轴时忽略该参数。
+:::
 **⑤InVelocity** ：
 
 -   InVelocity= 0：输出未达到速度设定值
 -   InVelocity= 1： 输出已达到速度设定值
 
-**『注意』**可以设定"Velocity"数值为0.0，触发指令后轴会以组态的减速度停止运行。相当于MC_Halt指令。
+:::{attention}
+可以设定"Velocity"数值为0.0，触发指令后轴会以组态的减速度停止运行。相当于MC_Halt指令。
+:::

@@ -27,6 +27,6 @@ PLC中这种特性叫做Override，中文叫做"超驰"。
 
 **『优点』**轴不用停止，可以平滑过渡到新的指令或是同一指令的新参数。
 
-**『注意』**具体细节务必参考《STEP 7 TIA PORTAL V15 中的 S7-1200 Motion
-Control
-V6.0》中的第11章指令说明部分，该文档的下载链接：<https://support.industry.siemens.com/cs/cn/zh/view/109754206>
+:::{attention}
+具体细节务必参考《STEP 7 TIA PORTAL V15 中的 S7-1200 Motion Control V6.0》中的第11章指令说明部分，该文档的下载链接：<https://support.industry.siemens.com/cs/cn/zh/view/109754206>
+:::

@@ -4,11 +4,14 @@
 
 **功能**：可在用户程序中写入或是更改轴工艺对象和命令表对象中的变量。
 
-**『注意』**部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
+:::{attention}
+部分输入/输出管脚没有具体介绍，请用户参考MC_Power指令中的说明。
+:::
 
-**『注意』**可写入或是更改的变量包括务必参考《STEP 7 TIA PORTAL V15 中的
-S7-1200 Motion Control
-V6.0》中的12.9和12.10章节。该文档的下载链接：<https://support.industry.siemens.com/cs/cn/zh/view/109754206>
+:::{attention}
+可写入或是更改的变量包括务必参考《STEP 7 TIA PORTAL V15 中的S7-1200 Motion Control V6.0》中的12.9和12.10章节。该文档的下载链接：<https://support.industry.siemens.com/cs/cn/zh/view/109754206>
+
+:::
 
 ![](images/11-1.jpg){width="623" height="337"}
 

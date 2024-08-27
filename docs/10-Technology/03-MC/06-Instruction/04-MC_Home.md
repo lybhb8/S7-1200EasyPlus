@@ -6,8 +6,9 @@
 
 **使用要点**：轴做绝对位置定位前一定要触发 MC_Home 指令。
 
-**『注意』**部分输入/输出管脚没有具体介绍，请用户参考 MC_Power
-指令中的说明。
+:::{attention}
+部分输入/输出管脚没有具体介绍，请用户参考 MC_Power指令中的说明。
+:::
 
 ![](images/04-1.jpg){width="620" height="360"}
 
@@ -55,10 +56,10 @@ MC_Home 指令后，轴的位置值变成了
 
 ![](images/04-3.jpg){width="804" height="449"}
 
-**『注意』**用户可以通过对变量 \<轴名称\>.StatusBits.HomingDone = TRUE
-与运动控制指令"MC_Home"的输出参数 Done = TRUE
-进行与运算，来检查轴是否已回原点。
-
+:::{attention}
+用户可以通过对变量 \<轴名称\>.StatusBits.HomingDone = TRUE
+与运动控制指令"MC_Home"的输出参数 Done = TRUE 进行与运算，来检查轴是否已回原点。
+:::
 #### **Mode = 6 绝对编码器相对调节** {#mode-6-绝对编码器相对调节 .STYLE3}
 
 此模式只针对连接的编码器类型为绝对值编码器，该模式下的 MC_Home

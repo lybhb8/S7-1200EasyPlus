@@ -6,6 +6,6 @@
 01-HSC/index
 02-PID/index
 03-MC/index
-04-PWM/01-Resource
+04-PWM/index
 
 ```

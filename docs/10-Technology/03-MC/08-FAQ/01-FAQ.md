@@ -165,9 +165,9 @@ S7-1200 PTO 方式控制 V90 PTI 定位换向时，换向信号由高电平转�
 
 表 2\. 更改有效性
 
-|     |     |
-| --- | --- |
-| W   | 工艺数据块中更改的有效性 |     |
+|     |     |     |
+| --- | --- |----|
+| W   | |工艺数据块中更改的有效性 |     
 | |1   | 通过 PTO 进行驱动装置连接：在轴激活、禁用或已启用时 |
 | |2   | 通过 PTO 进行驱动装置连接：轴启用时 |
 | |5   | 通过 PTO 进行驱动装置连接：下一次启动 MC\_MoveAbsolute、 MC\_MoveRelative、MC\_MoveVelocity、MC\_MoveJog、MC\_Halt、 MC\_CommandTable 或激活的 MC_Home 命令时 (Mode = 3) |

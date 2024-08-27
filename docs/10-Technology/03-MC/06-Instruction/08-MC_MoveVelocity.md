@@ -1,4 +1,4 @@
-### [MC_MoveVelocity]{#_Toc428444767}
+### MC_MoveVelocity
 
 **指令名称**：速度运行指令
 

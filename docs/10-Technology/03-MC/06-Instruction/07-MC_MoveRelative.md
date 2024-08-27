@@ -1,4 +1,4 @@
-### [MC_MoveRelative]{#_Toc428444766}
+### MC_MoveRelative
 
 **指令名称**：相对距离指令
 

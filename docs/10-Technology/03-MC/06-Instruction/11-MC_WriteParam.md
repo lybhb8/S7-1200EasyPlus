@@ -1,4 +1,4 @@
-### [MC_WriteParam]{#_Toc428444771}
+### MC_WriteParam
 
 **指令名称**：写参数指令
 

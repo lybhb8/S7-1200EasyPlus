@@ -1,4 +1,4 @@
-### [MC_ReadParam]{#_Toc428444772}
+### MC_ReadParam
 
 **指令名称**：读参数指令
 

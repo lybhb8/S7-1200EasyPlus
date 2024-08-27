@@ -1,4 +1,4 @@
-### [MC_MoveAbsolute]{#_Toc428444765}
+### MC_MoveAbsolute
 
 **指令名称**：绝对位置指令
 

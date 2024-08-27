@@ -23,7 +23,6 @@
 
 :::{attention}
 起始步号和停止步号不能超过TO_CommandTable中组态的命令条目数。
+- 1 ≤ StartStep ≤ EndStep
+- StartStep ≤ EndStep ≤ 32
 :::
->
-> 1 ≤ StartStep ≤ EndStep\
-> StartStep ≤ EndStep ≤ 32

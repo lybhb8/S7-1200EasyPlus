@@ -1,4 +1,4 @@
-### [MC_ChangeDynamic]{#_Toc428444770}
+### MC_ChangeDynamic
 
 **指令名称**：更改动态参数指令
 

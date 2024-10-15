@@ -1,4 +1,4 @@
-# FB （ Function Block / 功能块）
+# FB (Function Block / 功能块)
 
 S7-1200 PLC 编程可以使用的代码块有 OB 块，FC 块和 FB 块。功能块 (FB)
 是从另一个代码块（OB、FB 或 FC）进行调用时执行的子例程。在调用 FB

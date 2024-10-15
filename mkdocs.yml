@@ -159,6 +159,7 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.tilde
 
+
 not_in_nav: |
   /tutorials/**/*.md
 
